@@ -4,7 +4,7 @@ import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const OurClients = () => {
+const Clients = () => {
   const swiperRef = useRef(null);
   const clients = [
     {
@@ -114,4 +114,4 @@ const OurClients = () => {
   );
 };
 
-export default OurClients;
+export default Clients;

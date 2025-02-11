@@ -1,5 +1,5 @@
 import React from 'react';
-import Typewriter from 'typewriter-effect'; 
+// import Typewriter from 'typewriter-effect'; 
 import Clients from './Clients';
 import Services from './Services';
 import Footer from '../Components/Footer';
@@ -40,26 +40,7 @@ const Home = () => {
               src={banner} alt="Profile"
             />
           </div>
-          <div className="order-2 lg:order-2 flex flex-col justify-center lg:items-start text-center sm:text-left">
-            <p className="mt-2 text-3xl md:text-lg sm:text-sm text-white">RAMADAN OFFER</p> 
-            <p className="mt-2 text-3xl md:text-lg sm:text-sm text-white">Ending Soon</p>
-
-            <p className="text-4xl font-bold md:text-7xl text-white">
-              Water <span className="text-orange-600">Filter</span>.
-            </p>
-            <p className="text-3xl md:text-6xl text-white">
-              On Monthly Rent{' '}
-            </p>
-            <p className="mt-2 lg:text-3xl md:text-lg sm:text-sm text-white">
-              Your Trusted partner for Reliable Water Filters and Services
-            </p>
-            <div className="flex">
-              <button className="text-lg md:text-2xl bg-orange-600 text-black py-2 m-2 px-5 mt-10 hover:bg-zinc-800 rounded-full">
-                <a href="#ContactMe">Contact Me</a>
-              </button>
-            
-            </div>
-          </div>
+         
         </div>
       </section>
 
@@ -72,7 +53,7 @@ const Home = () => {
       <section>
         <ProductsSection />
       </section>
-      
+     
     </>
   );
 };
