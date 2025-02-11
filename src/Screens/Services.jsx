@@ -80,17 +80,18 @@ Maintenance Services for Pure, Hassle-free Hydration</h4>
           ref={swiperRef}
           modules={[Navigation, Autoplay]}
           spaceBetween={20}
+          centeredSlides={-1}
           loop={true}
           breakpoints={{
             640: { slidesPerView: 1 },
-            768: { slidesPerView: 1 },
+            768: { slidesPerView: 1.4 },
             1024: { slidesPerView: 2.3 },
-            1280: { slidesPerView: 3 },
+            1280: { slidesPerView: 3.5 },
           }}
           navigation={false}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           onSlideChange={updateIndicators}
-          className="w-full"
+          className="w-full relative"
         >
           {services.map((service, index) => (
             <SwiperSlide key={index} onClick={toggleDescription}>
@@ -123,31 +124,20 @@ Maintenance Services for Pure, Hassle-free Hydration</h4>
               </div>
             </SwiperSlide>
           ))}
-        </Swiper>
-        {/* Custom Navigation Buttons */}
         <button
-          className="custom-next bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
+          className=" hidden custom-next bg-white text-black rounded-full w-10 h-10 md:flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
           onClick={handleNext}
         >
           Next
         </button>
         <button
-          className="custom-prev bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
+          className=" hidden custom-prev  bg-white text-black  rounded-full w-10 h-10 md:flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
           onClick={handlePrev}
         >
           Prev
         </button>
-        {/* Custom Indicators */}
-        <div className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse">
-          {services.map((_, index) => (
-            <button
-              key={index}
-              className="carousel-indicator h-3 w-3 rounded-full bg-white"
-              aria-label={`Slide ${index + 1}`}
-              onClick={() => swiperRef.current.swiper.slideTo(index)}
-            ></button>
-          ))}
-        </div>
+        </Swiper>
+       
       </div>
     </section>
   );

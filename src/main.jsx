@@ -33,9 +33,6 @@ import Home from "./screens/Home.jsx";
 import Services from "./screens/Services.jsx";
 import Clients from "./screens/Clients.jsx";
 import Footer from "./Components/Footer.jsx";
-// import Layout from "./Components/Layout.jsx";
-// import ScrollToTop from "./Components/ScrollToTop.jsx";
-
 import Login from "./screens/Login.jsx";
 import Rent from "./screens/Rent.jsx";
 import Sale from "./screens/Sale.jsx";
