@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 
-const OurClients = () => {
+const Clients = () => {
   const swiperRef = useRef(null);
   const clients = [
     {
@@ -140,4 +140,4 @@ const OurClients = () => {
   );
 };
 
-export default OurClients;
+export default Clients;
