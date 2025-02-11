@@ -4,6 +4,9 @@ import { Navigation, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
+import OceanScene from "../Components/OceanScene";
+
+
 
 const Services = () => {
   const swiperRef = useRef(null);
@@ -71,7 +74,12 @@ const Services = () => {
   };
 
   return (
-    <section className="bg-gray-100 py-12">
+
+    <>
+    <OceanScene/>
+
+
+        <section className="bg-gray-100 py-12">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
         <h4>Comprehensive Water Solutions, Seamless Monthly Water Filter Rentals and Expert
@@ -97,8 +105,8 @@ Maintenance Services for Pure, Hassle-free Hydration</h4>
               <div className="group relative rounded-2xl bg-transparent overflow-hidden cursor-pointer transition-all transform hover:scale-105 hover:shadow-lg">
                 <div className="absolute inset-0 bg-black z-30 opacity-30"></div>
                 <img
-                  className="h-72 md:h-96 w-full object-cover rounded-2xl transition-transform duration-700 group-hover:scale-110"
-                  src="https://via.placeholder.com/500"
+                  className=" md:h-96 w-6 object-cover rounded-2xl transition-transform duration-700 group-hover:scale-110"
+                  src="./assest/Services/appliances.png"
                   alt={service.title}
                 />
                 <div
@@ -150,6 +158,7 @@ Maintenance Services for Pure, Hassle-free Hydration</h4>
         </div>
       </div>
     </section>
+    </>
   );
 };
 
