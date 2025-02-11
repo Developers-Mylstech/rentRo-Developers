@@ -125,7 +125,7 @@ Maintenance Services for Pure, Hassle-free Hydration</h4>
           ))}
         </Swiper>
         {/* Custom Navigation Buttons */}
-        <button
+        {/* <button
           className="custom-next bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
           onClick={handleNext}
         >
@@ -136,7 +136,7 @@ Maintenance Services for Pure, Hassle-free Hydration</h4>
           onClick={handlePrev}
         >
           Prev
-        </button>
+        </button> */}
         {/* Custom Indicators */}
         <div className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse">
           {services.map((_, index) => (
