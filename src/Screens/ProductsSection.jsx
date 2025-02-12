@@ -73,7 +73,7 @@ const renderStars = (rating) => {
 
 const ProductsSection = () => {
   return (
-    <div className="container mx-auto py-8 px-4">
+    <div className=" mx-auto py-8 px-4">
       {/* Products On Rent */}
       <h2 className="text-center text-xl font-semibold text-gray-700">
         Just For You

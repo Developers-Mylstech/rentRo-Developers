@@ -49,7 +49,7 @@ const Clients = () => {
 
   return (
     <section className="bg-gray-100 py-12">
-      <div className="container mx-auto">
+      <div className=" mx-auto">
         <h2 className="text-3xl font-bold text-center mb-8">Our Clients</h2>
         <Swiper
           ref={swiperRef}
@@ -57,8 +57,8 @@ const Clients = () => {
           spaceBetween={20}
           breakpoints={{
             640: { slidesPerView: 1 },
-            768: { slidesPerView: 1 },
-            1024: { slidesPerView: 2.3 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
             1280: { slidesPerView: 3 },
           }}
           navigation={false} // Disable default navigation buttons
