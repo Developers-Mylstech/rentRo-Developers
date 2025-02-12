@@ -4,12 +4,22 @@ import { Navigation, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
+import { useLocation } from "react-router-dom";
+import OceanScene from "../Components/OceanScene";
+import BottomNav from "../Components/BottomNav";
+
+
+
+
 
 const Services = () => {
+
+
   const swiperRef = useRef(null);
+   const location = useLocation();
   const services = [
     {
-      title: "Comprehensive Water Solutions",
+      title: "Comprehensive Water Solutions ",
       description:
         "Seamless Monthly Water Filter Rentals and Expert Maintenance Services for Pure, Hassle-free Hydration",
     },
@@ -71,10 +81,12 @@ const Services = () => {
   };
 
   return (
+    <>
+      {location.pathname=="/services"?<OceanScene/>:""}
     <section className="bg-gray-100 py-12">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
-        <h4>Comprehensive Water Solutions, Seamless Monthly Water Filter Rentals and Expert
+        {location.pathname=="/"?<h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>:''}
+        <h4 className="text-center">Comprehensive Water Solutions, Seamless Monthly Water Filter Rentals and Expert
 Maintenance Services for Pure, Hassle-free Hydration</h4>
         <Swiper
           ref={swiperRef}
@@ -140,6 +152,8 @@ Maintenance Services for Pure, Hassle-free Hydration</h4>
        
       </div>
     </section>
+      {location.pathname === "/services"?<BottomNav />:null}
+    </>
   );
 };
 

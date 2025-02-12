@@ -62,7 +62,7 @@ const routes = createBrowserRouter(
         {/* Other standalone routes */}
       
       </Route>
-      {/* <Route path="*" element={<Layout />} /> */}
+      <Route path="*" element={<Layout />} />
     </>
   )
 );
