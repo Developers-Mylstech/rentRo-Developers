@@ -87,7 +87,7 @@ const OceanScene = () => {
   };
 
   return (
-    <div className="relative w-screen h-[50vh] overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 flex items-center justify-center">
+    <div className="relative w-full h-[50vh] overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 flex items-center justify-center">
       
       {/* Bubbles */}
       {[...Array(20)].map((_, i) => (
