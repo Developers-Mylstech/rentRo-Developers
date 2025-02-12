@@ -1,46 +1,22 @@
-// import React from "react";
-// import { Outlet } from "react-router-dom";
-// import Header from "./Header";
-// import Footer from "./Footer";
-// import ScrollToTop from "./ScrollToTop";
-// function Layout() {
-//   return (
-//   <>
-//    <ScrollToTop/>
-//   <Header />
-//   <Outlet />
-//   <Footer />
-//   </>
-//   )
-// }
-
-// export default Layout;
-
-
-
 import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { motion } from "framer-motion"; // ✅ For smooth transitions
 import Header from "./Header";
 import Footer from "./Footer";
-import ScrollToTop from "./ScrollToTop.jsx";
-import BottomNav from "./BottomNav";
-// import Loader from "./Loader";
-
-
-
+import ScrollToTop from "./ScrollToTop";
+import Loader from "./Loader"; // ✅ Import the Loader component
 
 function Layout() {
-//   const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-//   useEffect(() => {
-//     // ✅ Simulate loading effect for smooth transition
-//     const timeout = setTimeout(() => setLoading(false), 4000);
-//     return () => clearTimeout(timeout);
-//   }, []);
+  useEffect(() => {
+    // ✅ Show loader for 5 seconds
+    const timeout = setTimeout(() => setLoading(false), 5000);
+    return () => clearTimeout(timeout);
+  }, []);
 
-//   // ✅ Show loader while page is loading
-//   if (loading) return <Loader />;
+  // ✅ Show loader while page is loading
+  if (loading) return <Loader />;
 
   return (
     <>
@@ -55,7 +31,6 @@ function Layout() {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <Outlet />
-
       </motion.div>
 
       <Footer />

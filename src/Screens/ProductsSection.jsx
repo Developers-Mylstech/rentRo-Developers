@@ -73,11 +73,16 @@ const renderStars = (rating) => {
 
 const ProductsSection = () => {
   return (
-    <div className=" mx-auto py-8 px-4">
+    <div className=" mx-auto py-8 px-4 ">
       {/* Products On Rent */}
-      <h2 className="text-center text-xl font-semibold text-gray-700">
-        Just For You
-      </h2>
+     <div className="flex justify-center items-center">
+     <div className="relative inline-flex">
+      <span className="text-white w-20%  bg-blue-600 rounded-full px-3 py-1 text-sm font-semibold shadow-lg transform transition-transform duration-300 hover:scale-110 hover:shadow-2xl animate-pulse">
+        Just for You
+      </span>
+      <div className="absolute inset-0 rounded-full border-2 border-blue-400 animate-ping"></div>
+    </div>
+     </div>
       <h1 className="text-center text-2xl font-bold my-4">
         Products On Monthly Rent
       </h1>

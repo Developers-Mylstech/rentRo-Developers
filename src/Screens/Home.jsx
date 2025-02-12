@@ -71,9 +71,9 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative">
         {/* Video Background */}
-        <div className="w-full h-[100vh] z-10">
+        <div className="w-full md:h-[100vh]  z-10">
           <video
-            className="w-full h-full object-cover"
+            className="w-full md:h-[100vh] h-[60vh] object-fill md:object-cover"
             autoPlay
             loop
             muted
