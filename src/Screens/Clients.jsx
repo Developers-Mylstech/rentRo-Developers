@@ -95,20 +95,31 @@ const Clients = () => {
               </div>
             </SwiperSlide>
           ))}
-        </Swiper>
-        {/* Custom Navigation Buttons */}
         <button
-          className="custom-next bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
+          className="hidden custom-next bg-white text-black rounded-full w-10 h-10 md:flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
           onClick={handleNext}
         >
           Next
         </button>
         <button
-          className="custom-prev bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
+          className=" hidden custom-prev bg-white text-black rounded-full w-10 h-10 md:flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
           onClick={handlePrev}
         >
           Prev
         </button>
+        </Swiper>
+        {/* Custom Navigation Buttons */}
+        {/* Custom Indicators */}
+        {/* <div className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse">
+          {clients.map((_, index) => (
+            <button
+              key={index}
+              className="carousel-indicator h-3 w-3 rounded-full bg-white"
+              aria-label={`Slide ${index + 1}`}
+              onClick={() => swiperRef.current.swiper.slideTo(index)}
+            ></button>
+          ))}
+        </div> */}
       </div>
     </section>
   );
