@@ -1,39 +1,46 @@
 import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 
+// images import 
+import img1 from '../assets/Product on Monthly rent/img1.png'
+import img2 from '../assets/Product on Monthly rent/img2.png'
+import img3 from '../assets/Product on Monthly rent/img3.png'
+import img4 from '../assets/Product on Monthly rent/img4.png'
+import img5 from '../assets/Product on Monthly rent/img5.png'
+
 const products = [
   {
     id: 1,
     name: "Domestic Water Filter",
     price: "AED50.00",
-    image: "path-to-image/domestic-filter.png",
+    image: img1,
     rating: 3.5,
   },
   {
     id: 2,
     name: "Commercial Water Filter",
     price: "AED100.00",
-    image: "path-to-image/commercial-filter.png",
+    image: img2,
     rating: 4,
   },
   {
     id: 3,
     name: "Industrial Water Filter",
     price: "AED50.00",
-    image: "path-to-image/industrial-filter.png",
+    image: img3,
     rating: 4.5,
   },
   {
     id: 4,
     name: "Water Dispenser",
     price: "AED50.00",
-    image: "path-to-image/water-dispenser.png",
+    image:img4,
     rating: 4,
   },
   {
     id: 5,
     name: "Water Cooler",
     price: "AED50.00",
-    image: "path-to-image/water-cooler.png",
+    image: img5,
     rating: 4,
   },
 ];
@@ -77,7 +84,7 @@ const ProductsSection = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {products.map((product) => (
           <div key={product.id} className="p-4 border rounded-lg shadow hover:shadow-lg transition">
-            <img src={product.image} alt={product.name} className="w-full h-40 object-cover mb-3" />
+            <img src={product.image} alt={product.name} className="w-full  object-cover mb-3" />
             <h3 className="text-red-500 font-bold">{product.price}</h3>
             <p className="text-gray-700 text-sm">{product.name}</p>
             <div className="mt-2">{renderStars(product.rating)}</div>
@@ -98,12 +105,18 @@ const ProductsSection = () => {
         Just For You
       </h2>
       <h1 className="text-center text-2xl font-bold my-4">New Products</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 justify-center w-full items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {products.map((product) => (
           <div key={product.id} className="p-4 border rounded-lg shadow hover:shadow-lg transition">
-            <img src={product.image} alt={product.name} className="w-full h-40 object-cover mb-3" />
-            <p className="text-gray-700 text-sm">{product.name}</p>
+
+            <div className="w-full flex flex-col items-center justify-center ">
+            <img src={product.image} alt={product.name} className="w-1/2 object-cover mb-3 " />
+              <p className="text-gray-700 text-sm">{product.name}</p>
             <div className="mt-2">{renderStars(product.rating)}</div>
+
+            </div>
+            {/* <img src={product.image} alt={product.name} className="w-1/2 object-cover mb-3" /> */}
+           
           </div>
         ))}
       </div>

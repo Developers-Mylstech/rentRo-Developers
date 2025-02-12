@@ -1,9 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper";
+import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/autoplay";
 
 const Clients = () => {
   const swiperRef = useRef(null);
@@ -48,35 +47,21 @@ const Clients = () => {
     swiperRef.current.swiper.slidePrev();
   };
 
-  const updateIndicators = (swiper) => {
-    const indicators = document.querySelectorAll(".carousel-indicator");
-    indicators.forEach((indicator, index) => {
-      if (index === swiper.activeIndex) {
-        indicator.classList.add("active");
-      } else {
-        indicator.classList.remove("active");
-      }
-    });
-  };
-
   return (
     <section className="bg-gray-100 py-12">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-8">Our Clients</h2>
         <Swiper
           ref={swiperRef}
-          modules={[Navigation, Autoplay]}
+          modules={[Navigation]}
           spaceBetween={20}
-          loop={true}
           breakpoints={{
             640: { slidesPerView: 1 },
             768: { slidesPerView: 1 },
             1024: { slidesPerView: 2.3 },
             1280: { slidesPerView: 3 },
           }}
-          navigation={false}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          onSlideChange={updateIndicators}
+          navigation={false} // Disable default navigation buttons
           className="w-full"
         >
           {clients.map((client, index) => (

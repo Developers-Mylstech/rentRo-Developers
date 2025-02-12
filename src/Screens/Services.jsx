@@ -7,8 +7,14 @@ import "swiper/css/autoplay";
 import { useLocation } from "react-router-dom";
 import OceanScene from "../Components/OceanScene";
 import BottomNav from "../Components/BottomNav";
-
-
+// images import 
+import IMG1 from '../assets/Services/IMG1.png'
+import IMG2 from '../assets/Services/IMG2.png'
+import IMG7 from '../assets/Services/IMG7.png'
+import IMG4 from '../assets/Services/IMG4.png'
+import IMG5 from '../assets/Services/IMG5.png'
+import IMG3 from '../assets/Services/IMG3.png'
+import IMG6 from '../assets/Services/IMG6.png'
 
 
 
@@ -22,36 +28,50 @@ const Services = () => {
       title: "Comprehensive Water Solutions ",
       description:
         "Seamless Monthly Water Filter Rentals and Expert Maintenance Services for Pure, Hassle-free Hydration",
+        Image:IMG1,
     },
     {
       title: "Domestic Water Filters",
       description:
         "Our Domestic Water Filters Ensure Clean, Clear, and Safe Water for Your Daily Needs. Experience the Purity Within Every Drop.",
-    },
+        Image:IMG2,
+    
+      },
     {
       title: "Commercial Water Filters",
       description:
         "Reliable Commercial Water Filters for Purity and Refreshment in Every Drop. Optimize Your Workplace Hydration with Confidence.",
-    },
+        Image:IMG3,
+      
+      },
     {
       title: "Industrial Water Filters",
       description:
         "Unmatched Efficiency Ensures Pure and Clean Water. Elevate Your Industrial Hydration Standards for Uninterrupted Quality and Reliability.",
-    },
+        Image:IMG7,
+      
+      },
     {
       title: "RO Services",
       description:
         "Ensuring Optimal Performance and Purity. Trust us for Reliable Maintenance, Extending the Lifespan of Your RO System.",
-    },
+        Image:IMG4,
+      
+      },
     {
       title: "Water Coolers And Dispensers",
       description:
         "Stay refreshed effortlessly with our Water Coolers and Dispensers stylish, convenient, and always ready to provide instant, crisp hydration.",
-    },
+        Image:IMG5,
+
+      },
     {
       title: "Chillers And Tanks",
       description:
-        "Experience optimal cooling with our Chillers and Tanks efficient, reliable, and tailored to ensure your beverages stay refreshingly cool every time.",
+   
+     "Experience optimal cooling with our Chillers and Tanks efficient, reliable, and tailored to ensure your beverages stay refreshingly cool every time.",
+        Image:IMG6,
+
     },
   ];
 
@@ -108,10 +128,10 @@ Maintenance Services for Pure, Hassle-free Hydration</h4>
           {services.map((service, index) => (
             <SwiperSlide key={index} onClick={toggleDescription}>
               <div className="group relative rounded-2xl bg-transparent overflow-hidden cursor-pointer transition-all transform hover:scale-105 hover:shadow-lg">
-                <div className="absolute inset-0 bg-black z-30 opacity-30"></div>
+                <div className="absolute inset-0 bg-black z-30 opacity-10"></div>
                 <img
                   className="h-72 md:h-96 w-full object-cover rounded-2xl transition-transform duration-700 group-hover:scale-110"
-                  src="https://via.placeholder.com/500"
+                  src={service.Image}
                   alt={service.title}
                 />
                 <div
@@ -149,7 +169,7 @@ Maintenance Services for Pure, Hassle-free Hydration</h4>
           Prev
         </button>
         </Swiper>
-       
+          
       </div>
     </section>
       {location.pathname === "/services"?<BottomNav />:null}

@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import OceanScene from "../Components/OceanScene";
-import BottomNav from "../Components/BottomNav";
+
 // imgaes import 
 import Domestic from '../assets/Rent/Domestic.png'
 import Commercial  from '../assets/Rent/Commercial .png'
@@ -9,6 +8,7 @@ import Threeinone  from '../assets/Rent/Threeinone.png'
 import WaterCooler   from '../assets/Rent/WaterCooler.png'
 import WaterDispenser   from '../assets/Rent/WaterDispenser.png'
 import Industrial   from '../assets/Rent/Industrial.png'
+import BottomNav from "../Components/BottomNav"
 
 
 

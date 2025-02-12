@@ -18,6 +18,14 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
+  const handleLoginSignupToggle = () => {
+    setIsSignup(!isSignup);
+  };
+
   return (
     <header
       className={`fixed left-0 right-0 z-40 w-full rounded-b-xl transition-all duration-500 ${
