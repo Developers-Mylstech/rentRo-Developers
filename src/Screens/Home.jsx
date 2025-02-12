@@ -4,7 +4,6 @@ import Clients from './Clients';
 import Services from './Services';
 import Footer from '../Components/Footer';
 import ProductsSection from './ProductsSection';
-import banner from '../Components/banner.png';
 import HeroVideo from '../assets/HeroVideo.mp4';  // Corrected path
 
 const Home = () => {
@@ -37,7 +36,7 @@ const Home = () => {
           <div className="order-1 lg:order-1 shadow-2xl">
             <img
               className="h-80 w-80 object-cover lg:w-[500px] lg:h-[500px]"
-              src={banner} alt="Profile"
+              src="" alt="Profile"
             />
           </div>
          
