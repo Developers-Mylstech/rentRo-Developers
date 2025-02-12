@@ -8,6 +8,7 @@ import Threeinone  from '../assets/Rent/Threeinone.png'
 import WaterCooler   from '../assets/Rent/WaterCooler.png'
 import WaterDispenser   from '../assets/Rent/WaterDispenser.png'
 import Industrial   from '../assets/Rent/Industrial.png'
+import BottomNav from "../Components/BottomNav"
 
 
 
@@ -188,6 +189,7 @@ const Rent = () => {
         )}
       </div>
     </div>
+    <BottomNav/>
     </>
   );
 };

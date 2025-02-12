@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SingupImage from "../assets/SingupImage.jpeg";
+import BottomNav from "../Components/BottomNav";
 
 
 const Signup = () => {
@@ -32,6 +33,7 @@ const Signup = () => {
   };
 
   return (
+    <>
     <div
       className="flex justify-center items-center font-[sans-serif] h-full min-h-screen p-4"
       style={{
@@ -169,6 +171,8 @@ const Signup = () => {
         </form>
       </div>
     </div>
+    <BottomNav/>
+    </>
   );
 };
 

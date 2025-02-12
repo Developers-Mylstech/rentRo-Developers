@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Loginimage from "../assets/Loginimage.jpeg";
+import BottomNav from "../Components/BottomNav";
 
 
 // Mock function to simulate login (to be replaced with actual API call)
@@ -34,6 +35,7 @@ const Login = () => {
   };
 
   return (
+    <>
     <div
   className="flex justify-center items-center font-[sans-serif] h-screen w-full p-4 bg-cover bg-center"
   style={{
@@ -97,6 +99,8 @@ const Login = () => {
     </form>
   </div>
 </div>
+      <BottomNav/>
+</>
 
   );
 };

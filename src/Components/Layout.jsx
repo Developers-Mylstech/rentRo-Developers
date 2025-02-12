@@ -24,6 +24,7 @@ import { motion } from "framer-motion"; // ✅ For smooth transitions
 import Header from "./Header";
 import Footer from "./Footer";
 import ScrollToTop from "./ScrollToTop.jsx";
+import BottomNav from "./BottomNav";
 // import Loader from "./Loader";
 
 
@@ -54,6 +55,7 @@ function Layout() {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <Outlet />
+
       </motion.div>
 
       <Footer />

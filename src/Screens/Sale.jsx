@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import OceanScene from "../Components/OceanScene";
+import BottomNav from "../Components/BottomNav";
+
 
 // imgaes import 
 import Domestic from '../assets/Rent/Domestic.png'
@@ -184,6 +186,7 @@ const Sale = () => {
         )}
       </div>
     </div>
+    <BottomNav/>
     </>
   );
 };
