@@ -4,44 +4,68 @@ import { Navigation, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
+// images import 
+import IMG1 from '../assets/Services/IMG1.png'
+import IMG2 from '../assets/Services/IMG2.png'
+import IMG7 from '../assets/Services/IMG7.png'
+import IMG4 from '../assets/Services/IMG4.png'
+import IMG5 from '../assets/Services/IMG5.png'
+import IMG3 from '../assets/Services/IMG3.png'
+import IMG6 from '../assets/Services/IMG6.png'
+
+
 
 const Services = () => {
   const swiperRef = useRef(null);
   const services = [
     {
-      title: "Comprehensive Water Solutions",
+      title: "Comprehensive Water Solutions ",
       description:
         "Seamless Monthly Water Filter Rentals and Expert Maintenance Services for Pure, Hassle-free Hydration",
+        Image:IMG1,
     },
     {
       title: "Domestic Water Filters",
       description:
         "Our Domestic Water Filters Ensure Clean, Clear, and Safe Water for Your Daily Needs. Experience the Purity Within Every Drop.",
-    },
+        Image:IMG2,
+    
+      },
     {
       title: "Commercial Water Filters",
       description:
         "Reliable Commercial Water Filters for Purity and Refreshment in Every Drop. Optimize Your Workplace Hydration with Confidence.",
-    },
+        Image:IMG3,
+      
+      },
     {
       title: "Industrial Water Filters",
       description:
         "Unmatched Efficiency Ensures Pure and Clean Water. Elevate Your Industrial Hydration Standards for Uninterrupted Quality and Reliability.",
-    },
+        Image:IMG7,
+      
+      },
     {
       title: "RO Services",
       description:
         "Ensuring Optimal Performance and Purity. Trust us for Reliable Maintenance, Extending the Lifespan of Your RO System.",
-    },
+        Image:IMG4,
+      
+      },
     {
       title: "Water Coolers And Dispensers",
       description:
         "Stay refreshed effortlessly with our Water Coolers and Dispensers stylish, convenient, and always ready to provide instant, crisp hydration.",
-    },
+        Image:IMG5,
+
+      },
     {
       title: "Chillers And Tanks",
       description:
-        "Experience optimal cooling with our Chillers and Tanks efficient, reliable, and tailored to ensure your beverages stay refreshingly cool every time.",
+   
+     "Experience optimal cooling with our Chillers and Tanks efficient, reliable, and tailored to ensure your beverages stay refreshingly cool every time.",
+        Image:IMG6,
+
     },
   ];
 
@@ -71,7 +95,7 @@ const Services = () => {
   };
 
   return (
-    <section className="bg-gray-100 py-12">
+    <section className="bg-gray-100 py-12 pt-16">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
         <h4>Comprehensive Water Solutions, Seamless Monthly Water Filter Rentals and Expert
@@ -80,25 +104,26 @@ Maintenance Services for Pure, Hassle-free Hydration</h4>
           ref={swiperRef}
           modules={[Navigation, Autoplay]}
           spaceBetween={20}
+          centeredSlides={-1}
           loop={true}
           breakpoints={{
             640: { slidesPerView: 1 },
-            768: { slidesPerView: 1 },
+            768: { slidesPerView: 1.4 },
             1024: { slidesPerView: 2.3 },
-            1280: { slidesPerView: 3 },
+            1280: { slidesPerView: 3.5 },
           }}
           navigation={false}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           onSlideChange={updateIndicators}
-          className="w-full"
+          className="w-full relative"
         >
           {services.map((service, index) => (
             <SwiperSlide key={index} onClick={toggleDescription}>
               <div className="group relative rounded-2xl bg-transparent overflow-hidden cursor-pointer transition-all transform hover:scale-105 hover:shadow-lg">
-                <div className="absolute inset-0 bg-black z-30 opacity-30"></div>
+                <div className="absolute inset-0 bg-black z-30 opacity-10"></div>
                 <img
                   className="h-72 md:h-96 w-full object-cover rounded-2xl transition-transform duration-700 group-hover:scale-110"
-                  src="https://via.placeholder.com/500"
+                  src={service.Image}
                   alt={service.title}
                 />
                 <div
@@ -123,31 +148,20 @@ Maintenance Services for Pure, Hassle-free Hydration</h4>
               </div>
             </SwiperSlide>
           ))}
-        </Swiper>
-        {/* Custom Navigation Buttons */}
         <button
-          className="custom-next bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
+          className=" hidden custom-next bg-white text-black rounded-full w-10 h-10 md:flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
           onClick={handleNext}
         >
           Next
         </button>
         <button
-          className="custom-prev bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
+          className=" hidden custom-prev  bg-white text-black  rounded-full w-10 h-10 md:flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
           onClick={handlePrev}
         >
           Prev
         </button>
-        {/* Custom Indicators */}
-        <div className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse">
-          {services.map((_, index) => (
-            <button
-              key={index}
-              className="carousel-indicator h-3 w-3 rounded-full bg-white"
-              aria-label={`Slide ${index + 1}`}
-              onClick={() => swiperRef.current.swiper.slideTo(index)}
-            ></button>
-          ))}
-        </div>
+        </Swiper>
+          
       </div>
     </section>
   );

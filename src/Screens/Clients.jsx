@@ -1,11 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper";
+import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/autoplay";
 
-const OurClients = () => {
+const Clients = () => {
   const swiperRef = useRef(null);
   const clients = [
     {
@@ -48,35 +47,21 @@ const OurClients = () => {
     swiperRef.current.swiper.slidePrev();
   };
 
-  const updateIndicators = (swiper) => {
-    const indicators = document.querySelectorAll(".carousel-indicator");
-    indicators.forEach((indicator, index) => {
-      if (index === swiper.activeIndex) {
-        indicator.classList.add("active");
-      } else {
-        indicator.classList.remove("active");
-      }
-    });
-  };
-
   return (
     <section className="bg-gray-100 py-12">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-8">Our Clients</h2>
         <Swiper
           ref={swiperRef}
-          modules={[Navigation, Autoplay]}
+          modules={[Navigation]}
           spaceBetween={20}
-          loop={true}
           breakpoints={{
             640: { slidesPerView: 1 },
             768: { slidesPerView: 1 },
             1024: { slidesPerView: 2.3 },
             1280: { slidesPerView: 3 },
           }}
-          navigation={false}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          onSlideChange={updateIndicators}
+          navigation={false} // Disable default navigation buttons
           className="w-full"
         >
           {clients.map((client, index) => (
@@ -110,22 +95,22 @@ const OurClients = () => {
               </div>
             </SwiperSlide>
           ))}
-        </Swiper>
-        {/* Custom Navigation Buttons */}
         <button
-          className="custom-next bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
+          className="hidden custom-next bg-white text-black rounded-full w-10 h-10 md:flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
           onClick={handleNext}
         >
           Next
         </button>
         <button
-          className="custom-prev bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
+          className=" hidden custom-prev bg-white text-black rounded-full w-10 h-10 md:flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
           onClick={handlePrev}
         >
           Prev
         </button>
+        </Swiper>
+        {/* Custom Navigation Buttons */}
         {/* Custom Indicators */}
-        <div className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse">
+        {/* <div className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse">
           {clients.map((_, index) => (
             <button
               key={index}
@@ -134,10 +119,10 @@ const OurClients = () => {
               onClick={() => swiperRef.current.swiper.slideTo(index)}
             ></button>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );
 };
 
-export default OurClients;
+export default Clients;

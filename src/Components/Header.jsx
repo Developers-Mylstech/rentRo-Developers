@@ -1,104 +1,148 @@
-import { useState } from "react";
-import { FaShoppingCart } from "react-icons/fa";
-import { FiSearch, FiUser } from "react-icons/fi";
+import { useState, useEffect } from "react";
+import { FaShoppingCart, FaBars } from "react-icons/fa";
+import { FiSearch, FiUser, FiX } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import rentroLogo from "../assets/renroLogo.png";
 
 const Header = () => {
+  const [scrolling, setScrolling] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleSearch = () => {
-    setSearchVisible(!searchVisible);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolling(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
+  const handleLoginSignupToggle = () => {
+    setIsSignup(!isSignup);
   };
 
   return (
-    <header className="bg-gray-200 h-20">
-      <div className="container mx-auto px-6 py-2 flex items-center "> {/* Removed justify-between */}
-        {/* Logo Section - Pushed to the left */}
-        <div className="flex-grow"> {/* Takes up available space */}
-          <h1 className="text-2xl font-bold text-red-600">
-            RENT<span className="text-black">R₂O</span>
-          </h1>
+    <header
+      className={`fixed left-0 right-0 z-40 w-full rounded-b-xl transition-all duration-500 ${
+        scrolling ? "bg-blue-900 shadow-md" : "bg-black bg-opacity-40"
+      } px-6 py-3`}
+    >
+      <div className="flex items-center justify-between">
+        {/* Logo */}
+        <div className="text-2xl font-bold text-red-600">
+          <Link to="/">
+            <img src={rentroLogo} alt="Logo" className="h-6 md:h-10 w-auto object-cover" />
+          </Link>
         </div>
 
-        {/* Mobile Hamburger Button (unchanged) */}
-        <button
-          className="lg:hidden p-2 rounded-md text-gray-500 hover:text-gray-700"
-          aria-label="Toggle navigation"
-          type="button"
-          aria-expanded="false"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-        >
-          <span className="block w-5 h-0.5 bg-gray-500 mb-1"></span>
-          <span className="block w-5 h-0.5 bg-gray-500 mb-1"></span>
-          <span className="block w-5 h-0.5 bg-gray-500"></span>
-        </button>
-
-        {/* Desktop Navigation Links - Centered */}
-        <div className="hidden lg:flex space-x-4 justify-center flex-grow"> {/* Added justify-center and flex-grow */}
+        {/* Navigation - Desktop */}
+        <nav className="hidden lg:flex space-x-6 flex-grow justify-center">
           <ul className="flex space-x-6">
-            <li>
-              <a className="text-gray-700 hover:text-blue-600" href="#">RENT</a>
-            </li>
-            <li>
-              <a className="text-gray-700 hover:text-blue-600" href="#">SALE</a>
-            </li>
-            <li className="relative">
-              <a
-                className="text-gray-700 hover:text-blue-600"
-                href="#"
-                role="button"
-                aria-expanded="false"
-              >
-                SERVICES
-              </a>
-            </li>
+            {["rent", "sale", "services"].map((item) => (
+              <li key={item} className="relative flex items-center justify-center cursor-pointer transition-all duration-300">
+                <Link
+                  to={`/${item}`}
+                  className={`text-lg font-semibold transition-all duration-300 bg-clip-text text-transparent ${
+                    scrolling
+                      ? "bg-white"
+                      // : "bg-gradient-to-r from-[#00d2ff] via-[#3a7bd5] to-[#00d2ff] bg-[200%]"
+                     : "bg-white"
+                  } hover:animate-[bg-scroll_2s_linear_infinite]`}
+                >
+                  {item.toUpperCase()}
+                </Link>
+              </li>
+            ))}
           </ul>
-        </div>
+        </nav>
 
-        {/* Contact and Icons Section - Right Aligned */}
+        {/* Icons & Search */}
         <div className="flex items-center gap-4">
-          <span className="text-black font-semibold hidden md:inline">
-            +971 50 670 9963
-          </span>
-          <a href="#" className="text-black font-semibold hidden md:inline">
-            CAREERS
-          </a>
-
-          <div className="flex items-center space-x-2">
-            <form
-              className={`flex space-x-2 items-center transition-all duration-300 ${
-                searchVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-full pointer-events-none"
+          {/* Search Bar */}
+          <div className="relative flex items-center">
+            <div
+              className={`flex items-center relative bg-white border rounded-full transition-all duration-500 overflow-hidden ${
+                searchVisible ? " w-36 md:w-64  py-1 opacity-100 scale-100" : "w-0 px-0 opacity-0 scale-95"
               }`}
             >
-              <input
-                className="px-3 py-1 border rounded-md text-gray-700 w-48 transition-width duration-300"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
+              <input type="text" placeholder="Search" className="flex-grow px-2 py-1 outline-none text-gray-700 transition-all duration-200" />
+              <FiX
+                className="text-gray-500 text-xl cursor-pointer absolute top-2.5 right-2 hover:text-black transition-transform duration-200 hover:rotate-90"
+                onClick={() => setSearchVisible(false)}
               />
-              <button
-                className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600"
-                type="submit"
-              >
-                Search
-              </button>
-            </form>
+            </div>
 
-            <FiSearch
-              className={`text-xl cursor-pointer transition-opacity duration-300 ${
-                searchVisible ? "opacity-0" : "opacity-100"
-              }`}
-              onClick={toggleSearch}
-            />
+            {/* Search Button */}
+            {!searchVisible && (
+              <button
+                className="bg-black bg-opacity-20 text-white p-2 rounded-full  hover:bg-gray-300 transition-all duration-200"
+                onClick={() => setSearchVisible(true)}
+              >
+                <FiSearch className="text-xl text-white hover:text-gray-700" />
+              </button>
+            )}
           </div>
 
-          <FiUser className="text-xl cursor-pointer" />
-
-          <button className="flex items-center bg-red-600 text-white px-4 py-2 rounded-md gap-2">
+          {/* User & Cart Icons */}
+          <Link className="hidden md:block" to="/login">
+            <FiUser className="text-xl cursor-pointer transition-transform ease-in-out duration-500 hover:scale-110 text-white" />
+          </Link>
+          <button className="hidden md:flex items-center bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] text-white px-4 py-2 rounded-full gap-2">
             <FaShoppingCart />
             AED 0.00
           </button>
+
+          {/* Hamburger Menu - Mobile */}
+          <button
+            className="md:hidden p-2 rounded-md text-white hover:bg-gray-700 transition-all"
+            onClick={() => setMenuOpen(true)}
+          >
+            <FaBars size={24} />
+          </button>
         </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden block fixed top-0 left-0 w-full h-full bg-blue-950 text-white shadow-lg transform transition-transform duration-500 ${
+          menuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+        } flex flex-col items-center justify-start`}
+      >
+        <Link to="/login">
+            <FiUser  onClick={() => setMenuOpen(false)} className="absolute top-4 left-4 text-3xl cursor-pointer transition-transform duration-200 hover:scale-110 text-white" />
+          </Link>
+        {/* Close Button */}
+        <button  className="absolute top-4 right-4 text-white text-3xl  cursor-pointer transition-transform duration-500" onClick={() => setMenuOpen(false)}>
+          <FiX />
+        </button>
+
+        {/* Mobile Links */}
+        <nav className=" w-full mt-[35%]  text-center">
+          <ul className=" text-lg font-semibold flex flex-col justify-normal items-center">
+            {["rent", "sale", "services"].map((item) => (
+              <li style={{borderBottom:"1px solid gray"}} key={item} className="w-[70%]">
+                <Link
+                  to={`/${item}`}
+                  className="block py-4 text-gray-300 hover:bg-blue-800 w-full transition"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.toUpperCase()}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Cart Button */}
+        <button className="mt-16 flex items-center bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] text-white px-6 py-3 rounded-full gap-2">
+          <FaShoppingCart />
+          AED 0.00
+        </button>
       </div>
     </header>
   );
