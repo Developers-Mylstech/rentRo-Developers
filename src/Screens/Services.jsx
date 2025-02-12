@@ -4,57 +4,62 @@ import { Navigation, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
-import OceanScene from "../Components/OceanScene";
 
-// Services Data
-const services = [
-  {
-    title: "Comprehensive Water Solutions",
-    description:
-      "Seamless Monthly Water Filter Rentals and Expert Maintenance Services for Pure, Hassle-free Hydration",
-  },
-  {
-    title: "Domestic Water Filters",
-    description:
-      "Our Domestic Water Filters Ensure Clean, Clear, and Safe Water for Your Daily Needs. Experience the Purity Within Every Drop.",
-  },
-  {
-    title: "Commercial Water Filters",
-    description:
-      "Reliable Commercial Water Filters for Purity and Refreshment in Every Drop. Optimize Your Workplace Hydration with Confidence.",
-  },
-  {
-    title: "Industrial Water Filters",
-    description:
-      "Unmatched Efficiency Ensures Pure and Clean Water. Elevate Your Industrial Hydration Standards for Uninterrupted Quality and Reliability.",
-  },
-  {
-    title: "RO Services",
-    description:
-      "Ensuring Optimal Performance and Purity. Trust us for Reliable Maintenance, Extending the Lifespan of Your RO System.",
-  },
-  {
-    title: "Water Coolers And Dispensers",
-    description:
-      "Stay refreshed effortlessly with our Water Coolers and Dispensers stylish, convenient, and always ready to provide instant, crisp hydration.",
-  },
-  {
-    title: "Chillers And Tanks",
-    description:
-      "Experience optimal cooling with our Chillers and Tanks efficient, reliable, and tailored to ensure your beverages stay refreshingly cool every time.",
-  },
-];
 
 const Services = () => {
   const swiperRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const services = [
+    {
+      title: "Comprehensive Water Solutions ",
+      description:
+        "Seamless Monthly Water Filter Rentals and Expert Maintenance Services for Pure, Hassle-free Hydration",
+    },
+    {
+      title: "Domestic Water Filters",
+      description:
+        "Our Domestic Water Filters Ensure Clean, Clear, and Safe Water for Your Daily Needs. Experience the Purity Within Every Drop.",
+    },
+    {
+      title: "Commercial Water Filters",
+      description:
+        "Reliable Commercial Water Filters for Purity and Refreshment in Every Drop. Optimize Your Workplace Hydration with Confidence.",
+    },
+    {
+      title: "Industrial Water Filters",
+      description:
+        "Unmatched Efficiency Ensures Pure and Clean Water. Elevate Your Industrial Hydration Standards for Uninterrupted Quality and Reliability.",
+    },
+    {
+      title: "RO Services",
+      description:
+        "Ensuring Optimal Performance and Purity. Trust us for Reliable Maintenance, Extending the Lifespan of Your RO System.",
+    },
+    {
+      title: "Water Coolers And Dispensers",
+      description:
+        "Stay refreshed effortlessly with our Water Coolers and Dispensers stylish, convenient, and always ready to provide instant, crisp hydration.",
+    },
+    {
+      title: "Chillers And Tanks",
+      description:
+        "Experience optimal cooling with our Chillers and Tanks efficient, reliable, and tailored to ensure your beverages stay refreshingly cool every time.",
+    },
+  ];
 
-  // Toggle Description Visibility
-  const toggleDescription = (index) => {
-    setActiveIndex(index === activeIndex ? null : index); // Toggle visibility based on index
+  const [hideDescription, setHideDescription] = useState(false);
+
+  const toggleDescription = () => {
+    setHideDescription(!hideDescription);
   };
 
-  // Update Indicators on Slide Change
+  const handleNext = () => {
+    swiperRef.current.swiper.slideNext();
+  };
+
+  const handlePrev = () => {
+    swiperRef.current.swiper.slidePrev();
+  };
+
   const updateIndicators = (swiper) => {
     const indicators = document.querySelectorAll(".carousel-indicator");
     indicators.forEach((indicator, index) => {
@@ -67,7 +72,7 @@ const Services = () => {
   };
 
   return (
-    <section className="bg-gray-100 py-12">
+    <section className="bg-gray-100 py-12 pt-16">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
         <h4>Comprehensive Water Solutions, Seamless Monthly Water Filter Rentals and Expert
@@ -133,7 +138,7 @@ Maintenance Services for Pure, Hassle-free Hydration</h4>
           Prev
         </button>
         </Swiper>
-       
+          
       </div>
     </section>
   );
