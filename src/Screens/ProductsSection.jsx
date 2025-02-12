@@ -7,6 +7,15 @@ import img3 from '../assets/Product on Monthly rent/img3.png'
 import img4 from '../assets/Product on Monthly rent/img4.png'
 import img5 from '../assets/Product on Monthly rent/img5.png'
 
+//Brand logo import 
+
+import Aquaguard from '../assets/OurBrand/Aquaguard.png';
+import Aquapro from '../assets/OurBrand/Aquapro.png';
+import Bluewater from '../assets/OurBrand/Bluewater.png';
+import Culligan from '../assets/OurBrand/Culligan.png';
+import Kent from '../assets/OurBrand/Kent.png';
+import WaterLogic from '../assets/OurBrand/WaterLogic.png';
+
 const products = [
   {
     id: 1,
@@ -46,11 +55,12 @@ const products = [
 ];
 
 const brands = [
-  { id: 1, name: "Rent RO", image: "path-to-brand/rentro-logo.png" },
-  { id: 2, name: "Aqua Pro", image: "path-to-brand/aquapro-logo.png" },
-  { id: 3, name: "Culligan", image: "path-to-brand/culligan-logo.png" },
-  { id: 4, name: "Keen Water", image: "path-to-brand/keenwater-logo.png" },
-  { id: 5, name: "Water Logic", image: "path-to-brand/waterlogic-logo.png" },
+  { id: 1, name: "Blue Water",image: Bluewater  },
+  { id: 2, name: "Aqua Pro", image: Aquapro },
+  { id: 3, name: "Culligan", image:Culligan },
+  { id: 4, name: "Kent Water", image:Kent },
+  { id: 5, name: "Water Logic", image: WaterLogic },
+  { id: 6, name: "Aquaguard", image:Aquaguard },
 ];
 
 const renderStars = (rating) => {
