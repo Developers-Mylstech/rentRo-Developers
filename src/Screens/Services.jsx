@@ -99,13 +99,13 @@ const Services = () => {
             // <h2 className="text-4xl font-extrabold text-center mb-4 animate-fade-in-up">
             //   Our Services
             // </h2>
-            <h2 className="text-3xl md:text-4xl font-[ubik, sans-serif] font-bold text-center mb-4 relative ">
+            <h2 className="text-3xl text-blue-800 md:text-4xl font-[ubik, sans-serif] font-bold text-center mb-4 relative ">
               Our Services
             </h2>
           ) : (
             ""
           )}
-          <h4 className="text-center md:text-xl font-[ubik, sans-serif] text-gray-600 mb-8 animate-fade-in-up">
+          <h4 className="text-center md:text-xl font-[ubik, sans-serif] text-gray-500 mb-8 animate-fade-in-up">
             Comprehensive Water Solutions, Seamless Monthly Water Filter Rentals
             and Expert Maintenance Services for Pure, Hassle-free Hydration
           </h4>
@@ -129,7 +129,7 @@ const Services = () => {
               <SwiperSlide key={index} onClick={toggleDescription}>
                 <div className="group relative  shadow-xl my-10 border rounded-3xl bg-transparent overflow-hidden cursor-pointer transition-all transform hover:scale-90 hover:shadow-2xl">
                   <img
-                    className="h-72 md:h-96 w-full object-cover rounded-2xl transition-transform duration-700 group-hover:scale-110"
+                    className="h-72 mx-auto md:h-96 w-auto object-cover rounded-2xl transition-transform duration-700 group-hover:scale-110"
                     src={service.Image}
                     alt={service.title}
                   />
@@ -141,8 +141,8 @@ const Services = () => {
                     {service.title}
                   </h3>
                   <div
-                    className={`absolute inset-x-0 bottom-[-20%] z-20 h-0 bg-blue-300/20 flex items-center justify-center text-center 
-      transition-all duration-500 ease-in-out group-hover:h-[120%]`}
+                    className={` absolute inset-x-0 bottom-[-20%] z-20 h-0 bg-blue-300/20 flex items-center justify-center text-center 
+      transition-all duration-500 ease-in-out group-hover:h-[120%] `}
                   >
                     <div className="p-6 text-blue-950">
                       <h3 className="text-xl font-bold animate-fade-in-up">

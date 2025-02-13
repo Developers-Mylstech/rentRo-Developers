@@ -18,7 +18,7 @@ const Clients = () => {
   return (
     <section className="bg-gray-100 py-12">
       <div className="container mx-auto w-full">
-        <h2 className="text-3xl font-bold text-center mb-8">Our Clients</h2>
+        <h2 className="text-3xl font-bold text-center text-blue-800 mb-8">Our Clients</h2>
 
         <Marquee behavior="alter" direction="left"  >
           <div className="group relative rounded-2xl bg-transparent mx-6 md:mx-12 overflow-hidden cursor-pointer transition-all">

@@ -38,6 +38,7 @@ import Rent from "./screens/Rent.jsx";
 import Sale from "./screens/Sale.jsx";
 import Signup from "./screens/Signup.jsx";
 import Layout from "./Components/Layout.jsx";
+import Faq from "./screens/Faq.jsx";
 
 
 
@@ -56,7 +57,8 @@ const routes = createBrowserRouter(
         <Route path="/clients" element={<Clients/>} />
         <Route path="/sale" element={<Sale/>} />
         <Route path="/rent" element={<Rent/>} />
-        <Route path="*" element={<Layout/>} />
+        <Route path="/faq" element={<Faq/>} />
+        {/* <Route path="*" element={<Layout/>} /> */}
        
 
         {/* Other standalone routes */}
