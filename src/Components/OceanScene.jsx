@@ -83,6 +83,9 @@ const OceanScene = () => {
     } else if (location.pathname.includes("sale")) {
       return "Our Sailing Product";
     }
+     else if (location.pathname.includes("shop")) {
+      return "Our Shop";
+    }
     return "";
   };
 

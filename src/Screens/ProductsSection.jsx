@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/autoplay";
-import "../index.css";
-
-=======
 // import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 
 // // images import 
@@ -159,7 +149,6 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import "../index.css";
 
->>>>>>> 106ad60fa521050be0f20281496e1263e35bb191
 import "swiper/swiper-bundle.min.css"; // Swiper styles
 
 // images import

@@ -32,7 +32,7 @@ const BottomNav = () => {
 
         <li
           className="flex flex-col items-center cursor-pointer hover:text-blue-500"
-          onClick={() => navigate("/services")}
+          onClick={() => navigate("/shop")}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
