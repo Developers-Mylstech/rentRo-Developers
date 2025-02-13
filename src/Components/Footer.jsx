@@ -2,6 +2,7 @@ import { SiVisa } from "react-icons/si";
 import { FaCcMastercard } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import "./Waves.css";
+import rentroLogo from "../assets/renroLogo.png";
 
 const Footer = () => {
   const location = useLocation();
@@ -11,9 +12,7 @@ const Footer = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 z-10">
         {/* Company Info */}
         <div>
-          <h2 className="text-3xl font-bold">
-            RENT <span className="text-yellow-400">RO</span>
-          </h2>
+          <img src={rentroLogo} alt="Logo" className="h-6 md:h-12 w-auto object-cover" />
           <p className="text-sm mt-2 text-white">
             Established in 2019, RENT RO aims to make water purification
             affordable with rental plans.

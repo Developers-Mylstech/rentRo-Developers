@@ -99,7 +99,7 @@ const Services = () => {
             // <h2 className="text-4xl font-extrabold text-center mb-4 animate-fade-in-up">
             //   Our Services
             // </h2>
-            <h2 className="text-3xl md:text-5xl font-[ubik, sans-serif] font-bold text-blue-800 text-center mb-4 relative ">
+            <h2 className="text-3xl md:text-4xl font-[ubik, sans-serif] font-bold text-center mb-4 relative ">
               Our Services
             </h2>
           ) : (
