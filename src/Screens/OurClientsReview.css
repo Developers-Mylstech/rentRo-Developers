@@ -1,0 +1,20 @@
+/* Smooth transition when the testimonial appears */
+.testimonial-contain {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s ease-out;
+}
+
+/* When active testimonial comes into view */
+.slick-active .testimonial-contain {
+    transform: translateY(0);
+    opacity: 1;
+}
+/* Hide next and prev buttons on small screens */
+@media (max-width: 768px) {
+
+    .custom-next,
+    .custom-prev {
+        display: none;
+    }
+}

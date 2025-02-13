@@ -99,11 +99,11 @@ const Shop = () => {
         {/* Filter and Sort Options */}
         <div className="container mx-auto flex flex-col gap-4 bg-white p-4 rounded-lg shadow-md mb-6 mt-4">
           <select
-            className="p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="p-2 border rounded-lg shadow-sm focus:outline-none overflow-hidden  focus:ring-2 focus:ring-blue-400"
             value={selectedBrand}
             onChange={(e) => setSelectedBrand(e.target.value)}
           >
-            <option value="">All Brands</option>
+            <option value="" className="">All Brands</option>
             <option value="Rent RO">Rent RO</option>
             <option value="Kent RO">Kent RO</option>
             <option value="Aqua Pro">Aqua Pro</option>
@@ -155,7 +155,7 @@ const Shop = () => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-48 object-cover"
+                  className="w-auto mx-auto  object-cover"
                 />
                 <div className="p-3">
                   <h3 className="text-lg font-medium text-gray-900">{product.name}</h3>

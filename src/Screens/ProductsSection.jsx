@@ -165,6 +165,7 @@ import Bluewater from "../assets/OurBrand/Bluewater.png";
 import Culligan from "../assets/OurBrand/Culligan.png";
 import Kent from "../assets/OurBrand/Kent.png";
 import WaterLogic from "../assets/OurBrand/WaterLogic.png";
+import BottomNav from "../Components/BottomNav";
 
 const products = [
   {
@@ -221,6 +222,7 @@ const renderStars = (rating) => {
 
 const ProductsSection = () => {
   return (
+    <>
     <div className="mx-auto py-8 px-4">
       {/* Products On Rent */}
       <div className="flex justify-center items-center mt-10">
@@ -333,6 +335,8 @@ const ProductsSection = () => {
         ))}
       </Swiper>
     </div>
+    <BottomNav/>
+    </>
   );
 };
 

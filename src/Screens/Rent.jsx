@@ -102,8 +102,9 @@ const Rent = () => {
 
     <div className="font-sans bg-gray-50 min-h-screen p-6">
       {/* Filter and Sort Options */}
-      <div className="container mx-auto flex flex-wrap justify-between items-center bg-white p-4 rounded-lg shadow-md mb-6 mt-18">
-        <select
+   <div className="container mx-auto flex flex-col  md:flex-row sm:justify-between items-center bg-white p-4 rounded-lg shadow-md mb-6 mt-18 w-full space-y-2 sm:space-y-0 sm:space-x-4">
+
+   <select
           className="p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
           value={selectedBrand}
           onChange={(e) => setSelectedBrand(e.target.value)}

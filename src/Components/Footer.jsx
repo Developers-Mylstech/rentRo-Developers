@@ -3,16 +3,25 @@ import { FaCcMastercard } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import "./Waves.css";
 import rentroLogo from "../assets/renroLogo.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const location = useLocation();
   return (
-    <footer className={`relative overflow-hidden bg-gradient-to-b md:mb-0 ${location.pathname!="/signup" || "/login"? "mb-12":"mb-0"} from-blue-950 to-blue-900 text-white py-12 px-6 md:px-16 border-t`}>
+    <footer
+      className={`relative overflow-hidden bg-gradient-to-b md:mb-0 ${
+        location.pathname != "/signup" || "/login" ? "mb-12" : "mb-0"
+      } from-blue-950 to-blue-900 text-white py-12 px-6 md:px-16 border-t`}
+    >
       {/* Footer Content */}
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 z-10">
         {/* Company Info */}
         <div>
-          <img src={rentroLogo} alt="Logo" className="h-6 md:h-12 w-auto object-cover" />
+          <img
+            src={rentroLogo}
+            alt="Logo"
+            className="h-6 md:h-12 w-auto object-cover"
+          />
           <p className="text-sm mt-2 text-white">
             Established in 2019, RENT RO aims to make water purification
             affordable with rental plans.
@@ -51,25 +60,41 @@ const Footer = () => {
           <h3 className="font-semibold text-lg mb-3">Our Services</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <a href="#" className="hover:underline">
+              <Link to="/domesticservices" href="#" className="hover:underline">
                 Domestic Service
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:underline">
+              <Link to="/commercialService" className="hover:underline">
                 Commercial Service
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:underline">
+              <Link to="/industrialservice" className="hover:underline">
                 Industrial Service
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:underline">
+              <Link to="/" className="hover:underline">
                 RO Services
-              </a>
+              </Link>
             </li>
+          </ul>
+        </div>
+       <div>
+          <h3 className="font-semibold text-lg mb-3">Get Help</h3>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <Link to="/faq" href="#" className="hover:underline">
+                FAQ
+              </Link>
+            </li>
+            <li>
+              <Link to="/" className="hover:underline">
+                Contact Us
+              </Link>
+            </li>
+           
           </ul>
         </div>
 
@@ -84,18 +109,22 @@ const Footer = () => {
           </p>
           <p className="text-sm mt-2 text-white">
             <strong>Email:</strong>{" "}
-            <a
+            <Link
+              to="/"
               href="mailto:info@rentro.ae"
               className="text-white hover:underline"
             >
               info@rentro.ae
-            </a>
+            </Link>
           </p>
         </div>
       </div>
 
       {/* Footer Bottom */}
-      <div style={{borderTop:"1px solid #ffffffb2"}} className="mt-8 flex flex-col md:flex-row items-center justify-between text-sm  pt-4 z-20">
+      <div
+        style={{ borderTop: "1px solid #ffffffb2" }}
+        className="mt-8 flex flex-col md:flex-row items-center justify-between text-sm  pt-4 z-20"
+      >
         <p>We accept:</p>
         <div className="flex items-center space-x-4 mt-2 md:mt-0">
           <SiVisa className="text-black text-2xl z-10" />

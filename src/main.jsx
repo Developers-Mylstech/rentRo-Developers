@@ -23,8 +23,9 @@ import Sale from "./Screens/Sale.jsx";
 import Signup from "./Screens/Signup.jsx";
 import Layout from "./Components/Layout.jsx";
 import Shop from "./Screens/Shop.jsx";
-
-
+import DomesticService from "./Screens/DomesticService.jsx";
+import CommercialService from "./Screens/CommercialService.jsx";
+import IndustrialService from './Screens/IndustrialService.jsx'
 
 
 const routes = createBrowserRouter(
@@ -41,7 +42,14 @@ const routes = createBrowserRouter(
         <Route path="/clients" element={<Clients/>} />
         <Route path="/sale" element={<Sale/>} />
         <Route path="/rent" element={<Rent/>} />
-        <Route path="/shop" element={<Shop/>} />
+         <Route path="/shop" element={<Shop/>} />
+        <Route path="/domesticservices" element={<DomesticService/>} />
+        <Route path="/commercialservice" element={<CommercialService/>} />
+        <Route path="/industrialservice" element={<IndustrialService/>} />
+
+        
+        <Route path="*" element={<Layout/>} />
+       
         <Route path="*" element={<Layout/>} />
        
 

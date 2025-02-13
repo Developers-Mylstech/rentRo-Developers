@@ -13,10 +13,14 @@ import ORBISFOOD from "../assets/OurClientLogo/ORBISFOOD.png";
 import Rotanalogo from "../assets/OurClientLogo/Rotanalogo.png";
 import TapaKing from "../assets/OurClientLogo/TapaKing.png";
 import ThoibaLogistics from "../assets/OurClientLogo/ThoibaLogistics.png";
+import BottomNav from "../Components/BottomNav";
 
 const Clients = () => {
+
+  
   return (
-    <section className="bg-gray-100 py-12">
+ <>
+ <section className="bg-gray-100 py-12">
       <div className="container mx-auto w-full">
         <h2 className="text-3xl font-bold text-center mb-8">Our Clients</h2>
 
@@ -103,6 +107,8 @@ const Clients = () => {
         </Marquee>
       </div>
     </section>
+    <BottomNav/>
+    </>
   );
 };
 
