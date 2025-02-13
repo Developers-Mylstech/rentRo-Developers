@@ -1,6 +1,7 @@
 // src/Components/BottomNav.js
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { VscAccount } from "react-icons/vsc";
 
 const BottomNav = () => {
   const navigate = useNavigate();
