@@ -9,6 +9,7 @@ import WaterCooler   from '../assets/Rent/WaterCooler.png'
 import WaterDispenser   from '../assets/Rent/WaterDispenser.png'
 import Industrial   from '../assets/Rent/Industrial.png'
 import BottomNav from "../Components/BottomNav"
+import notFount from '../assets/notfound.png'
 
 
 
@@ -151,7 +152,7 @@ const Rent = () => {
       </div>
 
       {/* Product Grid */}
-      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className=" mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {sortedProducts.length > 0 ? (
           sortedProducts.map((product, index) => (
             <div
@@ -184,9 +185,13 @@ const Rent = () => {
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-500 col-span-full">
-            No products found.
-          </p>
+          // <p className="text-center text-gray-500 col-span-full">
+          //   No products found.
+          // </p>
+       
+          <div className="flex justify-center items-center h-[30vh] w-[95vw]">
+          <img src={notFount} alt="Not Found" className="md:h-52 w-auto h-28"/>
+        </div>
         )}
       </div>
     </div>

@@ -233,7 +233,7 @@ const ProductsSection = () => {
       <div className="absolute inset-0 rounded-full border-2 border-blue-400 animate-ping"></div>
     </div>
      </div>
-      <h1 className="text-center text-2xl font-bold my-4">
+      <h1 className="text-center text-blue-800  text-2xl font-bold my-4">
         Products On Monthly Rent
       </h1>
 
@@ -267,30 +267,7 @@ const ProductsSection = () => {
         ))}
       </Swiper>
 
-      {/* Brands Section */}
-      <h2 className="text-center text-2xl font-bold my-8">Our Brands</h2>
-      <Swiper
-        spaceBetween={30}
-        slidesPerView={5}
-        loop={true}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-        breakpoints={{
-          640: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 },
-          1280: { slidesPerView: 5 },
-        }}
-        className="w-full relative"
-      >
-        {brands.map((brand) => (
-          <SwiperSlide
-            key={brand.id}
-            className="flex justify-center items-center"
-          >
-            <img src={brand.image} alt={brand.name} className="h-12" />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+     
 
       {/* New Products Section */}
       <div className="flex justify-center items-center mt-10">
@@ -301,7 +278,7 @@ const ProductsSection = () => {
       <div className="absolute inset-0 rounded-full border-2 border-blue-400 animate-ping"></div>
     </div>
      </div>
-      <h1 className="text-center text-2xl font-bold my-4">New Products</h1>
+      <h1 className="text-center text-2xl font-bold my-4 text-blue-800">New Products</h1>
 
       <Swiper
         modules={[Autoplay]}
