@@ -86,6 +86,11 @@ const OceanScene = () => {
      else if (location.pathname.includes("shop")) {
       return "Our Shop";
     }
+     else if (location.pathname.includes("contactus")) {
+      return "Contact Us";
+    } else if (location.pathname.includes("aboutus")) {
+      return "About Us";
+    }
     return "";
   };
 

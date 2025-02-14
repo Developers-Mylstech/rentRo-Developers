@@ -9,7 +9,7 @@ const Footer = () => {
   const location = useLocation();
   return (
     <footer
-      className={`relative overflow-hidden bg-gradient-to-b md:mb-0 ${
+      className={`relative overflow-hidden bg-gradient-to-b  md:mb-0 ${
         location.pathname != "/signup" || "/login" ? "mb-12" : "mb-0"
       } from-blue-950 to-blue-900 text-white py-12 px-6 md:px-16 border-t`}
     >
@@ -38,19 +38,19 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline">
+              <Link  to='/aboutus' className="hover:underline">
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:underline">
+              <Link to='/contactus' className="hover:underline">
                 Contact Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:underline">
+              <Link to='/shop' className="hover:underline">
                 Shop
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -75,7 +75,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/" className="hover:underline">
+              <Link to="/roservices" className="hover:underline">
                 RO Services
               </Link>
             </li>

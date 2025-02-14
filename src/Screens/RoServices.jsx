@@ -7,15 +7,15 @@ import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import OurClientsReview from '../Screens/OurClientsReview.jsx'
-import BottomNav from "../Components/BottomNav.jsx";
 
 // images import
+import roServices1 from "../assets/RoServices/roServices1.png"
+import roServices2 from "../assets/RoServices/roServices2.png"
+import roServices3 from "../assets/RoServices/roServices3.png"
+import BottomNav from "../Components/BottomNav.jsx";
 
-import domestic1 from "../assets/Domesticservice/domestic1.png";
-import domestic2 from "../assets/Domesticservice/domestic2.png";
-import domestic3 from "../assets/Domesticservice/domestic3.png";
 
-function DomesticService() {
+function RoServices() {
   useEffect(() => {
     AOS.init({
       duration: 1000, // Duration of animations
@@ -66,30 +66,25 @@ function DomesticService() {
           {/* Left Section - Text Content */}
           <div className="text-center md:text-left space-y-6">
             <h2 className="text-4xl font-bold text-red-600 mb-2 leading-tight">
-              Domestic Water Filter Service
+              RO Services
             </h2>
             <h3 className="text-2xl font-semibold text-gray-900 mb-4">
               GET TO KNOW SERVICE
             </h3>
             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-              At RENT RO, we understand the importance of maintaining a healthy
-              and efficient water filtration system in your home.
+                At RENT RO, we recognize the essential role of upholding a robust and efficient water filtration system for your home through our comprehensive RO services.
+                         </p>
+            <p className="text-gray-700 mb-4 text-lg leading-relaxed">
+            Our RO Services are crafted to optimize your system's performance, ensuring a reliable source of clean and safe water for your household.
             </p>
             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-              Our Domestic Water Filter Service is designed to ensure your
-              system operates at its best, delivering clean and safe water for
-              your family.
-            </p>
-            <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-              We are committed to ensuring that your filtration system not only
-              operates optimally but also consistently provides clean and safe
-              water for every member of your household.
-            </p>
+                We are dedicated to ensuring that your RO filtration system not only operates optimally but also consistently delivers clean and safe water for every member of your household.
+                        </p>
             <p className="text-gray-700 mb-6 text-lg leading-relaxed">
-              With a team of skilled technicians specializing in a diverse range
-              of systems, we bring a wealth of expertise to address the unique
-              needs of your filtration setup.
-            </p>
+         With a team of skilled technicians specializing in various RO systems, we bring a wealth of expertise to address the unique needs of your filtration setup through our RO services.
+
+
+                     </p>
             <div>
               <Link
                 to="/"
@@ -106,17 +101,17 @@ function DomesticService() {
             {" "}
             {/* Increased gap here */}
             <img
-              src={domestic1} // Directly use the imported variable
+              src={roServices1} // Directly use the imported variable
               className="w-auto h-full object-cover rounded-lg border-2 shadow-lg transition-transform transform hover:scale-105"
               alt="IMG1"
             />
             <img
-              src={domestic2} // Directly use the imported variable
+              src={roServices2} // Directly use the imported variable
               className="w-full object-cover rounded-lg border-2 border-gray-300 shadow-lg transition-transform transform hover:scale-105"
               alt="IMG2"
             />
             <img
-              src={domestic3} // Directly use the imported variable
+              src={ roServices1} // Directly use the imported variable
               className="col-span-2 w-full object-cover rounded-lg border-2 border-gray-300 shadow-lg transition-transform transform hover:scale-105"
               alt="IMG3"
             />
@@ -211,10 +206,10 @@ function DomesticService() {
     <section>
         <OurClientsReview/>
     </section>
-    <BottomNav/>
 
+    <BottomNav/>
     </>
   );
 }
 
-export default DomesticService;
+export default RoServices;

@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import './OurClientsReview.css';
 import BottomNav from "../Components/BottomNav";
 
+
 const slickSettings = {
   dots: true,
   infinite: true,
@@ -119,7 +120,10 @@ function OurClientsReview() {
         </div>
       </div>
     </section>
+        
     <BottomNav/>
+
+
   </>
   );
 }
