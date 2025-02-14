@@ -188,7 +188,7 @@ const Rent = () => {
           //   No products found.
           // </p>
        
-          <div className="flex justify-center items-center h-[30vh] w-full">
+          <div className="flex justify-center items-center h-[30vh] w-[95vw]">
           <img src={notFount} alt="Not Found" className="md:h-52 w-auto h-28"/>
         </div>
         )}

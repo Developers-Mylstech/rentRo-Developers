@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import OceanScene from "../Components/OceanScene";
 import BottomNav from "../Components/BottomNav";
+import notFount from '../assets/notfound.png'
 
 
 // imgaes import 
@@ -97,7 +98,7 @@ const Sale = () => {
     <>
     <OceanScene/>
     
-    <div className="font-sans bg-gray-50 min-h-screen p-6">
+    <div className="font-sans bg-gray-50 min-h-screen ">
       {/* Filter and Sort Options */}
       <div className="container mx-auto flex flex-col md:flex-row md:justify-between  gap-4 items-start bg-white p-4 rounded-lg shadow-md mb-6 mt-18">
         <select
@@ -180,7 +181,7 @@ const Sale = () => {
             </div>
           ))
         ) : (
-          <div className="flex justify-center items-center h-[30vh] w-full">
+          <div className="flex justify-center items-center  h-[30vh] w-[100vw]">
                     <img src={notFount} alt="Not Found" className="md:h-52 w-auto h-28"/>
                   </div>
         )}
