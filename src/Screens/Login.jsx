@@ -86,9 +86,18 @@ const Login = () => {
       </div>
 
       {/* Submit Button */}
-      <button type="submit" className="w-full py-2 text-sm font-semibold tracking-wide rounded text-black bg-white hover:bg-[#222] hover:text-[white] focus:outline-none">
-        Log in
-      </button>
+      <div className="md:col-span-2 col-span-1 h-full w-full flex justify-center items-center">
+                    <button
+                      className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 
+             text-white  text-lg rounded-lg py-2 px-4  shadow-lg
+             shadow-blue-500/50 hover:from-blue-300 hover:to-blue-800
+             transition duration-300 transform hover:-translate-y-1 hover:scale-105 
+             tracking-wider"
+                      type="submit"
+                    >
+                      Login
+                    </button>
+                  </div>
 
       <p className="text-white text-sm text-center mt-6">
         Don't have an account?{" "}

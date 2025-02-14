@@ -84,6 +84,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { BsQuestionOctagon } from "react-icons/bs";
 import OceanScene from '../Components/OceanScene';
+import "../index.css"
 
 const faqData = [
   {

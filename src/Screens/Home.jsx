@@ -31,7 +31,7 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative border">
+      <section className="relative ">
         {/* Video Background */}
         <div className="  z-10">
           <video
@@ -46,6 +46,7 @@ const Home = () => {
             />
             Your browser does not support the video tag.
           </video>
+          <div className='absolute inset-0 bg-black bg-opacity-20'></div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 bg-transparent pt-4 overflow-hidden z-0 home-gradient">
   <div className="h-full w-full inset-y-full hover:inset-y-0">
