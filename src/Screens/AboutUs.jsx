@@ -39,7 +39,7 @@ const AboutUs = () => {
             </p>
             <button 
               className="bg-red-600 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-red-700 transition"
-              onClick={() => navigate('/contactus')} // Corrected navigate usage
+              onClick={() => navigate('/contact')} // Corrected navigate usage
             >
               GET TO KNOW
             </button>

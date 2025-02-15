@@ -355,9 +355,10 @@ const Footer = () => {
     style={{ borderTop: "1px solid #ffffffb2" }}
     className="mt-8 flex flex-col md:flex-row items-center justify-between text-sm pt-4 z-20"
   >
+    <div className="flex md:flex-row sm:flex-col space-x-4 mt-2 md:mt-0">
     <p>We accept:</p>
-    <div className="flex items-center space-x-4 mt-2 md:mt-0">
-      <SiVisa className="text-black text-2xl z-10" />
+
+      <SiVisa className="text-black text-2xl z-10 " />
       <FaCcMastercard className="text-black text-2xl z-10" />
     </div>
     <p className="mt-2 md:mt-0">© 2025 RENT RO, All rights reserved.</p>

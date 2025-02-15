@@ -92,7 +92,7 @@ function DomesticService() {
             </p>
             <div>
         <Link
-                                     to="/contactus"
+                                     to="/contact"
                                      // Adjust this URL to your actual contact page
                                      className="  text-blue-800 font-bold py-3 px-8 rounded-lg  hover:bg-sky-700 hover:text-white transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
                                    >

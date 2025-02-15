@@ -6,14 +6,13 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import OurClientsReview from '../Screens/OurClientsReview.jsx'
+import OurClientsReview from "../Screens/OurClientsReview.jsx";
 
 // images import
-import commercial1 from "../assets/Comercialservice/commercial1.png"
-import commercial2 from "../assets/Comercialservice/commercial2.png"
-import commercial3 from "../assets/Comercialservice/commercial3.png"
+import commercial1 from "../assets/Comercialservice/commercial1.png";
+import commercial2 from "../assets/Comercialservice/commercial2.png";
+import commercial3 from "../assets/Comercialservice/commercial3.png";
 import BottomNav from "../Components/BottomNav.jsx";
-
 
 function CommercialService() {
   useEffect(() => {
@@ -72,25 +71,35 @@ function CommercialService() {
               GET TO KNOW SERVICE
             </h3>
             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-              At RENT RO, we acknowledge the significance of sustaining a robust and efficient water filtration system for your commercial establishment.
+              At RENT RO, we acknowledge the significance of sustaining a robust
+              and efficient water filtration system for your commercial
+              establishment.
             </p>
             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-              Our Commercial Water Filter Service is tailored to optimize your system's performance, providing a reliable supply of clean and safe water for your business needs.
+              Our Commercial Water Filter Service is tailored to optimize your
+              system's performance, providing a reliable supply of clean and
+              safe water for your business needs.
             </p>
             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-             We are dedicated to ensuring that your commercial filtration system not only functions optimally but also consistently delivers clean and safe water for the well being of your business environment
+              We are dedicated to ensuring that your commercial filtration
+              system not only functions optimally but also consistently delivers
+              clean and safe water for the well being of your business
+              environment
             </p>
             <p className="text-gray-700 mb-6 text-lg leading-relaxed">
-             With a team of skilled technicians specializing in a diverse range of commercial filtration systems, we bring a wealth of expertise to cater to the unique needs of your business's water filtration setup.
+              With a team of skilled technicians specializing in a diverse range
+              of commercial filtration systems, we bring a wealth of expertise
+              to cater to the unique needs of your business's water filtration
+              setup.
             </p>
             <div>
               <Link
-                             to="/contactus"
-                             // Adjust this URL to your actual contact page
-                             className="  text-blue-800 font-bold py-3 px-8 rounded-lg  hover:bg-sky-700 hover:text-white transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
-                           >
-                             CONTACT US
-                           </Link>
+                to="/contact"
+                // Adjust this URL to your actual contact page
+                className="  text-blue-800 font-bold py-3 px-8 rounded-lg  hover:bg-sky-700 hover:text-white transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
+              >
+                CONTACT US
+              </Link>
             </div>
           </div>
 
@@ -109,7 +118,7 @@ function CommercialService() {
               alt="IMG2"
             />
             <img
-              src={ commercial3} // Directly use the imported variable
+              src={commercial3} // Directly use the imported variable
               className="col-span-2 w-full object-cover rounded-lg border-2 border-gray-300 shadow-lg transition-transform transform hover:scale-105"
               alt="IMG3"
             />
@@ -201,11 +210,11 @@ function CommercialService() {
           </div>
         </div>
       </section>
-    <section>
-        <OurClientsReview/>
-    </section>
+      <section>
+        <OurClientsReview />
+      </section>
 
-    <BottomNav/>
+      <BottomNav />
     </>
   );
 }
