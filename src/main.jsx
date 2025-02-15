@@ -22,14 +22,10 @@ import Rent from "./Screens/Rent.jsx";
 import Sale from "./Screens/Sale.jsx";
 import Signup from "./Screens/Signup.jsx";
 import Layout from "./Components/Layout.jsx";
-import Shop from "./Screens/Shop.jsx";
-import DomesticService from "./Screens/DomesticService.jsx";
-import CommercialService from "./Screens/CommercialService.jsx";
-import IndustrialService from './Screens/IndustrialService.jsx';
-import RoServices from './Screens/RoServices.jsx'
+import Faq from "./screens/Faq.jsx";
 import ContactUs from "./Screens/ContactUs.jsx";
-import AboutUs from "./Screens/AboutUs.jsx";
-import FAQSection from './Screens/Faq.jsx'
+
+
 
 
 const routes = createBrowserRouter(
@@ -46,17 +42,11 @@ const routes = createBrowserRouter(
         <Route path="/clients" element={<Clients/>} />
         <Route path="/sale" element={<Sale/>} />
         <Route path="/rent" element={<Rent/>} />
-         <Route path="/shop" element={<Shop/>} />
-         <Route path="/contactus" element={<ContactUs/>} />
-        <Route path="/domesticservices" element={<DomesticService/>} />
-        <Route path="/commercialservice" element={<CommercialService/>} />
-        <Route path="/industrialservice" element={<IndustrialService/>} /> 
-        <Route path="/roservices" element={<RoServices/>} /> 
-        <Route path="/faq" element={<FAQSection/>} /> 
-        <Route path="/aboutus" element={<AboutUs/>} /> 
-        <Route path="*" element={<Layout/>} />
-       
-        <Route path="*" element={<Layout/>} />
+        <Route path="/faq" element={<Faq/>} />
+        <Route path="/contact" element={<ContactUs/>} />
+
+
+        {/* <Route path="*" element={<Layout/>} /> */}
        
 
         {/* Other standalone routes */}

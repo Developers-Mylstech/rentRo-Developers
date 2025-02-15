@@ -43,7 +43,7 @@ const Header = () => {
         {/* Navigation - Desktop */}
         <nav className="hidden lg:flex space-x-6 flex-grow justify-center">
           <ul className="flex space-x-6">
-            {["rent", "sale", "services"].map((item) => (
+            {["rent", "sale", "services","contact"].map((item) => (
               <li key={item} className="relative flex items-center justify-center cursor-pointer transition-all duration-300">
                 <Link
                   to={`/${item}`}
@@ -129,7 +129,7 @@ const Header = () => {
         {/* Mobile Links */}
         <nav className=" w-full mt-[35%]  text-center">
           <ul className=" text-lg font-semibold flex flex-col justify-normal items-center">
-            {["rent", "sale", "services"].map((item) => (
+            {["rent", "sale", "services","contact"].map((item) => (
               <li key={item} className="w-[80%]">
                 <Link
                   to={`/${item}`}
