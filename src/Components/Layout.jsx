@@ -5,6 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import ScrollToTop from "./ScrollToTop";
 import Loader from "./Loader"; // ✅ Import the Loader component
+import ScrollToTopButton from '../Components/ScrollToTopButton'
 
 function Layout() {
   const [loading, setLoading] = useState(true);
@@ -32,7 +33,7 @@ function Layout() {
       >
         <Outlet />
       </motion.div>
-
+    <ScrollToTopButton/>
       <Footer />
     </>
   );

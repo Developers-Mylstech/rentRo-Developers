@@ -41,7 +41,7 @@ const ContactUs = () => {
         <div className="container mx-auto px-4">
           <div className="flex h-full w-full justify-center items-center py-16">
             {/* Form Section */}
-            <div className="materialContainer h-auto md:w-[60vw] w-auto border  bg-black bg-opacity-20 p-6 shadow-lg rounded-2xl">
+            <div className="materialContainer h-auto md:w-[60vw] w-auto border  bg-black bg-opacity-50 p-6 shadow-lg rounded-2xl">
               <div className="material-details mb-4">
                 <h2 className="text-3xl font-semibold text-white">
                   Contact Us
@@ -51,7 +51,6 @@ const ContactUs = () => {
                   marked *
                 </p>
               </div>
-
               <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                   <div>
@@ -189,7 +188,7 @@ const ContactUs = () => {
               </div>
 
               <div className="contact-box flex items-start">
-                <div className="contact-icon mr-4">✉️</div>
+                <div className="contact-icon mr-4">✉</div>
                 <div className="contact-title">
                   <h4 className="font-semibold">Email Address :</h4>
                   <p>info@rentro.ae</p>
@@ -199,7 +198,7 @@ const ContactUs = () => {
           </div> */}
           </div>
         </div>
-        <div className="map-container mt-6 rounded-t-xl overflow-hidden shadow-lg">
+        <div className="map-container mt-10 rounded-t-xl overflow-hidden shadow-lg z-50">
           {/* Google Map Section */}
           <div className="map-container  col-span-1 md:col-span-2 lg:col-span-3 rounded-t-xl overflow-hidden shadow-lg">
             <iframe
