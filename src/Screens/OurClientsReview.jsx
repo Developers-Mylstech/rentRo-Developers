@@ -43,7 +43,7 @@ function OurClientsReview() {
 
   return (
     <>
-      <section className="testimonial-section py-12 bg-blue-50">
+      <section className="testimonial-section py-12 px-6 bg-blue-50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="mb-3 text-3xl font-bold text-blue-800">What Our Clients Say</h2>
@@ -75,7 +75,7 @@ function OurClientsReview() {
               ].map((testimonial, index) => (
                 <div key={index} className="testimonial-contain opacity-0 transform transition-all duration-700 ease-in-out hover:opacity-100 hover:scale-105 w-full sm:w-3/4 px-4 sm:px-2"> {/* Adjusted width and padding */}
                   <div key={index} className="testimonial-contain opacity-0 transform transition-all duration-700 ease-in-out hover:opacity-100 hover:scale-105 w-full sm:px-8 md:px-6"> {/* Adjusted padding */}
-                    <div className="testimonial-details bg-white p-4 rounded-lg shadow-lg transition-transform duration-500 hover:shadow-2xl hover:scale-105 h-auto flex flex-col justify-between"> {/* Reduced padding */}
+                    <div className="testimonial-details bg-white p-2 md:p-4 rounded-lg shadow-lg transition-transform duration-500 hover:shadow-2xl hover:scale-105 h-auto flex flex-col justify-between"> {/* Reduced padding */}
                       <div>
                         <ul className="rating flex justify-center mb-4">
                           {[...Array(5)].map((_, starIndex) => (
@@ -84,7 +84,7 @@ function OurClientsReview() {
                             </li>
                           ))}
                         </ul>
-                        <p className="details-images text-lg text-gray-700 mb-4 h-20 overflow-hidden"> {/* Reduced height */}
+                        <p className="details-images text-sm md:text-lg text-gray-700 mb-2 md:mb-4 h-20 overflow-hidden"> {/* Reduced height */}
                           {testimonial.review}
                         </p>
                       </div>
