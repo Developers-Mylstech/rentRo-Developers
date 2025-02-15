@@ -46,7 +46,7 @@ function OurClientsReview() {
       <section className="testimonial-section py-12 bg-blue-50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="mb-3 text-3xl font-bold text-gray-800">What Our Clients Say</h2>
+            <h2 className="mb-3 text-3xl font-bold text-blue-800">What Our Clients Say</h2>
             <p className="text-base text-gray-600">
               Rent RO transformed our water quality, exceeding expectations with
               top-notch service and <br /> reliable solutions.
@@ -74,7 +74,7 @@ function OurClientsReview() {
                 },
               ].map((testimonial, index) => (
                 <div key={index} className="testimonial-contain opacity-0 transform transition-all duration-700 ease-in-out hover:opacity-100 hover:scale-105 w-full sm:w-3/4 px-4 sm:px-2"> {/* Adjusted width and padding */}
-                  <div key={index} className="testimonial-contain opacity-0 transform transition-all duration-700 ease-in-out hover:opacity-100 hover:scale-105 w-full sm:px-8 md:px-4"> {/* Adjusted padding */}
+                  <div key={index} className="testimonial-contain opacity-0 transform transition-all duration-700 ease-in-out hover:opacity-100 hover:scale-105 w-full sm:px-8 md:px-6"> {/* Adjusted padding */}
                     <div className="testimonial-details bg-white p-4 rounded-lg shadow-lg transition-transform duration-500 hover:shadow-2xl hover:scale-105 h-auto flex flex-col justify-between"> {/* Reduced padding */}
                       <div>
                         <ul className="rating flex justify-center mb-4">
@@ -88,7 +88,7 @@ function OurClientsReview() {
                           {testimonial.review}
                         </p>
                       </div>
-                      <h5 className="font-bold text-gray-900 mt-auto text-sm sm:text-base">
+                      <h5 className="font-bold text-blue-800 mt-auto text-sm sm:text-base">
                         {testimonial.name}
                       </h5>
                     </div>
@@ -108,7 +108,7 @@ function OurClientsReview() {
 
             {/* Prev button */}
             <button
-              className="border-2 border-white custom-prev liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 left-0 z-40 transform -translate-y-1/2"
+              className="border-2 border-white custom-prev liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 left-1 z-40 transform -translate-y-1/2"
               onClick={handlePrev}
             >
               <span className="relative text-xl font-semibold z-10">Prev</span>
