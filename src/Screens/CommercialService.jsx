@@ -65,7 +65,7 @@ function CommercialService() {
         <div className="max-w-full   mx-auto grid md:grid-cols-2 gap-10 items-center bg-gradient-to-r from-blue-100 to-white py-12 px-6 rounded-lg shadow-lg">
           {/* Left Section - Text Content */}
           <div className="text-center md:text-left space-y-6">
-            <h2 className="text-4xl font-bold text-red-600 mb-2 leading-tight">
+            <h2 className="text-4xl font-bold text-blue-800 mb-2 leading-tight">
               Commercial Water Filter Service
             </h2>
             <h3 className="text-2xl font-semibold text-gray-900 mb-4">
@@ -85,12 +85,12 @@ function CommercialService() {
             </p>
             <div>
               <Link
-                to="/contactus"
-                 // Adjust this URL to your actual contact page
-                className="bg-red-600 text-white font-bold py-3 px-8 rounded-lg  hover:bg-red-700 transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
-              >
-                CONTACT US
-              </Link>
+                             to="/contactus"
+                             // Adjust this URL to your actual contact page
+                             className="  text-blue-800 font-bold py-3 px-8 rounded-lg  hover:bg-sky-700 hover:text-white transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
+                           >
+                             CONTACT US
+                           </Link>
             </div>
           </div>
 

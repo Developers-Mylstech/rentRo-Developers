@@ -6,14 +6,13 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import OurClientsReview from '../Screens/OurClientsReview.jsx'
+import OurClientsReview from "../Screens/OurClientsReview.jsx";
 
 // images import
-import roServices1 from "../assets/RoServices/roServices1.png"
-import roServices2 from "../assets/RoServices/roServices2.png"
-import roServices3 from "../assets/RoServices/roServices3.png"
+import roServices1 from "../assets/RoServices/roServices1.png";
+import roServices2 from "../assets/RoServices/roServices2.png";
+import roServices3 from "../assets/RoServices/roServices3.png";
 import BottomNav from "../Components/BottomNav.jsx";
-
 
 function RoServices() {
   useEffect(() => {
@@ -65,34 +64,40 @@ function RoServices() {
         <div className="max-w-full   mx-auto grid md:grid-cols-2 gap-10 items-center bg-gradient-to-r from-blue-100 to-white py-12 px-6 rounded-lg shadow-lg">
           {/* Left Section - Text Content */}
           <div className="text-center md:text-left space-y-6">
-            <h2 className="text-4xl font-bold text-red-600 mb-2 leading-tight">
+            <h2 className="text-4xl font-bold text-blue-800 mb-2 leading-tight">
               RO Services
             </h2>
             <h3 className="text-2xl font-semibold text-gray-900 mb-4">
               GET TO KNOW SERVICE
             </h3>
             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-                At RENT RO, we recognize the essential role of upholding a robust and efficient water filtration system for your home through our comprehensive RO services.
-                         </p>
-            <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-            Our RO Services are crafted to optimize your system's performance, ensuring a reliable source of clean and safe water for your household.
+              At RENT RO, we recognize the essential role of upholding a robust
+              and efficient water filtration system for your home through our
+              comprehensive RO services.
             </p>
             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-                We are dedicated to ensuring that your RO filtration system not only operates optimally but also consistently delivers clean and safe water for every member of your household.
-                        </p>
+              Our RO Services are crafted to optimize your system's performance,
+              ensuring a reliable source of clean and safe water for your
+              household.
+            </p>
+            <p className="text-gray-700 mb-4 text-lg leading-relaxed">
+              We are dedicated to ensuring that your RO filtration system not
+              only operates optimally but also consistently delivers clean and
+              safe water for every member of your household.
+            </p>
             <p className="text-gray-700 mb-6 text-lg leading-relaxed">
-         With a team of skilled technicians specializing in various RO systems, we bring a wealth of expertise to address the unique needs of your filtration setup through our RO services.
-
-
-                     </p>
+              With a team of skilled technicians specializing in various RO
+              systems, we bring a wealth of expertise to address the unique
+              needs of your filtration setup through our RO services.
+            </p>
             <div>
-              <Link
-                to="/contactus"
-               
-                className="bg-red-600 text-white font-bold py-3 px-8 rounded-lg  hover:bg-red-700 transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
-              >
-                CONTACT US
-              </Link>
+             <Link
+                                          to="/contactus"
+                                          // Adjust this URL to your actual contact page
+                                          className="  text-blue-800 font-bold py-3 px-8 rounded-lg  hover:bg-sky-700 hover:text-white transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
+                                        >
+                                          CONTACT US
+                                        </Link>
             </div>
           </div>
 
@@ -111,7 +116,7 @@ function RoServices() {
               alt="IMG2"
             />
             <img
-              src={ roServices1} // Directly use the imported variable
+              src={roServices1} // Directly use the imported variable
               className="col-span-2 w-full object-cover rounded-lg border-2 border-gray-300 shadow-lg transition-transform transform hover:scale-105"
               alt="IMG3"
             />
@@ -203,11 +208,11 @@ function RoServices() {
           </div>
         </div>
       </section>
-    <section>
-        <OurClientsReview/>
-    </section>
+      <section>
+        <OurClientsReview />
+      </section>
 
-    <BottomNav/>
+      <BottomNav />
     </>
   );
 }

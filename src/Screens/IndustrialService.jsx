@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import OurClientsReview from '../Screens/OurClientsReview.jsx'
+import OurClientsReview from "../Screens/OurClientsReview.jsx";
 import BottomNav from "../Components/BottomNav.jsx";
 
 // images import
@@ -65,32 +65,40 @@ function IndustrialService() {
         <div className="max-w-full   mx-auto grid md:grid-cols-2 gap-10 items-center bg-gradient-to-r from-blue-100 to-white py-12 px-6 rounded-lg shadow-lg">
           {/* Left Section - Text Content */}
           <div className="text-center md:text-left space-y-6">
-            <h2 className="text-4xl font-bold text-red-600 mb-2 leading-tight">
+            <h2 className="text-4xl font-bold text-blue-800 mb-2 leading-tight">
               Industrial Water Filter Service
             </h2>
             <h3 className="text-2xl font-semibold text-gray-900 mb-4">
               GET TO KNOW SERVICE
             </h3>
             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-              At RENT RO, we grasp the significance of upholding a robust and efficient water filtration system for your industrial facility.
+              At RENT RO, we grasp the significance of upholding a robust and
+              efficient water filtration system for your industrial facility.
             </p>
             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-            Our Industrial Water Filter Service is crafted to optimize your system's functionality, providing a reliable source of clean and safe water for your industrial operations.
+              Our Industrial Water Filter Service is crafted to optimize your
+              system's functionality, providing a reliable source of clean and
+              safe water for your industrial operations.
             </p>
             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-              We are We are dedicated to ensuring your industrial filtration system not only operates at its best but also consistently delivers clean and safe water for the well-being of your industrial environment.
+              We are We are dedicated to ensuring your industrial filtration
+              system not only operates at its best but also consistently
+              delivers clean and safe water for the well-being of your
+              industrial environment.
             </p>
             <p className="text-gray-700 mb-6 text-lg leading-relaxed">
-             With a team of skilled technicians specializing in various industrial filtration systems, we bring extensive expertise to meet the unique requirements of your industrial filtration setup.
+              With a team of skilled technicians specializing in various
+              industrial filtration systems, we bring extensive expertise to
+              meet the unique requirements of your industrial filtration setup.
             </p>
             <div>
-              <Link
-                to="/contactus"
-                 // Adjust this URL to your actual contact page
-                className="bg-red-600 text-white font-bold py-3 px-8 rounded-lg  hover:bg-red-700 transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
-              >
-                CONTACT US
-              </Link>
+                <Link
+                  to="/contactus"
+                  // Adjust this URL to your actual contact page
+                  className="  text-blue-800 font-bold py-3 px-8 rounded-lg  hover:bg-sky-700 hover:text-white transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
+                >
+                  CONTACT US
+                </Link>
             </div>
           </div>
 
@@ -201,11 +209,10 @@ function IndustrialService() {
           </div>
         </div>
       </section>
-    <section>
-        <OurClientsReview/>
-    </section>
-    <BottomNav/>
-
+      <section>
+        <OurClientsReview />
+      </section>
+      <BottomNav />
     </>
   );
 }
