@@ -29,6 +29,7 @@ import IndustrialService from './Screens/IndustrialService.jsx';
 import RoServices from './Screens/RoServices.jsx'
 import ContactUs from "./Screens/ContactUs.jsx";
 import AboutUs from "./Screens/AboutUs.jsx";
+import FAQSection from './Screens/Faq.jsx'
 
 
 const routes = createBrowserRouter(
@@ -51,6 +52,7 @@ const routes = createBrowserRouter(
         <Route path="/commercialservice" element={<CommercialService/>} />
         <Route path="/industrialservice" element={<IndustrialService/>} /> 
         <Route path="/roservices" element={<RoServices/>} /> 
+        <Route path="/faq" element={<FAQSection/>} /> 
         <Route path="/aboutus" element={<AboutUs/>} /> 
 
         

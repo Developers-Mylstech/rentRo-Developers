@@ -85,8 +85,8 @@ function CommercialService() {
             </p>
             <div>
               <Link
-                to="/"
-                href="/contact" // Adjust this URL to your actual contact page
+                to="/contactus"
+                 // Adjust this URL to your actual contact page
                 className="bg-red-600 text-white font-bold py-3 px-8 rounded-lg  hover:bg-red-700 transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
               >
                 CONTACT US

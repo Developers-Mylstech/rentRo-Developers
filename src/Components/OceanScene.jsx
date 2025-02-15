@@ -93,6 +93,8 @@ const OceanScene = () => {
       return "Contact Us";
     } else if (location.pathname.includes("aboutus")) {
       return "About Us";
+    } else if(location.pathname.includes("domesticservice")){
+      return "Domestic Services"
     }
     return "";
   };
