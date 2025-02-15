@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import OurClientsReview from '../Screens/OurClientsReview.jsx'
+import OurClientsReview from "../Screens/OurClientsReview.jsx";
 import BottomNav from "../Components/BottomNav.jsx";
 
 // images import
@@ -65,32 +65,40 @@ function IndustrialService() {
         <div className="max-w-full   mx-auto grid md:grid-cols-2 gap-10 items-center bg-gradient-to-r from-blue-100 to-white py-12 px-6 rounded-lg shadow-lg">
           {/* Left Section - Text Content */}
           <div className="text-center md:text-left space-y-6">
-            <h2 className="text-4xl font-bold text-red-600 mb-2 leading-tight">
+            <h2 className="text-4xl font-bold text-blue-800 mb-2 leading-tight">
               Industrial Water Filter Service
             </h2>
             <h3 className="text-2xl font-semibold text-gray-900 mb-4">
               GET TO KNOW SERVICE
             </h3>
             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-              At RENT RO, we grasp the significance of upholding a robust and efficient water filtration system for your industrial facility.
+              At RENT RO, we grasp the significance of upholding a robust and
+              efficient water filtration system for your industrial facility.
             </p>
             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-            Our Industrial Water Filter Service is crafted to optimize your system's functionality, providing a reliable source of clean and safe water for your industrial operations.
+              Our Industrial Water Filter Service is crafted to optimize your
+              system's functionality, providing a reliable source of clean and
+              safe water for your industrial operations.
             </p>
             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-              We are We are dedicated to ensuring your industrial filtration system not only operates at its best but also consistently delivers clean and safe water for the well-being of your industrial environment.
+              We are We are dedicated to ensuring your industrial filtration
+              system not only operates at its best but also consistently
+              delivers clean and safe water for the well-being of your
+              industrial environment.
             </p>
             <p className="text-gray-700 mb-6 text-lg leading-relaxed">
-             With a team of skilled technicians specializing in various industrial filtration systems, we bring extensive expertise to meet the unique requirements of your industrial filtration setup.
+              With a team of skilled technicians specializing in various
+              industrial filtration systems, we bring extensive expertise to
+              meet the unique requirements of your industrial filtration setup.
             </p>
             <div>
-              <Link
-                to="/contactus"
-                 // Adjust this URL to your actual contact page
-                className="bg-red-600 text-white font-bold py-3 px-8 rounded-lg  hover:bg-red-700 transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
-              >
-                CONTACT US
-              </Link>
+                <Link
+                  to="/contact"
+                  // Adjust this URL to your actual contact page
+                  className="  text-blue-800 font-bold py-3 px-8 rounded-lg  hover:bg-sky-700 hover:text-white transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
+                >
+                  CONTACT US
+                </Link>
             </div>
           </div>
 
@@ -118,7 +126,7 @@ function IndustrialService() {
 
         {/* Why choose RENT RO Services */}
         <div className="text-center mt-12">
-          <h3 className="text-2xl font-bold text-gray-900">
+          <h3 className="text-2xl font-bold text-blue-900">
             Why Choose RENT RO Service
           </h3>
           <p className="text-gray-600 max-w-3xl mx-auto mt-2">
@@ -131,7 +139,7 @@ function IndustrialService() {
               className="bg-white p-6 shadow-md rounded-lg text-center transform transition-transform hover:scale-105 hover:shadow-2xl"
               data-aos="fade-up"
             >
-              <h4 className="font-semibold">Expert Technicians</h4>
+              <h4 className="font-semibold text-blue-800">Expert Technicians</h4>
               <p className="text-gray-600 mt-2">
                 Our skilled technicians are trained to handle a variety of
                 domestic water filter models, ensuring expert care for your
@@ -143,7 +151,7 @@ function IndustrialService() {
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              <h4 className="font-semibold">Scheduled Visits</h4>
+              <h4 className="font-semibold text-blue-800">Scheduled Visits</h4>
               <p className="text-gray-600 mt-2">
                 Enjoy the convenience of pre-scheduled service visits,
                 eliminating the hassle of remembering when your filter needs
@@ -155,7 +163,7 @@ function IndustrialService() {
               data-aos="fade-up"
               data-aos-delay="400"
             >
-              <h4 className="font-semibold">Optimized Performance</h4>
+              <h4 className="font-semibold text-blue-800">Optimized Performance</h4>
               <p className="text-gray-600 mt-2">
                 Our service plans are designed to optimize your domestic water
                 filter’s performance, guaranteeing clean and safe water
@@ -167,7 +175,7 @@ function IndustrialService() {
               data-aos="fade-up"
               data-aos-delay="600"
             >
-              <h4 className="font-semibold">Extended Filter Lifespan</h4>
+              <h4 className="font-semibold text-blue-800">Extended Filter Lifespan</h4>
               <p className="text-gray-600 mt-2">
                 Regular maintenance extends the lifespan of your filters,
                 providing long-term cost savings and reducing environmental
@@ -179,7 +187,7 @@ function IndustrialService() {
               data-aos="fade-up"
               data-aos-delay="800"
             >
-              <h4 className="font-semibold">Transparent Pricing</h4>
+              <h4 className="font-semibold text-blue-800">Transparent Pricing</h4>
               <p className="text-gray-600 mt-2">
                 We prioritize your peace of mind with transparent pricing – no
                 hidden fees or surprises. Know exactly what to expect for a
@@ -191,7 +199,7 @@ function IndustrialService() {
               data-aos="fade-up"
               data-aos-delay="1000"
             >
-              <h4 className="font-semibold">Priority Support</h4>
+              <h4 className="font-semibold text-blue-800">Priority Support</h4>
               <p className="text-gray-600 mt-2">
                 Benefit from priority support and scheduling with our premium
                 service plans, giving you peace of mind and swift assistance
@@ -201,11 +209,10 @@ function IndustrialService() {
           </div>
         </div>
       </section>
-    <section>
-        <OurClientsReview/>
-    </section>
-    <BottomNav/>
-
+      <section>
+        <OurClientsReview />
+      </section>
+      <BottomNav />
     </>
   );
 }
