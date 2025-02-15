@@ -213,6 +213,9 @@ const ContactUs = () => {
             ></iframe>
           </div>
         </div>
+      </section> 
+      <section>
+        <BottomNav/>
       </section>
     </>
   );
