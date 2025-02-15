@@ -42,7 +42,7 @@ const Home = () => {
         {/* Video Background */}
         <div className="z-10">
     <video
-      className="w-full md:h-[100vh] h-[60vh] object-fill md:object-cover"
+      className="w-full md:h-[100vh] h-[55vh] object-fill md:object-cover"
       autoPlay
       loop
       muted
