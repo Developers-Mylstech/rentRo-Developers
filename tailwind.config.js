@@ -19,3 +19,20 @@ export default {
   },
   plugins: [],
 };
+module.exports = {
+  content: [
+    './src/**/*.{html,js,jsx,ts,tsx}', 
+  ],
+  theme: {
+    extend: {
+      backdropBlur: {
+        sm: '4px',
+        DEFAULT: '10px',
+        lg: '20px',
+      },
+    },
+  },
+  plugins: [
+    require('tailwindcss-filters'),
+  ],
+}
