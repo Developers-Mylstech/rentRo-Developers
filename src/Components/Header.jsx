@@ -29,21 +29,21 @@ const Header = () => {
   return (
     <header
       className={`fixed left-0 right-0 z-40 w-full rounded-b-xl transition-all duration-500 ${
-        scrolling ? "bg-blue-900 shadow-md" : "bg-black bg-opacity-40"
+        scrolling ? "bg-blue-800 bg-opacity-80 shadow-md" : "bg-black bg-opacity-40"
       } px-6 py-3`}
     >
       <div className="flex items-center justify-between">
         {/* Logo */}
         <div className="text-2xl font-bold text-red-600">
           <Link to="/">
-            <img src={rentroLogo} alt="Logo" className="h-6 md:h-10 w-auto object-cover" />
+            <img src={rentroLogo} alt="Logo" className="h-6 md:h-12 w-auto object-cover" />
           </Link>
         </div>
 
         {/* Navigation - Desktop */}
         <nav className="hidden lg:flex space-x-6 flex-grow justify-center">
           <ul className="flex space-x-6">
-            {["rent", "sale", "services"].map((item) => (
+            {["rent", "sale", "services","contact"].map((item) => (
               <li key={item} className="relative flex items-center justify-center cursor-pointer transition-all duration-300">
                 <Link
                   to={`/${item}`}
@@ -65,17 +65,22 @@ const Header = () => {
         <div className="flex items-center gap-4">
           {/* Search Bar */}
           <div className="relative flex items-center">
-            <div
-              className={`flex items-center relative bg-white border rounded-full transition-all duration-500 overflow-hidden ${
-                searchVisible ? " w-36 md:w-64  py-1 opacity-100 scale-100" : "w-0 px-0 opacity-0 scale-95"
-              }`}
-            >
-              <input type="text" placeholder="Search" className="flex-grow px-2 py-1 outline-none text-gray-700 transition-all duration-200" />
-              <FiX
-                className="text-gray-500 text-xl cursor-pointer absolute top-2.5 right-2 hover:text-black transition-transform duration-200 hover:rotate-90"
-                onClick={() => setSearchVisible(false)}
-              />
-            </div>
+          <div
+  className={`flex items-center relative bg-white border rounded-full transition-all duration-500 overflow-hidden ${
+    searchVisible ? "w-36 md:w-64 py-1 pl-4 pr-8 opacity-100 scale-100" : "w-0 px-0 opacity-0 scale-95"
+  }`}
+>
+  <input
+    type="text"
+    placeholder="Search"
+    className="flex-grow w-full pr-8 py-1 outline-none text-gray-700 transition-all duration-200"
+  />
+  <FiX
+    className="text-gray-500 text-xl cursor-pointer absolute top-1/2 right-2 transform -translate-y-1/2 hover:text-black transition-transform duration-200 hover:rotate-90"
+    onClick={() => setSearchVisible(false)}
+  />
+</div>
+
 
             {/* Search Button */}
             {!searchVisible && (
@@ -124,11 +129,11 @@ const Header = () => {
         {/* Mobile Links */}
         <nav className=" w-full mt-[35%]  text-center">
           <ul className=" text-lg font-semibold flex flex-col justify-normal items-center">
-            {["rent", "sale", "services"].map((item) => (
-              <li style={{borderBottom:"1px solid gray"}} key={item} className="w-[70%]">
+            {["rent", "sale", "services","contact"].map((item) => (
+              <li key={item} className="w-[80%]">
                 <Link
                   to={`/${item}`}
-                  className="block py-4 text-gray-300 hover:bg-blue-800 w-full transition"
+                  className="block py-4 border-b border-gray-500 border-opacity-50 text-gray-300 hover:bg-blue-800 w-full transition"
                   onClick={() => setMenuOpen(false)}
                 >
                   {item.toUpperCase()}

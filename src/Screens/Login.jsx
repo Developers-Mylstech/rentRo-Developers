@@ -42,10 +42,10 @@ const Login = () => {
     backgroundImage: `url(${Loginimage})`,
   }}
 >
-  <div className="max-w-md w-full mx-auto bg-white bg-opacity-80 rounded-lg p-6 shadow-lg">
+  <div className="max-w-md w-full mx-auto bg-black bg-opacity-10 rounded-lg p-6 border border-white  shadow-lg">
     <form onSubmit={handleSubmit}>
       <div className="mb-12">
-        <h3 className="text-gray-800 text-3xl font-bold text-center">Log in</h3>
+        <h3 className="text-white text-3xl font-bold text-center">Log in</h3>
       </div>
       
       {/* Email Input */}
@@ -54,7 +54,7 @@ const Login = () => {
           name="email"
           type="text"
           required
-          className="w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 p-3 outline-none bg-transparent placeholder:text-gray-800"
+          className="w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 p-3 outline-none bg-transparent placeholder:text-white"
           placeholder="Enter email"
           value={email}
           onChange={handleEmailChange}
@@ -67,7 +67,7 @@ const Login = () => {
           name="password"
           type="password"
           required
-          className="w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 p-3 outline-none bg-transparent placeholder:text-gray-800"
+          className="w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 p-3 outline-none bg-transparent placeholder:text-white"
           placeholder="Enter password"
           value={password}
           onChange={handlePasswordChange}
@@ -76,23 +76,32 @@ const Login = () => {
 
       {/* Remember Me and Forgot Password */}
       <div className="flex justify-between items-center mb-6">
-        <label className="flex items-center text-sm text-gray-800">
+        <label className="flex items-center text-sm text-white">
           <input type="checkbox" className="mr-2" checked={rememberMe} onChange={handleRememberMeChange} />
           Remember me
         </label>
-        <a href="#" className="text-blue-600 text-sm font-semibold hover:underline">
+        <a href="#" className="text-white text-sm font-semibold hover:underline">
           Forgot Password?
         </a>
       </div>
 
       {/* Submit Button */}
-      <button type="submit" className="w-full py-2 text-sm font-semibold tracking-wide rounded text-white bg-gray-800 hover:bg-[#222] focus:outline-none">
-        Log in
-      </button>
+      <div className="md:col-span-2 col-span-1 h-full w-full flex justify-center items-center">
+                    <button
+                      className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 
+             text-white  text-lg rounded-lg py-2 px-4  shadow-lg
+             shadow-blue-500/50 hover:from-blue-300 hover:to-blue-800
+             transition duration-300 transform hover:-translate-y-1 hover:scale-105 
+             tracking-wider"
+                      type="submit"
+                    >
+                      Login
+                    </button>
+                  </div>
 
-      <p className="text-gray-800 text-sm text-center mt-6">
+      <p className="text-white text-sm text-center mt-6">
         Don't have an account?{" "}
-        <Link to="/signup" className="text-blue-600 font-semibold hover:underline">
+        <Link to="/signup" className="text-white font-extrabold hover:underline">
           Register here
         </Link>
       </p>

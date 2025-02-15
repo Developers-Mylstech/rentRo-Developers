@@ -1,84 +1,258 @@
-import React, { useState, useRef } from "react";
+// import React, { useState, useRef, useEffect } from "react";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Navigation, Autoplay } from "swiper";
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import "swiper/css/autoplay";
+// import "../index.css";
+// import { useLocation } from "react-router-dom";
+// import OceanScene from "../Components/OceanScene";
+// import BottomNav from "../Components/BottomNav";
+// import IMG1 from "../assets/Services/IMG1.png";
+// import IMG2 from "../assets/Services/IMG2.png";
+// import IMG7 from "../assets/Services/IMG7.png";
+// import IMG4 from "../assets/Services/IMG4.png";
+// import IMG5 from "../assets/Services/IMG5.png";
+// import IMG3 from "../assets/Services/IMG3.png";
+// import IMG6 from "../assets/Services/IMG6.png";
+
+// const Services = () => {
+//   const swiperRef = useRef(null);
+//   const location = useLocation();
+//   const [hideDescription, setHideDescription] = useState(false);
+
+//   const services = [
+//     {
+//       title: "Comprehensive Water Solutions",
+//       description:
+//         "Seamless Monthly Water Filter Rentals and Expert Maintenance Services for Pure, Hassle-free Hydration",
+//       Image: IMG1,
+//     },
+//     {
+//       title: "Domestic Water Filters",
+//       description:
+//         "Our Domestic Water Filters Ensure Clean, Clear, and Safe Water for Your Daily Needs. Experience the Purity Within Every Drop.",
+//       Image: IMG2,
+//     },
+//     {
+//       title: "Commercial Water Filters",
+//       description:
+//         "Reliable Commercial Water Filters for Purity and Refreshment in Every Drop. Optimize Your Workplace Hydration with Confidence.",
+//       Image: IMG3,
+//     },
+//     {
+//       title: "Industrial Water Filters",
+//       description:
+//         "Unmatched Efficiency Ensures Pure and Clean Water. Elevate Your Industrial Hydration Standards for Uninterrupted Quality and Reliability.",
+//       Image: IMG7,
+//     },
+//     {
+//       title: "RO Services",
+//       description:
+//         "Ensuring Optimal Performance and Purity. Trust us for Reliable Maintenance, Extending the Lifespan of Your RO System.",
+//       Image: IMG4,
+//     },
+//     {
+//       title: "Water Coolers And Dispensers",
+//       description:
+//         "Stay refreshed effortlessly with our Water Coolers and Dispensers stylish, convenient, and always ready to provide instant, crisp hydration.",
+//       Image: IMG5,
+//     },
+//     {
+//       title: "Chillers And Tanks",
+//       description:
+//         "Experience optimal cooling with our Chillers and Tanks efficient, reliable, and tailored to ensure your beverages stay refreshingly cool every time.",
+//       Image: IMG6,
+//     },
+//   ];
+
+//   const toggleDescription = () => {
+//     setHideDescription(!hideDescription);
+//   };
+//   const handleNext = () => {
+//     swiperRef.current.swiper.slideNext();
+//   };
+
+//   const handlePrev = () => {
+//     swiperRef.current.swiper.slidePrev();
+//   };
+
+//   useEffect(() => {
+//     const handleResize = () => {
+//       if (swiperRef.current) {
+//         swiperRef.current.swiper.update();
+//       }
+//     };
+
+//     window.addEventListener("resize", handleResize);
+//     return () => {
+//       window.removeEventListener("resize", handleResize);
+//     };
+//   }, []);
+
+//   return (
+//     <>
+//       {location.pathname === "/services" ? <OceanScene /> : ""}
+//       <section className="bg-gray-100  py-12">
+//         <div className=" ">
+//           {location.pathname === "/" ? (
+//             // <h2 className="text-4xl font-extrabold text-center mb-4 animate-fade-in-up">
+//             //   Our Services
+//             // </h2>
+//             <h2 className="text-3xl text-blue-800 md:text-4xl font-[ubik, sans-serif] font-bold text-center mb-4 relative ">
+//               Our Services
+//             </h2>
+//           ) : (
+//             ""
+//           )}
+//           <h4 className="text-center md:text-xl font-[ubik, sans-serif] text-gray-500 mb-8 animate-fade-in-up">
+//             Comprehensive Water Solutions, Seamless Monthly Water Filter Rentals
+//             and Expert Maintenance Services for Pure, Hassle-free Hydration
+//           </h4>
+//           <Swiper
+//             ref={swiperRef}
+//             modules={[Navigation, Autoplay]}
+//             spaceBetween={20}
+//             centeredSlides={true}
+//             loop={true}
+//             breakpoints={{
+//               640: { slidesPerView: 1 },
+//               768: { slidesPerView: 1.4 },
+//               1024: { slidesPerView: 2.3 },
+//               1280: { slidesPerView: 3.5 },
+//             }}
+//             navigation={false}
+//             autoplay={{ delay: 3000, disableOnInteraction: false }}
+//             className="w-full relative"
+//           >
+//             {services.map((service, index) => (
+//               <SwiperSlide key={index} onClick={toggleDescription}>
+//                 <div className="group relative  shadow-xl my-10 border rounded-3xl bg-transparent overflow-hidden cursor-pointer transition-all transform hover:scale-90 hover:shadow-2xl">
+//                   <img
+//                     className="h-72 mx-auto md:h-96 w-auto object-cover rounded-2xl transition-transform duration-700 group-hover:scale-110"
+//                     src={service.Image}
+//                     alt={service.title}
+//                   />
+//                   <h3
+//                     className={`text-xl text-blue-950 text-center py-4 font-bold animate-fade-in-up transition-opacity duration-200 ease-in-out ${
+//                       hideDescription ? "" : "group-hover:opacity-0"
+//                     }`}
+//                   >
+//                     {service.title}
+//                   </h3>
+//                   <div
+//                     className={` absolute inset-x-0 bottom-[-20%] z-20 h-0 bg-blue-300/20 flex items-center justify-center text-center 
+//       transition-all duration-500 ease-in-out group-hover:h-[120%] `}
+//                   >
+//                     <div className="p-6 text-blue-950">
+//                       <h3 className="text-xl font-bold animate-fade-in-up">
+//                         {service.title}
+//                       </h3>
+//                       <p className="text-md italic mt-2 animate-fade-in-up">
+//                         {service.description}
+//                       </p>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </SwiperSlide>
+//             ))}
+//             <button
+//               className="hidden border-2 border-white custom-next liquid-button w-16 h-16  md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
+//               onClick={handleNext}
+//             >
+//               <span className="relative text-xl font-semibold z-10">Next</span>
+//               <div className="liquid"></div>
+//             </button>
+
+//             <button
+//               className="hidden border-2 border-white custom-prev liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
+//               onClick={handlePrev}
+//             >
+//               <span className="relative text-xl font-semibold z-10">Prev</span>
+//               <div className="liquid"></div>
+//             </button>
+//           </Swiper>
+//         </div>
+//       </section>
+//       {location.pathname === "/services" ? <BottomNav /> : null}
+//     </>
+//   );
+// };
+
+// export default Services;
+
+
+import React, { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
+import "../index.css";
 import { useLocation } from "react-router-dom";
 import OceanScene from "../Components/OceanScene";
 import BottomNav from "../Components/BottomNav";
-// images import 
-import IMG1 from '../assets/Services/IMG1.png'
-import IMG2 from '../assets/Services/IMG2.png'
-import IMG7 from '../assets/Services/IMG7.png'
-import IMG4 from '../assets/Services/IMG4.png'
-import IMG5 from '../assets/Services/IMG5.png'
-import IMG3 from '../assets/Services/IMG3.png'
-import IMG6 from '../assets/Services/IMG6.png'
-
-
+import IMG1 from "../assets/Services/IMG1.png";
+import IMG2 from "../assets/Services/IMG2.png";
+import IMG7 from "../assets/Services/IMG7.png";
+import IMG4 from "../assets/Services/IMG4.png";
+import IMG5 from "../assets/Services/IMG5.png";
+import IMG3 from "../assets/Services/IMG3.png";
+import IMG6 from "../assets/Services/IMG6.png";
 
 const Services = () => {
-
-
   const swiperRef = useRef(null);
-   const location = useLocation();
+  const location = useLocation();
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
   const services = [
     {
-      title: "Comprehensive Water Solutions ",
+      title: "Comprehensive Water Solutions",
       description:
         "Seamless Monthly Water Filter Rentals and Expert Maintenance Services for Pure, Hassle-free Hydration",
-        Image:IMG1,
+      Image: IMG1,
     },
     {
       title: "Domestic Water Filters",
       description:
         "Our Domestic Water Filters Ensure Clean, Clear, and Safe Water for Your Daily Needs. Experience the Purity Within Every Drop.",
-        Image:IMG2,
-    
-      },
+      Image: IMG2,
+    },
     {
       title: "Commercial Water Filters",
       description:
         "Reliable Commercial Water Filters for Purity and Refreshment in Every Drop. Optimize Your Workplace Hydration with Confidence.",
-        Image:IMG3,
-      
-      },
+      Image: IMG3,
+    },
     {
       title: "Industrial Water Filters",
       description:
         "Unmatched Efficiency Ensures Pure and Clean Water. Elevate Your Industrial Hydration Standards for Uninterrupted Quality and Reliability.",
-        Image:IMG7,
-      
-      },
+      Image: IMG7,
+    },
     {
       title: "RO Services",
       description:
         "Ensuring Optimal Performance and Purity. Trust us for Reliable Maintenance, Extending the Lifespan of Your RO System.",
-        Image:IMG4,
-      
-      },
+      Image: IMG4,
+    },
     {
       title: "Water Coolers And Dispensers",
       description:
         "Stay refreshed effortlessly with our Water Coolers and Dispensers stylish, convenient, and always ready to provide instant, crisp hydration.",
-        Image:IMG5,
-
-      },
+      Image: IMG5,
+    },
     {
       title: "Chillers And Tanks",
       description:
-   
-     "Experience optimal cooling with our Chillers and Tanks efficient, reliable, and tailored to ensure your beverages stay refreshingly cool every time.",
-        Image:IMG6,
-
+        "Experience optimal cooling with our Chillers and Tanks efficient, reliable, and tailored to ensure your beverages stay refreshingly cool every time.",
+      Image: IMG6,
     },
   ];
 
-  const [hideDescription, setHideDescription] = useState(false);
-
-  const toggleDescription = () => {
-    setHideDescription(!hideDescription);
+  const toggleDescription = (index) => {
+    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   const handleNext = () => {
@@ -89,92 +263,120 @@ const Services = () => {
     swiperRef.current.swiper.slidePrev();
   };
 
-  const updateIndicators = (swiper) => {
-    const indicators = document.querySelectorAll(".carousel-indicator");
-    indicators.forEach((indicator, index) => {
-      if (index === swiper.activeIndex) {
-        indicator.classList.add("active");
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsMobile(true);
       } else {
-        indicator.classList.remove("active");
+        setIsMobile(false);
       }
-    });
-  };
+
+      if (swiperRef.current) {
+        swiperRef.current.swiper.update();
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <>
-      {location.pathname=="/services"?<OceanScene/>:""}
-    <section className="bg-gray-100 py-12">
-      <div className="container mx-auto">
-        {location.pathname=="/"?<h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>:''}
-        <h4 className="text-center">Comprehensive Water Solutions, Seamless Monthly Water Filter Rentals and Expert
-Maintenance Services for Pure, Hassle-free Hydration</h4>
-        <Swiper
-          ref={swiperRef}
-          modules={[Navigation, Autoplay]}
-          spaceBetween={20}
-          centeredSlides={-1}
-          loop={true}
-          breakpoints={{
-            640: { slidesPerView: 1 },
-            768: { slidesPerView: 1.4 },
-            1024: { slidesPerView: 2.3 },
-            1280: { slidesPerView: 3.5 },
-          }}
-          navigation={false}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          onSlideChange={updateIndicators}
-          className="w-full relative"
-        >
-          {services.map((service, index) => (
-            <SwiperSlide key={index} onClick={toggleDescription}>
-              <div className="group relative rounded-2xl bg-transparent overflow-hidden cursor-pointer transition-all transform hover:scale-105 hover:shadow-lg">
-                <div className="absolute inset-0 bg-black z-30 opacity-10"></div>
-                <img
-                  className="h-72 md:h-96 w-full object-cover rounded-2xl transition-transform duration-700 group-hover:scale-110"
-                  src={service.Image}
-                  alt={service.title}
-                />
-                <div
-                  className={`absolute inset-x-0 bottom-[-20%] z-20 h-0 bg-black/60 flex items-center justify-center text-center 
-                    transition-all duration-500 ease-in-out group-hover:h-[120%] ${hideDescription ? "hidden" : ""}`}
-                >
-                  <div className="p-6 text-white">
-                    <h3 className="text-xl font-bold">{service.title}</h3>
-                    <p className="text-md italic mt-2">{service.description}</p>
-                  </div>
-                </div>
-                <div className="absolute bottom-4 left-0 right-0 z-40 text-center transition-opacity duration-200 group-hover:opacity-0">
+      {location.pathname === "/services" ? <OceanScene /> : ""}
+      <section className="bg-gray-100 py-12">
+        <div className="">
+          {location.pathname === "/" ? (
+            <h2 className="text-3xl text-blue-800 md:text-4xl font-[ubik, sans-serif] font-bold text-center mb-4 relative">
+              Our Services
+            </h2>
+          ) : (
+            ""
+          )}
+          <h4 className="text-center md:text-xl font-[ubik, sans-serif] text-gray-500 mb-8 animate-fade-in-up">
+            Comprehensive Water Solutions, Seamless Monthly Water Filter Rentals
+            and Expert Maintenance Services for Pure, Hassle-free Hydration
+          </h4>
+          <Swiper
+            ref={swiperRef}
+            modules={[Navigation, Autoplay]}
+            spaceBetween={20}
+            centeredSlides={true}
+            loop={true}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 1.4 },
+              1024: { slidesPerView: 2.3 },
+              1280: { slidesPerView: 3.5 },
+            }}
+            navigation={false}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            className="w-full relative"
+          >
+            {services.map((service, index) => (
+              <SwiperSlide key={index} onClick={() => toggleDescription(index)}>
+                <div className="group relative shadow-xl my-10 border rounded-3xl bg-transparent overflow-hidden cursor-pointer transition-all transform hover:scale-90 hover:shadow-2xl">
+                  <img
+                    className="h-72 mx-auto md:h-96 w-auto object-cover rounded-2xl transition-transform duration-700 group-hover:scale-110"
+                    src={service.Image}
+                    alt={service.title}
+                  />
                   <h3
-                    style={{
-                      textShadow: "2px 2px 2px rgba(4, 4, 198, 0.936)",
-                    }}
-                    className="text-lg font-bold text-white"
+                    className={`text-xl text-blue-950 text-center py-4 font-bold animate-fade-in-up transition-opacity duration-200 ease-in-out ${
+                      isMobile
+                        ? activeIndex === index
+                          ? "opacity-0"
+                          : ""
+                        : "group-hover:opacity-0"
+                    }`}
                   >
                     {service.title}
                   </h3>
+                  <div
+                    className={`absolute inset-x-0 bottom-[-20%] z-20 h-0 bg-blue-300/20 flex items-center justify-center text-center transition-all duration-500 ease-in-out ${
+                      isMobile
+                        ? activeIndex === index
+                          ? "h-[120%]"
+                          : ""
+                        : "group-hover:h-[120%]"
+                    }`}
+                  >
+                    <div className="p-6 text-blue-950">
+                      <h3 className="text-xl font-bold animate-fade-in-up">
+                        {service.title}
+                      </h3>
+                      <p className="text-md italic mt-2 animate-fade-in-up">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        <button
-          className=" hidden custom-next bg-white text-black rounded-full w-10 h-10 md:flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
-          onClick={handleNext}
-        >
-          Next
-        </button>
-        <button
-          className=" hidden custom-prev  bg-white text-black  rounded-full w-10 h-10 md:flex items-center justify-center shadow-sm hover:scale-110 transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
-          onClick={handlePrev}
-        >
-          Prev
-        </button>
-        </Swiper>
-          
-      </div>
-    </section>
-      {location.pathname === "/services"?<BottomNav />:null}
+              </SwiperSlide>
+            ))}
+            <button
+              className="hidden border-2 border-white custom-next liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
+              onClick={handleNext}
+            >
+              <span className="relative text-xl font-semibold z-10">Next</span>
+              <div className="liquid"></div>
+            </button>
+
+            <button
+              className="hidden border-2 border-white custom-prev liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
+              onClick={handlePrev}
+            >
+              <span className="relative text-xl font-semibold z-10">Prev</span>
+              <div className="liquid"></div>
+            </button>
+          </Swiper>
+        </div>
+      </section>
+      {location.pathname === "/services" ? <BottomNav /> : null}
     </>
   );
 };
 
 export default Services;
+

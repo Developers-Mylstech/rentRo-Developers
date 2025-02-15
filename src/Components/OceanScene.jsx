@@ -58,11 +58,12 @@
 
 // export default OceanScene;
 
-
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "tailwindcss/tailwind.css";
-import '../Components/OceanScene.css';
+import "../Components/OceanScene.css";
+import { BiHomeAlt2 } from "react-icons/bi";
+import BottomNav from "./BottomNav";
 
 const OceanScene = () => {
   const location = useLocation();
@@ -81,14 +82,31 @@ const OceanScene = () => {
     } else if (location.pathname.includes("services")) {
       return "Our Services";
     } else if (location.pathname.includes("sale")) {
-      return "Our Sailing Product";
+      return "Our Selling Product";
+    } else if (location.pathname.includes("faq")) {
+      return "FAQs";
+    }
+     else if (location.pathname.includes("shop")) {
+      return "Our Shop";
+    }
+     else if (location.pathname.includes("contactus")) {
+      return "Contact Us";
+    } else if (location.pathname.includes("aboutus")) {
+      return "About Us";
+    } else if(location.pathname.includes("domesticservice")){
+      return "Domestic Services"
+    } else if(location.pathname.includes("commercialservice")){
+      return "Commercial Service"
+    }else if(location.pathname.includes("industrialservice")){
+      return "Industrial Service"
+    }else if(location.pathname.includes("roservices")){
+      return "RO Service"
     }
     return "";
   };
 
   return (
-    <div className="relative w-full h-[50vh] overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 flex items-center justify-center">
-      
+    <div className="relative w-full h-[30vh] md:h-[50vh] overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 flex items-center justify-center">
       {/* Bubbles */}
       {[...Array(20)].map((_, i) => (
         <div
@@ -115,9 +133,12 @@ const OceanScene = () => {
       ></div>
 
       {/* Centered Title */}
-      <h1 className="absolute text-white text-4xl font-bold drop-shadow-lg">
-        {getTitleText()}
-      </h1>
+     
+        <h1 className=" text-white md:text-4xl text-2xl font-bold drop-shadow-lg">
+          {getTitleText()}
+        </h1>
+       
+      <BottomNav/>
     </div>
   );
 };

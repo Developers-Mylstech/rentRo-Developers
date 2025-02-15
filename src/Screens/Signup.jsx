@@ -35,19 +35,19 @@ const Signup = () => {
   return (
     <>
     <div
-      className="flex justify-center items-center font-[sans-serif] h-full min-h-screen p-4"
+      className="flex justify-center items-center font-[sans-serif]  h-full min-h-screen p-4"
       style={{
            backgroundImage: `url(${SingupImage})`,
      
       }}
     >
-      <div className="max-w-md w-full mx-auto mt-20">
+      <div className="max-w-md w-full mx-auto mt-20 bg-black bg-opacity-10 rounded-lg p-2 border border-white shadow-lg">
         <form
-          className="bg-opacity-70 bg-white rounded p-6 shadow-[0_2px_16px_-3px_rgba(125,126,131,0.3)]"
+          className="bg-opacity-70  rounded p-6 shadow-[0_2px_16px_-3px_rgba(125,126,131,0.3)]"
           onSubmit={handleSubmit}
         >
           <div className="mb-12">
-            <h3 className="text-gray-800 text-3xl font-bold text-center">Sign Up</h3>
+            <h3 className="text-white text-3xl font-bold text-center">Sign Up</h3>
           </div>
 
           {/* Email Input */}
@@ -57,15 +57,15 @@ const Signup = () => {
                 name="email"
                 type="email"
                 required
-                className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 pl-2 pr-8 py-3 outline-none placeholder:text-gray-800"
+                className="bg-transparent w-full text-sm text-white border-b border-white focus:white pl-2 pr-8 py-3 outline-none placeholder:text-white"
                 placeholder="Enter email"
                 value={email}
                 onChange={handleEmailChange}
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                fill="#333"
-                stroke="#333"
+                fill="white"
+                stroke="white"
                 className="w-[18px] h-[18px] absolute right-2"
                 viewBox="0 0 682.667 682.667"
               >
@@ -98,15 +98,15 @@ const Signup = () => {
                 name="password"
                 type="password"
                 required
-                className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 pl-2 pr-8 py-3 outline-none placeholder:text-gray-800"
+                className="bg-transparent w-full text-sm text-white border-b border-white focus:border-white-800 pl-2 pr-8 py-3 outline-none placeholder:text-white"
                 placeholder="Enter password"
                 value={password}
                 onChange={handlePasswordChange}
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                fill="#333"
-                stroke="#333"
+                fill="white"
+                stroke="white"
                 className="w-[18px] h-[18px] absolute right-2 cursor-pointer"
                 viewBox="0 0 128 128"
               >
@@ -125,7 +125,7 @@ const Signup = () => {
                 name="confirm-password"
                 type="password"
                 required
-                className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 pl-2 pr-8 py-3 outline-none placeholder:text-gray-800"
+                className="bg-transparent w-full text-sm text-white border-b border-white focus:border-white-800 pl-2 pr-8 py-3 outline-none placeholder:text-white"
                 placeholder="Confirm password"
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}
@@ -137,13 +137,13 @@ const Signup = () => {
           <div className="flex items-center mt-6">
             <input
               type="checkbox"
-              className="h-4 w-4 border-gray-300 rounded"
+              className="h-4 w-4 border-white rounded"
               checked={termsAccepted}
               onChange={handleTermsChange}
             />
-            <label htmlFor="terms" className="ml-3 text-sm text-gray-800">
+            <label htmlFor="terms" className="ml-3 text-sm text-gray-300">
               I agree to the{" "}
-              <a href="javascript:void(0);" className="text-blue-600 font-semibold hover:underline">
+              <a href="javascript:void(0);" className="text-gray-300 text-white font-semibold hover:underline">
                 Terms and Conditions
               </a>
             </label>
@@ -151,15 +151,21 @@ const Signup = () => {
 
           {/* Submit Button */}
           <div className="mt-12">
-            <button
-              type="submit"
-              className="w-full py-2.5 px-4 text-sm font-semibold tracking-wider rounded text-white bg-gray-800 hover:bg-[#222] focus:outline-none"
-            >
-              Sign Up
-            </button>
-            <p className="text-gray-800 text-sm text-center mt-6">
+          <div className="md:col-span-2 col-span-1 h-full w-full flex justify-center items-center">
+                    <button
+                      className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 
+             text-white  text-lg rounded-lg py-2 px-4  shadow-lg
+             shadow-blue-500/50 hover:from-blue-300 hover:to-blue-800
+             transition duration-300 transform hover:-translate-y-1 hover:scale-105 
+             tracking-wider"
+                      type="submit"
+                    >
+                      Signup
+                    </button>
+                  </div>
+            <p className="text-gray-300 text-sm text-center mt-6">
               Already have an account?{" "}
-              <Link to="/login" className="text-blue-600 font-semibold hover:underline">
+              <Link to="/login" className="text-white font-semibold hover:underline">
                 Login here
               </Link>
             </p>
