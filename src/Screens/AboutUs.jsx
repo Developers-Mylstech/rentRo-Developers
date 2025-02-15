@@ -75,12 +75,7 @@ const AboutUs = () => {
       <section>
         <OurClientsReview />
       </section>
-<<<<<<< HEAD
-      <ScrollToTopButton />
-
-=======
       <ScrollToTopButton/>
->>>>>>> 50e0f187a07ca8cfedddf2e3b4b108bf1715788c
     </>
   );
 };
