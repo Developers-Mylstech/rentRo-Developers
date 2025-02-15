@@ -99,7 +99,7 @@ const OceanScene = () => {
       return "Commercial Service"
     }else if(location.pathname.includes("industrialservice")){
       return "Industrial Service"
-    }else if(location.pathname.includes("roservices")){
+    }else if(location.pathname==="/roservices"){
       return "RO Service"
     }
     return "";
