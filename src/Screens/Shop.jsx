@@ -12,6 +12,7 @@ import Industrial from '../assets/Rent/Industrial.png';
 import OceanScene from "../Components/OceanScene";
 import BottomNav from "../Components/BottomNav";
 import notFount from '../assets/notfound.png'
+import ScrollToTopButton from "../Components/ScrollToTopButton";
 const products = [
   {
     image: Domestic,
@@ -185,6 +186,7 @@ const Shop = () => {
       </div>
 
       <BottomNav />
+      <ScrollToTopButton/>
     </>
   );
 };

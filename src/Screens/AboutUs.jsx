@@ -8,6 +8,7 @@ import Img1 from '../assets/Aboutus/Img1.png';
 import Img2 from '../assets/Aboutus/Img2.png';
 import Img3 from '../assets/Aboutus/Img3.png';
 import OceanScene from "../Components/OceanScene.jsx";
+import ScrollToTopButton from "../Components/ScrollToTopButton.jsx";
 
 const AboutUs = () => {
   const navigate = useNavigate(); // Declare useNavigate
@@ -74,8 +75,12 @@ const AboutUs = () => {
       <section>
         <OurClientsReview />
       </section>
+<<<<<<< HEAD
       <ScrollToTopButton />
 
+=======
+      <ScrollToTopButton/>
+>>>>>>> 50e0f187a07ca8cfedddf2e3b4b108bf1715788c
     </>
   );
 };

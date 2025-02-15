@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SingupImage from "../assets/SingupImage.jpeg";
 import BottomNav from "../Components/BottomNav";
+import ScrollToTopButton from "../Components/ScrollToTopButton";
 
 
 const Signup = () => {
@@ -178,6 +179,7 @@ const Signup = () => {
       </div>
     </div>
     <BottomNav/>
+    <ScrollToTopButton/>
     </>
   );
 };

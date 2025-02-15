@@ -5,7 +5,7 @@ const ScrollToTopButton = () => {
 
   // Handle scroll event to toggle button visibility
   const handleScroll = () => {
-    if (window.scrollY > 1520) { // Adjust threshold as needed
+    if (window.scrollY > 600) { // Adjust threshold as needed
       setIsVisible(true); // Show button when scrolled down 1520px
     } else {
       setIsVisible(false); // Hide button when near the top

@@ -110,8 +110,7 @@ const Clients = () => {
       </div>
     </section>
     <BottomNav/>
-      <ScrollToTopButton />
-
+    <ScrollToTopButton/>
     </>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Loginimage from "../assets/Loginimage.jpeg";
 import BottomNav from "../Components/BottomNav";
+import ScrollToTopButton from "../Components/ScrollToTopButton";
 
 
 // Mock function to simulate login (to be replaced with actual API call)
@@ -109,6 +110,7 @@ const Login = () => {
   </div>
 </div>
       <BottomNav/>
+      <ScrollToTopButton/>
 </>
 
   );
