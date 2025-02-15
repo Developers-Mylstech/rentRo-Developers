@@ -23,6 +23,7 @@ import roLogo2 from "../assets/roLogo2.png";
 import roLogo3 from "../assets/roLogo3.png";
 import roLogo4 from "../assets/roLogo4.png";
 import BannerCarousel from "../Components/BannerCarousel.jsx"
+import ScrollToTopButton from '../Components/ScrollToTopButton.jsx';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -139,6 +140,7 @@ const Home = () => {
 
       {/* Bottom Navigation Tabs - Mobile Only */}
       <BottomNav />
+      <ScrollToTopButton/>
     </>
   );
 };

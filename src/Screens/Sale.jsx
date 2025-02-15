@@ -11,6 +11,7 @@ import Threeinone  from '../assets/Rent/Threeinone.png'
 import WaterCooler   from '../assets/Rent/WaterCooler.png'
 import WaterDispenser   from '../assets/Rent/WaterDispenser.png'
 import Industrial   from '../assets/Rent/Industrial.png'
+import ScrollToTopButton from "../Components/ScrollToTopButton";
 
 
 
@@ -188,6 +189,7 @@ const Sale = () => {
       </div>
     </div>
     <BottomNav/>
+    <ScrollToTopButton/>
     </>
   );
 };

@@ -199,6 +199,7 @@ import IMG4 from "../assets/Services/IMG4.png";
 import IMG5 from "../assets/Services/IMG5.png";
 import IMG3 from "../assets/Services/IMG3.png";
 import IMG6 from "../assets/Services/IMG6.png";
+import ScrollToTopButton from "../Components/ScrollToTopButton";
 
 const Services = () => {
   const swiperRef = useRef(null);
@@ -374,6 +375,7 @@ const Services = () => {
         </div>
       </section>
       {location.pathname === "/services" ? <BottomNav /> : null}
+      <ScrollToTopButton/>
     </>
   );
 };

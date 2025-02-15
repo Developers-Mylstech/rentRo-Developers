@@ -14,6 +14,7 @@ import BottomNav from "../Components/BottomNav.jsx";
 import industrial1 from "../assets/Industrialservice/industrial1.png";
 import industrial2 from "../assets/Industrialservice/industrial2.png";
 import industrial3 from "../assets/Industrialservice/industrial3.png";
+import ScrollToTopButton from "../Components/ScrollToTopButton.jsx";
 
 function IndustrialService() {
   useEffect(() => {
@@ -213,6 +214,7 @@ function IndustrialService() {
         <OurClientsReview />
       </section>
       <BottomNav />
+      <ScrollToTopButton/>
     </>
   );
 }

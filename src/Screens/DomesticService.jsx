@@ -14,6 +14,7 @@ import BottomNav from "../Components/BottomNav.jsx";
 import domestic1 from "../assets/Domesticservice/domestic1.png";
 import domestic2 from "../assets/Domesticservice/domestic2.png";
 import domestic3 from "../assets/Domesticservice/domestic3.png";
+import ScrollToTopButton from "../Components/ScrollToTopButton.jsx";
 
 function DomesticService() {
   useEffect(() => {
@@ -212,6 +213,7 @@ function DomesticService() {
         <OurClientsReview/>
     </section>
     <BottomNav/>
+    <ScrollToTopButton/>
 
     </>
   );
