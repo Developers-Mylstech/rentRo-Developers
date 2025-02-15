@@ -355,7 +355,7 @@ const Footer = () => {
     style={{ borderTop: "1px solid #ffffffb2" }}
     className="mt-8 flex flex-col md:flex-row items-center justify-between text-sm pt-4 z-20"
   >
-    <div className="flex md:flex-row sm:flex-col space-x-4 mt-2 md:mt-0">
+    <div className="flex  space-x-4 mt-2 md:mt-0">
     <p>We accept:</p>
 
       <SiVisa className="text-black text-2xl z-10 " />
