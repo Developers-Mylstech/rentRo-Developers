@@ -65,7 +65,7 @@ function DomesticService() {
         <div className="max-w-full   mx-auto grid md:grid-cols-2 gap-10 items-center bg-gradient-to-r from-blue-100 to-white py-12 px-6 rounded-lg shadow-lg">
           {/* Left Section - Text Content */}
           <div className="text-center md:text-left space-y-6">
-            <h2 className="text-4xl font-bold text-red-600 mb-2 leading-tight">
+            <h2 className="text-4xl font-bold text-blue-800 mb-2 leading-tight">
               Domestic Water Filter Service
             </h2>
             <h3 className="text-2xl font-semibold text-gray-900 mb-4">
@@ -91,13 +91,13 @@ function DomesticService() {
               needs of your filtration setup.
             </p>
             <div>
-              <Link
-                to="/contactus"
-                 // Adjust this URL to your actual contact page
-                className="bg-red-600 text-white font-bold py-3 px-8 rounded-lg  hover:bg-red-700 transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
-              >
-                CONTACT US
-              </Link>
+        <Link
+                                     to="/contact"
+                                     // Adjust this URL to your actual contact page
+                                     className="  text-blue-800 font-bold py-3 px-8 rounded-lg  hover:bg-sky-700 hover:text-white transition-all ease-in-out duration-300 shadow-md transform hover:scale-105"
+                                   >
+                                     CONTACT US
+                                   </Link>
             </div>
           </div>
 
@@ -125,7 +125,7 @@ function DomesticService() {
 
         {/* Why choose RENT RO Services */}
         <div className="text-center mt-12">
-          <h3 className="text-2xl font-bold text-gray-900">
+          <h3 className="text-2xl font-bold text-blue-900">
             Why Choose RENT RO Service
           </h3>
           <p className="text-gray-600 max-w-3xl mx-auto mt-2">
@@ -133,12 +133,12 @@ function DomesticService() {
             where proactivity meets expertise, ensuring uninterrupted access to
             clean and safe water for your family's peace of mind.
           </p>
-          <div className="grid md:grid-cols-3 gap-6 mt-8">
+            <div className="grid md:grid-cols-3 gap-6 mt-8">
             <div
               className="bg-white p-6 shadow-md rounded-lg text-center transform transition-transform hover:scale-105 hover:shadow-2xl"
               data-aos="fade-up"
             >
-              <h4 className="font-semibold">Expert Technicians</h4>
+              <h4 className="font-semibold text-blue-800">Expert Technicians</h4>
               <p className="text-gray-600 mt-2">
                 Our skilled technicians are trained to handle a variety of
                 domestic water filter models, ensuring expert care for your
@@ -150,7 +150,7 @@ function DomesticService() {
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              <h4 className="font-semibold">Scheduled Visits</h4>
+              <h4 className="font-semibold text-blue-800">Scheduled Visits</h4>
               <p className="text-gray-600 mt-2">
                 Enjoy the convenience of pre-scheduled service visits,
                 eliminating the hassle of remembering when your filter needs
@@ -162,7 +162,7 @@ function DomesticService() {
               data-aos="fade-up"
               data-aos-delay="400"
             >
-              <h4 className="font-semibold">Optimized Performance</h4>
+              <h4 className="font-semibold text-blue-800">Optimized Performance</h4>
               <p className="text-gray-600 mt-2">
                 Our service plans are designed to optimize your domestic water
                 filter’s performance, guaranteeing clean and safe water
@@ -174,7 +174,7 @@ function DomesticService() {
               data-aos="fade-up"
               data-aos-delay="600"
             >
-              <h4 className="font-semibold">Extended Filter Lifespan</h4>
+              <h4 className="font-semibold text-blue-800">Extended Filter Lifespan</h4>
               <p className="text-gray-600 mt-2">
                 Regular maintenance extends the lifespan of your filters,
                 providing long-term cost savings and reducing environmental
@@ -186,7 +186,7 @@ function DomesticService() {
               data-aos="fade-up"
               data-aos-delay="800"
             >
-              <h4 className="font-semibold">Transparent Pricing</h4>
+              <h4 className="font-semibold text-blue-800">Transparent Pricing</h4>
               <p className="text-gray-600 mt-2">
                 We prioritize your peace of mind with transparent pricing – no
                 hidden fees or surprises. Know exactly what to expect for a
@@ -198,7 +198,7 @@ function DomesticService() {
               data-aos="fade-up"
               data-aos-delay="1000"
             >
-              <h4 className="font-semibold">Priority Support</h4>
+              <h4 className="font-semibold text-blue-800">Priority Support</h4>
               <p className="text-gray-600 mt-2">
                 Benefit from priority support and scheduling with our premium
                 service plans, giving you peace of mind and swift assistance

@@ -51,8 +51,8 @@ const Home = () => {
     </video>
     <div className='absolute inset-0 bg-black bg-opacity-20'></div>
     <BannerCarousel />
-    <div className='hidden md:block absolute top-20 right-4'>
-      <h2 className='md:text-2xl text-medium md:text-blue-800 font-bold'>RAMADAN OFFER</h2>
+    <div className='hidden md:block absolute top-20 right-4 '>
+      <h2 className='md:text-2xl text-medium md:text-blue-800 font-bold '>RAMADAN OFFER</h2>
       <p className='md:text-lg text-sm text-black'>Ending Soon</p>
     </div>
   </div>
