@@ -182,13 +182,20 @@
 import { useState } from "react";
 import { SiVisa } from "react-icons/si";
 import { FaCcMastercard } from "react-icons/fa";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
-import "./Waves.css";
-import rentroLogo from "../assets/renroLogo.png";
 import { Link } from "react-router-dom";
+import rentroLogo from "../assets/renroLogo.png";
+import "./Waves.css";
 
 const Footer = () => {
   const location = useLocation();
+
+  // State for Dropdowns
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
+
   return (
     <footer
   className={`relative overflow-hidden bg-gradient-to-b md:mb-0 ${
@@ -220,17 +227,13 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/" className="hover:underline">
+              <Link to="/aboutus" className="hover:underline">
                 About Us
               </Link>
             </li>
+            
             <li>
-              <Link to="/contact" className="hover:underline">
-                Contact Us
-              </Link>
-            </li>
-            <li>
-              <Link to="/" className="hover:underline">
+              <Link to="/shop" className="hover:underline">
                 Shop
               </Link>
             </li>
@@ -256,22 +259,22 @@ const Footer = () => {
         } md:block`}
       >
         <li>
-          <Link to="/" className="hover:underline">
+          <Link to="/domesticservice" className="hover:underline">
             Domestic Service
           </Link>
         </li>
         <li>
-          <Link to="/" className="hover:underline">
+          <Link to="/commercialservice" className="hover:underline">
             Commercial Service
           </Link>
         </li>
         <li>
-          <Link to="/" className="hover:underline">
+          <Link to="/industrialservice" className="hover:underline">
             Industrial Service
           </Link>
         </li>
         <li>
-          <Link to="/" className="hover:underline">
+          <Link to="/roservices" className="hover:underline">
             RO Services
           </Link>
         </li>
@@ -302,7 +305,7 @@ const Footer = () => {
           </Link>
         </li>
         <li>
-          <Link to="/" className="hover:underline">
+          <Link to="/contact" className="hover:underline">
             Contact Us
           </Link>
         </li>
