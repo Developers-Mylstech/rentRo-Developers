@@ -8,7 +8,7 @@ const slickSettings = {
   dots: true,
   infinite: true,
   speed: 500,
-  slidesToShow: 3,
+  slidesToShow: 2,
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 5000,
@@ -55,7 +55,7 @@ function OurClientsReview() {
         </div>
 
         <div className="testimonial-slider relative">
-          <Slider ref={sliderRef} {...slickSettings}>
+          <Slider ref={sliderRef} {...slickSettings} loop={true}>
             {[ 
               {
                 name: "Sarfaz Sarfaz",
@@ -64,6 +64,7 @@ function OurClientsReview() {
               {
                 name: "Muhammad Ali",
                 review: "Simplicity meets excellence with Rent RO. Clean water made easy, outstanding service, and zero stress. Highly recommended!",
+                
               },
               {
                 name: "Nam Las",
@@ -74,8 +75,8 @@ function OurClientsReview() {
                 review: "Good company, good service, good water.",
               },
             ].map((testimonial, index) => (
-            <div key={index} className="testimonial-contain opacity-0 transform transition-all duration-700 ease-in-out hover:opacity-100 hover:scale-105 w-full sm:w-3/4 px-4"> {/* Adjusted width */}
- <div key={index} className="testimonial-contain   opacity-0 transform transition-all duration-700 ease-in-out hover:opacity-100 hover:scale-105 w-full  px-2"> {/* Adjusted width and padding */}
+            <div key={index} className="testimonial-contain opacity-0 transform transition-all duration-700 ease-in-out hover:opacity-100 hover:scale-105 w-full h-auto py-4 sm:w-3/4 px-4"> {/* Adjusted width */}
+ <div key={index} className="testimonial-contain   opacity-0 transform transition-all duration-700 ease-in-out hover:opacity-100 hover:scale-105 w-full  px-10"> {/* Adjusted width and padding */}
   <div className="testimonial-details bg-white p-4 rounded-lg shadow-lg transition-transform duration-500 hover:shadow-2xl hover:scale-105 h-auto flex flex-col justify-between"> {/* Reduced padding */}
     <div>
       <ul className="rating flex justify-center mb-4">
@@ -88,7 +89,9 @@ function OurClientsReview() {
       <p className="details-images text-lg text-gray-700 mb-4 h-20 overflow-hidden"> {/* Reduced height */}
         {testimonial.review}
       </p>
+      
     </div>
+    <p>⭐⭐⭐⭐⭐</p>
     <h5 className="font-bold text-gray-900 mt-auto">
       {testimonial.name}
     </h5>
@@ -102,16 +105,16 @@ function OurClientsReview() {
 
           {/* Next button */}
           <button
-            className="border-2 border-white custom-next liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 -right-12 z-50 transform -translate-y-1/2"
+            className="border-2 border-white custom-next liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 right-0 z-50 transform -translate-y-1/2"
             onClick={handleNext}
           >
             <span className="relative text-xl font-semibold z-10">Next</span>
             <div className="liquid"></div>
-          </button>
+          </button> 
 
           {/* Prev button */}
           <button
-            className="border-2 border-white custom-prev liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 -left-12 z-40 transform -translate-y-1/2"
+            className="border-2 border-white custom-prev liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 left-0 z-40 transform -translate-y-1/2"
             onClick={handlePrev}
           >
             <span className="relative text-xl font-semibold z-10">Prev</span>

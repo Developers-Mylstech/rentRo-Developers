@@ -202,7 +202,7 @@ const Footer = () => {
     location.pathname !== "/signup" && location.pathname !== "/login"
       ? "mb-12"
       : "mb-0"
-  } from-blue-950 to-blue-900 text-white py-12 px-6 md:px-8 border-t`}
+  } from-blue-950 to-blue-900 text-gray-300 py-12 px-6 md:px-8 border-t`}
 >
   <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-8 z-10">
     {/* Company Info */}
@@ -212,7 +212,7 @@ const Footer = () => {
         alt="Logo"
         className="h-6 md:h-12 w-auto object-cover"
       />
-      <p className="text-sm mt-2 text-white">
+      <p className="text-sm mt-2 ">
         Established in 2019, RENT RO aims to make water purification
         affordable with rental plans.
       </p>

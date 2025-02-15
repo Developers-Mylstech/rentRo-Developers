@@ -147,13 +147,13 @@ const BannerCarousel = () => {
                 <img 
                   src={slide.image} 
                   alt="RO Logo" 
-                  className="h-56 md:h-96 lg:h-1/2 w-auto object-contain"
+                  className="h-64 md:h-96 lg:h-1/2 w-auto object-contain"
                 />
               </div>
               <div className="w-full md:w-1/2 text-left">
                 
                 <h2 className="text-2xl md:text-4xl lg:text-6xl  font-bold text-blue-900">{slide.text}</h2>
-                <p className="mt-2 text-lg md:text-xl lg:text-3xl text-black">Your Trusted Partner for Reliable Water Filters and Services</p>
+                <p className="mt-2 text-base md:text-xl lg:text-3xl text-black">Your Trusted Partner for Reliable Water Filters and Services</p>
               </div>
             </div>
           </SwiperSlide>
