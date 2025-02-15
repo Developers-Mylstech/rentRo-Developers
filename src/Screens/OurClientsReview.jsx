@@ -88,6 +88,7 @@ function OurClientsReview() {
                           {testimonial.review}
                         </p>
                       </div>
+                      <p>⭐⭐⭐⭐⭐</p>
                       <h5 className="font-bold text-blue-800 mt-auto text-sm sm:text-base">
                         {testimonial.name}
                       </h5>
