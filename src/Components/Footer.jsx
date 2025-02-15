@@ -60,7 +60,7 @@ const Footer = () => {
           <h3 className="font-semibold text-lg mb-3">Our Services</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link to="/domesticservices" href="#" className="hover:underline">
+              <Link to="/domesticservice" className="hover:underline">
                 Domestic Service
               </Link>
             </li>

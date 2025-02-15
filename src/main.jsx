@@ -54,8 +54,6 @@ const routes = createBrowserRouter(
         <Route path="/roservices" element={<RoServices/>} /> 
         <Route path="/faq" element={<FAQSection/>} /> 
         <Route path="/aboutus" element={<AboutUs/>} /> 
-
-        
         <Route path="*" element={<Layout/>} />
        
         <Route path="*" element={<Layout/>} />
