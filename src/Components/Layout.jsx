@@ -12,7 +12,7 @@ function Layout() {
 
   useEffect(() => {
     // ✅ Show loader for 5 seconds
-    const timeout = setTimeout(() => setLoading(false), 5000);
+    const timeout = setTimeout(() => setLoading(false), 2500);
     return () => clearTimeout(timeout);
   }, []);
 

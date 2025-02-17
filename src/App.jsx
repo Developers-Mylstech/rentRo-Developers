@@ -4,7 +4,7 @@ import Home from "./Screens/Home.jsx";
  import Services from "./Screens/Services.jsx";
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 w-3">
       <Header />
         <Home />
       </div>
