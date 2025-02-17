@@ -23,11 +23,7 @@ const Footer = () => {
     location.pathname !== "/signup" && location.pathname !== "/login"
       ? "mb-12"
       : "mb-0"
-<<<<<<< HEAD
-  } from-blue-900 to-blue-400  text-white py-12 px-6 md:px-8 border-t`}
-=======
   } from-[#0a448b] to-[#0e86bdcf] text-gray-300 py-12 px-6 md:px-8 border-t`}
->>>>>>> 509c9c6d078dc99a68b30b53d4620e8af0a42435
 >
   <div className="max-w-screen-xl mx-auto  grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-8 z-10">
     {/* Company Info */}
