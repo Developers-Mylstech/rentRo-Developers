@@ -317,44 +317,79 @@ const Services = () => {
             className="w-full relative"
           >
             {services.map((service, index) => (
+              // <SwiperSlide key={index} onClick={() => toggleDescription(index)}>
+              //   <div className="group relative shadow-xl my-10 border rounded-3xl bg-transparent overflow-hidden cursor-pointer transition-all transform hover:scale-90 hover:shadow-2xl">
+              //     <img
+              //       className="h-72 mx-auto md:h-96 w-auto object-cover rounded-2xl transition-transform duration-700 group-hover:scale-110"
+              //       src={service.Image}
+              //       alt={service.title}
+              //     />
+              //     <h3
+              //       className={`text-xl text-blue-950 text-center py-4 font-bold animate-fade-in-up transition-opacity duration-200 ease-in-out ${
+              //         isMobile
+              //           ? activeIndex === index
+              //             ? "opacity-0"
+              //             : ""
+              //           : "group-hover:opacity-0"
+              //       }`}
+              //     >
+              //       {service.title}
+              //     </h3>
+              //     <div
+              //       className={`absolute inset-x-0 bottom-[-20%] z-20 h-0 bg-blue-300/20 flex items-center justify-center text-center transition-all duration-500 ease-in-out ${
+              //         isMobile
+              //           ? activeIndex === index
+              //             ? "h-[120%]"
+              //             : ""
+              //           : "group-hover:h-[120%]"
+              //       }`}
+              //     >
+              //       <div className="p-6 text-blue-950">
+              //         <h3 className="text-xl font-bold animate-fade-in-up">
+              //           {service.title}
+              //         </h3>
+              //         <p className="text-md italic mt-2 animate-fade-in-up">
+              //           {service.description}
+              //         </p>
+              //       </div>
+              //     </div>
+              //   </div>
+              // </SwiperSlide>
               <SwiperSlide key={index} onClick={() => toggleDescription(index)}>
-                <div className="group relative shadow-xl my-10 border rounded-3xl bg-transparent overflow-hidden cursor-pointer transition-all transform hover:scale-90 hover:shadow-2xl">
+                <div className="border py-5 rounded-xl relative group overflow-hidden bg-white transition-all duration-300">
+
                   <img
-                    className="h-72 mx-auto md:h-96 w-auto object-cover rounded-2xl transition-transform duration-700 group-hover:scale-110"
+                    className="h-96 w-full object-contain rounded-md transition-transform duration-300 ease-in-out group-hover:scale-90"
                     src={service.Image}
                     alt={service.title}
                   />
+                  <div
+                    className={`absolute inset-x-0 bottom-0 bg-blue-500/50 flex justify-center items-center flex-col text-white h-full text-center px-6 py-6 transition-all duration-500 ease-in-out ${isMobile
+                      ? activeIndex === index
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-full opacity-0"
+                      : "translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
+                      }`}
+                  >
+                    <h3 className="text-lg font-semibold">{service.title}</h3>
+                    <p className="mt-2 text-sm">{service.description}</p>
+                  </div>
+
                   <h3
-                    className={`text-xl text-blue-950 text-center py-4 font-bold animate-fade-in-up transition-opacity duration-200 ease-in-out ${
-                      isMobile
-                        ? activeIndex === index
-                          ? "opacity-0"
-                          : ""
-                        : "group-hover:opacity-0"
-                    }`}
+                    className={`relative bottom-4 left-1/2 transform -translate-x-1/2 text-blue-950 text-center text-lg font-semibold transition-opacity duration-300 ease-in-out ${isMobile
+                      ? activeIndex === index
+                        ? "opacity-0"
+                        : "opacity-100"
+                      : "opacity-100 group-hover:opacity-0"
+                      }`}
                   >
                     {service.title}
                   </h3>
-                  <div
-                    className={`absolute inset-x-0 bottom-[-20%] z-20 h-0 bg-blue-300/20 flex items-center justify-center text-center transition-all duration-500 ease-in-out ${
-                      isMobile
-                        ? activeIndex === index
-                          ? "h-[120%]"
-                          : ""
-                        : "group-hover:h-[120%]"
-                    }`}
-                  >
-                    <div className="p-6 text-blue-950">
-                      <h3 className="text-xl font-bold animate-fade-in-up">
-                        {service.title}
-                      </h3>
-                      <p className="text-md italic mt-2 animate-fade-in-up">
-                        {service.description}
-                      </p>
-                    </div>
-                  </div>
                 </div>
               </SwiperSlide>
+
+
+
             ))}
             <button
               className="hidden border-2 border-white custom-next liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
@@ -375,7 +410,7 @@ const Services = () => {
         </div>
       </section>
       {location.pathname === "/services" ? <BottomNav /> : null}
-      <ScrollToTopButton/>
+      <ScrollToTopButton />
     </>
   );
 };

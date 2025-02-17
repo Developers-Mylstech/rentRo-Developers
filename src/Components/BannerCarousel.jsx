@@ -92,7 +92,7 @@
 
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay,Navigation } from "swiper";  // Removed Navigation
+import { Autoplay, Navigation } from "swiper";  // Removed Navigation
 import { useRef } from "react";
 import "swiper/css";
 import "../index.css";
@@ -133,7 +133,7 @@ const BannerCarousel = () => {
   return (
     <div className="absolute md:top-10 top-0 left-0 bottom-0 w-full h-full flex items-center justify-center">
       <Swiper
-        modules={[Navigation,Autoplay]}   // Removed Navigation Module
+        modules={[Navigation, Autoplay]}   // Removed Navigation Module
         autoplay={{ delay: 4000 }}
         loop={true}
         className="w-full md:w-[100%] lg:w-[100%] mt-10 text-white custom-swiper"
@@ -144,21 +144,20 @@ const BannerCarousel = () => {
           <SwiperSlide key={index} className="flex justify-start items-center">
             <div className="flex items-center justify-between w-full py-5 rounded-lg">
               <div className="w-full md:w-1/2 flex justify-center mb-4 md:mb-0">
-                <img 
-                  src={slide.image} 
-                  alt="RO Logo" 
+                <img
+                  src={slide.image}
+                  alt="RO Logo"
                   className="h-64 md:h-96 lg:h-1/2 w-auto object-contain"
                 />
               </div>
-              <div className="w-full md:w-1/2 text-left pr-2">
-                
+              <div className="w-full md:w-2/3  text-left pr-2">
                 <h2 className="text-2xl md:text-4xl lg:text-6xl  font-bold text-blue-900">{slide.text}</h2>
                 <p className="mt-2 text-base md:text-xl lg:text-3xl text-black">Your Trusted Partner for Reliable Water Filters and Services</p>
               </div>
             </div>
           </SwiperSlide>
         ))}
-        
+
         <button
           className="hidden border-2 border-white custom-next liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
           onClick={handleNext}
