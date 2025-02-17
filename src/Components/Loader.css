@@ -27,7 +27,7 @@
     height: 200%;
     transform: translate(-25%, 0);
     background: #556fc4;
-    animation: fill-up 10s ease infinite;
+    animation: fill-up 2.5s ease infinite;
 }
 
 @keyframes fill-up {
