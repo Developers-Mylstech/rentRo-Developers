@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import rentroLogo from "../assets/renroLogo.png";
 import "./Waves.css";
 import visa from "../assets/visa.png"
+import mastercard from "../assets/mastercard.png"
 
 const Footer = () => {
   const location = useLocation();
@@ -181,7 +182,8 @@ const Footer = () => {
 
       {/* <SiVisa className="text-black text-2xl z-10 " /> */}
       <img src={visa} className="h-8 w-8 " alt="" />
-      <FaCcMastercard className="text-black text-2xl z-10" />
+      <img src={mastercard} className="h-8 w-8 " alt="" />
+     
     </div>
     <p className="mt-2 md:mt-0">© 2025 RENT RO, All rights reserved.</p>
   </div>
