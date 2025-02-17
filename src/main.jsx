@@ -43,9 +43,8 @@ const routes = createBrowserRouter(
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home/>} />
         <Route path="/services" element={<Services/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/signup" element={<Signup/>} />
-        <Route path="/clients" element={<Clients/>} />
+        
+        {/* <Route path="/clients" element={<Clients/>} /> */}
         <Route path="/sale" element={<Sale/>} />
         <Route path="/rent" element={<Rent/>} />
         <Route path="/faq" element={<Faq/>} />
@@ -56,6 +55,7 @@ const routes = createBrowserRouter(
         <Route path="/domesticservice" element={<DomesticService/>} />
         <Route path="/aboutus" element={<AboutUs/>} />
         <Route path="/shop" element={<Shop/>} />
+        <Route path="*" element={<Home />} />
         
         
 
@@ -66,7 +66,9 @@ const routes = createBrowserRouter(
         {/* Other standalone routes */}
       
       </Route>
-      <Route path="*" element={<Home />} />
+      
+      <Route path="/login" element={<Login/>} />
+      <Route path="/signup" element={<Signup/>} />
     </>
   )
 );

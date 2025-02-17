@@ -47,7 +47,7 @@ const ContactUs = () => {
                 <h2 className="text-3xl font-semibold text-white">
                   Contact Us
                 </h2>
-                <p className="text-gray-400">
+                <p className="text-gray-200">
                   Your email address will not be published. Required fields are
                   marked *
                 </p>
