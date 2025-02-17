@@ -94,21 +94,27 @@ const Signup = () => {
             onSubmit={handleSubmit}
           >
             <div className="mb-12">
-              <h3 className="text-white text-3xl font-bold text-center">Sign Up</h3>
+              <h3 className="text-white text-3xl font-bold text-center">
+                Sign Up
+              </h3>
             </div>
 
             {/* Toggle between Email and Phone */}
-            <div className="mb-6">
+            <div className="mb-6 flex justify-center items-center">
               <button
                 type="button"
-                className={`text-sm px-4 py-2 mr-4 rounded ${!isPhone ? "bg-blue-700 text-white" : "bg-gray-300 text-black"}`}
+                className={`text-sm px-4 py-2 mr-4 rounded ${
+                  !isPhone ? "bg-blue-700 text-white" : "bg-white text-black"
+                }`}
                 onClick={() => setIsPhone(false)}
               >
                 Sign Up with Email
               </button>
               <button
                 type="button"
-                className={`text-sm px-4 py-2 rounded ${isPhone ? "bg-blue-700 text-white" : "bg-gray-300 text-black"}`}
+                className={`text-sm px-4 py-2 rounded ${
+                  isPhone ? "bg-blue-700 text-white" : "bg-white text-black"
+                }`}
                 onClick={() => setIsPhone(true)}
               >
                 Sign Up with Phone
@@ -167,7 +173,9 @@ const Signup = () => {
             )}
 
             {/* Error Message */}
-            {error && <div className="text-red-500 text-center mt-2">{error}</div>}
+            {error && (
+              <div className="text-red-500 text-center mt-2">{error}</div>
+            )}
 
             {/* Submit Button */}
             <div className="mt-6 flex justify-center">
@@ -175,7 +183,11 @@ const Signup = () => {
                 type="submit"
                 className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 text-white text-sm rounded-lg py-2 px-6 shadow-lg"
               >
-                {otpSent ? "Verify OTP" : isPhone ? "Send Phone OTP" : "Send Email OTP"}
+                {otpSent
+                  ? "Verify OTP"
+                  : isPhone
+                  ? "Send Phone OTP"
+                  : "Send Email OTP"}
               </button>
             </div>
 
@@ -195,7 +207,10 @@ const Signup = () => {
             {/* Already have an account? */}
             <p className="text-gray-300 text-sm text-center mt-6">
               Already have an account?{" "}
-              <Link to="/login" className="text-white font-semibold hover:underline">
+              <Link
+                to="/login"
+                className="text-white font-semibold hover:underline"
+              >
                 Login here
               </Link>
             </p>

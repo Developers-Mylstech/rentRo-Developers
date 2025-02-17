@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";  // Import useNavigate
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import Loginimage from "../assets/Loginimage.jpeg";
 import BottomNav from "../Components/BottomNav";
 import ScrollToTopButton from "../Components/ScrollToTopButton";
@@ -30,7 +30,7 @@ const Login = () => {
   const [otpSent, setOtpSent] = useState(false); // For OTP-based login flow
   const [emailOtpSent, setEmailOtpSent] = useState(false); // Flag for email OTP
   const [error, setError] = useState(""); // For handling errors
-  const navigate = useNavigate();  // Initialize useNavigate
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -76,17 +76,20 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!isPhone && !email) { // Validate email for email login
+    if (!isPhone && !email) {
+      // Validate email for email login
       setError("Please enter a valid email");
       return;
     }
 
-    if (isPhone && otp !== "1234") { // Simulated OTP verification for phone
+    if (isPhone && otp !== "1234") {
+      // Simulated OTP verification for phone
       setError("Invalid OTP. Please try again.");
-      return '';
+      return "";
     }
 
-    if (!isPhone && emailOtpSent && otp !== "1234") { // Simulated OTP verification for email
+    if (!isPhone && emailOtpSent && otp !== "1234") {
+      // Simulated OTP verification for email
       setError("Invalid OTP. Please try again.");
       return;
     }
@@ -95,7 +98,7 @@ const Login = () => {
     handleLoginLogic(email, phone, otp, rememberMe, isPhone);
 
     // If login is successful, navigate to the home page
-    navigate("/home");  // Navigate to home page
+    navigate("/home"); // Navigate to home page
   };
 
   return (
@@ -109,21 +112,27 @@ const Login = () => {
         <div className="max-w-md w-full mx-auto bg-black bg-opacity-10 rounded-lg p-6 border  border-white shadow-lg">
           <form onSubmit={handleSubmit}>
             <div className="mb-12">
-              <h3 className="text-white text-3xl font-bold text-center">Log in</h3>
+              <h3 className="text-white text-3xl font-bold text-center">
+                Log in
+              </h3>
             </div>
 
             {/* Toggle between Email and Phone */}
-            <div className="mb-6">
+            <div className="mb-6 flex justify-center items-center">
               <button
                 type="button"
-                className={`text-sm px-4 py-2 mr-4 rounded ${!isPhone ? "bg-blue-700 text-white" : "bg-gray-300 text-black"}`}
+                className={`text-sm px-4 py-2 mr-4 rounded  ${
+                  !isPhone ? "bg-blue-700 text-white" : "bg-white text-black"
+                }`}
                 onClick={() => setIsPhone(false)}
               >
                 Log In with Email
               </button>
               <button
                 type="button"
-                className={`text-sm px-4 py-2 rounded ${isPhone ? "bg-blue-700 text-white" : "bg-gray-300 text-black"}`}
+                className={`text-sm px-4 py-2 rounded ${
+                  isPhone ? "bg-blue-700 text-white" : "bg-white text-black"
+                }`}
                 onClick={() => setIsPhone(true)}
               >
                 Log In with Phone
@@ -191,7 +200,9 @@ const Login = () => {
             )}
 
             {/* Error Message */}
-            {error && <div className="text-red-500 text-center mb-2">{error}</div>}
+            {error && (
+              <div className="text-red-500 text-center mb-2">{error}</div>
+            )}
 
             {/* Send OTP Button for Phone */}
             {isPhone && !otpSent && (
@@ -225,13 +236,16 @@ const Login = () => {
                 className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 text-white text-sm rounded-lg py-2 px-6 shadow-lg w-full"
                 type="submit"
               >
-                Log In
+                LogIn
               </button>
             </div>
 
             <p className="text-white text-sm text-center mt-6">
               Don't have an account?{" "}
-              <Link to="/signup" className="text-white font-extrabold hover:underline">
+              <Link
+                to="/signup"
+                className="text-white font-extrabold hover:underline"
+              >
                 Register here
               </Link>
             </p>
