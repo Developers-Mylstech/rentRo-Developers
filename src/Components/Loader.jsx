@@ -19,7 +19,7 @@ import "./Loader.css"; // Ensure this path is correct
 
 function Loader() {
   return (
-    <div className="flex justify-center items-center min-h-screen ">
+    <div className="flex justify-center items-center min-h-screen bg-blue-950">
       <div className="shape">
         <div className="wave"></div>
       </div>

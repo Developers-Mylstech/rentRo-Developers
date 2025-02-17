@@ -3,6 +3,7 @@ import BottomNav from "../Components/BottomNav";
 import OceanScene from "../Components/OceanScene";
 import contactBg from "../assets/contactBg.jpg";
 import "../index.css";
+import ScrollToTopButton from "../Components/ScrollToTopButton";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -213,7 +214,12 @@ const ContactUs = () => {
             ></iframe>
           </div>
         </div>
+      </section> 
+      <section>
+        <BottomNav/>
       </section>
+      <BottomNav/>
+      <ScrollToTopButton/>
     </>
   );
 };

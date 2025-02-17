@@ -5,7 +5,7 @@ const ScrollToTopButton = () => {
 
   // Handle scroll event to toggle button visibility
   const handleScroll = () => {
-    if (window.scrollY > 1520) { // Adjust threshold as needed
+    if (window.scrollY > 600) { // Adjust threshold as needed
       setIsVisible(true); // Show button when scrolled down 1520px
     } else {
       setIsVisible(false); // Hide button when near the top
@@ -33,7 +33,7 @@ const ScrollToTopButton = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 w-16 right-6 p-4 bg-white text-blue-900 z-50 rounded-md mb-20 shadow-lg overflow-hidden hover:scale-110 transition-all duration-500 sm:hover:scale-90"
+          className=" fixed bottom-6 right-6 px-4 py-1 border border-blue-950 bg-white text-blue-900 z-50 rounded-md mb-20 shadow-lg overflow-hidden group transition-all duration-300 ease-in-out transform hover:text-white hover:bg-sky-600 hover:scale-105"
         >
           {/* Water effect */}
           <span className="absolute inset-0 w-full h-full bg-blue-300 opacity-40 scale-0 hover:scale-100 hover:opacity-60 rounded-md transition-all duration-500"></span>

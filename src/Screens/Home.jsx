@@ -23,6 +23,8 @@ import roLogo2 from "../assets/roLogo2.png";
 import roLogo3 from "../assets/roLogo3.png";
 import roLogo4 from "../assets/roLogo4.png";
 import BannerCarousel from "../Components/BannerCarousel.jsx"
+import ScrollToTopButton from '../Components/ScrollToTopButton.jsx';
+
 const Home = () => {
   const navigate = useNavigate();
 
@@ -41,7 +43,7 @@ const Home = () => {
         {/* Video Background */}
         <div className="z-10">
     <video
-      className="w-full md:h-[100vh] h-[60vh] object-fill md:object-cover"
+      className="w-full md:h-[100vh] h-[55vh] object-fill md:object-cover"
       autoPlay
       loop
       muted
@@ -51,12 +53,23 @@ const Home = () => {
     </video>
     <div className='absolute inset-0 bg-black bg-opacity-20'></div>
     <BannerCarousel />
-    <div className='hidden md:block absolute top-20 right-4 '>
-      <h2 className='md:text-2xl text-medium md:text-blue-800 font-bold '>RAMADAN OFFER</h2>
-      <p className='md:text-lg text-sm text-black'>Ending Soon</p>
-    </div>
+    <div className='block absolute md:top-32  top-20 right-4 animate-bounce'>
+  <h2 className='md:text-4xl text-xl  font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 
+    drop-shadow-lg transition duration-500 ease-in-out transform hover:scale-110 stroke-black stroke-2'>
+    RAMADAN OFFER
+  </h2>
+  <p className='md:text-lg text-sm text-blue-700 animate-pulse mt-2 font-semibold drop-shadow-md'>
+    Ending Soon
+  </p>
+</div>
+
+
+
+
+  
+
   </div>
-        <div className="absolute bottom-0 left-0 right-0 bg-transparent pt-4 overflow-hidden z-50 home-gradient">
+        <div className="absolute bottom-0 left-0 right-0 bg-transparent pt-4 overflow-hidden z-20 home-gradient">
   <div className="h-full w-full inset-y-full hover:inset-y-0">
     <div className="absolute bottom-0 left-0 h-full w-full z-10 opacity-0 transition-all ease-in-out duration-300 hover:opacity-100">
       <div className="absolute bottom-0 left-0 h-[100%] w-full flex justify-center items-center z-30 text-white bg-gradient-to-t from-blue-200 to-transparent bg-opacity-30 backdrop-blur-sm">
@@ -127,6 +140,7 @@ const Home = () => {
 
       {/* Bottom Navigation Tabs - Mobile Only */}
       <BottomNav />
+      <ScrollToTopButton/>
     </>
   );
 };

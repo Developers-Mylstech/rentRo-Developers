@@ -85,6 +85,7 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { BsQuestionOctagon } from "react-icons/bs";
 import OceanScene from '../Components/OceanScene';
 import "../index.css"
+import ScrollToTopButton from '../Components/ScrollToTopButton';
 
 const faqData = [
   {
@@ -208,6 +209,7 @@ const FAQSection = () => {
           </ul>
         </div>
       </div>
+      <ScrollToTopButton/>
     </>
   );
 };

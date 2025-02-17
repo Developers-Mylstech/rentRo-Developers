@@ -1,116 +1,260 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import Loginimage from "../assets/Loginimage.jpeg";
 import BottomNav from "../Components/BottomNav";
+import ScrollToTopButton from "../Components/ScrollToTopButton";
 
+// Mock functions to simulate OTP sending for email and phone (replace with actual API calls)
+const sendEmailOtp = (email) => {
+  console.log(`Sending OTP to email: ${email}`);
+  return "1234"; // Simulated OTP sent to email
+};
+
+const sendPhoneOtp = (phone) => {
+  console.log(`Sending OTP to phone: ${phone}`);
+  return "1234"; // Simulated OTP sent to phone
+};
 
 // Mock function to simulate login (to be replaced with actual API call)
-const handleLoginLogic = (email, password, rememberMe) => {
-  // You can replace this with actual authentication logic
-  console.log("Logging in with: ", { email, password, rememberMe });
-  // For example, make an API call and handle success/error responses
+const handleLoginLogic = (email, phone, otp, rememberMe, isPhone) => {
+  console.log("Logging in with: ", { email, phone, otp, rememberMe, isPhone });
+  // Replace this with actual authentication logic
 };
 
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [otp, setOtp] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [isPhone, setIsPhone] = useState(false); // Toggle between Email or Phone input
+  const [otpSent, setOtpSent] = useState(false); // For OTP-based login flow
+  const [emailOtpSent, setEmailOtpSent] = useState(false); // Flag for email OTP
+  const [error, setError] = useState(""); // For handling errors
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+  };
+
+  const handleOtpChange = (e) => {
+    setOtp(e.target.value);
   };
 
   const handleRememberMeChange = () => {
     setRememberMe(!rememberMe);
   };
 
+  const sendEmailOtpHandler = () => {
+    if (!email) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    setError(""); // Reset error
+    const otpGenerated = sendEmailOtp(email); // Send OTP to email
+    console.log("OTP sent to:", email);
+    setOtpSent(true);
+    setEmailOtpSent(true);
+  };
+
+  const sendPhoneOtpHandler = () => {
+    if (!phone) {
+      setError("Please enter a valid phone number");
+      return;
+    }
+
+    setError(""); // Reset error
+    const otpGenerated = sendPhoneOtp(phone); // Send OTP to phone
+    console.log("OTP sent to:", phone);
+    setOtpSent(true);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Calling the function handling the login logic
-    handleLoginLogic(email, password, rememberMe);
+
+    if (!isPhone && !email) {
+      // Validate email for email login
+      setError("Please enter a valid email");
+      return;
+    }
+
+    if (isPhone && otp !== "1234") {
+      // Simulated OTP verification for phone
+      setError("Invalid OTP. Please try again.");
+      return "";
+    }
+
+    if (!isPhone && emailOtpSent && otp !== "1234") {
+      // Simulated OTP verification for email
+      setError("Invalid OTP. Please try again.");
+      return;
+    }
+
+    // Call the login function with the appropriate fields
+    handleLoginLogic(email, phone, otp, rememberMe, isPhone);
+
+    // If login is successful, navigate to the home page
+    navigate("/home"); // Navigate to home page
   };
 
   return (
     <>
-    <div
-  className="flex justify-center items-center font-[sans-serif] h-screen w-full p-4 bg-cover bg-center"
-  style={{
-    backgroundImage: `url(${Loginimage})`,
-  }}
->
-  <div className="max-w-md w-full mx-auto bg-black bg-opacity-10 rounded-lg p-6 border border-white  shadow-lg">
-    <form onSubmit={handleSubmit}>
-      <div className="mb-12">
-        <h3 className="text-white text-3xl font-bold text-center">Log in</h3>
+      <div
+        className="flex justify-center items-center font-[sans-serif] h-screen w-full p-4 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${Loginimage})`,
+        }}
+      >
+        <div className="max-w-md w-full mx-auto bg-black bg-opacity-10 rounded-lg p-6 border  border-white shadow-lg">
+          <form onSubmit={handleSubmit}>
+            <div className="mb-12">
+              <h3 className="text-white text-3xl font-bold text-center">
+                Log in
+              </h3>
+            </div>
+
+            {/* Toggle between Email and Phone */}
+            <div className="mb-6 flex justify-center items-center">
+              <button
+                type="button"
+                className={`text-sm px-4 py-2 mr-4 rounded  ${
+                  !isPhone ? "bg-blue-700 text-white" : "bg-white text-black"
+                }`}
+                onClick={() => setIsPhone(false)}
+              >
+                Log In with Email
+              </button>
+              <button
+                type="button"
+                className={`text-sm px-4 py-2 rounded ${
+                  isPhone ? "bg-blue-700 text-white" : "bg-white text-black"
+                }`}
+                onClick={() => setIsPhone(true)}
+              >
+                Log In with Phone
+              </button>
+            </div>
+
+            {/* Email Input */}
+            {!isPhone && (
+              <div className="mb-6">
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  className="w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 p-3 outline-none bg-transparent placeholder:text-white"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+              </div>
+            )}
+
+            {/* Phone Input (for OTP login) */}
+            {isPhone && (
+              <div className="mb-6">
+                <input
+                  name="phone"
+                  type="tel"
+                  required
+                  className="w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 p-3 outline-none bg-transparent placeholder:text-white"
+                  placeholder="Enter phone number"
+                  value={phone}
+                  onChange={handlePhoneChange}
+                />
+              </div>
+            )}
+
+            {/* OTP Input for Phone */}
+            {isPhone && otpSent && (
+              <div className="mb-6">
+                <input
+                  name="otp"
+                  type="text"
+                  required
+                  className="w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 p-3 outline-none bg-transparent placeholder:text-white"
+                  placeholder="Enter OTP"
+                  value={otp}
+                  onChange={handleOtpChange}
+                />
+              </div>
+            )}
+
+            {/* OTP Input for Email */}
+            {!isPhone && emailOtpSent && (
+              <div className="mb-6">
+                <input
+                  name="otp"
+                  type="text"
+                  required
+                  className="w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 p-3 outline-none bg-transparent placeholder:text-white"
+                  placeholder="Enter OTP"
+                  value={otp}
+                  onChange={handleOtpChange}
+                />
+              </div>
+            )}
+
+            {/* Error Message */}
+            {error && (
+              <div className="text-red-500 text-center mb-2">{error}</div>
+            )}
+
+            {/* Send OTP Button for Phone */}
+            {isPhone && !otpSent && (
+              <div className="mb-6 flex justify-center">
+                <button
+                  type="button"
+                  className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 text-white text-sm rounded-lg py-2 px-6 shadow-lg"
+                  onClick={sendPhoneOtpHandler}
+                >
+                  Send OTP
+                </button>
+              </div>
+            )}
+
+            {/* Send OTP Button for Email */}
+            {!isPhone && !otpSent && (
+              <div className="mb-6 flex justify-center">
+                <button
+                  type="button"
+                  className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 text-white text-sm rounded-lg py-2 px-6 shadow-lg"
+                  onClick={sendEmailOtpHandler}
+                >
+                  Send Email OTP
+                </button>
+              </div>
+            )}
+
+            {/* Submit Button */}
+            <div className="md:col-span-2 col-span-1 h-full w-full flex justify-center items-center">
+              <button
+                className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 text-white text-sm rounded-lg py-2 px-6 shadow-lg w-full"
+                type="submit"
+              >
+                LogIn
+              </button>
+            </div>
+
+            <p className="text-white text-sm text-center mt-6">
+              Don't have an account?{" "}
+              <Link
+                to="/signup"
+                className="text-white font-extrabold hover:underline"
+              >
+                Register here
+              </Link>
+            </p>
+          </form>
+        </div>
       </div>
-      
-      {/* Email Input */}
-      <div className="mb-6">
-        <input
-          name="email"
-          type="text"
-          required
-          className="w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 p-3 outline-none bg-transparent placeholder:text-white"
-          placeholder="Enter email"
-          value={email}
-          onChange={handleEmailChange}
-        />
-      </div>
-
-      {/* Password Input */}
-      <div className="mb-6">
-        <input
-          name="password"
-          type="password"
-          required
-          className="w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 p-3 outline-none bg-transparent placeholder:text-white"
-          placeholder="Enter password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-      </div>
-
-      {/* Remember Me and Forgot Password */}
-      <div className="flex justify-between items-center mb-6">
-        <label className="flex items-center text-sm text-white">
-          <input type="checkbox" className="mr-2" checked={rememberMe} onChange={handleRememberMeChange} />
-          Remember me
-        </label>
-        <a href="#" className="text-white text-sm font-semibold hover:underline">
-          Forgot Password?
-        </a>
-      </div>
-
-      {/* Submit Button */}
-      <div className="md:col-span-2 col-span-1 h-full w-full flex justify-center items-center">
-                    <button
-                      className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 
-             text-white  text-lg rounded-lg py-2 px-4  shadow-lg
-             shadow-blue-500/50 hover:from-blue-300 hover:to-blue-800
-             transition duration-300 transform hover:-translate-y-1 hover:scale-105 
-             tracking-wider"
-                      type="submit"
-                    >
-                      Login
-                    </button>
-                  </div>
-
-      <p className="text-white text-sm text-center mt-6">
-        Don't have an account?{" "}
-        <Link to="/signup" className="text-white font-extrabold hover:underline">
-          Register here
-        </Link>
-      </p>
-    </form>
-  </div>
-</div>
-      <BottomNav/>
-</>
-
+      <BottomNav />
+      <ScrollToTopButton />
+    </>
   );
 };
 

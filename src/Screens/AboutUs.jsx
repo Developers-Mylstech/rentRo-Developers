@@ -8,6 +8,7 @@ import Img1 from '../assets/Aboutus/Img1.png';
 import Img2 from '../assets/Aboutus/Img2.png';
 import Img3 from '../assets/Aboutus/Img3.png';
 import OceanScene from "../Components/OceanScene.jsx";
+import ScrollToTopButton from "../Components/ScrollToTopButton.jsx";
 
 const AboutUs = () => {
   const navigate = useNavigate(); // Declare useNavigate
@@ -26,7 +27,7 @@ const AboutUs = () => {
 
           {/* Text Content */}
           <div>
-            <h2 className="text-red-600 font-bold text-xl">WHO WE ARE</h2>
+            <h2 className="text-blue-900 font-bold text-xl">WHO WE ARE</h2>
             <h3 className="text-2xl font-bold mt-2">GET TO KNOW RENT RO</h3>
             <p className="text-gray-600 mt-4">
               RENT RO Established in the year 2019 with the agenda to bring the change in affordability of water filters.
@@ -37,8 +38,8 @@ const AboutUs = () => {
             <p className="text-gray-600 mt-2">
               Our mission is thriving to ensure every home, office, or workplace has access to clean drinking water. Switch from bottled water to filtered water.
             </p>
-            <button 
-              className="bg-red-600 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-red-700 transition"
+            <button  
+              className="bg-sky-700 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-sky-500 mt-4 transition"
               onClick={() => navigate('/contact')} // Corrected navigate usage
             >
               GET TO KNOW
@@ -49,22 +50,22 @@ const AboutUs = () => {
         {/* Features Section */}
         <div className="grid grid-cols-1 md:grid-cols-4 text-center mt-12 gap-8">
           <div>
-            <span className="text-red-600 text-3xl">&#128100;</span>
+            <span className="text-blue-900 text-3xl">&#128100;</span>
             <h4 className="font-bold mt-2">Customer Services</h4>
             <p className="text-gray-500">Top notch customer service.</p>
           </div>
           <div>
-            <span className="text-red-600 text-3xl">&#128717;</span>
+            <span className="text-blue-900 text-3xl">&#128717;</span>
             <h4 className="font-bold mt-2">Pickup At Any Store</h4>
             <p className="text-gray-500">Free shipping on orders over AED200.</p>
           </div>
           <div>
-            <span className="text-red-600 text-3xl">&#128274;</span>
+            <span className="text-blue-900 text-3xl">&#128274;</span>
             <h4 className="font-bold mt-2">Secured Payment</h4>
             <p className="text-gray-500">We accept all major credit cards.</p>
           </div>
           <div>
-            <span className="text-red-600 text-3xl">&#128176;</span>
+            <span className="text-blue-900 text-3xl">&#128176;</span>
             <h4 className="font-bold mt-2">Free Returns</h4>
             <p className="text-gray-500">30-days free return policy.</p>
           </div>
@@ -74,6 +75,7 @@ const AboutUs = () => {
       <section>
         <OurClientsReview />
       </section>
+      <ScrollToTopButton/>
     </>
   );
 };
