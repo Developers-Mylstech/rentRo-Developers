@@ -6,9 +6,10 @@
     min-height: 10px;
     max-height: 80px;
     perspective: 1500px;
-    /* Add perspective to give depth */
+    /* Adds depth for 3D effect */
 }
 
+/* Apply animation to the wave elements */
 .parallax use {
     animation: wave-animation 12s infinite ease-in-out;
     opacity: 1;
@@ -18,7 +19,7 @@
 .parallax>use:nth-child(1) {
     animation-delay: -8s;
     animation-duration: 12s;
-    fill: rgba(19, 31, 87, .1);
+    fill: rgba(19, 31, 87, 0.1);
     /* Dark Blue */
     animation-name: wave-animation-1;
 }
@@ -27,7 +28,7 @@
 .parallax>use:nth-child(2) {
     animation-delay: -6s;
     animation-duration: 12s;
-    fill: rgba(16, 0, 240, 0.3);
+    fill: rgba(16, 0, 240, 0.01);
     /* Slightly lighter blue */
     animation-name: wave-animation-2;
 }
@@ -45,7 +46,7 @@
 .parallax>use:nth-child(4) {
     animation-delay: -2s;
     animation-duration: 12s;
-    fill: rgba(25, 25, 112, .4);
+    fill: rgba(25, 25, 112, 0.4);
     /* Very light blue */
     opacity: 0.5;
     animation-name: wave-animation-4;
@@ -63,18 +64,18 @@
     }
 
     25% {
-        transform: translate3d(15px, -10px, 10px);
-        /* Move in the X and Z axes */
+        transform: translate3d(20px, -10px, 5px);
+        /* Move in X and Z axes */
     }
 
     50% {
-        transform: translate3d(-15px, 8px, -10px);
+        transform: translate3d(-20px, 10px, -5px);
         /* Move in opposite directions */
     }
 
     75% {
-        transform: translate3d(5px, -6px, 5px);
-        /* Slightly move */
+        transform: translate3d(10px, -8px, 10px);
+        /* Slight movement */
     }
 }
 
@@ -88,18 +89,18 @@
     }
 
     25% {
-        transform: translate3d(10px, -6px, 15px);
-        /* Move in the X and Z axes */
+        transform: translate3d(15px, -6px, 10px);
+        /* Move in X and Z axes */
     }
 
     50% {
-        transform: translate3d(-10px, 12px, -15px);
+        transform: translate3d(-15px, 12px, -10px);
         /* Move in opposite directions */
     }
 
     75% {
-        transform: translate3d(5px, -3px, 8px);
-        /* Slightly move */
+        transform: translate3d(8px, -4px, 5px);
+        /* Slight movement */
     }
 }
 
@@ -113,18 +114,18 @@
     }
 
     25% {
-        transform: translate3d(8px, -4px, 20px);
-        /* Move in the X and Z axes */
+        transform: translate3d(10px, -5px, 15px);
+        /* Move in X and Z axes */
     }
 
     50% {
-        transform: translate3d(-8px, 10px, -20px);
+        transform: translate3d(-10px, 15px, -15px);
         /* Move in opposite directions */
     }
 
     75% {
-        transform: translate3d(4px, -5px, 10px);
-        /* Slightly move */
+        transform: translate3d(5px, -3px, 8px);
+        /* Slight movement */
     }
 }
 
@@ -138,18 +139,18 @@
     }
 
     25% {
-        transform: translate3d(20px, -8px, 30px);
-        /* Move in the X and Z axes */
+        transform: translate3d(25px, -8px, 20px);
+        /* Move in X and Z axes */
     }
 
     50% {
-        transform: translate3d(-20px, 14px, -30px);
+        transform: translate3d(-25px, 18px, -20px);
         /* Move in opposite directions */
     }
 
     75% {
-        transform: translate3d(10px, -4px, 15px);
-        /* Slightly move */
+        transform: translate3d(15px, -6px, 10px);
+        /* Slight movement */
     }
 }
 
