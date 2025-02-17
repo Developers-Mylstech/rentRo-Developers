@@ -196,9 +196,7 @@ const Signup = () => {
               <button className="bg-gray-900 text-white px-4 py-2 rounded-lg flex items-center whitespace-nowrap">
                 <FaGoogle size={20} className="mr-2" /> Google
               </button>
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center whitespace-nowrap">
-                <FaFacebook size={20} className="mr-2" /> Facebook
-              </button>
+          
               <button className="bg-black text-white px-4 py-2 rounded-lg flex items-center whitespace-nowrap">
                 <IoLogoApple size={20} className="mr-2" /> Apple ID
               </button>
