@@ -29,7 +29,7 @@ const Header = () => {
   return (
     <header
       className={`fixed left-0 right-0 z-40 w-full rounded-b-xl transition-all duration-500 ${
-        scrolling ? "bg-blue-800 bg-opacity-80 shadow-md" : "bg-black bg-opacity-40"
+        scrolling ? "bg-[#0e86bdcf] bg-opacity-80 shadow-md" : "bg-black bg-opacity-40"
       } px-6 py-3`}
     >
       <div className="flex items-center justify-between">
