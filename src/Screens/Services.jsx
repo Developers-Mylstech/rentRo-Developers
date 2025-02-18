@@ -131,7 +131,10 @@ const Services = () => {
               className="w-full"
             >
               {services.map((service, index) => (
-                <SwiperSlide key={index} onClick={() => toggleDescription(index)}>
+                <SwiperSlide
+                  key={index}
+                  onClick={() => toggleDescription(index)}
+                >
                   <div className="border py-5 rounded-xl relative group overflow-hidden bg-white transition-all duration-300">
                     <img
                       className="h-96 w-full object-contain rounded-md transition-transform duration-300 ease-in-out group-hover:scale-90"
@@ -169,17 +172,23 @@ const Services = () => {
             {isDesktop && (
               <>
                 <button
-                  className="border-2 border-white custom-next liquid-button w-16 h-16 flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
+                  className="hidden border-2 border-white custom-next liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
                   onClick={handleNext}
                 >
-                  <span className="relative text-xl font-semibold z-10">Next</span>
+                  <span className="relative text-xl font-semibold z-10">
+                    Next
+                  </span>
+                  <div className="liquid"></div>
                 </button>
 
                 <button
-                  className="border-2 border-white custom-prev liquid-button w-16 h-16 flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
+                  className="hidden border-2 border-white custom-prev liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
                   onClick={handlePrev}
                 >
-                  <span className="relative text-xl font-semibold z-10">Prev</span>
+                  <span className="relative text-xl font-semibold z-10">
+                    Prev
+                  </span>
+                  <div className="liquid"></div>
                 </button>
               </>
             )}
