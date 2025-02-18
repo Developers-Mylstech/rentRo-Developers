@@ -1,0 +1,56 @@
+/* CSS for Navigation Link Hover Effect */
+.nav-item {
+    display: inline-block;
+    position: relative;
+    /* For positioning the pseudo-element */
+    overflow: hidden;
+    /* Ensures the expanding line stays within the container */
+}
+
+.nav-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    /* Start from the center */
+    width: 0;
+    height: 2px;
+    /* Adjust thickness of the border */
+    background-color: silver;
+    /* Default border color */
+    transition: all 0.3s ease;
+    /* Transition for both width and color */
+    transform: translateX(-50%);
+    /* Ensure the line is centered */
+}
+.nav-item::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    /* Start from the center */
+    width: 0;
+    height: 2px;
+    /* Adjust thickness of the border */
+    background-color: rgb(255, 255, 255);
+    /* Default border color */
+    transition: all 0.3s ease;
+    /* Transition for both width and color */
+    transform: translateX(50%);
+    /* Ensure the line is centered */
+}
+
+.nav-item:hover::after {
+    left: 0;
+    width: 100%;
+    /* Expands the line across the full width */
+    background-color: rgb(255, 255, 255);
+    /* Color change on hover */
+}
+.nav-item:hover::before {
+    left: 0;
+    width: 100%;
+    /* Expands the line across the full width */
+    background-color: rgb(255, 255, 255);
+    /* Color change on hover */
+}

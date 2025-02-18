@@ -44,18 +44,18 @@ const Footer = () => {
           <h3 className="font-semibold text-lg mb-3">About Us</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link to="/" className="hover:underline">
+              <Link to="/" className="hover:underline hover:text-gray-100">
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/aboutus" className="hover:underline">
+              <Link to="/aboutus" className="hover:underline hover:text-gray-100">
                 About Us
               </Link>
             </li>
             
             <li>
-              <Link to="/shop" className="hover:underline">
+              <Link to="/shop" className="hover:underline hover:text-gray-100">
                 Shop
               </Link>
             </li>
@@ -81,22 +81,22 @@ const Footer = () => {
         } md:block`}
       >
         <li>
-          <Link to="/domesticservice" className="hover:underline">
+          <Link to="/domesticservice" className="hover:underline hover:text-gray-100">
             Domestic Service
           </Link>
         </li>
         <li>
-          <Link to="/commercialservice" className="hover:underline">
+          <Link to="/commercialservice" className="hover:underline hover:text-gray-100">
             Commercial Service
           </Link>
         </li>
         <li>
-          <Link to="/industrialservice" className="hover:underline">
+          <Link to="/industrialservice" className="hover:underline hover:text-gray-100">
             Industrial Service
           </Link>
         </li>
         <li>
-          <Link to="/roservices" className="hover:underline">
+          <Link to="/roservices" className="hover:underline hover:text-gray-100">
             RO Services
           </Link>
         </li>
@@ -122,12 +122,12 @@ const Footer = () => {
         } md:block`}
       >
         <li>
-          <Link to="/faq" className="hover:underline">
+          <Link to="/faq" className="hover:underline hover:text-gray-100">
             FAQ
           </Link>
         </li>
         <li>
-          <Link to="/contact" className="hover:underline">
+          <Link to="/contact" className="hover:underline hover:text-gray-100">
             Contact Us
           </Link>
         </li>
