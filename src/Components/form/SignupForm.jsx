@@ -4,15 +4,15 @@ import { FaGoogle } from "react-icons/fa";
 import { IoLogoApple } from "react-icons/io";
 import { motion } from "framer-motion";
 
-// Mock functions
+// Mock functions for sending OTP
 const sendEmailOtp = (email) => {
   console.log(`Sending OTP to email: ${email}`);
-  return "1234"; 
+  return "1234";
 };
 
 const sendPhoneOtp = (phone) => {
   console.log(`Sending OTP to phone: ${phone}`);
-  return "1234"; 
+  return "1234";
 };
 
 const SignupForm = () => {
@@ -25,6 +25,7 @@ const SignupForm = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  // Handle submit logic
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -58,6 +59,20 @@ const SignupForm = () => {
       setOtpSent(true);
       setIsLoading(false);
     }
+  };
+
+  // Send OTP for phone number
+  const sendPhoneOtpHandler = () => {
+    const otpGenerated = sendPhoneOtp(phone);
+    setSentOtp(otpGenerated);
+    setOtpSent(true);
+  };
+
+  // Send OTP for email
+  const sendEmailOtpHandler = () => {
+    const otpGenerated = sendEmailOtp(email);
+    setSentOtp(otpGenerated);
+    setOtpSent(true);
   };
 
   return (
@@ -148,13 +163,22 @@ const SignupForm = () => {
         {error && <div className="text-red-500 text-center mt-2">{error}</div>}
 
         <motion.div className="mt-6 flex justify-center">
-          <button
-            type="submit"
-            className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 text-white text-sm rounded-lg py-2 px-6 shadow-lg transition-all duration-300 hover:bg-blue-600 transform hover:scale-105"
-            disabled={isLoading}
+          <motion.button
+            type="button"
+            className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 text-white text-sm rounded-lg py-2 px-6 shadow-lg"
+            onClick={isPhone ? sendPhoneOtpHandler : sendEmailOtpHandler}
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
           >
-            {isLoading ? "Loading..." : otpSent ? "Verify OTP" : isPhone ? "Send Phone OTP" : "Send Email OTP"}
-          </button>
+            {isLoading
+              ? "Loading..."
+              : otpSent
+              ? "Verify OTP"
+              : isPhone
+              ? "Send Phone OTP"
+              : "Send Email OTP"}
+          </motion.button>
         </motion.div>
 
         <motion.div className="mt-6 flex justify-center items-center space-x-4">

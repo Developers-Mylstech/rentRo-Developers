@@ -129,6 +129,9 @@ const LoginForm = ({
               type="button"
               className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 text-white text-sm rounded-lg py-2 px-6 shadow-lg"
               onClick={sendPhoneOtpHandler}
+               initial={{ scale: 0.5 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5 }}
             >
               Send Mobile OTP
             </motion.button>
@@ -141,6 +144,9 @@ const LoginForm = ({
               type="button"
               className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 text-white text-sm rounded-lg py-2 px-6 shadow-lg"
               onClick={sendEmailOtpHandler}
+               initial={{ scale: 0.5 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5 }}
             >
               Send Email OTP
             </motion.button>
