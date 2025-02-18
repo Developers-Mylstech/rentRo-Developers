@@ -15,7 +15,7 @@
 
 // export default Loader;
 import React from "react";
-import "./Loader.css"; // Ensure this path is correct
+import "../../CustomCss/Loader.css"; // Ensure this path is correct
 
 function Loader() {
   return (

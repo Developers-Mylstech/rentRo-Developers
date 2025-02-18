@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import OceanScene from "../Components/OceanScene";
-import BottomNav from "../Components/BottomNav";
-import ScrollToTopButton from "../Components/ScrollToTopButton";
+import OceanScene from "../Components/widget/OceanScene";
 import ProductList from "../Components/listing/ProductListing";
 
 // Images import
@@ -157,8 +155,8 @@ const Rent = () => {
         <ProductList products={sortedProducts} />
       </div>
 
-      <BottomNav />
-      <ScrollToTopButton />
+      {/* <BottomNav /> */}
+      {/* <ScrollToTopButton /> */}
     </>
   );
 };

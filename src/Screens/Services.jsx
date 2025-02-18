@@ -6,9 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import "../index.css";
 import { useLocation } from "react-router-dom";
-import OceanScene from "../Components/OceanScene";
-import BottomNav from "../Components/BottomNav";
-import ScrollToTopButton from "../Components/ScrollToTopButton";
+import OceanScene from "../Components/widget/OceanScene";
 import IMG1 from "../assets/Services/IMG1.png";
 import IMG2 from "../assets/Services/IMG2.png";
 import IMG3 from "../assets/Services/IMG3.png";
@@ -172,7 +170,7 @@ const Services = () => {
             {isDesktop && (
               <>
                 <button
-                  className="hidden border-2 border-white custom-next liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
+                  className="hidden border-2 border-white custom-next liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 right-2 z-40 transform -translate-y-1/2"
                   onClick={handleNext}
                 >
                   <span className="relative text-xl font-semibold z-10">
@@ -196,8 +194,8 @@ const Services = () => {
         </div>
       </section>
 
-      {location.pathname === "/services" && <BottomNav />}
-      <ScrollToTopButton />
+      {/* {location.pathname === "/services" && <BottomNav />} */}
+      {/* <ScrollToTopButton /> */}
     </>
   );
 };

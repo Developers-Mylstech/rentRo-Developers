@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
-import './OurClientsReview.css';
-import BottomNav from "../Components/BottomNav";
+import '../CustomCss/OurClientsReview.css';
 
 const slickSettings = {
   dots: true,
@@ -119,7 +118,7 @@ function OurClientsReview() {
         </div>
       </section>
 
-      <BottomNav />
+      {/* <BottomNav /> */}
     </>
   );
 }

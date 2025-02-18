@@ -1,8 +1,6 @@
 import React from "react";
-import BottomNav from "../Components/BottomNav";
 import contactBg from "../assets/contactBg.jpg";
 import "../index.css";
-import ScrollToTopButton from "../Components/ScrollToTopButton";
 import ContactForm from "../Components/form/ContactForm"; // Import form component
 import ContactMap from "../Components/widget/ContactMap"; // Import map component
 
@@ -26,10 +24,8 @@ const ContactUs = () => {
         <ContactMap /> {/* Using the ContactMap component */}
       </section>
 
-      <section>
-        <BottomNav />
-      </section>
-      <ScrollToTopButton />
+      
+      {/* <ScrollToTopButton /> */}
     </>
   );
 };

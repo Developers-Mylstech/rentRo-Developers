@@ -61,7 +61,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "tailwindcss/tailwind.css";
-import "../Components/OceanScene.css";
+import "../../CustomCss/OceanScene.css";
 import { BiHomeAlt2 } from "react-icons/bi";
 import BottomNav from "./BottomNav";
 

@@ -4,10 +4,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Clients from './Clients';
 import Services from './Services';
-import Footer from '../Components/Footer.jsx';
 import ProductsSection from './ProductsSection';
 import HeroVideo2 from '../assets/HeroVideo21.mp4';
-import BottomNav from '../Components/BottomNav';
 import Aquaguard from "../assets/OurBrand/Aquaguard.png";
 import Aquapro from "../assets/OurBrand/Aquapro.png";
 import Bluewater from "../assets/OurBrand/Bluewater.png";
@@ -16,13 +14,12 @@ import Kent from "../assets/OurBrand/Kent.png";
 import WaterLogic from "../assets/OurBrand/WaterLogic.png";
 import Marquee from "react-fast-marquee";
 import { useRef } from 'react';
-import OurBrand from "../Components/OurBrand.jsx";
+import OurBrand from "../Components/widget/OurBrand.jsx";
 import roLogo1 from "../assets/roLogo1.png";
 import roLogo2 from "../assets/roLogo2.png";
 import roLogo3 from "../assets/roLogo3.png";
 import roLogo4 from "../assets/roLogo4.png";
 import BannerCarousel from "../Components/widget/BannerCarousel.jsx"
-import ScrollToTopButton from '../Components/ScrollToTopButton.jsx';
 import mobileBanner from "../assets/mobileBanner.jpg"
 
 const Home = () => {
@@ -133,8 +130,8 @@ const Home = () => {
 
 
       {/* Bottom Navigation Tabs - Mobile Only */}
-      <BottomNav />
-      <ScrollToTopButton />
+      {/* <BottomNav /> */}
+      {/* <ScrollToTopButton /> */}
     </>
   );
 };

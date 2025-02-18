@@ -1,7 +1,5 @@
 import React from "react";
 import Loginimage from "../assets/Loginimage.jpeg";
-import BottomNav from "../Components/BottomNav";
-import ScrollToTopButton from "../Components/ScrollToTopButton";
 import LoginForm from "../Components/form/LoginForm"; // Import the new component
 
 const Login = () => {
@@ -15,8 +13,8 @@ const Login = () => {
           <LoginForm /> 
         </div>
       </div>
-      <BottomNav />
-      <ScrollToTopButton />
+      {/* <BottomNav /> */}
+      {/* <ScrollToTopButton /> */}
     </>
   );
 };

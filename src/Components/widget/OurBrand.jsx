@@ -1,10 +1,10 @@
 import React from 'react'
-import Aquaguard from "../assets/OurBrand/Aquaguard.png";
-import Aquapro from "../assets/OurBrand/Aquapro.png";
-import Bluewater from "../assets/OurBrand/Bluewater.png";
-import Culligan from "../assets/OurBrand/Culligan.png";
-import Kent from "../assets/OurBrand/Kent.png";
-import WaterLogic from "../assets/OurBrand/WaterLogic.png";
+import Aquaguard from "../../assets/OurBrand/Aquaguard.png";
+import Aquapro from "../../assets/OurBrand/Aquapro.png";
+import Bluewater from "../../assets/OurBrand/Bluewater.png";
+import Culligan from "../../assets/OurBrand/Culligan.png";
+import Kent from "../../assets/OurBrand/Kent.png";
+import WaterLogic from "../../assets/OurBrand/WaterLogic.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 

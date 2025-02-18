@@ -1,7 +1,5 @@
 import React from "react";
 import SingupImage from "../assets/SingupImage.jpeg";
-import BottomNav from "../Components/BottomNav";
-import ScrollToTopButton from "../Components/ScrollToTopButton";
 import SignupForm from "../Components/form/SignupForm";
 
 const Signup = () => {
@@ -17,8 +15,7 @@ const Signup = () => {
           <SignupForm /> 
         </div>
       </div>
-      <BottomNav />
-      <ScrollToTopButton />
+      {/* <BottomNav /> */}
     </>
   );
 };
