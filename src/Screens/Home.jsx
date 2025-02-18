@@ -4,7 +4,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Clients from './Clients';
 import Services from './Services';
-import Footer from '../Components/Footer';
+import Footer from '../Components/Footer.jsx';
 import ProductsSection from './ProductsSection';
 import HeroVideo2 from '../assets/HeroVideo21.mp4';
 import BottomNav from '../Components/BottomNav';
@@ -21,7 +21,7 @@ import roLogo1 from "../assets/roLogo1.png";
 import roLogo2 from "../assets/roLogo2.png";
 import roLogo3 from "../assets/roLogo3.png";
 import roLogo4 from "../assets/roLogo4.png";
-import BannerCarousel from "../Components/BannerCarousel.jsx"
+import BannerCarousel from "../Components/widget/BannerCarousel.jsx"
 import ScrollToTopButton from '../Components/ScrollToTopButton.jsx';
 import mobileBanner from "../assets/mobileBanner.jpg"
 

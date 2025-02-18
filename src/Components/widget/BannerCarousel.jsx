@@ -95,11 +95,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";  // Removed Navigation
 import { useRef } from "react";
 import "swiper/css";
-import "../index.css";
-import roLogo1 from "../assets/roLogo1.png";
-import roLogo2 from "../assets/roLogo2.png";
-import roLogo3 from "../assets/roLogo3.png";
-import roLogo4 from "../assets/roLogo4.png";
+import '../../index.css';
+import roLogo1 from "../../assets/roLogo1.png";
+import roLogo2 from "../../assets/roLogo2.png";
+import roLogo3 from "../../assets/roLogo3.png";
+import roLogo4 from "../../assets/roLogo4.png";
 
 const BannerCarousel = () => {
   const slides = [
