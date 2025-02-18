@@ -14,7 +14,8 @@ import Rotanalogo from "../assets/OurClientLogo/Rotanalogo.png";
 import TapaKing from "../assets/OurClientLogo/TapaKing.png";
 import ThoibaLogistics from "../assets/OurClientLogo/ThoibaLogistics.png";
 import BottomNav from "../Components/BottomNav";
-import ScrollToTopButton from "../Components/ScrollToTopButton";
+      
+import ScrollToTopButton  from '../Components/ScrollToTopButton'
 
 const Clients = () => {
 

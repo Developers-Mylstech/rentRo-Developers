@@ -374,6 +374,7 @@ const Rent = () => {
                     </h3>
                     <p className="text-gray-700">AED {product.price.toFixed(2)}</p>
                     <div className="flex mt-2">
+
                   {[...Array(product.rating)].map((_, i) => (
                     <svg
                       key={i}

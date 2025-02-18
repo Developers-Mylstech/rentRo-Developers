@@ -26,7 +26,11 @@ const Footer = () => {
       : "mb-0"
   } from-[#0a448b] to-[#0e86bdcf] text-gray-300 py-12 px-6 md:px-8 border-t`}
 >
+<<<<<<< HEAD
+  <div className="max-w-screen-xl mx-auto  grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-8 z-10">
+=======
   <div className="max-w-screen-xl w-full mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8 z-10 justify-between">
+>>>>>>> 1592eaf8ea2fa9b32c7e2b1b10e89332076c85e6
     {/* Company Info */}
     <div className="md:col-span-4 md:pl-[8%]">
       <img
