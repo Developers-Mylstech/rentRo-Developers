@@ -1,20 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Loginimage from "../assets/Loginimage.jpeg";
-import LoginForm from "../Components/form/LoginForm"; // Import the new component
+import { motion } from "framer-motion";
+import LoginForm from "../Components/form/LoginForm";
+
+// Mock OTP Functions
+const sendEmailOtp = (email) => "1234";
+const sendPhoneOtp = (phone) => "1234";
+const handleLoginLogic = (email, phone, otp, rememberMe, isPhone) => {
+  console.log("Logging in with: ", { email, phone, otp, rememberMe, isPhone });
+};
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [otp, setOtp] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const [isPhone, setIsPhone] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
+  const [emailOtpSent, setEmailOtpSent] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLoginLogic(email, phone, otp, rememberMe, isPhone);
+    navigate("/home");
+  };
+
   return (
     <>
-      <div
-        className="flex justify-center items-center font-[sans-serif] h-screen w-full p-4 bg-cover bg-center"
+      <motion.div
+        className="flex justify-center items-center h-screen w-full p-4 bg-cover bg-center"
         style={{ backgroundImage: `url(${Loginimage})` }}
       >
-        <div className="max-w-md w-full mx-auto bg-black bg-opacity-10 rounded-lg p-6 border border-white shadow-lg">
-          <LoginForm /> 
-        </div>
-      </div>
-      {/* <BottomNav /> */}
-      {/* <ScrollToTopButton /> */}
+        <LoginForm
+          email={email}
+          phone={phone}
+          otp={otp}
+          rememberMe={rememberMe}
+          isPhone={isPhone}
+          otpSent={otpSent}
+          emailOtpSent={emailOtpSent}
+          error={error}
+          handleEmailChange={(e) => setEmail(e.target.value)}
+          handlePhoneChange={(e) => setPhone(e.target.value)}
+          handleOtpChange={(e) => setOtp(e.target.value)}
+          handleRememberMeChange={(isPhoneLogin) => setIsPhone(isPhoneLogin)}
+          sendEmailOtpHandler={() => setEmailOtpSent(true)}
+          sendPhoneOtpHandler={() => setOtpSent(true)}
+          handleSubmit={handleSubmit}
+        />
+      </motion.div>
+      {/* <BottomNav />
+      <ScrollToTopButton / */}
     </>
   );
 };
