@@ -35,15 +35,15 @@ const Home = () => {
     <>
       <section className="relative overflow-hidden ">
         <div className="z-10">
-          <div className="relative hidden md:block w-full pb-[52.73%]">
-            <iframe
-              className="absolute  top-0 left-0 w-full h-full   border-none"
-              src="https://player.vimeo.com/video/1057496547?h=727f8f985a&autoplay=1&background=1&controls=0&muted=1&badge=0&autopause=0&player_id=0&app_id=58479"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-              allowFullScreen
-              title="HeroVideo21"
-            ></iframe>
-          </div>
+        <video
+            className="w-full md:h-[100vh] h-[60vh] object-fill md:object-cover hidden md:flex"
+            autoPlay
+            loop
+            muted
+          >
+            <source src='https://static.videezy.com/system/protected/files/000/013/458/Water_55___30s___4k_res.mp4' type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
           <img
             className="md:hidden block h-[40vh] w-full"
             src={mobileBanner}
