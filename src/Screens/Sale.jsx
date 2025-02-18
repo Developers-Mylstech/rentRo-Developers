@@ -97,9 +97,9 @@ const Sale = () => {
       <OceanScene />
       <div className="font-sans bg-gray-50 min-h-screen py-10">
         {/* Filter and Sort Options */}
-        <div className="container mx-auto flex flex-col md:flex-row md:justify-between gap-4 items-start bg-white p-4 rounded-lg shadow-md mb-6 mt-18">
+        <div class="container mx-auto flex flex-col md:flex-row sm:justify-between items-center bg-white p-4 rounded-lg shadow-md mb-6 mt-18 w-full space-y-2 sm:space-y-0 sm:space-x-4">
           <select
-            className="p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
+            class="w-full sm:flex-1 p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
             value={selectedBrand}
             onChange={(e) => setSelectedBrand(e.target.value)}
           >
@@ -115,7 +115,7 @@ const Sale = () => {
           </select>
 
           <select
-            className="p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
+            class="w-full sm:flex-1 p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
@@ -132,7 +132,7 @@ const Sale = () => {
           </select>
 
           <select
-            className="p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
+            class="w-full sm:flex-1 p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
@@ -190,6 +190,7 @@ const Sale = () => {
           </div>
         </div>
       </div>
+      
 
       <BottomNav />
       <ScrollToTopButton />
