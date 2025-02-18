@@ -7,14 +7,12 @@ import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import OurClientsReview from "../Screens/OurClientsReview.jsx";
-import BottomNav from "../Components/BottomNav.jsx";
 
 // images import
 
 import industrial1 from "../assets/Industrialservice/industrial1.png";
 import industrial2 from "../assets/Industrialservice/industrial2.png";
 import industrial3 from "../assets/Industrialservice/industrial3.png";
-import ScrollToTopButton from "../Components/ScrollToTopButton.jsx";
 
 function IndustrialService() {
   useEffect(() => {
@@ -213,8 +211,8 @@ function IndustrialService() {
       <section>
         <OurClientsReview />
       </section>
-      <BottomNav />
-      <ScrollToTopButton/>
+      {/* <BottomNav /> */}
+      {/* <ScrollToTopButton/> */}
     </>
   );
 }

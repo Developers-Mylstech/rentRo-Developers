@@ -12,8 +12,6 @@ import OurClientsReview from "../Screens/OurClientsReview.jsx";
 import roServices1 from "../assets/RoServices/roServices1.png";
 import roServices2 from "../assets/RoServices/roServices2.png";
 import roServices3 from "../assets/RoServices/roServices3.png";
-import BottomNav from "../Components/BottomNav.jsx";
-import ScrollToTopButton from "../Components/ScrollToTopButton.jsx";
 
 function RoServices() {
   useEffect(() => {
@@ -213,8 +211,8 @@ function RoServices() {
         <OurClientsReview />
       </section>
 
-      <BottomNav />
-      <ScrollToTopButton/>
+      {/* <BottomNav /> */}
+      {/* <ScrollToTopButton/> */}
     </>
   );
 }

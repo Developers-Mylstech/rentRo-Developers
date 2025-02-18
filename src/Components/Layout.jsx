@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { motion } from "framer-motion"; // ✅ For smooth transitions
-import Header from "./Header";
-import Footer from "./Footer";
-import ScrollToTop from "./ScrollToTop";
-import Loader from "./Loader"; // ✅ Import the Loader component
-import ScrollToTopButton from "../Components/ScrollToTopButton";
+import Header from "./widget/Header";
+import Footer from "./widget/Footer";
+import ScrollToTop from "./widget/ScrollToTop.JSX";
+import Loader from "./widget/Loader"; // ✅ Import the Loader component
+import ScrollToTopButton from "../Components/widget/ScrollToTopButton";
+import BottomNav from "./widget/BottomNav";
 
 function Layout() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // ✅ Show loader for 5 seconds
-    const timeout = setTimeout(() => setLoading(false), 5000);
+    const timeout = setTimeout(() => setLoading(false), 2500);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -33,6 +34,7 @@ function Layout() {
       >
         <Outlet />
       </motion.div>
+      <BottomNav/>
       <ScrollToTopButton />
       <Footer />
     </>

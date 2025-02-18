@@ -7,8 +7,7 @@ import Domestic from '../assets/Rent/Domestic.png';
 import Img1 from '../assets/Aboutus/Img1.png';
 import Img2 from '../assets/Aboutus/Img2.png';
 import Img3 from '../assets/Aboutus/Img3.png';
-import OceanScene from "../Components/OceanScene.jsx";
-import ScrollToTopButton from "../Components/ScrollToTopButton.jsx";
+import OceanScene from "../Components/widget/OceanScene.jsx";
 
 const AboutUs = () => {
   const navigate = useNavigate(); // Declare useNavigate
@@ -75,7 +74,7 @@ const AboutUs = () => {
       <section>
         <OurClientsReview />
       </section>
-      <ScrollToTopButton/>
+      {/* <ScrollToTopButton/> */}
     </>
   );
 };

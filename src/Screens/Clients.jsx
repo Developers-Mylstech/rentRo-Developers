@@ -13,9 +13,7 @@ import ORBISFOOD from "../assets/OurClientLogo/ORBISFOOD.png";
 import Rotanalogo from "../assets/OurClientLogo/Rotanalogo.png";
 import TapaKing from "../assets/OurClientLogo/TapaKing.png";
 import ThoibaLogistics from "../assets/OurClientLogo/ThoibaLogistics.png";
-import BottomNav from "../Components/BottomNav";
       
-import ScrollToTopButton  from '../Components/ScrollToTopButton'
 
 const Clients = () => {
 
@@ -109,8 +107,8 @@ const Clients = () => {
         </Marquee>
       </div>
     </section>
-    <BottomNav/>
-    <ScrollToTopButton/>
+    {/* <BottomNav/> */}
+    {/* <ScrollToTopButton/> */}
     </>
   );
 };

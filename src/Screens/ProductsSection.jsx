@@ -165,7 +165,6 @@ import Bluewater from "../assets/OurBrand/Bluewater.png";
 import Culligan from "../assets/OurBrand/Culligan.png";
 import Kent from "../assets/OurBrand/Kent.png";
 import WaterLogic from "../assets/OurBrand/WaterLogic.png";
-import BottomNav from "../Components/BottomNav";
 
 const products = [
   {
@@ -312,7 +311,7 @@ const ProductsSection = () => {
         ))}
       </Swiper>
     </div>
-    <BottomNav/>
+    {/* <BottomNav/> */}
     </>
   );
 };

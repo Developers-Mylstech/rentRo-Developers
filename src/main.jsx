@@ -12,11 +12,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import Header from "./Components/Header.jsx";
+import Header from "./Components/widget/Header.jsx";
 import Home from "./Screens/Home.jsx";
 import Services from "./Screens/Services.jsx";
 import Clients from "./Screens/Clients.jsx";
-import Footer from "./Components/Footer.jsx";
+import Footer from "./Components/widget/Footer.jsx";
 import Login from "./Screens/Login.jsx";
 import Rent from "./Screens/Rent.jsx";
 import Sale from "./Screens/Sale.jsx";

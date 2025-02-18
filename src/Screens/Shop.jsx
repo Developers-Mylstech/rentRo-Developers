@@ -9,10 +9,8 @@ import Threeinone from '../assets/Rent/Threeinone.png';
 import WaterCooler from '../assets/Rent/WaterCooler.png';
 import WaterDispenser from '../assets/Rent/WaterDispenser.png';
 import Industrial from '../assets/Rent/Industrial.png';
-import OceanScene from "../Components/OceanScene";
-import BottomNav from "../Components/BottomNav";
+import OceanScene from "../Components/widget/OceanScene";
 import notFount from '../assets/notfound.png'
-import ScrollToTopButton from "../Components/ScrollToTopButton";
 const products = [
   {
     image: Domestic,
@@ -186,8 +184,6 @@ const Shop = () => {
         </div>
       </div>
 
-      <BottomNav />
-      <ScrollToTopButton/>
     </>
   );
 };
