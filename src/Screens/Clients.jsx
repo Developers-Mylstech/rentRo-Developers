@@ -3,16 +3,16 @@ import Marquee from "react-fast-marquee";
 
 // logo import here
 
-import AlMadinaHyperMarket from "../assets/OurClientLogo/AlMadinaHyperMarket.png";
-import aryaasLogo from "../assets/OurClientLogo/aryaasLogo.png";
-import BEEFKING from "../assets/OurClientLogo/BEEFKING.png";
-import BreadBoxlogo from "../assets/OurClientLogo/BreadBoxlogo.png";
-import lantislogo from "../assets/OurClientLogo/lantislogo.png";
-import nestologo from "../assets/OurClientLogo/nestologo.png";
-import ORBISFOOD from "../assets/OurClientLogo/ORBISFOOD.png";
-import Rotanalogo from "../assets/OurClientLogo/Rotanalogo.png";
-import TapaKing from "../assets/OurClientLogo/TapaKing.png";
-import ThoibaLogistics from "../assets/OurClientLogo/ThoibaLogistics.png";
+import AlMadinaHyperMarket from "../assets/OurClientLogo/AlMadinaHyperMarket-min.png";
+import aryaasLogo from "../assets/OurClientLogo/aryaasLogo-min.png";
+import BEEFKING from "../assets/OurClientLogo/BEEFKING-min.png";
+import BreadBoxlogo from "../assets/OurClientLogo/BreadBoxlogo-min.png";
+import lantislogo from "../assets/OurClientLogo/lantislogo-min.png";
+import nestologo from "../assets/OurClientLogo/nestologo-min.png";
+import ORBISFOOD from "../assets/OurClientLogo/ORBISFOOD-min.png";
+import Rotanalogo from "../assets/OurClientLogo/Rotanalogo-min.png";
+import TapaKing from "../assets/OurClientLogo/TapaKing-min.png";
+import ThoibaLogistics from "../assets/OurClientLogo/ThoibaLogistics-min.png";
       
 
 const Clients = () => {
