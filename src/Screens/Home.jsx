@@ -23,6 +23,7 @@ import roLogo3 from "../assets/roLogo3.png";
 import roLogo4 from "../assets/roLogo4.png";
 import BannerCarousel from "../Components/BannerCarousel.jsx"
 import ScrollToTopButton from '../Components/ScrollToTopButton.jsx';
+import mobileBanner from "../assets/mobileBanner.jpg"
 
 const Home = () => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const Home = () => {
       <section className="relative overflow-hidden ">
         <div className="z-10">
           <video
-            className="w-full md:h-[100vh] h-[55vh] object-fill md:object-cover"
+            className="hidden md:block w-full md:h-[100vh] h-[55vh] object-fill md:object-cover"
             autoPlay
             loop
             muted
@@ -48,8 +49,9 @@ const Home = () => {
             <source src={HeroVideo2} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          <img className='md:hidden block h-[40vh] w-full' src={mobileBanner} alt="" />
           <div className='absolute inset-0 bg-black bg-opacity-20'></div>
-          <BannerCarousel />
+          <BannerCarousel  />
           <div className='block absolute md:top-[30%]  top-[20%] right-4 animate-bounce'>
             <h2 className='md:text-4xl animate-pulse text-xl  font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 
               drop-shadow-lg transition duration-500 ease-in-out transform hover:scale-110 stroke-black stroke-2'>

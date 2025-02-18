@@ -131,7 +131,7 @@ const BannerCarousel = () => {
   };
 
   return (
-    <div className="absolute md:top-10 top-0 left-0 bottom-0 w-full h-full flex items-center justify-center">
+    <div className="absolute hidden md:top-10 top-0 left-0 bottom-0 w-full h-full md:flex items-center justify-center">
       <Swiper
         modules={[Navigation, Autoplay]}   // Removed Navigation Module
         autoplay={{ delay: 4000 }}
