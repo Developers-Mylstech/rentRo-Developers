@@ -111,7 +111,7 @@ const Services = () => {
             and Expert Maintenance Services for Pure, Hassle-free Hydration
           </h4>
 
-          <div className="relative">
+          <div className="relative w-full  ">
             <Swiper
               ref={swiperRef}
               modules={[Navigation, Autoplay]}
@@ -135,7 +135,7 @@ const Services = () => {
                 >
                   <div className="border py-5 rounded-xl relative group overflow-hidden bg-white transition-all duration-300">
                     <img
-                      className="h-96 w-full object-contain rounded-md transition-transform duration-300 ease-in-out group-hover:scale-90"
+                      className="h-80 w-full object-contain rounded-md transition-transform duration-300 ease-in-out group-hover:scale-90"
                       src={service.Image}
                       alt={service.title}
                     />

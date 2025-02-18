@@ -1,11 +1,9 @@
-
-
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Clients from './Clients';
-import Services from './Services';
-import ProductsSection from './ProductsSection';
-import HeroVideo2 from '../assets/HeroVideo21.mp4';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import Clients from "./Clients";
+import Services from "./Services";
+import ProductsSection from "./ProductsSection";
+import HeroVideo2 from "../assets/HeroVideo21.mp4";
 import Aquaguard from "../assets/OurBrand/Aquaguard.png";
 import Aquapro from "../assets/OurBrand/Aquapro.png";
 import Bluewater from "../assets/OurBrand/Bluewater.png";
@@ -13,19 +11,19 @@ import Culligan from "../assets/OurBrand/Culligan.png";
 import Kent from "../assets/OurBrand/Kent.png";
 import WaterLogic from "../assets/OurBrand/WaterLogic.png";
 import Marquee from "react-fast-marquee";
-import { useRef } from 'react';
+import { useRef } from "react";
 import OurBrand from "../Components/widget/OurBrand.jsx";
 import roLogo1 from "../assets/roLogo1.png";
 import roLogo2 from "../assets/roLogo2.png";
 import roLogo3 from "../assets/roLogo3.png";
 import roLogo4 from "../assets/roLogo4.png";
-import BannerCarousel from "../Components/widget/BannerCarousel.jsx"
-import mobileBanner from "../assets/mobileBanner.jpg"
+import BannerCarousel from "../Components/widget/BannerCarousel.jsx";
+import mobileBanner from "../assets/mobileBanner.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
 
-  const ourBrandSection = useRef(null)
+  const ourBrandSection = useRef(null);
   const scrollToClient = (elementRef) => {
     window.scrollTo({
       top: elementRef.current.offsetTop,
@@ -37,28 +35,33 @@ const Home = () => {
     <>
       <section className="relative overflow-hidden ">
         <div className="z-10">
-          <video
-            className="hidden md:block w-full md:h-[100vh] h-[55vh] object-fill md:object-cover"
-            autoPlay
-            loop
-            muted
-          >
-            <source src={HeroVideo2} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <img className='md:hidden block h-[40vh] w-full' src={mobileBanner} alt="" />
-          <div className='absolute inset-0 bg-black bg-opacity-20'></div>
-          <BannerCarousel  />
-          <div className='block absolute md:top-[30%]  top-[20%] right-4 animate-bounce'>
-            <h2 className='md:text-4xl animate-pulse text-xl  font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 
-              drop-shadow-lg transition duration-500 ease-in-out transform hover:scale-110 stroke-black stroke-2'>
+          <div className="relative hidden md:block w-full pb-[52.73%]">
+            <iframe
+              className="absolute  top-0 left-0 w-full h-full   border-none"
+              src="https://player.vimeo.com/video/1057496547?h=727f8f985a&autoplay=1&background=1&controls=0&muted=1&badge=0&autopause=0&player_id=0&app_id=58479"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+              allowFullScreen
+              title="HeroVideo21"
+            ></iframe>
+          </div>
+          <img
+            className="md:hidden block h-[40vh] w-full"
+            src={mobileBanner}
+            alt=""
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+          <BannerCarousel />
+          <div className="block absolute md:top-[30%]  top-[20%] right-4 animate-bounce">
+            <h2
+              className="md:text-4xl animate-pulse text-xl  font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 
+              drop-shadow-lg transition duration-500 ease-in-out transform hover:scale-110 stroke-black stroke-2"
+            >
               RAMADAN OFFER
             </h2>
-            <p className='md:text-lg text-sm text-blue-700 animate-pulse mt-2 font-semibold drop-shadow-md'>
+            <p className="md:text-lg text-sm text-blue-700 animate-pulse mt-2 font-semibold drop-shadow-md">
               Ending Soon
             </p>
           </div>
-
         </div>
         <div className="absolute bottom-0 left-0 right-0 bg-transparent pt-4 overflow-hidden z-20 home-gradient">
           <div className="h-full w-full inset-y-full hover:inset-y-0">
@@ -74,10 +77,7 @@ const Home = () => {
             </div>
           </div>
 
-
-
           <div className="w-full overflow-hidden whitespace-nowrap pb-4 ">
-
             <Marquee>
               <img
                 src={Aquaguard}
@@ -112,7 +112,6 @@ const Home = () => {
             </Marquee>
           </div>
         </div>
-
       </section>
 
       <section>
@@ -121,13 +120,12 @@ const Home = () => {
       <section>
         <Clients />
       </section>
-      <section >
+      <section>
         <ProductsSection />
       </section>
-      <section className='mt-20' ref={ourBrandSection}>
+      <section className="mt-20" ref={ourBrandSection}>
         <OurBrand />
       </section>
-
 
       {/* Bottom Navigation Tabs - Mobile Only */}
       {/* <BottomNav /> */}
@@ -137,11 +135,6 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
-
-
 
 // import React from 'react';
 // import { useNavigate } from 'react-router-dom';
@@ -195,7 +188,7 @@ export default Home;
 //           <div className='absolute inset-0 bg-black bg-opacity-20'></div>
 //           <BannerCarousel />
 //           <div className='block absolute md:top-32  top-20 right-4 animate-bounce'>
-//             <h2 className='md:text-4xl text-xl  font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 
+//             <h2 className='md:text-4xl text-xl  font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600
 //               drop-shadow-lg transition duration-500 ease-in-out transform hover:scale-110 stroke-black stroke-2'>
 //               RAMADAN OFFER
 //             </h2>
@@ -218,8 +211,6 @@ export default Home;
 //               </div>
 //             </div>
 //           </div>
-
-
 
 // //           <div className="w-full overflow-hidden whitespace-nowrap pb-4 ">
 
@@ -272,7 +263,6 @@ export default Home;
 // //       <section className='mt-20' ref={ourBrandSection}>
 // //         <OurBrand />
 // //       </section>
-
 
 // //       {/* Bottom Navigation Tabs - Mobile Only */}
 // //       <BottomNav />
