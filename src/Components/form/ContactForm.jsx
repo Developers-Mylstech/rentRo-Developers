@@ -24,7 +24,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="materialContainer h-auto md:w-[60vw] w-auto border bg-black bg-opacity-50 p-6 shadow-lg rounded-2xl">
+    <div className="materialContainer h-auto md:w-[60vw] w-auto border bg-black bg-opacity-50 p-6 shadow-lg rounded-2xl mt-20">
       <div className="material-details mb-4">
         <h2 className="text-3xl font-semibold text-white">Contact Us</h2>
         <p className="text-gray-200">

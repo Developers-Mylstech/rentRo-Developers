@@ -14,7 +14,8 @@ import IMG4 from "../assets/Services/IMG4.png";
 import IMG5 from "../assets/Services/IMG5.png";
 import IMG6 from "../assets/Services/IMG6.png";
 import IMG7 from "../assets/Services/IMG7.png";
-
+import { GrNext } from "react-icons/gr";
+import { GrPrevious } from "react-icons/gr";
 const Services = () => {
   const swiperRef = useRef(null);
   const location = useLocation();
@@ -174,7 +175,7 @@ const Services = () => {
                   onClick={handleNext}
                 >
                   <span className="relative text-xl font-semibold z-10">
-                    Next
+                  <GrNext/>
                   </span>
                   <div className="liquid"></div>
                 </button>
@@ -184,7 +185,7 @@ const Services = () => {
                   onClick={handlePrev}
                 >
                   <span className="relative text-xl font-semibold z-10">
-                    Prev
+                    <GrPrevious/>
                   </span>
                   <div className="liquid"></div>
                 </button>
