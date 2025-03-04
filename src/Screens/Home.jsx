@@ -53,16 +53,16 @@ const Home = () => {
           />
           <div className="absolute inset-0 bg-black bg-opacity-20"></div>
           <BannerCarousel />
-          <div className="block absolute md:top-[30%]  top-[20%] right-4 animate-bounce">
+          <div className="block absolute md:top-[30%]  top-[25%] right-4 animate-bounce">
             <h2 style={{stroke: '1px solid black'}}
-              className="md:text-4xl animate-pulse text-xl  font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 
+              className="md:text-4xl  text-xl  font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-black 
               drop-shadow-lg transition duration-500 ease-in-out transform hover:scale-110 "
             >
               RAMADAN OFFER
 
             </h2>
          
-            <p className="md:text-lg text-sm text-blue-700 animate-pulse mt-2 font-semibold drop-shadow-md">
+            <p className="md:text-lg text-sm text-red-700 animate-pulse mt-2 font-semibold drop-shadow-md">
               Ending Soon
             </p>
           </div>

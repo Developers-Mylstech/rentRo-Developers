@@ -177,7 +177,7 @@ const Footer = () => {
     style={{ borderTop: "1px solid #ffffffb2" }}
     className="mt-8 flex flex-col md:flex-row items-center justify-between text-sm pt-4 z-20"
   >
-    <div className="flex items-center  space-x-4 mt-2 md:mt-0">
+    <div className="flex items-center  space-x-4 mt-2  md:mt-0">
     <p>We accept:</p>
 
       {/* <SiVisa className="text-black text-2xl z-10 " /> */}
@@ -185,11 +185,11 @@ const Footer = () => {
       <img src={mastercard} className="h-8 w-8 " alt="" />
      
     </div>
-    <p className="mt-2 md:mt-0">© 2025 RENT RO, All rights reserved.</p>
+    <p className="mt-2  md:mt-0">© 2025 RENT RO, All rights reserved.</p>
   </div>
 
   {/* Waves Animation */}
-  <div className="absolute bottom-0 left-0 w-full">
+  <div className="absolute bottom-0 left-0 w-full mt-4">
     <svg
       className="waves"
       viewBox="0 24 150 28"
@@ -206,7 +206,7 @@ const Footer = () => {
         <use
           xlinkHref="#gentle-wave"
           x="48"
-          y="0"
+          y="10"
           fill="rgba(255,255,255,0.7)"
         />
         <use
