@@ -30,6 +30,8 @@ import CommercialService from './Screens/CommercialService.jsx'
 import DomesticService from './Screens/DomesticService.jsx'
 import AboutUs from "./Screens/AboutUs.jsx";
 import Shop from './Screens/Shop.jsx'
+import ProductDetail from "./Components/SaleProductDetail.jsx";
+import WaterFilterSubscriptionForm from "./Components/form/WaterFilterSubscriptionForm.jsx";
 
 
 
@@ -46,6 +48,8 @@ const routes = createBrowserRouter(
         
         {/* <Route path="/clients" element={<Clients/>} /> */}
         <Route path="/sale" element={<Sale/>} />
+        <Route path="/product/:name" element={<ProductDetail/>} />
+        <Route path="/waterfilterSubscription" element={<WaterFilterSubscriptionForm/>} />
         <Route path="/rent" element={<Rent/>} />
         <Route path="/faq" element={<Faq/>} />
         <Route path="/contact" element={<ContactUs/>} />
