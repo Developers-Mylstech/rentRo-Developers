@@ -1,59 +1,63 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import React from "react";
 import Loginimage from "../assets/Loginimage.jpeg";
-import { motion } from "framer-motion";
-import LoginForm from "../Components/form/LoginForm";
-
-// Mock OTP Functions
-const sendEmailOtp = (email) => "1234";
-const sendPhoneOtp = (phone) => "1234";
-const handleLoginLogic = (email, phone, otp, rememberMe, isPhone) => {
-  console.log("Logging in with: ", { email, phone, otp, rememberMe, isPhone });
-};
+import LoginForm from "../Components/form/LoginForm"; // Import the new component
+import BottomNav from "../Components/widget/BottomNav";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [otp, setOtp] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-  const [isPhone, setIsPhone] = useState(false);
-  const [otpSent, setOtpSent] = useState(false);
-  const [emailOtpSent, setEmailOtpSent] = useState(false);
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleLoginLogic(email, phone, otp, rememberMe, isPhone);
-    navigate("/home");
-  };
-
+  useEffect(() => {
+          const bubbles = document.querySelectorAll(".bubble");
+          bubbles.forEach((bubble) => {
+            bubble.style.animationDuration = `${Math.random() * 10 + 10}s`;
+            bubble.style.animationDelay = `${Math.random() * -10}s`;
+          });
+        }, []);
   return (
     <>
-      <motion.div
-        className="flex justify-center items-center h-screen w-full p-4 bg-cover bg-center"
-        style={{ backgroundImage: `url(${Loginimage})` }}
+      <div
+        className="flex justify-center border items-center font-[sans-serif] h-screen w-auto p-4 bg-cover bg-center"
+       
       >
-        <LoginForm
-          email={email}
-          phone={phone}
-          otp={otp}
-          rememberMe={rememberMe}
-          isPhone={isPhone}
-          otpSent={otpSent}
-          emailOtpSent={emailOtpSent}
-          error={error}
-          handleEmailChange={(e) => setEmail(e.target.value)}
-          handlePhoneChange={(e) => setPhone(e.target.value)}
-          handleOtpChange={(e) => setOtp(e.target.value)}
-          handleRememberMeChange={(isPhoneLogin) => setIsPhone(isPhoneLogin)}
-          sendEmailOtpHandler={() => setEmailOtpSent(true)}
-          sendPhoneOtpHandler={() => setOtpSent(true)}
-          handleSubmit={handleSubmit}
-        />
-      </motion.div>
-      {/* <BottomNav />
-      <ScrollToTopButton / */}
+        
+       <div className="absolute w-full h-screen overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 flex items-center justify-center">
+
+      {[...Array(20)].map((_, i) => (
+        <div
+          key={i}
+          className={`bubble absolute opacity-10 rounded-full animate-bubble`}
+          style={{
+            width: "40px",
+            height: "40px",
+            left: `${Math.random() * 100}%`,
+            bottom: "20px",
+            backgroundColor: "rgba(247, 247, 247, 0.1)",
+          }}
+        ></div>
+      ))}
+
+      {/* Octocat */}
+      <div
+        id="octocat"
+        className="absolute w-[150px] h-[225px] bg-cover bg-no-repeat right-[-200px] top-1/2 transform -translate-y-1/2 animate-swim"
+        style={{
+          backgroundImage:
+            "url(https://raw.githubusercontent.com/codypearce/codepen-files/main/pens/octocat/octocat.png)",
+        }}
+      ></div>
+
+      {/* Centered Title */}
+     
+       
+       
+      
+    </div>
+
+        <div className=" w-full z-30 flex md:justify-end justify-center  ">
+          <LoginForm /> 
+        </div>
+      </div>
+      <BottomNav />
+      {/* <ScrollToTopButton /> */}
     </>
   );
 };

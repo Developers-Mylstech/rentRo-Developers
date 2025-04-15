@@ -3,11 +3,14 @@ import { FaShoppingCart, FaBars, FaMobileAlt, FaMoneyBillWaveAlt, FaWhatsapp } f
 import { FiSearch, FiUser, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import rentroLogo from "../../assets/renroLogo.png";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,22 +91,24 @@ const Header = () => {
         <div className="flex items-center gap-4">
           {/* Search Bar */}
           <div className="relative flex items-center">
-            <div
-              className={`flex items-center relative bg-white border rounded-full transition-all duration-500 overflow-hidden ${searchVisible ? "w-36 md:w-64 py-1 pl-4 pr-8 opacity-100 scale-100" : "w-0 px-0 opacity-0 scale-95"
-                }`}
-            >
-              <input
-                type="text"
-                placeholder="Search"
-                className="flex-grow w-full pr-8 py-1 outline-none text-gray-700 transition-all duration-200"
-              />
-              <FiX
-                className="text-gray-500 text-xl cursor-pointer absolute top-1/2 right-2 transform -translate-y-1/2 hover:text-black transition-transform duration-200 hover:rotate-90"
-                onClick={() => setSearchVisible(false)}
-              />
-            </div>
+          <div
+  className={`flex items-center relative bg-transparent border rounded-full transition-all duration-500 overflow-hidden ${
+    searchVisible ? "w-36 md:w-64 py-1 pl-4 pr-8 opacity-100 scale-100" : "w-0 px-0 opacity-0 scale-95"
+  }`}
+>
+  <input
+    type="text"
+    placeholder="Search"
+    className="flex-grow w-full pr-8 py-1 bg-transparent placeholder:text-white text-white outline-none  transition-all duration-200 "
+  />
+  <FiX
+    className="text-white text-xl cursor-pointer absolute top-1/2 right-2 transform -translate-y-1/2  transition-transform duration-200 hover:rotate-90"
+    onClick={() => setSearchVisible(false)}
+  />
+</div>
 
 
+            {/* Search Button */}
             {!searchVisible && (
               <button
                 className="bg-black bg-opacity-20 text-white p-2 rounded-full  hover:bg-gray-300 transition-all duration-200"

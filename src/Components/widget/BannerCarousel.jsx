@@ -100,6 +100,11 @@ import roLogo1 from "../../assets/roLogo1.png";
 import roLogo2 from "../../assets/roLogo2.png";
 import roLogo3 from "../../assets/roLogo3.png";
 import roLogo4 from "../../assets/roLogo4.png";
+import { GrNext } from "react-icons/gr";
+import { GrPrevious } from "react-icons/gr";
+
+
+
 
 const BannerCarousel = () => {
   const slides = [
@@ -159,18 +164,19 @@ const BannerCarousel = () => {
         ))}
 
         <button
-          className="hidden border-2 border-white custom-next liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
+          className="hidden border-2 border-white custom-next mt-10 liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 right-2 z-50 transform -translate-y-1/2"
           onClick={handleNext}
         >
-          <span className="relative text-xl font-semibold z-10">Next</span>
+          <span className="relative text-xl font-semibold z-10"><GrNext />
+          </span>
           <div className="liquid"></div>
         </button>
 
         <button
-          className="hidden border-2 border-white custom-prev liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
+          className="hidden border-2 border-white mt-10 custom-prev liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
           onClick={handlePrev}
         >
-          <span className="relative text-xl font-semibold z-10">Prev</span>
+          <span className="relative text-xl font-semibold z-10"><GrPrevious/></span>
           <div className="liquid"></div>
         </button>
       </Swiper>
