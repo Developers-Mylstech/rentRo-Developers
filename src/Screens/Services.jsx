@@ -18,11 +18,11 @@ import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
 const Services = () => {
   const swiperRef = useRef(null);
+  const [openDailog, setOpenDailog] = useState(false)
   const location = useLocation();
   const [activeIndex, setActiveIndex] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
-
   const services = [
     {
       title: "Comprehensive Water Solutions",
@@ -107,6 +107,10 @@ const Services = () => {
               Our Services
             </h2>
           )}
+          <div className="flex justify-end items-center my-4">
+
+            <button onClick={() => setOpenDailog(true)} className="bg-blue-900 px-10 py-1 rounded-lg text-white">Request A Qoutation</button>
+          </div>
           <h4 className="text-center md:text-xl text-gray-500 mb-8">
             Comprehensive Water Solutions, Seamless Monthly Water Filter Rentals
             and Expert Maintenance Services for Pure, Hassle-free Hydration
@@ -141,25 +145,23 @@ const Services = () => {
                       alt={service.title}
                     />
                     <div
-                      className={`absolute inset-x-0 bottom-0 bg-blue-500/50 flex justify-center items-center flex-col text-white h-full text-center px-6 py-6 transition-all duration-500 ease-in-out ${
-                        isMobile
-                          ? activeIndex === index
-                            ? "translate-y-0 opacity-100"
-                            : "translate-y-full opacity-0"
-                          : "translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
-                      }`}
+                      className={`absolute inset-x-0 bottom-0 bg-blue-500/50 flex justify-center items-center flex-col text-white h-full text-center px-6 py-6 transition-all duration-500 ease-in-out ${isMobile
+                        ? activeIndex === index
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-full opacity-0"
+                        : "translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
+                        }`}
                     >
                       <h3 className="text-lg font-semibold">{service.title}</h3>
                       <p className="mt-2 text-sm">{service.description}</p>
                     </div>
                     <h3
-                      className={`relative bottom-4 left-1/2 transform -translate-x-1/2 text-blue-950 text-center text-lg font-semibold transition-opacity duration-300 ease-in-out ${
-                        isMobile
-                          ? activeIndex === index
-                            ? "opacity-0"
-                            : "opacity-100"
-                          : "opacity-100 group-hover:opacity-0"
-                      }`}
+                      className={`relative bottom-4 left-1/2 transform -translate-x-1/2 text-blue-950 text-center text-lg font-semibold transition-opacity duration-300 ease-in-out ${isMobile
+                        ? activeIndex === index
+                          ? "opacity-0"
+                          : "opacity-100"
+                        : "opacity-100 group-hover:opacity-0"
+                        }`}
                     >
                       {service.title}
                     </h3>
@@ -175,7 +177,7 @@ const Services = () => {
                   onClick={handleNext}
                 >
                   <span className="relative text-xl font-semibold z-10">
-                  <GrNext/>
+                    <GrNext />
                   </span>
                   <div className="liquid"></div>
                 </button>
@@ -185,7 +187,7 @@ const Services = () => {
                   onClick={handlePrev}
                 >
                   <span className="relative text-xl font-semibold z-10">
-                    <GrPrevious/>
+                    <GrPrevious />
                   </span>
                   <div className="liquid"></div>
                 </button>
@@ -194,8 +196,10 @@ const Services = () => {
           </div>
         </div>
       </section>
+      {
+        openDailog && (<section><RequestQoutationBox setOpenDailog={setOpenDailog} /></section>)
+      }
 
-      <section></section>
 
       {/* {location.pathname === "/services" && <BottomNav />} */}
       {/* <ScrollToTopButton /> */}
@@ -204,3 +208,76 @@ const Services = () => {
 };
 
 export default Services;
+
+
+const RequestQoutationBox = ({setOpenDailog}) => {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold text-gray-800">Request Quotation</h2>
+          <button
+            onClick={() => setOpenDailog(false)}
+            className="text-gray-400 hover:text-gray-600 text-2xl leading-none"
+          >
+            &times;
+          </button>
+          
+        </div>
+
+        <form className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Image</label>
+            <input
+              type="file"
+              className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter your name"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Name*</label>
+            <input
+              type="text"
+              className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter your name"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Mobile *</label>
+            <input
+              type="tel"
+              className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter your mobile number"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Company Name (if)</label>
+            <input
+              type="text"
+              className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter company name"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Location</label>
+            <input
+              type="text"
+              className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter location"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}

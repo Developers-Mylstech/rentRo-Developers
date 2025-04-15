@@ -8,7 +8,7 @@ function SignUp() {
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
   const [input, setInput] = useState("");
-  
+
   const [isOtpVerified, setIsOtpVerified] = useState(false);
   const navigate = useNavigate();
 
@@ -48,9 +48,9 @@ function SignUp() {
 
 
   return (
-    <div  className="h-screen w-full  flex items-center justify-end ">
-      
-     
+    <div className="h-screen w-full  flex items-center justify-end ">
+
+
 
 
       <div
@@ -67,22 +67,22 @@ function SignUp() {
             <input
               className="input-text w-full p-3 border focus:outline-none bg-transparent rounded-lg text-white"
               placeholder="Email or Mobile Number"
-            type="text"
-            value={input}
+              type="text"
+              value={input}
               onChange={handleInputChange}
             />
 
             {/* Send OTP Button */}
             {input && !otpSent && (
-            
+
               <div className="w-full flex justify-center items-center">
-               <button
-                type="button"
-                onClick={handleSendOtp}
-                className="text-white mt-4 p-2 buttonlogin rounded-xl border"
-              >
-                Send OTP
-              </button>
+                <button
+                  type="button"
+                  onClick={handleSendOtp}
+                  className="text-white mt-4 p-2 buttonlogin rounded-xl border"
+                >
+                  Send OTP
+                </button>
               </div>
             )}
 
@@ -100,23 +100,27 @@ function SignUp() {
                   onChange={(e) => setOtp(e.target.value)}
                 />
                 <div className="w-full flex justify-center items-center">
-                <button
-                  type="button"
-                  onClick={handleOtpSubmit}
-                  className=" text-white mt-4 p-2 buttonlogin rounded-xl border"
-                >
-                  Verify OTP
-                </button>
+                  <button
+                    type="button"
+                    onClick={handleOtpSubmit}
+                    className=" text-white mt-4 p-2 buttonlogin rounded-xl border"
+                  >
+                    Verify OTP
+                  </button>
                 </div>
               </div>
             )}
 
+            <div className="flex items-center gap-3 text-white">
+              <input type="checkbox" name="" id="" />
+              <label htmlFor="">Terms and Conditions</label>
+            </div>
             {/* Social Login Buttons */}
             <div className="flex justify-around mt-4">
               <button className="social-button flex items-center text-[#fcfcfc]">
                 <FaGoogle className="w-6 h-6 mr-2" /> Google
               </button>
-              
+
               <button className="social-button flex items-center text-[#fffafa]">
                 <FaApple className="w-6 h-6 mr-2" /> Apple
               </button>

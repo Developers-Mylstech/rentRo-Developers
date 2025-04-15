@@ -2,7 +2,7 @@ import React from "react";
 import SignupForm from "../Components/form/SignupForm";
 import BottomNav from "../Components/widget/BottomNav";
 import { useEffect } from "react";
-
+import SingupImage from '../assets/SingupImage.jpeg'
 const Signup = () => {
 
 

@@ -57,11 +57,10 @@ const WaterFilterSubscriptionForm = () => {
           <button
             key={tab}
             onClick={() => setType(tab)}
-            className={`px-6 py-2 font-medium capitalize transition duration-200 ${
-              type === tab
-                ? "text-[#3a7bd5] border-b-2 border-[#3a7bd5]"
-                : "text-gray-500 hover:text-[#3a7bd5]"
-            }`}
+            className={`px-6 py-2 font-medium capitalize transition duration-200 ${type === tab
+              ? "text-[#3a7bd5] border-b-2 border-[#3a7bd5]"
+              : "text-gray-500 hover:text-[#3a7bd5]"
+              }`}
           >
             {tab}
           </button>
@@ -74,7 +73,6 @@ const WaterFilterSubscriptionForm = () => {
           <>
             <Section title="Personal Information">
               <Input label="Full Name" name="fullName" />
-              <Input label="Date of Birth" name="dob" type="date" />
               <Input label="Phone Number" name="phone" />
               <Input label="Email Address" name="email" />
               <Input label="Home Address" name="homeAddress" />
@@ -109,11 +107,12 @@ const WaterFilterSubscriptionForm = () => {
               <Input label="Billing Address (if different)" name="billingAddress" />
             </Section>
 
-            <Section title="Consent & Signature">
+            {/* <Section title="Consent & Signature">
               <Input label="Signature" name="signature" />
               <Input label="Signature Image (optional)" name="signatureImage" type="file" />
               <Input label="Date" name="consentDate" type="date" />
-            </Section>
+            </Section> */}
+           
           </>
         ) : (
           <>
