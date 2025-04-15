@@ -1,7 +1,16 @@
 import React from "react";
 import notFount from "../../assets/notFound.png";
+import ProductDetail from "../../Components/SaleProductDetail";
+import { useNavigate } from "react-router-dom";
 
 const ProductList = ({ products }) => {
+
+  const navigate = useNavigate();
+
+  const handleProductClick = (product) => {
+    navigate(`/product/${product.name}`, { state: { product } });
+  };
+
   return (
     <div className="flex justify-center items-center mx-auto">
       <div className="flex justify-center items-center flex-wrap mx-auto gap-10 ">
@@ -9,19 +18,22 @@ const ProductList = ({ products }) => {
           products.map((product, index) => (
             <div
               key={index}
-              className="bg-white mx-10 md:mx-0 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-200 hover:scale-105"
+              onClick={() => handleProductClick(product)}
+              className="bg-white mx-10 md:mx-0 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-200 hover:scale-105 relative"
             >
-              <img
+             <div className="flex justify-center items-center mt-4">
+             <img
                 src={product.image}
                 alt={product.name}
-                className="w-full md:w-64 object-cover"
+                className="w-full md:w-64 h-64"
               />
+             </div>
               <div className="p-4">
+                <div className="flex justify-between items-center">
                 <h3 className="text-lg font-medium text-gray-900">
                   {product.name}
                 </h3>
-                <p className="text-gray-700">AED {product.price.toFixed(2)}</p>
-                <div className="flex mt-2">
+                <div className="flex  ">
                   {[...Array(product.rating)].map((_, i) => (
                     <svg
                       key={i}
@@ -33,6 +45,9 @@ const ProductList = ({ products }) => {
                     </svg>
                   ))}
                 </div>
+                </div>
+                <p className="text-gray-700 w-64 text-sm">{product.shortDescription}</p>
+                <p className="text-gray-700 bg-green-100 my-2 p-2 rounded-lg text-center">AED {product.price.toFixed(2)}</p>
               </div>
             </div>
           ))

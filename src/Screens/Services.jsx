@@ -195,6 +195,8 @@ const Services = () => {
         </div>
       </section>
 
+      <section></section>
+
       {/* {location.pathname === "/services" && <BottomNav />} */}
       {/* <ScrollToTopButton /> */}
     </>
