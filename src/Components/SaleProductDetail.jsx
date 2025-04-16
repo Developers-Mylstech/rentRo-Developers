@@ -91,42 +91,71 @@ const ProductDetail = () => {
 
 
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mt-2">
-            <div className="bg-white shadow-md rounded-xl p-6 border">
-              <h2 className="text-xl font-semibold mb-4 text-blue-700">Rent</h2>
-              <div className="space-y-2">
-                <p className="font-semibold"><span className="font-semibold text-gray-400">Actual Price:</span  > 1000 AED</p>
-                <p className="font-semibold"><span className="font-semibold text-gray-400">Discount Price:</span > 800 AED</p>
-                <p className="font-semibold"><span className="font-semibold text-gray-400">+ VAT 5%:</span > 50 AED</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-2">
+            <div className="bg-white shadow-md rounded-xl p-6 border ">
+              <h2 className="text-xl font-semibold mb-4 text-blue-300 uppercase">Rent</h2>
+              <div className="space-y-5">
+                <div className="">
+                  <p className="text-gray-400 font-medium ">Actual Price </p>
+                  <p className="font-semibold"> 1000 AED</p>
+                </div>
+                <div className="">
+                  <p className="text-gray-400 font-medium ">Discount Price  </p>
+                  <p className="font-semibold"> 800 AED </p>
+                </div>
+                <div className="">
+                  <p className="text-gray-400 font-medium ">VAT </p>
+                  <p className="font-semibold"> + 5%</p>
+                </div>
               </div>
-              <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
+              <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-500 text-white font-bold hover:bg-blue-500  py-2 rounded-lg transition">
                 Rent Now
               </button>
             </div>
 
-            <div className="bg-white shadow-md rounded-xl p-6 border">
-              <h2 className="text-xl font-semibold mb-4 text-green-700">Sell</h2>
-              <div className="space-y-2">
-                <p className="font-semibold"><span className="font-semibold text-gray-400">Actual Price:</span  > 1000 AED</p>
-                <p className="font-semibold"><span className="font-semibold text-gray-400">Discount Price:</span > 800 AED</p>
-                <p className="font-semibold"><span className="font-semibold text-gray-400">+ VAT 5%:</span > 50 AED</p>
+            <div className="bg-white shadow-md rounded-xl p-6 border ">
+              <h2 className="text-xl font-semibold mb-4 text-blue-300 uppercase">Sell</h2>
+              <div className="space-y-5">
+                <div className="">
+                  <p className="text-gray-400 font-medium ">Actual Price </p>
+                  <p className="font-semibold"> 1000 AED</p>
+                </div>
+                <div className="">
+                  <p className="text-gray-400 font-medium ">Discount Price  </p>
+                  <p className="font-semibold"> 800 AED </p>
+                </div>
+                <div className="">
+                  <p className="text-gray-400 font-medium ">VAT </p>
+                  <p className="font-semibold"> + 5%</p>
+                </div>
               </div>
-              <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition">
+              <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-500 text-white font-bold hover:bg-blue-500  py-2 rounded-lg transition">
                 Buy Now
               </button>
             </div>
 
-            <div className="bg-white shadow-md rounded-xl p-6 border">
-              <h2 className="text-xl font-semibold mb-4 text-purple-700">Service</h2>
-              <div className="space-y-2">
-                <p className="font-semibold"><span className="font-semibold text-gray-400">Actual Price:</span  > 1000 AED</p>
-                <p className="font-semibold"><span className="font-semibold text-gray-400">Discount Price:</span > 800 AED</p>
-                <p className="font-semibold"><span className="font-semibold text-gray-400">+ VAT 5%:</span > 50 AED</p>
+            <div className="bg-white shadow-md rounded-xl p-6 border ">
+              <h2 className="text-xl font-semibold mb-4 text-blue-300 uppercase">Service</h2>
+              <div className="space-y-5">
+                <div className="">
+                  <p className="text-gray-400 font-medium ">Actual Price </p>
+                  <p className="font-semibold"> 1000 AED</p>
+                </div>
+                <div className="">
+                  <p className="text-gray-400 font-medium ">Discount Price  </p>
+                  <p className="font-semibold"> 800 AED </p>
+                </div>
+                <div className="">
+                  <p className="text-gray-400 font-medium ">VAT </p>
+                  <p className="font-semibold"> + 5%</p>
+                </div>
               </div>
-              <button onClick={() => setShowServiceOption(!showServiceOption)} className="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg transition">
+              <button onClick={() => setShowServiceOption(!showServiceOption)} className={`mt-4 w-full ${showServiceOption ? "bg-blue-700" : "bg-blue-500"} text-white font-bold hover:bg-blue-500  py-2 rounded-lg transition`}>
                 {showServiceOption ? " Hide Option" : "    Select Options"}
               </button>
             </div>
+
+
           </div>
 
 
@@ -188,7 +217,7 @@ const ProductDetail = () => {
 
       {showServiceOption && (<>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
-          <div className="bg-gray-50 shadow-md rounded-xl p-6 border border-blue-500 hover:shadow-lg transition">
+          <div className="bg-gradient-to-t from-blue-50 to-cyan-50 shadow-md rounded-xl p-6 border border-gray-300 hover:shadow-lg transition">
             <h2 className="text-xl font-semibold text-blue-700 mb-3">One Time</h2>
             <ul className="list-disc list-inside text-gray-600 space-y-1 mb-4">
               <li>Quick problem resolution</li>
@@ -202,46 +231,44 @@ const ProductDetail = () => {
             </button>
           </div>
 
-          <div className="bg-gray-50 shadow-md rounded-xl border-green-500 p-6 border hover:shadow-lg transition">
-            <h2 className="text-xl font-semibold text-green-700 mb-3">MMC</h2>
+          <div className="bg-gradient-to-t from-blue-50 to-cyan-50 shadow-md rounded-xl p-6 border border-gray-300 hover:shadow-lg transition">            <h2 className="text-xl font-semibold text-blue-700 mb-3">MMC</h2>
             <ul className="list-disc list-inside text-gray-600 space-y-1 mb-4">
               <li>Monthly Maintenance Coverage</li>
               <li>Priority Support</li>
               <li>Discount on parts & services</li>
               <li>Ideal for regular checkups</li>
             </ul>
-            <h5 className="text-base font-bold text-green-800">Price: 800 AED</h5>
+            <h5 className="text-base font-bold text-blue-800">Price: 800 AED</h5>
             <p className="text-sm text-gray-500">+ VAT 5%: 50 AED</p>
-            <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition">
+            <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
               Select This
             </button>
           </div>
 
           {/* AMC Service */}
-          <div className="bg-gray-50 shadow-md rounded-xl p-6 border-purple-500 border hover:shadow-lg transition">
-            <div className="flex justify-between items-center mb-3">
-              <h2 className="text-xl font-semibold text-purple-700">AMC</h2>
-              <div className="flex items-center gap-4">
-                <label className="flex items-center gap-2 text-gray-700">
-                  <input
-                    type="radio"
-                    name="amc"
-                    value="gold"
-                    className="accent-purple-600 w-4 h-4"
-                  />
-                  Gold
-                </label>
-                <label className="flex items-center gap-2 text-gray-700">
-                  <input
-                    type="radio"
-                    name="amc"
-                    value="basic"
-                    className="accent-purple-600 w-4 h-4"
-                  />
-                  Basic
-                </label>
-              </div>
+          <div className="bg-gradient-to-t from-blue-50 to-cyan-50 shadow-md rounded-xl p-6 border border-gray-300 hover:shadow-lg transition">            <div className="flex justify-between items-center mb-3">
+            <h2 className="text-xl font-semibold text-blue-700">AMC</h2>
+            <div className="flex items-center gap-4">
+              <label className="flex items-center gap-2 text-gray-700">
+                <input
+                  type="radio"
+                  name="amc"
+                  value="gold"
+                  className="accent-blue-600 w-4 h-4"
+                />
+                Gold
+              </label>
+              <label className="flex items-center gap-2 text-gray-700">
+                <input
+                  type="radio"
+                  name="amc"
+                  value="basic"
+                  className="accent-blue-600 w-4 h-4"
+                />
+                Basic
+              </label>
             </div>
+          </div>
 
             <ul className="list-disc list-inside text-gray-600 space-y-1 mb-4">
               <li>Annual Service Commitment</li>
@@ -249,9 +276,9 @@ const ProductDetail = () => {
               <li>24/7 support line</li>
               <li>Best value for long-term users</li>
             </ul>
-            <h5 className="text-base font-bold text-purple-800">Price: 800 AED</h5>
+            <h5 className="text-base font-bold text-blue-800">Price: 800 AED</h5>
             <p className="text-sm text-gray-500">+ VAT 5%: 50 AED</p>
-            <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg transition">
+            <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
               Select This
             </button>
           </div>
@@ -282,28 +309,29 @@ const ProductDetail = () => {
         )
       }
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5 mt-6">
+      <div className="flex flex-col gap-3 my-4">
 
         {product.longDescription && (
-          <div className=" border p-2 rounded-lg bg-blue-50">
+          <div className=" border-t p-2 rounded-lg ">
             <h3 className="text-lg font-semibold text-gray-800 mb-2">Product Description:</h3>
-            <p className="text-sm text-gray-700 whitespace-pre-line md:text-left text-justify ">{product.longDescription}</p>
+            <p className="text-sm text-gray-500 whitespace-pre-line md:text-left text-justify ">{product.longDescription}</p>
           </div>
         )}
 
-        <div className=" border p-2 rounded-lg bg-blue-50">
-          <h3 className="text-lg font-semibold mb-2 text-gray-800">Specifications:</h3>
-          <ul className="text-sm text-gray-700 grid grid-cols-2 gap-2">
-            <li><span className="font-medium">Capacity:</span> {product.capacity}</li>
-            <li><span className="font-medium">Power:</span> {product.powerUsage}</li>
-            <li><span className="font-medium">Material:</span> {product.material}</li>
-            <li><span className="font-medium">Warranty:</span> {product.warranty}</li>
-            <li><span className="font-medium">Dimensions:</span> {product.dimensions}</li>
-            <li><span className="font-medium">Weight:</span> {product.weight}</li>
-            <li><span className="font-medium">Installation:</span> {product.installationType}</li>
-            <li><span className="font-medium">Stock:</span> {product.stock}</li>
+        <div className="border-t p-4 rounded-lg ">
+          <h3 className="text-lg font-semibold mb-4 text-gray-800">Specifications:</h3>
+          <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  gap-y-3 text-sm text-gray-700">
+            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Capacity:</span> {product.capacity}</li>
+            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Power:</span> {product.powerUsage}</li>
+            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Material:</span> {product.material}</li>
+            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Warranty:</span> {product.warranty}</li>
+            <li className="flex col-span-2 md:col-span-1 font-semibold gap-2"><span className="font-medium text-gray-400 ">Dimensions:</span> {product.dimensions}</li>
+            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Weight:</span> {product.weight}</li>
+            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Installation:</span> {product.installationType}</li>
+            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Stock:</span> {product.stock}</li>
           </ul>
         </div>
+
 
       </div>
 
