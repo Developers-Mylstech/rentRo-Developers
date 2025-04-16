@@ -107,8 +107,8 @@ const Services = () => {
               Our Services
             </h2>
           )}
-          <div className="flex justify-end items-center my-4 font-semibold gap-4">
-            Didn't find your product?            <button onClick={() => setOpenDailog(true)} className="bg-blue-900 px-10 py-1 rounded-lg text-white">Request A Qoutation</button>
+          <div className="flex justify-between md:justify-end items-center my-4 font-semibold gap-4 text-sm">
+            Didn't find your product?            <button onClick={() => setOpenDailog(true)} className="bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-2 rounded-lg text-white">Request Qoutation</button>
           </div>
           {/* <h4 className="text-center md:text-xl text-gray-500 mb-8">
             Comprehensive Water Solutions, Seamless Monthly Water Filter Rentals
