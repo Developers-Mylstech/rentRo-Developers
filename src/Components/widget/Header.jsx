@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed left-0 right-0 z-50 w-full rounded-b-xl transition-all duration-500 ${scrolling ? "bg-gradient-to-t from-blue-800 to-[#0e86bdcf] bg-opacity-80 shadow-md" : "bg-black bg-opacity-40"
+      className={`fixed left-0 right-0 z-50 w-full rounded-b-xl transition-all duration-500 ${scrolling ? "bg-gradient-to-t from-blue-500 to-[#0e86bdcf] bg-opacity-80 shadow-md" : "bg-black bg-opacity-40"
         } px-6 py-3`}
     >
       <div className="flex justify-between  ">
@@ -69,7 +69,7 @@ const Header = () => {
                 } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaMobileAlt color="white" />
-              12345678
+              +971 50 670 9963
             </Link>
             <Link
 
@@ -80,7 +80,7 @@ const Header = () => {
                 } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaWhatsapp color="white" />
-              12345678
+              +971 50 670 9963
             </Link>
 
 
@@ -174,7 +174,7 @@ const Header = () => {
                 } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaMobileAlt color="white" />
-              12345678
+              971 50 670 9963
             </Link>
             <Link
 
@@ -185,7 +185,7 @@ const Header = () => {
                 } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaWhatsapp color="white" />
-              12345678
+              971 50 670 9963
             </Link>
 
           </ul>

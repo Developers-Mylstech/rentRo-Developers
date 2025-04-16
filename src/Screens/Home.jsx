@@ -118,7 +118,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="md:mt-16">
+      <section className="">
         <Services />
       </section>
       <section className=" className=md:mt-16">

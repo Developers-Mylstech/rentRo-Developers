@@ -107,14 +107,13 @@ const Services = () => {
               Our Services
             </h2>
           )}
-          <div className="flex justify-end items-center my-4">
-
-            <button onClick={() => setOpenDailog(true)} className="bg-blue-900 px-10 py-1 rounded-lg text-white">Request A Qoutation</button>
+          <div className="flex justify-end items-center my-4 font-semibold gap-4">
+            Didn't find your product?            <button onClick={() => setOpenDailog(true)} className="bg-blue-900 px-10 py-1 rounded-lg text-white">Request A Qoutation</button>
           </div>
-          <h4 className="text-center md:text-xl text-gray-500 mb-8">
+          {/* <h4 className="text-center md:text-xl text-gray-500 mb-8">
             Comprehensive Water Solutions, Seamless Monthly Water Filter Rentals
             and Expert Maintenance Services for Pure, Hassle-free Hydration
-          </h4>
+          </h4> */}
 
           <div className="relative w-full  ">
             <Swiper
@@ -210,7 +209,7 @@ const Services = () => {
 export default Services;
 
 
-const RequestQoutationBox = ({setOpenDailog}) => {
+const RequestQoutationBox = ({ setOpenDailog }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6">
@@ -222,7 +221,7 @@ const RequestQoutationBox = ({setOpenDailog}) => {
           >
             &times;
           </button>
-          
+
         </div>
 
         <form className="space-y-4">

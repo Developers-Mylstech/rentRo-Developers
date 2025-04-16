@@ -79,7 +79,7 @@ const ProductDetail = () => {
             <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center">
 
               <h2 className="text-3xl font-bold text-gray-800">{product.name}</h2>
-              <p className="text-gray-400 mt-1">
+              <p className="text-gray-400 mt-1 text-sm">
                 {product.category} | <span className="font-medium">{product.brand}</span>
               </p>
             </div>
@@ -99,7 +99,7 @@ const ProductDetail = () => {
                 <p className="font-semibold"><span className="font-semibold text-gray-400">Discount Price:</span > 800 AED</p>
                 <p className="font-semibold"><span className="font-semibold text-gray-400">+ VAT 5%:</span > 50 AED</p>
               </div>
-              <button onClick={()=>navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
+              <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
                 Rent Now
               </button>
             </div>
@@ -111,8 +111,8 @@ const ProductDetail = () => {
                 <p className="font-semibold"><span className="font-semibold text-gray-400">Discount Price:</span > 800 AED</p>
                 <p className="font-semibold"><span className="font-semibold text-gray-400">+ VAT 5%:</span > 50 AED</p>
               </div>
-              <button onClick={()=>navigate('/waterfilterSubscription')} className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition">
-                Sell Now
+              <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition">
+                Buy Now
               </button>
             </div>
 
@@ -197,7 +197,7 @@ const ProductDetail = () => {
               <li>Pay only for what you need</li>
             </ul>
             <h5 className="text-base font-bold text-blue-800">Price: 202 AED</h5>
-            <button onClick={()=>navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
+            <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
               Select This
             </button>
           </div>
@@ -212,14 +212,37 @@ const ProductDetail = () => {
             </ul>
             <h5 className="text-base font-bold text-green-800">Price: 800 AED</h5>
             <p className="text-sm text-gray-500">+ VAT 5%: 50 AED</p>
-            <button onClick={()=>navigate('/waterfilterSubscription')} className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition">
+            <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition">
               Select This
             </button>
           </div>
 
           {/* AMC Service */}
           <div className="bg-gray-50 shadow-md rounded-xl p-6 border-purple-500 border hover:shadow-lg transition">
-            <h2 className="text-xl font-semibold text-purple-700 mb-3">AMC</h2>
+            <div className="flex justify-between items-center mb-3">
+              <h2 className="text-xl font-semibold text-purple-700">AMC</h2>
+              <div className="flex items-center gap-4">
+                <label className="flex items-center gap-2 text-gray-700">
+                  <input
+                    type="radio"
+                    name="amc"
+                    value="gold"
+                    className="accent-purple-600 w-4 h-4"
+                  />
+                  Gold
+                </label>
+                <label className="flex items-center gap-2 text-gray-700">
+                  <input
+                    type="radio"
+                    name="amc"
+                    value="basic"
+                    className="accent-purple-600 w-4 h-4"
+                  />
+                  Basic
+                </label>
+              </div>
+            </div>
+
             <ul className="list-disc list-inside text-gray-600 space-y-1 mb-4">
               <li>Annual Service Commitment</li>
               <li>Free periodic visits</li>
@@ -228,7 +251,7 @@ const ProductDetail = () => {
             </ul>
             <h5 className="text-base font-bold text-purple-800">Price: 800 AED</h5>
             <p className="text-sm text-gray-500">+ VAT 5%: 50 AED</p>
-            <button onClick={()=>navigate('/waterfilterSubscription')} className="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg transition">
+            <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg transition">
               Select This
             </button>
           </div>
