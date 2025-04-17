@@ -162,7 +162,7 @@ const ProductDetail = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Product Header */}
-      <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+      <div className="bg-white rounded-xl shadow-sm overflow-hidden mt-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6">
           {/* Product Image */}
           <div className="md:col-span-1 flex items-center justify-center rounded-lg p-4">
