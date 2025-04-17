@@ -229,6 +229,7 @@ const RequestQoutationBox = ({ setOpenDailog }) => {
             <label className="block text-sm font-medium text-gray-700">Image</label>
             <input
               type="file"
+              capture
               className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your name"
             />
