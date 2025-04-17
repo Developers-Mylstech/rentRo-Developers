@@ -65,8 +65,9 @@ const Header = () => {
               ))}
             </ul>
 
-            
+
             <button
+
               onClick={() => window.open('tel:971506709963')}
               className={`lg:text-sm md:text-[11px]  text-gray-300 flex items-center gap-2 font-semibold transition-all duration-300 bg-clip-text  ${scrolling
                 ? "bg-white"
@@ -77,17 +78,16 @@ const Header = () => {
               <FaMobileAlt color="white" />
               971 50 670 9963
             </button>
-            <button
-              onClick={() => window.open('tel:971506709963')}
-              className={`lg:text-sm md:text-[11px]  text-gray-300 flex items-center gap-2 font-semibold transition-all duration-300 bg-clip-text  ${scrolling
-                ? "bg-white"
-                // : "bg-gradient-to-r from-[#00d2ff] via-[#3a7bd5] to-[#00d2ff] bg-[200%]"
-                : "bg-white"
+            <a
+              href={`https://wa.me/971506709963?text=Hello`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`lg:text-sm md:text-[11px] text-gray-300 flex items-center gap-2 font-semibold transition-all duration-300 bg-clip-text ${scrolling ? "bg-white" : "bg-white"
                 } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaWhatsapp color="white" />
               971 50 670 9963
-            </button>
+            </a>
 
           </nav>
         </div>
@@ -166,8 +166,8 @@ const Header = () => {
             <button
               onClick={() => window.open('tel:971506709963')}
               className={`text-lg flex items-center gap-2 my-2 font-semibold transition-all duration-300 bg-clip-text text-transparent ${scrolling
-                  ? "bg-white"
-                  : "bg-white"
+                ? "bg-white"
+                : "bg-white"
                 } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaMobileAlt color="white" />
@@ -176,8 +176,8 @@ const Header = () => {
             <button
               onClick={() => window.open('tel:971506709963')}
               className={`text-lg flex items-center gap-2 my-2 font-semibold transition-all duration-300 bg-clip-text text-transparent ${scrolling
-                  ? "bg-white"
-                  : "bg-white"
+                ? "bg-white"
+                : "bg-white"
                 } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaWhatsapp color="white" />
