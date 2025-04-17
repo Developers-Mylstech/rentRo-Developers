@@ -108,7 +108,7 @@ const ProductDetail = () => {
                   <p className="font-semibold"> + 5%</p>
                 </div>
               </div>
-              <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-500 text-white font-bold hover:bg-blue-500  py-2 rounded-lg transition">
+              <button onClick={() => navigate('/login')} className="mt-4 w-full bg-blue-500 text-white font-bold hover:bg-blue-500  py-2 rounded-lg transition">
                 Rent Now
               </button>
             </div>
@@ -129,7 +129,7 @@ const ProductDetail = () => {
                   <p className="font-semibold"> + 5%</p>
                 </div>
               </div>
-              <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-500 text-white font-bold hover:bg-blue-500  py-2 rounded-lg transition">
+              <button onClick={() => navigate('/login')} className="mt-4 w-full bg-blue-500 text-white font-bold hover:bg-blue-500  py-2 rounded-lg transition">
                 Buy Now
               </button>
             </div>
@@ -226,7 +226,7 @@ const ProductDetail = () => {
               <li>Pay only for what you need</li>
             </ul>
             <h5 className="text-base font-bold text-blue-800">Price: 202 AED</h5>
-            <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
+            <button onClick={() => navigate('/login')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
               Select This
             </button>
           </div>
@@ -240,7 +240,7 @@ const ProductDetail = () => {
             </ul>
             <h5 className="text-base font-bold text-blue-800">Price: 800 AED</h5>
             <p className="text-sm text-gray-500">+ VAT 5%: 50 AED</p>
-            <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
+            <button onClick={() => navigate('/login')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
               Select This
             </button>
           </div>
@@ -278,7 +278,7 @@ const ProductDetail = () => {
             </ul>
             <h5 className="text-base font-bold text-blue-800">Price: 800 AED</h5>
             <p className="text-sm text-gray-500">+ VAT 5%: 50 AED</p>
-            <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
+            <button onClick={() => navigate('/login')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
               Select This
             </button>
           </div>
