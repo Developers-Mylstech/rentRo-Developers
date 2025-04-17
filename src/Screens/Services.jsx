@@ -196,7 +196,7 @@ const Services = () => {
         </div>
       </section>
       {
-        openDailog && (<section><RequestQoutationBox setOpenDailog={setOpenDailog} /></section>)
+        openDailog && (<section><RequestQuotationBox setOpenDailog={setOpenDailog} /></section>)
       }
 
 
@@ -208,8 +208,31 @@ const Services = () => {
 
 export default Services;
 
+const RequestQuotationBox = ({ setOpenDailog }) => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [preview, setPreview] = useState('');
+  const fileInputRef = useRef(null);
 
-const RequestQoutationBox = ({ setOpenDailog }) => {
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedImage(file);
+            const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeImage = () => {
+    setSelectedImage(null);
+    setPreview('');
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6">
@@ -221,7 +244,6 @@ const RequestQoutationBox = ({ setOpenDailog }) => {
           >
             &times;
           </button>
-
         </div>
 
         <form className="space-y-4">
@@ -229,17 +251,41 @@ const RequestQoutationBox = ({ setOpenDailog }) => {
             <label className="block text-sm font-medium text-gray-700">Image</label>
             <input
               type="file"
+              ref={fileInputRef}
               capture
+              accept="image/*"
+              onChange={handleImageChange}
               className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter your name"
             />
+            
+            {/* Image Preview */}
+            {preview && (
+              <div className="mt-4 relative">
+                <img 
+                  src={preview} 
+                  alt="Preview" 
+                  className="h-40 w-full object-contain border rounded-lg"
+                />
+                <button
+                  type="button"
+                  onClick={removeImage}
+                  className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+            )}
           </div>
+
           <div>
             <label className="block text-sm font-medium text-gray-700">Name*</label>
             <input
               type="text"
               className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your name"
+              required
             />
           </div>
 
@@ -249,6 +295,7 @@ const RequestQoutationBox = ({ setOpenDailog }) => {
               type="tel"
               className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your mobile number"
+              required
             />
           </div>
 
@@ -280,4 +327,4 @@ const RequestQoutationBox = ({ setOpenDailog }) => {
       </div>
     </div>
   );
-}
+};
