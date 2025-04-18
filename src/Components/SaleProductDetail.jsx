@@ -21,51 +21,8 @@ const ProductDetail = () => {
   const product = location.state?.product;
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('rent');
-  const [amcType, setAmcType] = useState('gold');
+  const [amcType, setAmcType] = useState('amcBasic');
   const [allReviews, setAllReviews] = useState(product?.reviews || []);
-
-  const renderStars = (rating) => {
-    return (
-      <div className="flex items-center">
-        {[...Array(5)].map((_, i) => {
-          const starValue = i + 1;
-          return (
-            <span key={i} className="text-yellow-400 text-lg">
-              {rating >= starValue ? (
-                <FaStar />
-              ) : rating >= starValue - 0.5 ? (
-                <FaStarHalfAlt />
-              ) : (
-                <FaRegStar />
-              )}
-            </span>
-          );
-        })}
-        <span className="ml-1 text-gray-600">({rating.toFixed(1)})</span>
-      </div>
-    );
-  };
-
-  const getFeatureIcon = (feature) => {
-    const icons = {
-      purification: <FaWater className="text-blue-500" />,
-      design: <FaCogs className="text-blue-500" />,
-      installation: <FaTools className="text-blue-500" />,
-      mineral: <FaTint className="text-blue-500" />,
-      uv: <FaShieldAlt className="text-blue-500" />,
-      "shut-off": <FaBolt className="text-blue-500" />,
-      tds: <FaSlidersH className="text-blue-500" />,
-      filters: <FaCheckCircle className="text-blue-500" />,
-      rust: <FaShieldAlt className="text-blue-500" />,
-      ss: <FaCheckCircle className="text-blue-500" />
-    };
-
-    const matchedKey = Object.keys(icons).find(key =>
-      feature.toLowerCase().includes(key)
-    );
-
-    return matchedKey ? icons[matchedKey] : '<GiWaterSplash className="text-blue-500" />';
-  };
 
   if (!product) {
     return (
@@ -161,29 +118,26 @@ const ProductDetail = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Product Header */}
       <div className="bg-white rounded-xl shadow-sm overflow-hidden mt-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6">
-          {/* Product Image */}
           <div className="md:col-span-1 flex items-center justify-center rounded-lg p-4">
             <img
-              src={product.image}
+              src={product.imageUrls[0]}
               alt={product.name}
               className="w-full object-cover rounded-lg"
             />
           </div>
 
-          {/* Product Info */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <h1 className="text-2xl md:text-3xl font-bold text-gray-900">{product.name}</h1>
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900">{product?.name}</h1>
                 <p className="text-gray-500 mt-1">
-                  {product.category} | <span className="font-medium text-blue-600">{product.brand}</span>
+                  {product.category.name} | <span className="font-medium text-blue-600">{product?.brand?.name}</span>
                 </p>
               </div>
               <div className="flex items-center">
-                {renderStars(product.rating)}
+                {/* {renderStars(product.rating)} */}
               </div>
             </div>
 
@@ -205,7 +159,6 @@ const ProductDetail = () => {
               </nav>
             </div>
 
-            {/* Tab Content */}
             <div className="pt-4">
               {activeTab === 'rent' && (
                 <div className="space-y-6">
@@ -224,18 +177,25 @@ const ProductDetail = () => {
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">Pricing</h3>
                     <div className="grid grid-cols-3 gap-4 bg-blue-50 rounded-lg p-4">
-                      {[
-                        { label: "Actual Price", value: "1000 AED" },
-                        { label: "Discount Price", value: "800 AED", highlight: true },
-                        { label: "VAT", value: "+5%" }
-                      ].map((item, index) => (
-                        <div key={index} className="text-center">
-                          <p className="text-sm text-gray-500">{item.label}</p>
-                          <p className={`font-semibold ${item.highlight ? 'text-blue-600' : 'text-gray-900'}`}>
-                            {item.value}
-                          </p>
-                        </div>
-                      ))}
+                      <div className="text-center">
+                        <p className="text-sm text-gray-500"> Actual Price </p>
+                        <p className={`text-black font-bold`}>
+                          {product?.productFor.rent.monthlyPrice} AED
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-sm text-gray-500"> Discount Price </p>
+                        <p className={`text-blue-600 font-bold`}>
+                          {product?.productFor.rent.discountPrice} AED
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-sm text-gray-500"> + VAT </p>
+                        <p className={`text-blue-600 font-bold`}>
+                          {product?.productFor.rent.vat} %
+                        </p>
+                      </div>
+
                     </div>
                   </div>
 
@@ -262,21 +222,29 @@ const ProductDetail = () => {
                     </div>
                   </div>
 
+
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">Pricing</h3>
                     <div className="grid grid-cols-3 gap-4 bg-blue-50 rounded-lg p-4">
-                      {[
-                        { label: "Actual Price", value: "1000 AED" },
-                        { label: "Discount Price", value: "800 AED", highlight: true },
-                        { label: "VAT", value: "+5%" }
-                      ].map((item, index) => (
-                        <div key={index} className="text-center">
-                          <p className="text-sm text-gray-500">{item.label}</p>
-                          <p className={`font-semibold ${item.highlight ? 'text-blue-600' : 'text-gray-900'}`}>
-                            {item.value}
-                          </p>
-                        </div>
-                      ))}
+                      <div className="text-center">
+                        <p className="text-sm text-gray-500"> Actual Price </p>
+                        <p className={`text-black font-bold`}>
+                          {product?.productFor.sell.actualPrice} AED
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-sm text-gray-500"> Discount Price </p>
+                        <p className={`text-blue-600 font-bold`}>
+                          {product?.productFor.sell.discountPrice} AED
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-sm text-gray-500"> + VAT </p>
+                        <p className={`text-blue-600 font-bold`}>
+                          {product?.productFor.sell.vat} %
+                        </p>
+                      </div>
+
                     </div>
                   </div>
 
@@ -291,70 +259,117 @@ const ProductDetail = () => {
 
               {activeTab === 'service' && (
                 <div className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {servicePlans.map((plan, index) => (
-                      <div
-                        key={index}
-                        className={`relative rounded-xl border p-6 transition-all hover:shadow-md ${plan.popular
-                          ? 'ring-2 ring-blue-300 border-blue-200 bg-blue-50'
-                          : 'border-gray-200 bg-white'
-                          }`}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* AMC Plans (with radio toggle) */}
+                  <div className="relative rounded-xl border p-6 border-gray-200 bg-white">
+                    <h3 className="text-xl font-bold text-blue-800 mb-3">AMC</h3>
+                    
+                    <div className="flex bg-gray-100 rounded-lg p-1 mb-4">
+                      <button
+                        type="button"
+                        onClick={() => setAmcType('amcBasic')}
+                        className={`flex-1 py-2 text-sm font-medium rounded-md transition ${
+                          amcType === 'amcBasic'
+                            ? 'bg-white shadow text-blue-600'
+                            : 'text-gray-600 hover:text-gray-800'
+                        }`}
                       >
-                        {plan.popular && (
-                          <div className="absolute top-0 right-0 -mt-3 -mr-3 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-                            POPULAR
-                          </div>
-                        )}
-
-                        <h3 className="text-xl font-bold text-blue-800 mb-3">{plan.type} Service</h3>
-
-                        {plan.options && (
-                          <div className="flex bg-gray-100 rounded-lg p-1 mb-4">
-                            {plan.options.map(option => (
-                              <button
-                                key={option}
-                                type="button"
-                                onClick={() => setAmcType(option)}
-                                className={`flex-1 py-2 text-sm font-medium rounded-md transition ${amcType === option
-                                  ? 'bg-white shadow text-blue-600'
-                                  : 'text-gray-600 hover:text-gray-800'
-                                  }`}
-                              >
-                                {option.charAt(0).toUpperCase() + option.slice(1)}
-                              </button>
-                            ))}
-                          </div>
-                        )}
-
-                        <ul className="space-y-2 mb-4">
-                          {plan.features.map((feature, idx) => (
-                            <li key={idx} className="flex items-start text-sm">
-                              <FaCheck className="flex-shrink-0 h-4 w-4 text-green-500 mt-0.5 mr-2" />
-                              <span className="text-gray-700">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-
-                        <div className="mt-4 pt-4 border-t">
-                          <p className="text-lg font-bold text-blue-800 mb-3">
-                            {typeof plan.price === 'object'
-                              ? plan.price[amcType]
-                              : plan.price}
-                          </p>
-                          <button
-                            onClick={() => navigate('/login')}
-                            className={`w-full py-2 rounded-lg font-medium transition ${plan.popular
-                              ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white hover:from-blue-700 hover:to-cyan-600'
-                              : 'bg-gradient-to-r from-blue-500 to-cyan-400 text-white hover:from-blue-600 hover:to-cyan-500'
-                              }`}
-                          >
-                            Select {plan.type} Plan
-                          </button>
-                        </div>
-                      </div>
-                    ))}
+                        Basic
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setAmcType('amcGold')}
+                        className={`flex-1 py-2 text-sm font-medium rounded-md transition ${
+                          amcType === 'amcGold'
+                            ? 'bg-white shadow text-blue-600'
+                            : 'text-gray-600 hover:text-gray-800'
+                        }`}
+                      >
+                        Gold
+                      </button>
+                    </div>
+              
+                    <ul className="space-y-2 mb-4">
+                      {product?.productFor?.service?.[amcType]?.benefits?.map((benefit, idx) => (
+                        <li key={idx} className="flex items-start text-sm">
+                          <svg className="flex-shrink-0 h-4 w-4 text-green-500 mt-0.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                          <span className="text-gray-700">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+              
+                    <div className="mt-4 pt-4 border-t">
+                      <p className="text-lg font-bold text-blue-800 mb-3">
+                        AED {product?.productFor?.service?.[amcType]?.price}
+                      </p>
+                      <button
+                        onClick={() => navigate('/login')}
+                        className="w-full py-2 rounded-lg font-medium transition bg-gradient-to-r from-blue-500 to-cyan-400 text-white hover:from-blue-600 hover:to-cyan-500"
+                      >
+                        Select AMC Plan
+                      </button>
+                    </div>
+                  </div>
+              
+                  {/* MMC Plan */}
+                  <div className="relative rounded-xl border p-6 border-gray-200 bg-white">
+                    <h3 className="text-xl font-bold text-blue-800 mb-3">MMC</h3>
+                    
+                    <ul className="space-y-2 mb-4">
+                      {product?.productFor?.service?.mmc?.benefits?.map((benefit, idx) => (
+                        <li key={idx} className="flex items-start text-sm">
+                          <svg className="flex-shrink-0 h-4 w-4 text-green-500 mt-0.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                          <span className="text-gray-700">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+              
+                    <div className="mt-4 pt-4 border-t">
+                      <p className="text-lg font-bold text-blue-800 mb-3">
+                        AED {product?.productFor?.service?.mmc?.price}
+                      </p>
+                      <button
+                        onClick={() => navigate('/login')}
+                        className="w-full py-2 rounded-lg font-medium transition bg-gradient-to-r from-blue-500 to-cyan-400 text-white hover:from-blue-600 hover:to-cyan-500"
+                      >
+                        Select MMC Plan
+                      </button>
+                    </div>
+                  </div>
+              
+                  {/* One-Time Service */}
+                  <div className="relative rounded-xl border p-6 border-gray-200 bg-white">
+                    <h3 className="text-xl font-bold text-blue-800 mb-3">One-Time Service</h3>
+                    
+                    <ul className="space-y-2 mb-4">
+                      {product?.productFor?.service?.ots?.benefits?.map((benefit, idx) => (
+                        <li key={idx} className="flex items-start text-sm">
+                          <svg className="flex-shrink-0 h-4 w-4 text-green-500 mt-0.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                          <span className="text-gray-700">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+              
+                    <div className="mt-4 pt-4 border-t">
+                      <p className="text-lg font-bold text-blue-800 mb-3">
+                        AED {product?.productFor?.service?.ots?.price}
+                      </p>
+                      <button
+                        onClick={() => navigate('/login')}
+                        className="w-full py-2 rounded-lg font-medium transition bg-gradient-to-r from-blue-500 to-cyan-400 text-white hover:from-blue-600 hover:to-cyan-500"
+                      >
+                        Select One-Time
+                      </button>
+                    </div>
                   </div>
                 </div>
+              </div>
               )}
             </div>
           </div>
@@ -381,10 +396,9 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      {/* Product Details Section */}
       <div className="mt-8 bg-white rounded-xl shadow-sm overflow-hidden">
         <div className="p-6 space-y-8">
-          {product.longDescription && (
+          {product?.longDescription && (
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Product Description</h3>
               <div className="prose prose-sm max-w-none text-gray-600">
@@ -398,18 +412,9 @@ const ProductDetail = () => {
           <div>
             <h3 className="text-xl font-semibold text-gray-900 mb-4">Specifications</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[
-                { label: "Capacity", value: product.capacity },
-                { label: "Power Usage", value: product.powerUsage },
-                { label: "Material", value: product.material },
-                { label: "Warranty", value: product.warranty },
-                { label: "Dimensions", value: product.dimensions },
-                { label: "Weight", value: product.weight },
-                { label: "Installation", value: product.installationType },
-                { label: "Stock", value: product.stock }
-              ].map((spec, index) => (
+              {product?.specifications.map((spec, index) => (
                 <div key={index} className="flex justify-between py-2 border-b border-gray-100">
-                  <span className="text-gray-500">{spec.label}</span>
+                  <span className="text-gray-500">{spec.name}</span>
                   <span className="font-medium text-gray-900">{spec.value}</span>
                 </div>
               ))}
