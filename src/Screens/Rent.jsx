@@ -189,10 +189,10 @@ const Rent = () => {
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortBy, setSortBy] = useState("latest");
-const {fetchProducts,products} = useProductStore()
+  const { fetchProducts, products } = useProductStore()
   useEffect(() => {
     fetchProducts()
-  
+
   }, [])
 
 
