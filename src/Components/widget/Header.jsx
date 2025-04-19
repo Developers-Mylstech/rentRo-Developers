@@ -65,42 +65,42 @@ const Header = () => {
               ))}
             </ul>
 
-            <Link
 
+            <button
+
+              onClick={() => window.open('tel:971506709963')}
               className={`lg:text-sm md:text-[11px]  text-gray-300 flex items-center gap-2 font-semibold transition-all duration-300 bg-clip-text  ${scrolling
                 ? "bg-white"
                 // : "bg-gradient-to-r from-[#00d2ff] via-[#3a7bd5] to-[#00d2ff] bg-[200%]"
                 : "bg-white"
                 } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
-              <FaMobileAlt className="text-gray-400" />
-              +971 50 670 9963
-            </Link>
-            <Link
-
-              className={`lg:text-sm md:text-[11px] text-gray-300 flex items-center gap-2 font-semibold transition-all duration-300 bg-clip-text  ${scrolling
-                ? "bg-white"
-                // : "bg-gradient-to-r from-[#00d2ff] via-[#3a7bd5] to-[#00d2ff] bg-[200%]"
-                : "bg-white"
+              <FaMobileAlt color="white" />
+              971 50 670 9963
+            </button>
+            <a
+              href={`https://wa.me/971506709963?text=Hello`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`lg:text-sm md:text-[11px] text-gray-300 flex items-center gap-2 font-semibold transition-all duration-300 bg-clip-text ${scrolling ? "bg-white" : "bg-white"
                 } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
-              <FaWhatsapp className="text-gray-400" />
-              +971 50 670 9963
-            </Link>
-
+              <FaWhatsapp color="white" />
+              971 50 670 9963
+            </a>
 
           </nav>
         </div>
 
         {/* Icons & Search */}
         <div className="flex items-center justify-between  w-full md:w-fit gap-4 ">
-        <button
-              className="md:hidden p-2 rounded-md text-white hover:bg-gray-700 transition-all"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              <FaBars size={24} />
-            </button>
-          
+          <button
+            className="md:hidden p-2 rounded-md text-white hover:bg-gray-700 transition-all"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <FaBars size={24} />
+          </button>
+
           <div className="relative flex items-center ">
             <div
               className={`flex items-center relative bg-transparent border rounded-full transition-all duration-500 overflow-hidden ${searchVisible ? "w-36 md:w-64 py-1 pl-4 pr-8 opacity-100 scale-100" : "w-0 px-0 opacity-0 scale-95"
@@ -131,9 +131,9 @@ const Header = () => {
             <FiUser className="text-xl cursor-pointer transition-transform ease-in-out duration-500 hover:scale-110 text-white" />
           </Link>
           <button className="text-[11px] flex items-center bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] text-white px-6 py-3 rounded-full gap-2">
-          <FaShoppingCart />
-          AED 0.00
-        </button>
+            <FaShoppingCart />
+            AED 0.00
+          </button>
 
         </div>
       </div>
@@ -148,7 +148,7 @@ const Header = () => {
         <button className="absolute top-4 right-4 text-white text-3xl  cursor-pointer transition-transform duration-500" onClick={() => setMenuOpen(false)}>
           <FiX />
         </button>
-        
+
 
         <nav className=" w-full mt-[35%]  text-center">
           <ul className=" text-lg font-semibold flex flex-col justify-normal items-center">
@@ -163,34 +163,32 @@ const Header = () => {
                 </Link>
               </li>
             ))}
-            <Link
-
+            <button
+              onClick={() => window.open('tel:971506709963')}
               className={`text-lg flex items-center gap-2 my-2 font-semibold transition-all duration-300 bg-clip-text text-transparent ${scrolling
                 ? "bg-white"
-                // : "bg-gradient-to-r from-[#00d2ff] via-[#3a7bd5] to-[#00d2ff] bg-[200%]"
                 : "bg-white"
                 } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaMobileAlt color="white" />
               971 50 670 9963
-            </Link>
-            <Link
-
-              className={`text-lg flex items-center gap-2 font-semibold transition-all duration-300 bg-clip-text text-transparent ${scrolling
+            </button>
+            <button
+              onClick={() => window.open('tel:971506709963')}
+              className={`text-lg flex items-center gap-2 my-2 font-semibold transition-all duration-300 bg-clip-text text-transparent ${scrolling
                 ? "bg-white"
-                // : "bg-gradient-to-r from-[#00d2ff] via-[#3a7bd5] to-[#00d2ff] bg-[200%]"
                 : "bg-white"
                 } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaWhatsapp color="white" />
               971 50 670 9963
-            </Link>
+            </button>
 
           </ul>
         </nav>
 
         {/* Cart Button */}
-        
+
       </div>
     </header>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import OceanScene from "../Components/widget/OceanScene";
 import ProductList from "../Components/listing/ProductListing";
 
@@ -9,6 +9,7 @@ import Threeinone from "../assets/Rent/Threeinone.png";
 import WaterCooler from "../assets/Rent/WaterCooler.png";
 import WaterDispenser from "../assets/Rent/WaterDispenser.png";
 import Industrial from "../assets/Rent/Industrial.png";
+import useProductStore from "../Context/ProductContext";
 
 const products = [
   {
@@ -20,7 +21,7 @@ const products = [
     price: 50,
     rating: 4,
     shortDescription: "Durable industrial-grade purifier for factories and plants...",
-    longDescription:"This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
+    longDescription: "This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
     features: ["7-stage purification", "Compact design", "Easy installation", "Mineral guard"],
     capacity: "12 L",
     powerUsage: "36W",
@@ -44,7 +45,7 @@ const products = [
     price: 100,
     rating: 5,
     shortDescription: "Durable industrial-grade purifier for factories and plants...",
-    longDescription:"This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
+    longDescription: "This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
     features: ["25 L/hr capacity", "UV protection", "Auto shut-off", "Built-in TDS controller"],
     capacity: "25 L/hr",
     powerUsage: "60W",
@@ -71,7 +72,7 @@ const products = [
     price: 50,
     rating: 3,
     shortDescription: "Durable industrial-grade purifier for factories and plants...",
-    longDescription:"This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
+    longDescription: "This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
     features: ["100 L/hr", "Pre and post filters", "Rust-proof body", "SS frame"],
     capacity: "100 L/hr",
     powerUsage: "100W",
@@ -95,7 +96,7 @@ const products = [
     price: 50,
     rating: 3,
     shortDescription: "Durable industrial-grade purifier for factories and plants...",
-    longDescription:"This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
+    longDescription: "This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
     features: ["100 L/hr", "Pre and post filters", "Rust-proof body", "SS frame"],
     capacity: "100 L/hr",
     powerUsage: "100W",
@@ -119,7 +120,7 @@ const products = [
     price: 50,
     rating: 3,
     shortDescription: "Durable industrial-grade purifier for factories and plants...",
-    longDescription:"This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
+    longDescription: "This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
     features: ["100 L/hr", "Pre and post filters", "Rust-proof body", "SS frame"],
     capacity: "100 L/hr",
     powerUsage: "100W",
@@ -143,7 +144,7 @@ const products = [
     price: 50,
     rating: 3,
     shortDescription: "Durable industrial-grade purifier for factories and plants...",
-    longDescription:"This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
+    longDescription: "This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
     features: ["100 L/hr", "Pre and post filters", "Rust-proof body", "SS frame"],
     capacity: "100 L/hr",
     powerUsage: "100W",
@@ -167,7 +168,7 @@ const products = [
     price: 50,
     rating: 3,
     shortDescription: "Durable industrial-grade purifier for factories and plants...",
-    longDescription:"This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
+    longDescription: "This durable industrial-grade water purifier is specifically engineered to meet the rigorous demands of factories and large-scale plants. Built with high-quality materials, it ensures long-lasting performance even in harsh working conditions. The system features advanced multi-stage filtration technology to effectively remove impurities, heavy metals, and contaminants, delivering clean and safe water for industrial processes. Its high flow rate and low maintenance design make it an ideal solution for continuous operation. Easy to install and operate, this purifier enhances operational efficiency while ensuring compliance with industry water quality standards.",
     features: ["100 L/hr", "Pre and post filters", "Rust-proof body", "SS frame"],
     capacity: "100 L/hr",
     powerUsage: "100W",
@@ -188,30 +189,35 @@ const Rent = () => {
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortBy, setSortBy] = useState("latest");
+  const { fetchProducts, products } = useProductStore()
+  useEffect(() => {
+    fetchProducts()
 
-  // Filter products based on selected category & brand
-  const filteredProducts = products.filter((product) => {
-    return (
-      (selectedBrand === "" || product.brand === selectedBrand) &&
-      (selectedCategory === "" || product.category === selectedCategory)
-    );
-  });
+  }, [])
+
+
+  // const filteredProducts = products.filter((product) => {
+  //   return (
+  //     (selectedBrand === "" || product.brand === selectedBrand) &&
+  //     (selectedCategory === "" || product.category === selectedCategory)
+  //   );
+  // });
 
   // Sort products based on selected option
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    switch (sortBy) {
-      case "popularity":
-        return b.rating - a.rating;
-      case "rating":
-        return b.rating - a.rating;
-      case "low-to-high":
-        return a.price - b.price;
-      case "high-to-low":
-        return b.price - a.price;
-      default:
-        return 0; // Default order (latest)
-    }
-  });
+  // const sortedProducts = [...filteredProducts].sort((a, b) => {
+  //   switch (sortBy) {
+  //     case "popularity":
+  //       return b.rating - a.rating;
+  //     case "rating":
+  //       return b.rating - a.rating;
+  //     case "low-to-high":
+  //       return a.price - b.price;
+  //     case "high-to-low":
+  //       return b.price - a.price;
+  //     default:
+  //       return 0; // Default order (latest)
+  //   }
+  // });
 
   return (
     <>
@@ -219,7 +225,7 @@ const Rent = () => {
 
       <div className="font-sans bg-gray-50 min-h-screen p-6">
         {/* Filter and Sort Options */}
-        <div className="container mx-auto flex flex-col md:flex-row sm:justify-between items-center bg-white p-4 rounded-lg shadow-md mb-6 mt-18 w-full space-y-2 sm:space-y-0 sm:space-x-4">
+        {/* <div className="container mx-auto flex flex-col md:flex-row sm:justify-between items-center bg-white p-4 rounded-lg shadow-md mb-6 mt-18 w-full space-y-2 sm:space-y-0 sm:space-x-4">
           <select
             className="w-full sm:flex-1 p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
             value={selectedBrand}
@@ -264,10 +270,9 @@ const Rent = () => {
             <option value="low-to-high">Sort by Price: Low to High</option>
             <option value="high-to-low">Sort by Price: High to Low</option>
           </select>
-        </div>
+        </div> */}
 
-        {/* Product Listing */}
-        <ProductList products={sortedProducts} />
+        <ProductList products={products} />
       </div>
 
       {/* <BottomNav /> */}

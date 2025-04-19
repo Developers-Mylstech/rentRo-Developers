@@ -1,341 +1,428 @@
 import React, { useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { GiWaterSplash } from "react-icons/gi";
-import { FaWater, FaTools, FaCogs, FaShieldAlt, FaTint, FaCheckCircle, FaSlidersH, FaBolt } from 'react-icons/fa';
-
+import { useParams, useLocation, useNavigate } from "react-router-dom";
+import {
+  FaWater,
+  FaTools,
+  FaCogs,
+  FaShieldAlt,
+  FaTint,
+  FaCheckCircle,
+  FaSlidersH,
+  FaBolt,
+  FaCheck,
+  FaStar,
+  FaStarHalfAlt,
+  FaRegStar
+} from 'react-icons/fa';
 
 const ProductDetail = () => {
   const { name } = useParams();
   const location = useLocation();
   const product = location.state?.product;
   const navigate = useNavigate();
-  const [showServiceOption, setShowServiceOption] = useState(false)
-  const [newReview, setNewReview] = useState({ user: "", comment: "" });
+  const [activeTab, setActiveTab] = useState('rent');
+  const [amcType, setAmcType] = useState('amcBasic');
   const [allReviews, setAllReviews] = useState(product?.reviews || []);
 
-  const renderStars = (rating) => {
-    const fullStars = Math.floor(rating);
-    const halfStar = rating % 1 >= 0.5;
-    const stars = [];
-
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<span key={i} className="text-yellow-500 text-lg">★</span>);
-    }
-
-    if (halfStar) {
-      stars.push(<span key="half" className="text-yellow-500 text-lg">☆</span>);
-    }
-
-    while (stars.length < 5) {
-      stars.push(<span key={`empty-${stars.length}`} className="text-gray-300 text-lg">★</span>);
-    }
-
-    return stars;
-  };
-
-  const getFeatureIcon = (feature) => {
-    if (feature.toLowerCase().includes("purification")) return <FaWater />;
-    if (feature.toLowerCase().includes("design")) return <FaCogs />;
-    if (feature.toLowerCase().includes("installation")) return <FaTools />;
-    if (feature.toLowerCase().includes("mineral")) return <FaTint />;
-    if (feature.toLowerCase().includes("uv")) return <FaShieldAlt />;
-    if (feature.toLowerCase().includes("shut-off")) return <FaBolt />;
-    if (feature.toLowerCase().includes("tds")) return <FaSlidersH />;
-    if (feature.toLowerCase().includes("filters")) return <FaCheckCircle />;
-    if (feature.toLowerCase().includes("rust")) return <FaShieldAlt />;
-    if (feature.toLowerCase().includes("ss")) return <FaCheckCircle />;
-    return <GiWaterSplash />; // default icon
-  };
-
-
-  const handleReviewSubmit = (e) => {
-    e.preventDefault();
-    if (newReview.user && newReview.comment) {
-      setAllReviews([...allReviews, newReview]);
-      setNewReview({ user: "", comment: "" });
-    }
-  };
-
   if (!product) {
-    return <div className="text-center mt-14">Product not found</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center p-8 bg-white rounded-xl shadow-md">
+          <h2 className="text-2xl font-bold text-gray-800">Product not found</h2>
+          <button
+            onClick={() => navigate(-1)}
+            className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
   }
 
+  // Data arrays
+  const rentBenefits = [
+    "No large upfront investment",
+    "Flexible rental periods",
+    "Free maintenance included",
+    "Easy upgrades to newer models",
+    "24/7 customer support",
+    "No repair costs"
+  ];
+
+  const purchaseBenefits = [
+    "Lifetime cost savings",
+    "Full ownership benefits",
+    "Higher resale value",
+    "Customization options",
+    "No monthly payments",
+    "Complete control"
+  ];
+
+  const servicePlans = [
+    {
+      type: "One Time",
+      price: "800 AED (+5% VAT)",
+      features: [
+        "Quick problem resolution",
+        "No long-term commitments",
+        "Ideal for small fixes",
+        "Pay only for what you need",
+        "Same-day service available",
+        "No contract required"
+      ],
+      popular: false
+    },
+    {
+      type: "MMC",
+      price: "800 AED (+5% VAT)",
+      features: [
+        "Monthly Maintenance Coverage",
+        "Priority Support",
+        "Discount on parts & services",
+        "Ideal for regular checkups",
+        "2 free visits per month",
+        "Extended warranty"
+      ],
+      popular: true
+    },
+    {
+      type: "AMC",
+      price: {
+        basic: "800 AED (+5% VAT)",
+        gold: "1500 AED (+5% VAT)"
+      },
+      features: [
+        "Annual Maintenance Contract",
+        "Unlimited service visits",
+        "Free replacement parts",
+        "24/7 emergency support",
+        "Full system inspection",
+        "Premium customer care"
+      ],
+      popular: false,
+      options: ["basic", "gold"]
+    }
+  ];
+
+  const premiumFeatures = [
+    "Advanced 6-stage filtration system",
+    "Energy-efficient operation (saves 30% power)",
+    "Smart TDS monitoring with digital display",
+    "Automatic shut-off protection",
+    "UV sterilization technology",
+    "Removes 99.9% of bacteria and viruses",
+    "Compact and space-saving design",
+    "Easy one-click filter replacement"
+  ];
+
   return (
-    <div className="max-w-7xl mx-auto p-6 bg-white mt-0 rounded-xl ">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8  mt-14  ">
-
-        <div>
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full col-span-1 object-cover rounded-lg shadow"
-          />
-        </div>
-
-
-        <div className="h-[80%] flex flex-col gap-2  col-span-2 ">
-          <div className="flex flex-col lg:flex-row justify-between gap-2 lg:items-center">
-            <div className="flex flex-col md:flex-row justify-between gap-2 md:items-center">
-
-              <h2 className="text-3xl font-bold text-gray-800">{product.name}</h2>
-              <p className="text-gray-400 mt-1 text-sm">
-                {product.category} | <span className="font-medium">{product.brand}</span>
-              </p>
-            </div>
-
-            <div className="flex items-center gap-1">{renderStars(product.rating)} ({product.rating} / 5)</div>
-
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="bg-white rounded-xl shadow-sm overflow-hidden mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6">
+          <div className="md:col-span-1 flex items-center justify-center rounded-lg p-4">
+            <img
+              src={product.imageUrls[0]}
+              alt={product.name}
+              className="w-full object-cover rounded-lg"
+            />
           </div>
 
-
-
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-2">
-            <div className="bg-white shadow-md rounded-xl p-6 border ">
-              <h2 className="text-xl font-semibold mb-4 text-blue-300 uppercase">Rent</h2>
-              <div className="space-y-5">
-                <div className="">
-                  <p className="text-gray-400 font-medium ">Actual Price </p>
-                  <p className="font-semibold"> 1000 AED</p>
-                </div>
-                <div className="">
-                  <p className="text-gray-400 font-medium ">Discount Price  </p>
-                  <p className="font-semibold"> 800 AED </p>
-                </div>
-                <div className="">
-                  <p className="text-gray-400 font-medium ">VAT </p>
-                  <p className="font-semibold"> + 5%</p>
-                </div>
+          <div className="md:col-span-2 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900">{product?.name}</h1>
+                <p className="text-gray-500 mt-1">
+                  {product.category.name} | <span className="font-medium text-blue-600">{product?.brand?.name}</span>
+                </p>
               </div>
-              <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-500 text-white font-bold hover:bg-blue-500  py-2 rounded-lg transition">
-                Rent Now
-              </button>
+              <div className="flex items-center">
+                {/* {renderStars(product.rating)} */}
+              </div>
             </div>
 
-            <div className="bg-white shadow-md rounded-xl p-6 border ">
-              <h2 className="text-xl font-semibold mb-4 text-blue-300 uppercase">Sell</h2>
-              <div className="space-y-5">
-                <div className="">
-                  <p className="text-gray-400 font-medium ">Actual Price </p>
-                  <p className="font-semibold"> 1000 AED</p>
-                </div>
-                <div className="">
-                  <p className="text-gray-400 font-medium ">Discount Price  </p>
-                  <p className="font-semibold"> 800 AED </p>
-                </div>
-                <div className="">
-                  <p className="text-gray-400 font-medium ">VAT </p>
-                  <p className="font-semibold"> + 5%</p>
-                </div>
-              </div>
-              <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-500 text-white font-bold hover:bg-blue-500  py-2 rounded-lg transition">
-                Buy Now
-              </button>
+            {/* Tabs Navigation */}
+            <div className="border-b border-gray-200">
+              <nav className="">
+                {['rent', 'sell', 'service'].map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    className={`whitespace-nowrap py-4 w-1/3 px-1 border-b font-medium text-sm ${activeTab === tab
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-b text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                      }`}
+                  >
+                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  </button>
+                ))}
+              </nav>
             </div>
 
-            <div className="bg-white shadow-md rounded-xl p-6 border ">
-              <h2 className="text-xl font-semibold mb-4 text-blue-300 uppercase">Service</h2>
-              <div className="space-y-5">
-                <div className="">
-                  <p className="text-gray-400 font-medium ">Actual Price </p>
-                  <p className="font-semibold"> 1000 AED</p>
+            <div className="pt-4">
+              {activeTab === 'rent' && (
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Benefits of Renting</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {rentBenefits.map((benefit, index) => (
+                        <div key={index} className="flex items-start">
+                          <FaCheckCircle className="flex-shrink-0 h-5 w-5 text-green-500 mt-0.5 mr-2" />
+                          <p className="text-gray-700">{benefit}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Pricing</h3>
+                    <div className="grid grid-cols-3 gap-4 bg-blue-50 rounded-lg p-4">
+                      <div className="text-center">
+                        <p className="text-sm text-gray-500"> Actual Price </p>
+                        <p className={`text-black font-bold`}>
+                          {product?.productFor.rent.monthlyPrice} AED
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-sm text-gray-500"> Discount Price </p>
+                        <p className={`text-blue-600 font-bold`}>
+                          {product?.productFor.rent.discountPrice} AED
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-sm text-gray-500"> + VAT </p>
+                        <p className={`text-blue-600 font-bold`}>
+                          {product?.productFor.rent.vat} %
+                        </p>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => navigate('/login')}
+                    className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
+                  >
+                    Rent Now
+                  </button>
                 </div>
-                <div className="">
-                  <p className="text-gray-400 font-medium ">Discount Price  </p>
-                  <p className="font-semibold"> 800 AED </p>
+              )}
+
+              {activeTab === 'sell' && (
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Benefits of Purchase</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {purchaseBenefits.map((benefit, index) => (
+                        <div key={index} className="flex items-start">
+                          <FaCheckCircle className="flex-shrink-0 h-5 w-5 text-green-500 mt-0.5 mr-2" />
+                          <p className="text-gray-700">{benefit}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Pricing</h3>
+                    <div className="grid grid-cols-3 gap-4 bg-blue-50 rounded-lg p-4">
+                      <div className="text-center">
+                        <p className="text-sm text-gray-500"> Actual Price </p>
+                        <p className={`text-black font-bold`}>
+                          {product?.productFor.sell.actualPrice} AED
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-sm text-gray-500"> Discount Price </p>
+                        <p className={`text-blue-600 font-bold`}>
+                          {product?.productFor.sell.discountPrice} AED
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-sm text-gray-500"> + VAT </p>
+                        <p className={`text-blue-600 font-bold`}>
+                          {product?.productFor.sell.vat} %
+                        </p>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => navigate('/login')}
+                    className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
+                  >
+                    Buy Now
+                  </button>
                 </div>
-                <div className="">
-                  <p className="text-gray-400 font-medium ">VAT </p>
-                  <p className="font-semibold"> + 5%</p>
+              )}
+
+              {activeTab === 'service' && (
+                <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* AMC Plans (with radio toggle) */}
+                  <div className="relative rounded-xl border p-6 border-gray-200 bg-white">
+                    <h3 className="text-xl font-bold text-blue-800 mb-3">AMC</h3>
+                    
+                    <div className="flex bg-gray-100 rounded-lg p-1 mb-4">
+                      <button
+                        type="button"
+                        onClick={() => setAmcType('amcBasic')}
+                        className={`flex-1 py-2 text-sm font-medium rounded-md transition ${
+                          amcType === 'amcBasic'
+                            ? 'bg-white shadow text-blue-600'
+                            : 'text-gray-600 hover:text-gray-800'
+                        }`}
+                      >
+                        Basic
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setAmcType('amcGold')}
+                        className={`flex-1 py-2 text-sm font-medium rounded-md transition ${
+                          amcType === 'amcGold'
+                            ? 'bg-white shadow text-blue-600'
+                            : 'text-gray-600 hover:text-gray-800'
+                        }`}
+                      >
+                        Gold
+                      </button>
+                    </div>
+              
+                    <ul className="space-y-2 mb-4">
+                      {product?.productFor?.service?.[amcType]?.benefits?.map((benefit, idx) => (
+                        <li key={idx} className="flex items-start text-sm">
+                          <svg className="flex-shrink-0 h-4 w-4 text-green-500 mt-0.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                          <span className="text-gray-700">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+              
+                    <div className="mt-4 pt-4 border-t">
+                      <p className="text-lg font-bold text-blue-800 mb-3">
+                        AED {product?.productFor?.service?.[amcType]?.price}
+                      </p>
+                      <button
+                        onClick={() => navigate('/login')}
+                        className="w-full py-2 rounded-lg font-medium transition bg-gradient-to-r from-blue-500 to-cyan-400 text-white hover:from-blue-600 hover:to-cyan-500"
+                      >
+                        Select AMC Plan
+                      </button>
+                    </div>
+                  </div>
+              
+                  {/* MMC Plan */}
+                  <div className="relative rounded-xl border p-6 border-gray-200 bg-white">
+                    <h3 className="text-xl font-bold text-blue-800 mb-3">MMC</h3>
+                    
+                    <ul className="space-y-2 mb-4">
+                      {product?.productFor?.service?.mmc?.benefits?.map((benefit, idx) => (
+                        <li key={idx} className="flex items-start text-sm">
+                          <svg className="flex-shrink-0 h-4 w-4 text-green-500 mt-0.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                          <span className="text-gray-700">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+              
+                    <div className="mt-4 pt-4 border-t">
+                      <p className="text-lg font-bold text-blue-800 mb-3">
+                        AED {product?.productFor?.service?.mmc?.price}
+                      </p>
+                      <button
+                        onClick={() => navigate('/login')}
+                        className="w-full py-2 rounded-lg font-medium transition bg-gradient-to-r from-blue-500 to-cyan-400 text-white hover:from-blue-600 hover:to-cyan-500"
+                      >
+                        Select MMC Plan
+                      </button>
+                    </div>
+                  </div>
+              
+                  {/* One-Time Service */}
+                  <div className="relative rounded-xl border p-6 border-gray-200 bg-white">
+                    <h3 className="text-xl font-bold text-blue-800 mb-3">One-Time Service</h3>
+                    
+                    <ul className="space-y-2 mb-4">
+                      {product?.productFor?.service?.ots?.benefits?.map((benefit, idx) => (
+                        <li key={idx} className="flex items-start text-sm">
+                          <svg className="flex-shrink-0 h-4 w-4 text-green-500 mt-0.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                          <span className="text-gray-700">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+              
+                    <div className="mt-4 pt-4 border-t">
+                      <p className="text-lg font-bold text-blue-800 mb-3">
+                        AED {product?.productFor?.service?.ots?.price}
+                      </p>
+                      <button
+                        onClick={() => navigate('/login')}
+                        className="w-full py-2 rounded-lg font-medium transition bg-gradient-to-r from-blue-500 to-cyan-400 text-white hover:from-blue-600 hover:to-cyan-500"
+                      >
+                        Select One-Time
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <button onClick={() => setShowServiceOption(!showServiceOption)} className={`mt-4 w-full ${showServiceOption ? "bg-blue-700" : "bg-blue-500"} text-white font-bold hover:bg-blue-500  py-2 rounded-lg transition`}>
-                {showServiceOption ? " Hide Option" : "    Select Options"}
-              </button>
+              )}
             </div>
-
-
           </div>
-
-
-
-
-
-
-
-          {/* <div className="mt-6 grid grid-cols-2 gap-4">
-            <button onClick={() => navigate("/waterfilterSubscription")} className="px-6 py-2 bg-[#3a7bd5] text-white rounded-lg ">Buy Now</button>
-            <button className="px-6 py-2 bg-[#00d0ffa3] text-white rounded-lg bg-opacity-55 ">Add to Cart</button>
-          </div> */}
         </div>
       </div>
 
-      {/* User Reviews */}
-      {/* {allReviews.length > 0 && (
-        <div className="mt-10">
-          <h3 className="text-lg font-semibold mb-2 text-gray-800">User Reviews:</h3>
-          <ul className="space-y-2 max-h-40 overflow-auto">
-            {allReviews.map((review, index) => (
-              <li key={index} className="border-b pb-2">
-                <p className="text-sm text-gray-700">"{review.comment}"</p>
-                <p className="text-xs text-gray-500">- {review.user}</p>
-              </li>
+
+      <div className="mt-12 bg-white rounded-xl shadow-sm text-sm overflow-hidden">
+        <div className="p-6">
+          <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">Premium Features</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {premiumFeatures.map((feature, index) => (
+              <div
+                key={index}
+                className="flex items-start p-4 border border-gray-100 rounded-lg hover:border-blue-200 transition"
+              >
+                <div className="bg-blue-100 p-2 rounded-full mr-3">
+                  <FaCheck className="text-blue-600" />
+                </div>
+                <p className="text-gray-700 font-medium">{feature}</p>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
-      )} */}
+      </div>
 
-      {/* Review Form */}
-      {/* <div className="mt-6">
-        <h3 className="text-lg font-semibold mb-2 text-gray-800">Add Your Review:</h3>
-        <form onSubmit={handleReviewSubmit} className="space-y-2">
-          <input
-            type="text"
-            placeholder="Your name"
-            value={newReview.user}
-            onChange={(e) => setNewReview({ ...newReview, user: e.target.value })}
-            className="w-full p-2 border rounded-md text-sm"
-            required
-          />
-          <textarea
-            placeholder="Write your comment..."
-            value={newReview.comment}
-            onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })}
-            className="w-full p-2 border rounded-md text-sm"
-            rows={3}
-            required
-          />
-          <button
-            type="submit"
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm"
-          >
-            Submit Review
-          </button>
-        </form>
-      </div> */}
-
-      {showServiceOption && (<>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
-          <div className="bg-gradient-to-t from-blue-50 to-cyan-50 shadow-md rounded-xl p-6 border border-gray-300 hover:shadow-lg transition">
-            <h2 className="text-xl font-semibold text-blue-700 mb-3">One Time</h2>
-            <ul className="list-disc list-inside text-gray-600 space-y-1 mb-4">
-              <li>Quick problem resolution</li>
-              <li>No long-term commitments</li>
-              <li>Ideal for small fixes</li>
-              <li>Pay only for what you need</li>
-            </ul>
-            <h5 className="text-base font-bold text-blue-800">Price: 202 AED</h5>
-            <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
-              Select This
-            </button>
-          </div>
-
-          <div className="bg-gradient-to-t from-blue-50 to-cyan-50 shadow-md rounded-xl p-6 border border-gray-300 hover:shadow-lg transition">            <h2 className="text-xl font-semibold text-blue-700 mb-3">MMC</h2>
-            <ul className="list-disc list-inside text-gray-600 space-y-1 mb-4">
-              <li>Monthly Maintenance Coverage</li>
-              <li>Priority Support</li>
-              <li>Discount on parts & services</li>
-              <li>Ideal for regular checkups</li>
-            </ul>
-            <h5 className="text-base font-bold text-blue-800">Price: 800 AED</h5>
-            <p className="text-sm text-gray-500">+ VAT 5%: 50 AED</p>
-            <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
-              Select This
-            </button>
-          </div>
-
-          {/* AMC Service */}
-          <div className="bg-gradient-to-t from-blue-50 to-cyan-50 shadow-md rounded-xl p-6 border border-gray-300 hover:shadow-lg transition">            <div className="flex justify-between items-center mb-3">
-            <h2 className="text-xl font-semibold text-blue-700">AMC</h2>
-            <div className="flex items-center gap-4">
-              <label className="flex items-center gap-2 text-gray-700">
-                <input
-                  type="radio"
-                  name="amc"
-                  value="gold"
-                  className="accent-blue-600 w-4 h-4"
-                />
-                Gold
-              </label>
-              <label className="flex items-center gap-2 text-gray-700">
-                <input
-                  type="radio"
-                  name="amc"
-                  value="basic"
-                  className="accent-blue-600 w-4 h-4"
-                />
-                Basic
-              </label>
+      <div className="mt-8 bg-white rounded-xl shadow-sm overflow-hidden">
+        <div className="p-6 space-y-8">
+          {product?.longDescription && (
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Product Description</h3>
+              <div className="prose prose-sm max-w-none text-gray-600">
+                {product.longDescription.split('\n').map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
-            <ul className="list-disc list-inside text-gray-600 space-y-1 mb-4">
-              <li>Annual Service Commitment</li>
-              <li>Free periodic visits</li>
-              <li>24/7 support line</li>
-              <li>Best value for long-term users</li>
-            </ul>
-            <h5 className="text-base font-bold text-blue-800">Price: 800 AED</h5>
-            <p className="text-sm text-gray-500">+ VAT 5%: 50 AED</p>
-            <button onClick={() => navigate('/waterfilterSubscription')} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
-              Select This
-            </button>
-          </div>
-        </div>
-
-      </>)}
-
-      {
-        product.features && (
-          <div className="mt-6 md:mt-10 ">
-            <h3 className="text-2xl md:text-3xl  font-bold mb-8 text-blue-900 text-center">Key Features</h3>
-            <div className="grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2  text-sm text-gray-700 gap-4">
-              {product.features.map((feature, i) => (
-                <div className="bg-blue-100 rounded-xl" key={i}>
-                  <div className=" h-[20vh] rounded-lg flex flex-col gap-4 justify-center items-center ">
-                    <span className="text-3xl md:text-7xl text-blue-900 " >{getFeatureIcon(feature)}</span>
-                    <h3 className="text-base md:text-xl font-bold text-blue-900 " >{feature}</h3>
-                  </div>
-                  <ul className=" ">
-                    <li className="p-3  md:text-base text-sm bg-blue-50 m-2 rounded-xl ">The multiple purification process In-tank ensures that the water is pure and suitable for drinking.</li>
-                    <li className="p-2  md:text-base text-sm bg-blue-50 m-2 rounded-xl ">Purifiers make water pure and healthy, meeting drinking water standards of IS:10500.</li>
-                    <li className="p-2  md:text-base text-sm bg-blue-50 m-2 rounded-xl ">The TDS control valve which enables the desired TDS level to be controlled to keep essential nutritional value of purified water intact.</li>
-                  </ul>
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Specifications</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {product?.specifications.map((spec, index) => (
+                <div key={index} className="flex justify-between py-2 border-b border-gray-100">
+                  <span className="text-gray-500">{spec.name}</span>
+                  <span className="font-medium text-gray-900">{spec.value}</span>
                 </div>
               ))}
             </div>
           </div>
-        )
-      }
-
-      <div className="flex flex-col gap-3 my-4">
-
-        {product.longDescription && (
-          <div className=" border-t p-2 rounded-lg ">
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Product Description:</h3>
-            <p className="text-sm text-gray-500 whitespace-pre-line md:text-left text-justify ">{product.longDescription}</p>
-          </div>
-        )}
-
-        <div className="border-t p-4 rounded-lg ">
-          <h3 className="text-lg font-semibold mb-4 text-gray-800">Specifications:</h3>
-          <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4  gap-y-3 text-sm text-gray-700">
-            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Capacity:</span> {product.capacity}</li>
-            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Power:</span> {product.powerUsage}</li>
-            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Material:</span> {product.material}</li>
-            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Warranty:</span> {product.warranty}</li>
-            <li className="flex col-span-2 md:col-span-1 font-semibold gap-2"><span className="font-medium text-gray-400 ">Dimensions:</span> {product.dimensions}</li>
-            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Weight:</span> {product.weight}</li>
-            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Installation:</span> {product.installationType}</li>
-            <li className="flex font-semibold gap-2"><span className="font-medium text-gray-400 ">Stock:</span> {product.stock}</li>
-          </ul>
         </div>
-
-
       </div>
-
-    </div >
+    </div>
   );
 };
 
