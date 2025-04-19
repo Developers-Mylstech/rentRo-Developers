@@ -132,3 +132,10 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;     /* Firefox */
 }
+
+
+/* corousel  */
+
+.thumb {
+  border: 1px solid gray;
+}
