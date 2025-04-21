@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import axiosInstance from '../utils/axiosInstance';
+import axios from 'axios';
 
 const useProductStore = create((set) => ({
   products: [],
@@ -10,7 +11,7 @@ const useProductStore = create((set) => ({
   createProduct: async (productData) => {
     set({ loading: true, error: null });
     try {
-      const response = await axiosInstance.post('/products', productData);
+      const response = await axios.post('https://demo.rentro.ae/api/v1/products', productData);
       set((state) => ({
         products: [...state.products, response.data],
         loading: false
