@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import axiosInstance from '../utils/axiosInstance';
+import axios from 'axios';
 
 const useProductStore = create((set) => ({
   products: [],
@@ -28,7 +29,7 @@ const useProductStore = create((set) => ({
   fetchProducts: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await axiosInstance.get('/products');
+      const response = await axiosInstance.get('/api/api/v1/products');
       set({ products: response?.data, loading: false });
     } catch (error) {
       set({ 

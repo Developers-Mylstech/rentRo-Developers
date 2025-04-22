@@ -8,7 +8,7 @@ console.log(products,'pppoo')
   const navigate = useNavigate();
 
   const handleProductClick = (product) => {
-    navigate(`/product/${product.name}`, { state: { product } });
+    navigate(`/product/${product?.name}`, { state: { product } });
   };
 
   return (
@@ -23,15 +23,15 @@ console.log(products,'pppoo')
             >
              <div className="flex justify-center items-center mt-4">
              <img
-                src={product.imageUrls[0]}
-                alt={product.name}
+                src={product?.imageUrls[0]}
+                alt={product?.name}
                 className="w-full md:w-64 h-64"
               />
              </div>
               <div className="p-4">
                 <div className="flex justify-between items-center">
                 <h3 className="text-lg font-medium text-gray-900">
-                  {product.name}
+                  {product?.name}
                 </h3>
                 {/* <div className="flex  ">
                   {[...Array(product.rating)].map((_, i) => (
@@ -46,7 +46,7 @@ console.log(products,'pppoo')
                   ))}
                 </div> */}
                 </div>
-                <p className="text-gray-700 w-64 text-sm">{product.description}</p>
+                <p className="text-gray-700 w-64 text-sm">{product?.description}</p>
                 <p onClick={() => handleProductClick(product)} className="text-gray-700 bg-green-100 my-2 p-2 rounded-lg text-center">View Product</p>
               </div>
             </div>
