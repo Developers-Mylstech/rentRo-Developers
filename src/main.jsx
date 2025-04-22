@@ -12,11 +12,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import Header from "./Components/Header.jsx";
+import Header from "./Components/widget/Header.jsx";
 import Home from "./Screens/Home.jsx";
 import Services from "./Screens/Services.jsx";
 import Clients from "./Screens/Clients.jsx";
-import Footer from "./Components/Footer.jsx";
+import Footer from "./Components/widget/Footer.jsx";
 import Login from "./Screens/Login.jsx";
 import Rent from "./Screens/Rent.jsx";
 import Sale from "./Screens/Sale.jsx";
@@ -30,6 +30,10 @@ import CommercialService from './Screens/CommercialService.jsx'
 import DomesticService from './Screens/DomesticService.jsx'
 import AboutUs from "./Screens/AboutUs.jsx";
 import Shop from './Screens/Shop.jsx'
+import ProductDetail from "./Components/SaleProductDetail.jsx";
+import WaterFilterSubscriptionForm from "./Components/form/WaterFilterSubscriptionForm.jsx";
+import Career from "./Screens/Career.jsx";
+import CareerDetail from "./Screens/CareerDetail.jsx";
 
 
 
@@ -43,10 +47,11 @@ const routes = createBrowserRouter(
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home/>} />
         <Route path="/services" element={<Services/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/signup" element={<Signup/>} />
-        <Route path="/clients" element={<Clients/>} />
+        
+        {/* <Route path="/clients" element={<Clients/>} /> */}
         <Route path="/sale" element={<Sale/>} />
+        <Route path="/product/:name" element={<ProductDetail/>} />
+        <Route path="/waterfilterSubscription" element={<WaterFilterSubscriptionForm/>} />
         <Route path="/rent" element={<Rent/>} />
         <Route path="/faq" element={<Faq/>} />
         <Route path="/contact" element={<ContactUs/>} />
@@ -55,7 +60,11 @@ const routes = createBrowserRouter(
         <Route path="/commercialservice" element={<CommercialService/>} />
         <Route path="/domesticservice" element={<DomesticService/>} />
         <Route path="/aboutus" element={<AboutUs/>} />
+        <Route path="/career" element={<Career/>} />
+        <Route path="/career/:name" element={<CareerDetail/>} />
+      
         <Route path="/shop" element={<Shop/>} />
+        <Route path="*" element={<Home />} />
         
         
 
@@ -65,8 +74,10 @@ const routes = createBrowserRouter(
 
         {/* Other standalone routes */}
       
+      <Route path="/login" element={<Login/>} />
+      <Route path="/signup" element={<Signup/>} />
       </Route>
-      <Route path="*" element={<Layout />} />
+      
     </>
   )
 );

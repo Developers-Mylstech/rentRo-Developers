@@ -83,7 +83,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { BsQuestionOctagon } from "react-icons/bs";
-import OceanScene from '../Components/OceanScene';
+import OceanScene from '../Components/widget/OceanScene';
 import "../index.css"
 
 const faqData = [
@@ -208,6 +208,7 @@ const FAQSection = () => {
           </ul>
         </div>
       </div>
+      {/* <ScrollToTopButton/> */}
     </>
   );
 };

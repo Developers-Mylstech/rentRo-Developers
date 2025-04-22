@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import OurClientsReview from '../Screens/OurClientsReview.jsx'
-import BottomNav from "../Components/BottomNav.jsx";
 
 // images import
 
@@ -211,7 +210,8 @@ function DomesticService() {
     <section>
         <OurClientsReview/>
     </section>
-    <BottomNav/>
+    {/* <BottomNav/> */}
+    {/* <ScrollToTopButton/> */}
 
     </>
   );

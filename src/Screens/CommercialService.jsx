@@ -12,7 +12,6 @@ import OurClientsReview from "../Screens/OurClientsReview.jsx";
 import commercial1 from "../assets/Comercialservice/commercial1.png";
 import commercial2 from "../assets/Comercialservice/commercial2.png";
 import commercial3 from "../assets/Comercialservice/commercial3.png";
-import BottomNav from "../Components/BottomNav.jsx";
 
 function CommercialService() {
   useEffect(() => {
@@ -214,7 +213,7 @@ function CommercialService() {
         <OurClientsReview />
       </section>
 
-      <BottomNav />
+      {/* <BottomNav /> */}
     </>
   );
 }

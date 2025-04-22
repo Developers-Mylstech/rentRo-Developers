@@ -1,116 +1,64 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import React from "react";
 import Loginimage from "../assets/Loginimage.jpeg";
-import BottomNav from "../Components/BottomNav";
-
-
-// Mock function to simulate login (to be replaced with actual API call)
-const handleLoginLogic = (email, password, rememberMe) => {
-  // You can replace this with actual authentication logic
-  console.log("Logging in with: ", { email, password, rememberMe });
-  // For example, make an API call and handle success/error responses
-};
+import LoginForm from "../Components/form/LoginForm"; // Import the new component
+import BottomNav from "../Components/widget/BottomNav";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleRememberMeChange = () => {
-    setRememberMe(!rememberMe);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Calling the function handling the login logic
-    handleLoginLogic(email, password, rememberMe);
-  };
-
+  useEffect(() => {
+          const bubbles = document.querySelectorAll(".bubble");
+          bubbles.forEach((bubble) => {
+            bubble.style.animationDuration = `${Math.random() * 10 + 10}s`;
+            bubble.style.animationDelay = `${Math.random() * -10}s`;
+          });
+        }, []);
   return (
     <>
-    <div
-  className="flex justify-center items-center font-[sans-serif] h-screen w-full p-4 bg-cover bg-center"
-  style={{
-    backgroundImage: `url(${Loginimage})`,
-  }}
->
-  <div className="max-w-md w-full mx-auto bg-black bg-opacity-10 rounded-lg p-6 border border-white  shadow-lg">
-    <form onSubmit={handleSubmit}>
-      <div className="mb-12">
-        <h3 className="text-white text-3xl font-bold text-center">Log in</h3>
-      </div>
+      <div
+        className="flex justify-center border items-center font-[sans-serif] h-screen w-auto p-4 bg-cover bg-center"
+       
+      >
+        
+       <div className="absolute w-full h-screen overflow-hidden bg-gradient-to-b from-sky-600 to-sky-900 flex items-center justify-center">
+
+      {[...Array(20)].map((_, i) => (
+        <div
+          key={i}
+          className={`bubble absolute opacity-10 rounded-full animate-bubble`}
+          style={{
+            width: "40px",
+            height: "40px",
+            left: `${Math.random() * 100}%`,
+            bottom: "20px",
+            backgroundColor: "rgba(247, 247, 247, 0.1)",
+          }}
+        ></div>
+      ))}
+
+      {/* Octocat */}
+      <div
+        id="octocat"
+        className="absolute w-[150px] h-[225px] bg-cover bg-no-repeat right-[-200px] top-1/2 transform -translate-y-1/2 animate-swim"
+        style={{
+          backgroundImage:
+            "url(https://raw.githubusercontent.com/codypearce/codepen-files/main/pens/octocat/octocat.png)",
+        }}
+      ></div>
+
+      {/* Centered Title */}
+     
+       
+       
       
-      {/* Email Input */}
-      <div className="mb-6">
-        <input
-          name="email"
-          type="text"
-          required
-          className="w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 p-3 outline-none bg-transparent placeholder:text-white"
-          placeholder="Enter email"
-          value={email}
-          onChange={handleEmailChange}
-        />
+    </div>
+
+        <div className=" w-full z-30 flex md:justify-end justify-center  ">
+          <LoginForm /> 
+        </div>
       </div>
-
-      {/* Password Input */}
-      <div className="mb-6">
-        <input
-          name="password"
-          type="password"
-          required
-          className="w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 p-3 outline-none bg-transparent placeholder:text-white"
-          placeholder="Enter password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-      </div>
-
-      {/* Remember Me and Forgot Password */}
-      <div className="flex justify-between items-center mb-6">
-        <label className="flex items-center text-sm text-white">
-          <input type="checkbox" className="mr-2" checked={rememberMe} onChange={handleRememberMeChange} />
-          Remember me
-        </label>
-        <a href="#" className="text-white text-sm font-semibold hover:underline">
-          Forgot Password?
-        </a>
-      </div>
-
-      {/* Submit Button */}
-      <div className="md:col-span-2 col-span-1 h-full w-full flex justify-center items-center">
-                    <button
-                      className="bg-gradient-to-b from-blue-400 via-blue-800 to-blue-900 
-             text-white  text-lg rounded-lg py-2 px-4  shadow-lg
-             shadow-blue-500/50 hover:from-blue-300 hover:to-blue-800
-             transition duration-300 transform hover:-translate-y-1 hover:scale-105 
-             tracking-wider"
-                      type="submit"
-                    >
-                      Login
-                    </button>
-                  </div>
-
-      <p className="text-white text-sm text-center mt-6">
-        Don't have an account?{" "}
-        <Link to="/signup" className="text-white font-extrabold hover:underline">
-          Register here
-        </Link>
-      </p>
-    </form>
-  </div>
-</div>
-      <BottomNav/>
-</>
-
+      <BottomNav />
+      {/* <ScrollToTopButton /> */}
+    </>
   );
 };
 
