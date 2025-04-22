@@ -13,10 +13,10 @@ import WaterLogic from "../assets/OurBrand/WaterLogic.png";
 import Marquee from "react-fast-marquee";
 import { useRef } from "react";
 import OurBrand from "../Components/widget/OurBrand.jsx";
-import roLogo1 from "../assets/roLogo1.png";
-import roLogo2 from "../assets/roLogo2.png";
-import roLogo3 from "../assets/roLogo3.png";
-import roLogo4 from "../assets/roLogo4.png";
+// import roLogo1 from "../assets/roLogo1.png";
+// import roLogo2 from "../assets/roLogo2.png";
+// import roLogo3 from "../assets/roLogo3.png";
+// import roLogo4 from "../assets/roLogo4.png";
 import BannerCarousel from "../Components/widget/BannerCarousel.jsx";
 import mobileBanner from "../assets/mobileBanner.jpg";
 
