@@ -49,7 +49,7 @@ const Header = () => {
 
           <nav className="flex justify-center items-center gap-4 lg:gap-5 ">
             <ul className="flex space-x-4 lg:space-x-6">
-              {["rent", "sale", "services"].map((item) => (
+              {["rent", "sale", "services",'career'].map((item) => (
                 <li
                   key={item}
                   className="relative flex items-center justify-center cursor-pointer transition-all duration-300"
