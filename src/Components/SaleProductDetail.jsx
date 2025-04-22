@@ -14,7 +14,7 @@ import {
   FaStarHalfAlt,
   FaRegStar,
 } from "react-icons/fa";
-import "../index.css"
+import "../index.css";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // required CSS
 import { Carousel } from "react-responsive-carousel";
@@ -128,10 +128,7 @@ const ProductDetail = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6">
           <div className="md:col-span-1 flex items-center justify-center rounded-lg p-4 ">
             {product.imageUrls.length > 1 ? (
-              <Carousel
-             
-  
-              >
+              <Carousel>
                 {product.imageUrls.map((url, index) => (
                   <img
                     key={index}
@@ -146,7 +143,6 @@ const ProductDetail = () => {
                 src={product.imageUrls[0]}
                 alt={product.name}
                 className="w-full object-cover rounded-lg "
-
               />
             )}
           </div>
@@ -197,12 +193,14 @@ const ProductDetail = () => {
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {/* {rentBenefits.map((benefit, index) => ( */}
-                         {product?.productFor?.rent?.benefits?.map((benefit, index) => (
-                        <div key={index} className="flex items-start">
-                          <FaCheckCircle className="flex-shrink-0 h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                          <p className="text-gray-700">{benefit}</p>
-                        </div>
-                      ))}
+                      {product?.productFor?.rent?.benefits?.map(
+                        (benefit, index) => (
+                          <div key={index} className="flex items-start">
+                            <FaCheckCircle className="flex-shrink-0 h-5 w-5 text-green-500 mt-0.5 mr-2" />
+                            <p className="text-gray-700">{benefit}</p>
+                          </div>
+                        )
+                      )}
                     </div>
                   </div>
 
@@ -251,12 +249,14 @@ const ProductDetail = () => {
                       Benefits of Purchase
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {product?.productFor?.sell?.benefits?.map((benefit, index) => (
-                        <div key={index} className="flex items-start">
-                          <FaCheckCircle className="flex-shrink-0 h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                          <p className="text-gray-700">{benefit}</p>
-                        </div>
-                      ))}
+                      {product?.productFor?.sell?.benefits?.map(
+                        (benefit, index) => (
+                          <div key={index} className="flex items-start">
+                            <FaCheckCircle className="flex-shrink-0 h-5 w-5 text-green-500 mt-0.5 mr-2" />
+                            <p className="text-gray-700">{benefit}</p>
+                          </div>
+                        )
+                      )}
                     </div>
                   </div>
 
@@ -300,9 +300,9 @@ const ProductDetail = () => {
 
               {activeTab === "service" && (
                 <div className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
                     {/* AMC Plans (with radio toggle) */}
-                    <div className="relative rounded-xl border p-6 border-gray-200 bg-white">
+                    <div className="relative rounded-xl border p-6 border-gray-200 bg-white flex flex-col">
                       <h3 className="text-xl font-bold text-blue-800 mb-3">
                         AMC
                       </h3>
@@ -332,7 +332,7 @@ const ProductDetail = () => {
                         </button>
                       </div>
 
-                      <ul className="space-y-2 mb-4">
+                      <ul className="space-y-2 mb-4 flex-grow">
                         {product?.productFor?.service?.[amcType]?.benefits?.map(
                           (benefit, idx) => (
                             <li key={idx} className="flex items-start text-sm">
@@ -353,7 +353,7 @@ const ProductDetail = () => {
                         )}
                       </ul>
 
-                      <div className="mt-4 pt-4 border-t">
+                      <div className="mt-auto pt-4 border-t">
                         <p className="text-lg font-bold text-blue-800 mb-3">
                           AED {product?.productFor?.service?.[amcType]?.price}
                         </p>
@@ -367,12 +367,12 @@ const ProductDetail = () => {
                     </div>
 
                     {/* MMC Plan */}
-                    <div className="relative rounded-xl border p-6 border-gray-200 bg-white">
+                    <div className="relative rounded-xl border p-6 border-gray-200 bg-white flex flex-col">
                       <h3 className="text-xl font-bold text-blue-800 mb-3">
                         MMC
                       </h3>
 
-                      <ul className="space-y-2 mb-4">
+                      <ul className="space-y-2 mb-4 flex-grow">
                         {product?.productFor?.service?.mmc?.benefits?.map(
                           (benefit, idx) => (
                             <li key={idx} className="flex items-start text-sm">
@@ -393,7 +393,7 @@ const ProductDetail = () => {
                         )}
                       </ul>
 
-                      <div className="mt-4 pt-4 border-t">
+                      <div className="mt-auto pt-4 border-t">
                         <p className="text-lg font-bold text-blue-800 mb-3">
                           AED {product?.productFor?.service?.mmc?.price}
                         </p>
@@ -407,12 +407,12 @@ const ProductDetail = () => {
                     </div>
 
                     {/* One-Time Service */}
-                    <div className="relative rounded-xl border p-6 border-gray-200 bg-white">
+                    <div className="relative rounded-xl border p-6 border-gray-200 bg-white flex flex-col">
                       <h3 className="text-xl font-bold text-blue-800 mb-3">
                         One-Time Service
                       </h3>
 
-                      <ul className="space-y-2 mb-4">
+                      <ul className="space-y-2 mb-4 flex-grow">
                         {product?.productFor?.service?.ots?.benefits?.map(
                           (benefit, idx) => (
                             <li key={idx} className="flex items-start text-sm">
@@ -433,7 +433,7 @@ const ProductDetail = () => {
                         )}
                       </ul>
 
-                      <div className="mt-4 pt-4 border-t">
+                      <div className="mt-auto pt-4 border-t">
                         <p className="text-lg font-bold text-blue-800 mb-3">
                           AED {product?.productFor?.service?.ots?.price}
                         </p>
@@ -482,7 +482,7 @@ const ProductDetail = () => {
                 Product Description
               </h3>
               <div className="prose prose-sm max-w-none text-gray-600">
-                {product.longDescription.split("\n").map((paragraph, i) => (
+                {product.longDescription.split("\n")?.map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
                 ))}
               </div>
@@ -500,7 +500,11 @@ const ProductDetail = () => {
                   className="flex justify-start items-center gap-10 py-2"
                 >
                   <span className="text-gray-500">{spec.name}:</span>
-                  <span className={`font-medium text-gray-500  ${spec.value?"px-2 py-1 bg-blue-50 rounded-md":""} `}>
+                  <span
+                    className={`font-medium text-gray-500  ${
+                      spec.value ? "px-2 py-1 bg-blue-50 rounded-md" : ""
+                    } `}
+                  >
                     {spec.value}
                   </span>
                 </div>
