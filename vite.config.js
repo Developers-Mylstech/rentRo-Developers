@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: 'https://demo.rentro.ae/api/v1',
+          target: 'http://demo.rentro.ae:8082/',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },
