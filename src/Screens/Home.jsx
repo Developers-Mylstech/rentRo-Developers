@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import Clients from "./Clients";
 import Services from "./Services";
 import ProductsSection from "./ProductsSection";
@@ -13,17 +12,13 @@ import WaterLogic from "../assets/OurBrand/WaterLogic.png";
 import Marquee from "react-fast-marquee";
 import { useRef } from "react";
 import OurBrand from "../Components/widget/OurBrand.jsx";
-// import roLogo1 from "../assets/roLogo1.png";
-// import roLogo2 from "../assets/roLogo2.png";
-// import roLogo3 from "../assets/roLogo3.png";
-// import roLogo4 from "../assets/roLogo4.png";
 import BannerCarousel from "../Components/widget/BannerCarousel.jsx";
 import mobileBanner from "../assets/mobileBanner.jpg";
 
 
 
 const Home = () => {
-  const navigate = useNavigate();
+
 
   const ourBrandSection = useRef(null);
   const scrollToClient = (elementRef) => {
@@ -131,9 +126,7 @@ const Home = () => {
         <OurBrand />
       </section>
 
-      {/* Bottom Navigation Tabs - Mobile Only */}
-      {/* <BottomNav /> */}
-      {/* <ScrollToTopButton /> */}
+      
     </>
   );
 };
