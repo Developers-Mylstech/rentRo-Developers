@@ -159,6 +159,7 @@ const ProductDetail = () => {
                     {product?.brand?.name}
                   </span>
                 </p>
+                <p className="text-gray-500 mt-1 text-xs font-semibold">MODEL-XYZ-9K</p>
               </div>
               <div className="flex items-center">
                 {/* {renderStars(product.rating)} */}
