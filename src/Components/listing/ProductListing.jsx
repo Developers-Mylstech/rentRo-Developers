@@ -18,7 +18,7 @@ console.log(products,'pppoo')
           products?.map((product, index) => (
             <div
               key={index}
-              
+              onClick={() => handleProductClick(product)}
               className="bg-white mx-10 md:mx-0 rounded-lg shadow-lg overflow-hidden transform transition-transform duration-200 hover:scale-105 relative"
             >
              <div className="flex justify-center items-center mt-4">
@@ -33,21 +33,10 @@ console.log(products,'pppoo')
                 <h3 className="text-lg font-medium text-gray-900">
                   {product?.name}
                 </h3>
-                {/* <div className="flex  ">
-                  {[...Array(product.rating)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-5 h-5 text-yellow-400 fill-current"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M10 15l-5.878 3.09 1.176-6.545L.205 9.553l6.57-1.012L10 2l2.225 6.541 6.57 1.012-4.703 3.09 1.176 6.545z" />
-                    </svg>
-                  ))}
-                </div> */}
+                
                 </div>
                 <p className="text-gray-700 w-64 text-sm">{product?.description}</p>
-                <p onClick={() => handleProductClick(product)} className="text-gray-700 bg-green-100 my-2 p-2 rounded-lg text-center">View Product</p>
+                <p className="text-gray-700 bg-green-100 my-2 p-2 rounded-lg text-center">View Product</p>
               </div>
             </div>
           ))

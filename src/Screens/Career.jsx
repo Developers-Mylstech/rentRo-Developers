@@ -1,81 +1,30 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { FaBriefcase, FaMapMarkerAlt, FaMoneyBillWave, FaUsers, FaArrowRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-
-const jobs = [
-  {
-    id: 1,
-    title: "Graphic Designer (Urgent Need)",
-    description: "We're looking for a creative Graphic Designer with strong visual design skills and experience in Adobe Creative Suite.We're looking for a creative Graphic Designer with strong visual design skills and experience in Adobe Creative Suite.",
-    salary: "Not Disclosed",
-    location: "Bhopal, India",
-    openings: 1,
-    type: "Full-time",
-    experience: "2+ years",
-    icon: <FaBriefcase className="text-blue-500" />
-  },
-  {
-    id: 2,
-    title: "Backend Engineer",
-    description: "Design and implement scalable APIs and microservices using Node.js and Python for our growing platform.We're looking for a creative Graphic Designer with strong visual design skills and experience in Adobe Creative Suite.We're looking for a creative Graphic Designer with strong visual design skills and experience in Adobe Creative Suite.",
-    salary: "Not Disclosed",
-    location: "Remote",
-    openings: 2,
-    type: "Full-time",
-    experience: "3+ years",
-    icon: <FaBriefcase className="text-green-500" />
-  },
-  {
-    id: 3,
-    title: "UX Designer",
-    description: "Create intuitive user experiences and interfaces. Portfolio demonstrating user-centered design required.We're looking for a creative Graphic Designer with strong visual design skills and experience in Adobe Creative Suite.We're looking for a creative Graphic Designer with strong visual design skills and experience in Adobe Creative Suite.",
-    salary: "Not Disclosed",
-    location: "Remote",
-    openings: 1,
-    type: "Contract",
-    experience: "4+ years",
-    icon: <FaBriefcase className="text-purple-500" />
-  },
-  {
-    id: 4,
-    title: "DevOps Specialist",
-    description: "Implement CI/CD pipelines and manage cloud infrastructure on AWS with Kubernetes and Terraform.We're looking for a creative Graphic Designer with strong visual design skills and experience in Adobe Creative Suite.We're looking for a creative Graphic Designer with strong visual design skills and experience in Adobe Creative Suite.",
-    salary: "$110,000 - $150,000",
-    location: "Chicago, IL (On-site)",
-    openings: 2,
-    type: "Full-time",
-    experience: "5+ years",
-    icon: <FaBriefcase className="text-red-500" />
-  },
-  {
-    id: 5,
-    title: "Data Scientist",
-    description: "Build machine learning models and derive insights from complex datasets to drive business decisions.We're looking for a creative Graphic Designer with strong visual design skills and experience in Adobe Creative Suite.We're looking for a creative Graphic Designer with strong visual design skills and experience in Adobe Creative Suite.",
-    salary: "Not Disclosed",
-    location: "Hybrid (Boston, MA)",
-    openings: 1,
-    type: "Full-time",
-    experience: "3+ years",
-    icon: <FaBriefcase className="text-yellow-500" />
-  },
-];
+import useJobStore from '../Context/JobContext';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 function Career() {
   const navigate = useNavigate();
-  const [data, setData] = useState()
+  const { fetchJobs, jobs, loading , getJobById } = useJobStore();
 
-  const fetch = async () => {
-    try {
-      const res = await axios.get('api/api/v1/job-posts')
-      setData(res?.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
   useEffect(() => {
-    fetch()
-  }, [])
+    fetchJobs();
+  }, []);
+
+  const renderSkeleton = () => (
+    Array.from({ length: 3 }).map((_, i) => (
+      <div key={i} className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 p-6">
+        <Skeleton height={24} width="60%" className="mb-4" />
+        <Skeleton count={4} />
+        <div className="mt-4 flex justify-end">
+          <Skeleton width={100} height={36} />
+        </div>
+      </div>
+    ))
+  );
+
   return (
     <section className='max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8'>
       <div className="text-center mb-16">
@@ -85,8 +34,8 @@ function Career() {
         </p>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-1">
-        {data?.map((job) => (
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+        {loading ? renderSkeleton() : jobs?.map((job) => (
           <div key={job.id} className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300">
             <div className="p-6 sm:p-8">
               <div className="flex flex-col sm:flex-row">
@@ -100,22 +49,22 @@ function Career() {
                   <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
                     <div>
                       <h2 className="text-2xl font-bold text-gray-900 mb-2">{job.jobTitle}</h2>
-                      <div className="mt-4  grid grid-cols-2 gap-4">
+                      <div className="mt-4 grid grid-cols-2 gap-4">
                         <div className="flex items-center text-gray-700">
                           <FaMapMarkerAlt className="mr-2 text-gray-500 flex-shrink-0" />
-                          <span>Dubai</span>
+                          <span>{job.location || "Dubai"}</span>
                         </div>
                         <div className="flex items-center text-gray-700">
                           <FaMoneyBillWave className="mr-2 text-gray-500 flex-shrink-0" />
-                          <span>Not Disclosed</span>
+                          <span>{job.salary || "Not Disclosed"}</span>
                         </div>
                         <div className="flex items-center text-gray-700">
                           <FaUsers className="mr-2 text-gray-500 flex-shrink-0" />
-                          <span>3 opening{job.openings > 1 ? 's' : ''}</span>
+                          <span>{job.openings} opening{job.openings > 1 ? 's' : ''}</span>
                         </div>
                         <div className="flex items-center text-gray-700">
                           <span className="mr-2 text-gray-500 font-medium">Exp:</span>
-                          <span>2+ year</span>
+                          <span>{job.experience || "2+ year"}</span>
                         </div>
                       </div>
                     </div>
@@ -126,7 +75,7 @@ function Career() {
 
               <div className="mt-6 flex justify-end">
                 <button
-                  onClick={() => navigate(`/career/${job?.jobTitle}`,)}
+                  onClick={() => navigate(`/career/${job?.jobPostId}`)}
                   className="flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg hover:from-blue-700 hover:to-cyan-600 transition-all duration-300 shadow-sm hover:shadow-md"
                 >
                   Apply Now

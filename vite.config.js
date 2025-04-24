@@ -13,11 +13,11 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: 'http://demo.rentro.ae:8082/',
+          target: "https://proud-expression-production-6ebc.up.railway.app/api/v1",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },
       }
     }
   }
-});
+})
