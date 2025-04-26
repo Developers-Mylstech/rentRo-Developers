@@ -1,96 +1,12 @@
-// import React from 'react';
-// import { useLocation, useParams } from 'react-router-dom';
-// import OceanScene from "../Components/widget/OceanScene";
-
-// const ServiceDetails = () => {
-//   const { id } = useParams();
-//   const { state } = useLocation();
-//   const service = state?.service;
-
-//   if (!service) {
-//     return (
-//       <div className="min-h-screen flex items-center justify-center">
-//         <div className="text-2xl text-gray-600">Service not found</div>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <>
-//       <OceanScene />
-//       <div className="container mx-auto px-4 py-12">
-//         <div className="max-w-4xl mx-auto">
-//           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-//             {/* Image Carousel */}
-//             <div className="relative h-96">
-//               {service.imageUrl.map((url, index) => (
-//                 <img 
-//                   key={index}
-//                   src={url} 
-//                   alt={`${service.title} - Image ${index + 1}`}
-//                   className="w-full h-full object-cover absolute top-0 left-0"
-//                   style={{ display: index === 0 ? 'block' : 'none' }}
-//                 />
-//               ))}
-//             </div>
-
-//             <div className="p-8">
-//               {/* Title and Description */}
-//               <h1 className="text-3xl font-bold text-blue-900 mb-4">
-//                 {service.title}
-//               </h1>
-              
-//               <div className="prose max-w-none mb-8">
-//                 <h2 className="text-2xl font-semibold text-blue-800 mb-3">
-//                   {service.detailedHeading}
-//                 </h2>
-//                 <div className="text-gray-700">
-//                   {service.detailedDescription}
-//                 </div>
-//               </div>
-
-//               {/* Features */}
-//               {service.features && service.features.length > 0 && (
-//                 <div className="mt-8">
-//                   <h2 className="text-2xl font-semibold text-blue-800 mb-6">
-//                     Key Features
-//                   </h2>
-//                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-//                     {service.features.map((feature) => (
-//                       <div 
-//                         key={feature.featureId} 
-//                         className="bg-gray-50 p-4 rounded-lg"
-//                       >
-//                         <h3 className="text-lg font-semibold text-blue-700 mb-2">
-//                           {feature.title}
-//                         </h3>
-//                         <p className="text-gray-600">
-//                           {feature.description}
-//                         </p>
-//                       </div>
-//                     ))}
-//                   </div>
-//                 </div>
-//               )}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default ServiceDetails;
-
-
-
-
 import React from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import useServiceStore from '../Context/ServiceContext';
 
 const ServiceDetails = () => {
   const { id } = useParams();
   const { state } = useLocation();
+  const navigate = useNavigate();
+  const { loading, error } = useServiceStore();
   const service = state?.service;
 
   const stripHtmlTags = (html) => {
@@ -99,10 +15,94 @@ const ServiceDetails = () => {
     return tmp.textContent || tmp.innerText || "";
   };
 
+  const ServiceDetailsSkeleton = () => (
+    <div className="animate-pulse bg-blue-50">
+      <div className="h-96 bg-gray-200 relative">
+        <div className="absolute inset-0 flex items-center justify-between px-10">
+          <div className="w-1/2">
+            <div className="h-12 bg-gray-300 rounded-lg mb-4"></div>
+            <div className="h-6 bg-gray-300 rounded w-3/4"></div>
+          </div>
+          <div className="w-1/3 h-60 bg-gray-300 rounded-lg"></div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="mb-16">
+          <div className="h-10 bg-gray-200 w-1/3 mx-auto mb-8 rounded"></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3,4,5].map((i) => (
+              <div key={i} className="h-64 bg-gray-200 rounded-xl"></div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl p-8">
+          <div className="h-8 bg-gray-200 w-1/4 mb-6 rounded"></div>
+          <div className="space-y-4">
+            <div className="h-4 bg-gray-200 rounded w-full"></div>
+            <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+            <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (loading) {
+    return <ServiceDetailsSkeleton />;
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-blue-50">
+        <div className="text-center p-8">
+          <h2 className="text-2xl font-bold text-red-600 mb-4">Error Loading Service</h2>
+          <p className="text-gray-600">{error}</p>
+          <button 
+            onClick={() => navigate(-1)} 
+            className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (!service) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-blue-50">
-        <div className="text-2xl text-blue-800">Service not found</div>
+        <div className="text-center p-8">
+          <h2 className="text-2xl font-bold text-blue-800 mb-4">Service not found</h2>
+          <button
+            onClick={() => navigate(-1)}
+            className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Validate required service properties
+  const hasValidImages = Array.isArray(service.imageUrl) && service.imageUrl.length > 0;
+  const hasValidTitle = typeof service.title === 'string' && service.title.length > 0;
+  const hasValidDescription = typeof service.detailedDescription === 'string';
+
+  if (!hasValidTitle || !hasValidDescription) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-blue-50">
+        <div className="text-center p-8">
+          <h2 className="text-2xl font-bold text-red-600 mb-4">Invalid Service Data</h2>
+          <button 
+            onClick={() => navigate(-1)} 
+            className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Go Back
+          </button>
+        </div>
       </div>
     );
   }
@@ -218,3 +218,4 @@ const ServiceDetails = () => {
 };
 
 export default ServiceDetails;
+
