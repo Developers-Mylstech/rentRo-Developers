@@ -133,7 +133,7 @@ const ProductDetail = () => {
                   <img
                     key={index}
                     src={url}
-                    alt={`${product.name} - ${index + 1}`}
+                    alt={`${product?.name} - ${index + 1}`}
                     className="w-full object-cover rounded-lg  "
                   />
                 ))}
@@ -141,7 +141,7 @@ const ProductDetail = () => {
             ) : (
               <img
                 src={product.imageUrls[0]}
-                alt={product.name}
+                alt={product?.name}
                 className="w-full object-cover rounded-lg "
               />
             )}
@@ -154,12 +154,12 @@ const ProductDetail = () => {
                   {product?.name}
                 </h1>
                 <p className="text-gray-500 mt-1">
-                  {product.category.name} |{" "}
+                  {product?.category?.name} |{" "}
                   <span className="font-medium text-blue-600">
                     {product?.brand?.name}
                   </span>
                 </p>
-                <p className="text-gray-500 mt-1 text-xs font-semibold">MODEL-XYZ-9K</p>
+                <p className="text-gray-500 mt-1 text-xs font-bold px-5 py-1 mt-2 rounded-lg bg-gray-100 uppercase ">{product?.modelNo}</p>
               </div>
               <div className="flex items-center">
                 {/* {renderStars(product.rating)} */}
