@@ -16,6 +16,9 @@ import IMG6 from "../assets/Services/IMG6.png";
 import IMG7 from "../assets/Services/IMG7.png";
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
+import useServiceStore from "../Context/ServiceContext";
+import { useNavigate } from "react-router-dom";
+
 const Services = () => {
   const swiperRef = useRef(null);
   const [openDailog, setOpenDailog] = useState(false)
@@ -23,53 +26,24 @@ const Services = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
-  const services = [
-    {
-      title: "Comprehensive Water Solutions",
-      description:
-        "Seamless Monthly Water Filter Rentals and Expert Maintenance Services for Pure, Hassle-free Hydration",
-      Image: IMG1,
-    },
-    {
-      title: "Domestic Water Filters",
-      description:
-        "Our Domestic Water Filters Ensure Clean, Clear, and Safe Water for Your Daily Needs. Experience the Purity Within Every Drop.",
-      Image: IMG2,
-    },
-    {
-      title: "Commercial Water Filters",
-      description:
-        "Reliable Commercial Water Filters for Purity and Refreshment in Every Drop. Optimize Your Workplace Hydration with Confidence.",
-      Image: IMG3,
-    },
-    {
-      title: "Industrial Water Filters",
-      description:
-        "Unmatched Efficiency Ensures Pure and Clean Water. Elevate Your Industrial Hydration Standards for Uninterrupted Quality and Reliability.",
-      Image: IMG7,
-    },
-    {
-      title: "RO Services",
-      description:
-        "Ensuring Optimal Performance and Purity. Trust us for Reliable Maintenance, Extending the Lifespan of Your RO System.",
-      Image: IMG4,
-    },
-    {
-      title: "Water Coolers And Dispensers",
-      description:
-        "Stay refreshed effortlessly with our Water Coolers and Dispensers stylish, convenient, and always ready to provide instant, crisp hydration.",
-      Image: IMG5,
-    },
-    {
-      title: "Chillers And Tanks",
-      description:
-        "Experience optimal cooling with our Chillers and Tanks efficient, reliable, and tailored to ensure your beverages stay refreshingly cool every time.",
-      Image: IMG6,
-    },
-  ];
+  const navigate = useNavigate();
 
-  const toggleDescription = (index) => {
-    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+  const { services, loading, error, fetchServices } = useServiceStore();
+
+  useEffect(() => {
+    fetchServices();
+  }, [fetchServices]);
+
+  // Add this helper function to strip HTML tags
+  const stripHtmlTags = (html) => {
+    const tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+  };
+
+  // Add this navigation handler
+  const handleServiceClick = (service) => {
+    navigate(`/service/${service.title}`, { state: { service } });
   };
 
   const handleNext = () => {
@@ -97,113 +71,105 @@ const Services = () => {
     };
   }, []);
 
-  return (
-    <>
-      {location.pathname === "/services" ? <OceanScene /> : ""}
-      <section className="bg-gray-100 py-12">
-        <div className="container mx-auto px-4">
-          {location.pathname === "/" && (
-            <h2 className="text-3xl text-blue-800 md:text-4xl font-bold text-center mb-4">
-              Our Services
+ return (
+  <>
+    {location.pathname === "/services" && <OceanScene />}
+    
+    <section className="bg-gradient-to-b from-blue-50 to-white py-16 px-4">
+      <div className="mx-auto max-w-7xl">
+        {location.pathname === "/" && (
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-blue-900 mb-3">
+              Our Premium Services
             </h2>
-          )}
-          <div className="flex justify-between md:justify-end items-center my-4 font-semibold gap-4 text-sm">
-            Didn't find your product?            <button onClick={() => setOpenDailog(true)} className="bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-2 rounded-lg text-white">Request Qoutation</button>
+            <div className="w-24 h-1 bg-blue-500 mx-auto mb-6"></div>
+            <p className="text-lg text-blue-700 max-w-3xl mx-auto">
+              Comprehensive water solutions with seamless rentals and expert maintenance
+            </p>
           </div>
-          {/* <h4 className="text-center md:text-xl text-gray-500 mb-8">
-            Comprehensive Water Solutions, Seamless Monthly Water Filter Rentals
-            and Expert Maintenance Services for Pure, Hassle-free Hydration
-          </h4> */}
+        )}
 
-          <div className="relative w-full  ">
-            <Swiper
-              ref={swiperRef}
-              modules={[Navigation, Autoplay]}
-              spaceBetween={20}
-              centeredSlides={true}
-              loop={true}
-              breakpoints={{
-                640: { slidesPerView: 1 },
-                768: { slidesPerView: 1.5 },
-                1024: { slidesPerView: 2.5 },
-                1280: { slidesPerView: 3.5 },
-              }}
-              navigation={false}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              className="w-full"
-            >
-              {services.map((service, index) => (
-                <SwiperSlide
-                  key={index}
-                  onClick={() => toggleDescription(index)}
-                >
-                  <div className="border py-5 rounded-xl relative group overflow-hidden bg-white transition-all duration-300">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+          <p className="text-blue-800 font-medium">
+            Didn't find what you're looking for?
+          </p>
+          <button 
+            onClick={() => setOpenDailog(true)} 
+            className="bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-3 rounded-lg text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+          >
+            Request Quotation
+          </button>
+        </div>
+
+        <div className="relative w-full">
+          <Swiper
+            ref={swiperRef}
+            modules={[Navigation, Autoplay]}
+            spaceBetween={30}
+            centeredSlides={true}
+            loop={true}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 1.5 },
+              1024: { slidesPerView: 2.5 },
+              1280: { slidesPerView: 3.5 },
+            }}
+            navigation={false}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            className="services-swiper"
+          >
+            {services.map((service, index) => (
+              <SwiperSlide key={index} onClick={() => handleServiceClick(service)}>
+                <div className="group relative h-full rounded-2xl overflow-hidden shadow-lg transition-all duration-500 hover:shadow-xl">
+                  <div className="relative h-80 overflow-hidden">
                     <img
-                      className="h-80 w-full object-contain rounded-md transition-transform duration-300 ease-in-out group-hover:scale-90"
-                      src={service.Image}
+                      className="w-auto h-[90%] object-cover transition-transform duration-700 group-hover:scale-110 mx-auto"
+                      src={service.imageUrl}
                       alt={service.title}
                     />
-                    <div
-                      className={`absolute inset-x-0 bottom-0 bg-blue-500/50 flex justify-center items-center flex-col text-white h-full text-center px-6 py-6 transition-all duration-500 ease-in-out ${isMobile
-                        ? activeIndex === index
-                          ? "translate-y-0 opacity-100"
-                          : "translate-y-full opacity-0"
-                        : "translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
-                        }`}
-                    >
-                      <h3 className="text-lg font-semibold">{service.title}</h3>
-                      <p className="mt-2 text-sm">{service.description}</p>
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 via-blue-900/10 to-transparent flex flex-col justify-end p-6">
+                      <h3 className="text-xl font-bold text-white mb-2 transition-transform duration-300 group-hover:-translate-y-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-blue-100 text-sm opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-20 transition-all duration-500">
+                        {stripHtmlTags(service.shortDescription)}
+                      </p>
                     </div>
-                    <h3
-                      className={`relative bottom-4 left-1/2 transform -translate-x-1/2 text-blue-950 text-center text-lg font-semibold transition-opacity duration-300 ease-in-out ${isMobile
-                        ? activeIndex === index
-                          ? "opacity-0"
-                          : "opacity-100"
-                        : "opacity-100 group-hover:opacity-0"
-                        }`}
-                    >
-                      {service.title}
-                    </h3>
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-500 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-            {isDesktop && (
-              <>
-                <button
-                  className="hidden border-2 border-white custom-next liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 right-2 z-40 transform -translate-y-1/2"
-                  onClick={handleNext}
-                >
-                  <span className="relative text-xl font-semibold z-10">
-                    <GrNext />
-                  </span>
-                  <div className="liquid"></div>
-                </button>
+          {isDesktop && (
+            <>
+              <button
+                className="hidden md:flex items-center justify-center absolute top-1/2 -left-16 z-40 transform -translate-y-1/2 bg-white w-14 h-14 rounded-full shadow-xl hover:bg-blue-50 transition-colors duration-300"
+                onClick={handlePrev}
+              >
+                <GrPrevious className="text-blue-600 text-xl" />
+              </button>
 
-                <button
-                  className="hidden border-2 border-white custom-prev liquid-button w-16 h-16 md:flex items-center justify-center shadow-sm transition-transform text-xs absolute top-1/2 left-2 z-40 transform -translate-y-1/2"
-                  onClick={handlePrev}
-                >
-                  <span className="relative text-xl font-semibold z-10">
-                    <GrPrevious />
-                  </span>
-                  <div className="liquid"></div>
-                </button>
-              </>
-            )}
-          </div>
+              <button
+                className="hidden md:flex items-center justify-center absolute top-1/2 -right-16 z-40 transform -translate-y-1/2 bg-white w-14 h-14 rounded-full shadow-xl hover:bg-blue-50 transition-colors duration-300"
+                onClick={handleNext}
+              >
+                <GrNext className="text-blue-600 text-xl" />
+              </button>
+            </>
+          )}
         </div>
-      </section>
-      {
-        openDailog && (<section><RequestQuotationBox setOpenDailog={setOpenDailog} /></section>)
-      }
+      </div>
+    </section>
 
-
-      {/* {location.pathname === "/services" && <BottomNav />} */}
-      {/* <ScrollToTopButton /> */}
-    </>
-  );
+    {openDailog && (
+      <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <RequestQuotationBox setOpenDailog={setOpenDailog} />
+      </div>
+    )}
+  </>
+);
 };
 
 export default Services;

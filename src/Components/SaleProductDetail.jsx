@@ -159,7 +159,12 @@ const ProductDetail = () => {
                     {product?.brand?.name}
                   </span>
                 </p>
-                <p className="text-gray-500 mt-1 text-xs font-bold px-5 py-1 mt-2 rounded-lg bg-gray-100 uppercase ">{product?.modelNo}</p>
+                <div className="flex gap-1 items-center"><p className="text-gray-500 mt-1 text-xs font-bold px-2 py-1  rounded-lg bg-gray-100 uppercase ">{product?.modelNo}</p><p className="border-l-2 border-gray-300 flex flex-wrap " >{product?.tagNKeywords.map((tag) => (
+                  <span key={tag} className="mx-1 px-1 py-1 text-xs text-white rounded-md font-semibold bg-blue-500 ">
+                    #{tag}
+                  </span>
+                ))}
+              </p></div>
               </div>
               <div className="flex items-center">
                 {/* {renderStars(product.rating)} */}
@@ -169,19 +174,36 @@ const ProductDetail = () => {
             {/* Tabs Navigation */}
             <div className="border-b border-gray-200">
               <nav className="">
-                {["rent", "sell", "service"].map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={`whitespace-nowrap py-4 w-1/3 px-1 border-b font-medium text-sm ${
-                      activeTab === tab
-                        ? "border-blue-500 text-blue-600"
-                        : "border-b text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                    }`}
-                  >
-                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                  </button>
-                ))}
+                {["rent", "sell", "service"].map((tab) => {
+                  const isDisabled = (
+                    (tab === "rent" && !product?.productFor?.rent?.discountPrice) ||
+                    (tab === "sell" && !product?.productFor?.sell?.discountPrice) ||
+                    (tab === "service" && !(
+                      product?.productFor?.service?.amcBasic?.price ||
+                      product?.productFor?.service?.amcGold?.price ||
+                      product?.productFor?.service?.mmc?.price ||
+                      product?.productFor?.service?.ots?.price
+                    ))
+                  );
+
+                  return (
+                    <button
+                      key={tab}
+                      onClick={() => !isDisabled && setActiveTab(tab)}
+                      disabled={isDisabled}
+                      className={`whitespace-nowrap py-4 w-1/3 px-1 border-b font-medium text-sm ${
+                        activeTab === tab
+                          ? "border-blue-500 text-blue-600"
+                          : isDisabled
+                          ? "border-b text-gray-300 cursor-not-allowed"
+                          : "border-b text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                      }`}
+                    >
+                      {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                      {isDisabled && " (Not Available)"}
+                    </button>
+                  );
+                })}
               </nav>
             </div>
 
