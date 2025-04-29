@@ -29,8 +29,10 @@ const useProductStore = create((set) => ({
   fetchProducts: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.get('https://proud-expression-production-6ebc.up.railway.app/api/v1/products' , {
-        headers: {"skip_zrok_interstitial":"true"}
+      const response = await axiosInstance.get('/products' , {
+        headers: {
+          'skip_zrok_interstitial': 'true'
+        },
       });
 
       set({ products: response?.data, loading: false });
