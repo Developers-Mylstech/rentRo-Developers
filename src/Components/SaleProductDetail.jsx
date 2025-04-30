@@ -168,7 +168,7 @@ const ProductDetail = () => {
                     {product?.brand?.name}
                   </span>
                 </p>
-                <div className="flex gap-1 items-center"><p className="text-gray-500 mt-1 text-xs font-bold px-2 py-1  rounded-lg bg-gray-100 uppercase ">{product?.modelNo}</p><p className="border-l-2 border-gray-300 flex flex-wrap " >{product?.tagNKeywords.map((tag) => (
+                <div className="flex gap-1 items-center flex-wrap"><p className="text-gray-500 mt-1 text-xs font-bold px-2 py-1  rounded-lg bg-gray-100 uppercase ">{product?.modelNo}</p><p className="border-l-2 border-gray-300 flex " >{product?.tagNKeywords.map((tag) => (
                   <span key={tag} className="mx-1 px-1 py-1 text-xs text-white rounded-md font-semibold bg-blue-500 ">
                     #{tag}
                   </span>
