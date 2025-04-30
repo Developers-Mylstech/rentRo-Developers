@@ -295,7 +295,7 @@ const Header = () => {
 
           <nav className="flex justify-center items-center gap-4 lg:gap-5">
             <ul className="flex space-x-4 lg:space-x-6">
-              {["rent", "sale", "services", 'career'].map((item) => (
+              {["rent", "sell", "services", 'career'].map((item) => (
                 <li key={item} className="relative flex items-center justify-center cursor-pointer transition-all duration-300">
                   <Link
                     to={`/${item}`}
@@ -385,7 +385,7 @@ const Header = () => {
                 </div>
                 
                 {showUserMenu && (
-                  <div className="absolute right-0 mt-10 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
+                  <div className="absolute  top-2 right-0 mt-10 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
                     <div className="px-4 py-2 text-xs text-gray-500 border-b">
                       Signed in as <span className="font-semibold">{user?.email}</span>
                     </div>

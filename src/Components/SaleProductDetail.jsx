@@ -121,20 +121,29 @@ const ProductDetail = () => {
     "Compact and space-saving design",
     "Easy one-click filter replacement",
   ];
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const responsiveOptions = [
+    {
+      breakpoint: '1024px',
+      numVisible: 1,
+      numScroll: 1,
+    }
+  ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="bg-white rounded-xl shadow-sm overflow-hidden mt-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6">
-          <div className="md:col-span-1 flex items-center justify-center rounded-lg p-4 ">
+          <div className="md:col-span-1  flex items-center justify-center rounded-lg p-4  ">
             {product.imageUrls.length > 1 ? (
-              <Carousel>
+              <Carousel className="  mx-4 ">
                 {product.imageUrls.map((url, index) => (
                   <img
                     key={index}
                     src={url}
                     alt={`${product?.name} - ${index + 1}`}
-                    className="w-full object-cover rounded-lg  "
+                    className="w-[70%]  mx-auto object-cover rounded-lg  "
                   />
                 ))}
               </Carousel>
@@ -142,7 +151,7 @@ const ProductDetail = () => {
               <img
                 src={product.imageUrls[0]}
                 alt={product?.name}
-                className="w-full object-cover rounded-lg "
+                className="  object-cover rounded-lg mx-auto md:h-[50vh] h-auto w-[70%]  "
               />
             )}
           </div>
@@ -478,7 +487,7 @@ const ProductDetail = () => {
 
       <div className="mt-12 bg-white rounded-xl shadow-sm text-sm overflow-hidden">
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">
+          <h2 className="text-2xl font-bold text-center text-blue-700 mb-8">
             Premium Features
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -497,11 +506,34 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      <div className="mt-8 bg-white rounded-xl shadow-sm overflow-hidden">
-        <div className="p-6 space-y-8">
+      <div className=" bg-white rounded-xl shadow-sm overflow-hidden ">
+        <div className="p-6  grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className=" w-full">
+            <h3 className="text-xl md:text-2xl font-bold text-blue-700 mb-4 ">
+              Specifications
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3  ">
+              {product?.specifications?.map((spec, index) => (
+                <div
+                  key={index}
+                  className="flex justify-between items-start py-1 px-2  w-full border-b "
+                >
+                  <span className="text-gray-500">{spec.name}:</span>
+                  <span
+                    className={`font-medium text-gray-500  ${
+                      spec.value ? " rounded-md" : ""
+                    } `}
+                  >
+                    {spec.value}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {product?.longDescription && (
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              <h3 className="text-xl md:text-2xl  font-bold text-blue-700 mb-4">
                 Product Description
               </h3>
               <div className="prose prose-sm max-w-none text-gray-600">
@@ -512,28 +544,7 @@ const ProductDetail = () => {
             </div>
           )}
 
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              Specifications
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-              {product?.specifications?.map((spec, index) => (
-                <div
-                  key={index}
-                  className="flex justify-start items-center gap-10 py-2"
-                >
-                  <span className="text-gray-500">{spec.name}:</span>
-                  <span
-                    className={`font-medium text-gray-500  ${
-                      spec.value ? "px-2 py-1 bg-blue-50 rounded-md" : ""
-                    } `}
-                  >
-                    {spec.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+         
         </div>
       </div>
     </div>

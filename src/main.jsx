@@ -35,6 +35,7 @@ import WaterFilterSubscriptionForm from "./Components/form/WaterFilterSubscripti
 import Career from "./Screens/Career.jsx";
 import CareerDetail from "./Screens/CareerDetail.jsx";
 import ServiceDetails from "./screens/ServiceDetails.jsx";
+import Profile from "./Screens/Profile.jsx";
 
 
 
@@ -48,6 +49,7 @@ const routes = createBrowserRouter(
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home/>} />
         <Route path="/services" element={<Services/>} />
+        <Route path="/profile" element={<Profile/>} />
         
         {/* <Route path="/clients" element={<Clients/>} /> */}
         <Route path="/sale" element={<Sale/>} />
