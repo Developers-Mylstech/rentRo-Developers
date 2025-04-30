@@ -13,7 +13,7 @@ const useServiceStore = create((set) => ({
   fetchServices: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.get('https://proud-expression-production-6ebc.up.railway.app/api/v1/our-services' )
+      const response = await axiosInstance.get('/our-services' )
 
       set({ services: response?.data, loading: false });
     } catch (error) {

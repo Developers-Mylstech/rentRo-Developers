@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Clients from "./Clients";
 import Services from "./Services";
@@ -13,12 +13,10 @@ import WaterLogic from "../assets/OurBrand/WaterLogic.png";
 import Marquee from "react-fast-marquee";
 import { useRef } from "react";
 import OurBrand from "../Components/widget/OurBrand.jsx";
-import roLogo1 from "../assets/roLogo1.png";
-import roLogo2 from "../assets/roLogo2.png";
-import roLogo3 from "../assets/roLogo3.png";
-import roLogo4 from "../assets/roLogo4.png";
 import BannerCarousel from "../Components/widget/BannerCarousel.jsx";
 import mobileBanner from "../assets/mobileBanner.jpg";
+import ProductList from "../Components/listing/ProductListing.jsx";
+import useProductStore from "../Context/ProductContext.js";
 
 
 
@@ -26,12 +24,21 @@ const Home = () => {
   const navigate = useNavigate();
 
   const ourBrandSection = useRef(null);
+
+  const  {products,fetchProducts} = useProductStore()
+
+  console.log(products,"new product")
+
   const scrollToClient = (elementRef) => {
     window.scrollTo({
       top: elementRef.current.offsetTop,
       behavior: "smooth",
     });
   };
+
+  useEffect(() => {
+    fetchProducts()
+  }, [])
 
   return (
     <>
@@ -58,7 +65,7 @@ const Home = () => {
               className="md:text-4xl  text-xl  font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-black 
               drop-shadow-lg transition duration-500 ease-in-out transform hover:scale-110 "
             >
-              RAMADAN OFFER
+              SEASON OFFER
 
             </h2>
          
@@ -121,6 +128,13 @@ const Home = () => {
       <section className="">
         <Services />
       </section>
+
+      <section className="bg-blue-50 w-full  p-10">
+        <h1 className="
+        text-center text-2xl md:text-4xl  font-bold my-4 md:my-10 text-blue-800">New Products</h1>
+        <ProductList products={products}  />
+      </section>
+
       <section className=" className=md:mt-16">
         <Clients />
       </section>

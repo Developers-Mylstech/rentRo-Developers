@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaBriefcase, FaMapMarkerAlt, FaMoneyBillWave, FaUsers, FaArrowRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../utils/axiosInstance';
 
 const jobs = [
   {
@@ -67,7 +68,7 @@ function Career() {
 
   const fetch = async () => {
     try {
-      const res = await axios.get('api/api/v1/job-posts')
+      const res = await axiosInstance.get('/job-posts')
       setData(res?.data)
     } catch (error) {
       console.log(error)

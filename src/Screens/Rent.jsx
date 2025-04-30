@@ -11,6 +11,8 @@ import WaterDispenser from "../assets/Rent/WaterDispenser.png";
 import Industrial from "../assets/Rent/Industrial.png";
 import useProductStore from "../Context/ProductContext";
 
+
+
 const products = [
   {
     id: 1,

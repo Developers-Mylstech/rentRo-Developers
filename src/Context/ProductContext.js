@@ -11,7 +11,7 @@ const useProductStore = create((set) => ({
   createProduct: async (productData) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.post('https://proud-expression-production-6ebc.up.railway.app/api/v1/products', productData);
+      const response = await axiosInstance.post('/products', productData);
       set((state) => ({
         products: [...state.products, response.data],
         loading: false
