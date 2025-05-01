@@ -64,7 +64,7 @@ export default function CareerDetail() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
           <div className="absolute bottom-0 left-0 p-6 text-white">
-            <h1 className="text-3xl font-bold">{job.title}</h1>
+            <h1 className="text-3xl font-bold">{job.jobTitle}</h1>
             <div className="flex flex-wrap gap-4 mt-2">
               <span className="flex items-center">
                 <FaMapMarkerAlt className="mr-2" /> {job.location}
@@ -87,7 +87,7 @@ export default function CareerDetail() {
           <div className="md:col-span-2 space-y-8">
             <div>
               <h2 className="text-2xl font-bold mb-4">Job Description</h2>
-              <p className="text-gray-700 leading-relaxed">{job.description}</p>
+              <p className="text-gray-700 leading-relaxed">{job.jobDescription}</p>
             </div>
 
             {/* Key Responsibilities Section */}
@@ -113,12 +113,7 @@ export default function CareerDetail() {
                 Requirements
               </h3>
               <ul className="space-y-3">
-                {job.requirements.map((item, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="flex-shrink-0 h-6 w-6 text-gray-600 mr-2">•</span>
-                    <span className="text-gray-700">{item}</span>
-                  </li>
-                ))}
+                {job?.requirements}
               </ul>
             </div>
 

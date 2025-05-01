@@ -1,23 +1,179 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import {
-  FaWater,
-  FaTools,
-  FaCogs,
-  FaShieldAlt,
-  FaTint,
-  FaCheckCircle,
-  FaSlidersH,
-  FaBolt,
-  FaCheck,
-  FaStar,
-  FaStarHalfAlt,
-  FaRegStar,
-} from "react-icons/fa";
-import "../index.css";
 
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // required CSS
-import { Carousel } from "react-responsive-carousel";
+import { 
+  FaChevronLeft, 
+  FaChevronRight, 
+  FaCheck, 
+  FaCheckCircle,
+  FaExpand,
+  FaCompress
+} from "react-icons/fa";
+
+const CustomCarousel = ({ 
+  images, 
+  height = "60vh", // Default height, can be overridden
+  autoPlay = false,
+  autoPlayInterval = 5000,
+  showThumbnails = true,
+  showDots = true,
+  showFullscreen = true
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Auto-play functionality with pause on hover
+  useEffect(() => {
+    let interval;
+    if (autoPlay && images.length > 1 && !isHovered && !isFullscreen) {
+      interval = setInterval(() => {
+        nextSlide();
+      }, autoPlayInterval);
+    }
+    return () => clearInterval(interval);
+  }, [currentIndex, autoPlay, autoPlayInterval, images.length, isHovered, isFullscreen]);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
+  const toggleFullscreen = () => {
+    if (!isFullscreen) {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen().catch(console.log);
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().catch(console.log);
+      }
+    }
+    setIsFullscreen(!isFullscreen);
+  };
+
+  // Handle fullscreen change
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  return (
+    <div 
+      className={`relative w-full ${isFullscreen ? 'fixed inset-0 z-50 bg-black' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Main Image Container */}
+      <div 
+        className={`relative overflow-hidden ${isFullscreen ? 'h-screen w-screen' : ''}`}
+        style={{ height: isFullscreen ? '100%' : height }}
+      >
+        {/* Slides */}
+        <div className="relative w-full h-full">
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-500 flex items-center justify-center ${
+                index === currentIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <img
+                src={image}
+                alt={`Slide ${index + 1}`}
+                className={`object-contain w-full h-full ${isFullscreen ? 'max-h-screen' : ''}`}
+              />
+            </div>
+          ))}
+        </div>
+        
+        {/* Navigation Arrows */}
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md z-10 transition-all duration-200 hover:scale-110"
+              aria-label="Previous slide"
+            >
+              <FaChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md z-10 transition-all duration-200 hover:scale-110"
+              aria-label="Next slide"
+            >
+              <FaChevronRight className="w-5 h-5" />
+            </button>
+          </>
+        )}
+
+   
+       
+        {/* Slide Counter */}
+        <div className="absolute bottom-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm z-10">
+          {currentIndex + 1} / {images.length}
+        </div>
+      </div>
+      
+      {/* Thumbnail Navigation */}
+      {showThumbnails && images.length > 1 && !isFullscreen && (
+        <div className="flex mt-4 space-x-2 overflow-x-auto py-2 px-1">
+          {images.map((image, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`flex-shrink-0 w-16 h-16 rounded-md overflow-hidden border-2 transition-all duration-200 ${
+                index === currentIndex 
+                  ? 'border-blue-500 scale-105' 
+                  : 'border-transparent hover:border-gray-300'
+              }`}
+            >
+              <img
+                src={image}
+                alt={`Thumbnail ${index + 1}`}
+                className="object-cover w-full h-full"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Dot Indicators */}
+      {showDots && images.length > 1 && !isFullscreen && (
+        <div className="flex justify-center mt-4 space-x-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                index === currentIndex 
+                  ? 'bg-blue-600 scale-125' 
+                  : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const ProductDetail = () => {
   const { name } = useParams();
@@ -46,115 +202,45 @@ const ProductDetail = () => {
     );
   }
 
-  // Data arrays
-  const rentBenefits = [
-    "No large upfront investment",
-    "Flexible rental periods",
-    "Free maintenance included",
-    "Easy upgrades to newer models",
-    "24/7 customer support",
-    "No repair costs",
-  ];
-
-  const purchaseBenefits = [
-    "Lifetime cost savings",
-    "Full ownership benefits",
-    "Higher resale value",
-    "Customization options",
-    "No monthly payments",
-    "Complete control",
-  ];
-
-  const servicePlans = [
-    {
-      type: "One Time",
-      price: "800 AED (+5% VAT)",
-      features: [
-        "Quick problem resolution",
-        "No long-term commitments",
-        "Ideal for small fixes",
-        "Pay only for what you need",
-        "Same-day service available",
-        "No contract required",
-      ],
-      popular: false,
-    },
-    {
-      type: "MMC",
-      price: "800 AED (+5% VAT)",
-      features: [
-        "Monthly Maintenance Coverage",
-        "Priority Support",
-        "Discount on parts & services",
-        "Ideal for regular checkups",
-        "2 free visits per month",
-        "Extended warranty",
-      ],
-      popular: true,
-    },
-    {
-      type: "AMC",
-      price: {
-        basic: "800 AED (+5% VAT)",
-        gold: "1500 AED (+5% VAT)",
-      },
-      features: [
-        "Annual Maintenance Contract",
-        "Unlimited service visits",
-        "Free replacement parts",
-        "24/7 emergency support",
-        "Full system inspection",
-        "Premium customer care",
-      ],
-      popular: false,
-      options: ["basic", "gold"],
-    },
-  ];
-
-  const premiumFeatures = [
-    "Advanced 6-stage filtration system",
-    "Energy-efficient operation (saves 30% power)",
-    "Smart TDS monitoring with digital display",
-    "Automatic shut-off protection",
-    "UV sterilization technology",
-    "Removes 99.9% of bacteria and viruses",
-    "Compact and space-saving design",
-    "Easy one-click filter replacement",
-  ];
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const responsiveOptions = [
-    {
-      breakpoint: '1024px',
-      numVisible: 1,
-      numScroll: 1,
-    }
-  ];
-
+ 
   return (
     <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="bg-white rounded-xl shadow-sm overflow-hidden mt-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6">
-          <div className="md:col-span-1  flex items-center justify-center rounded-lg p-4  ">
+        <div className="md:col-span-1 flex items-center justify-center rounded-lg p-4">
             {product.imageUrls.length > 1 ? (
-              <Carousel className="  mx-4 ">
-                {product.imageUrls.map((url, index) => (
-                  <img
-                    key={index}
-                    src={url}
-                    alt={`${product?.name} - ${index + 1}`}
-                    className="w-[70%]  mx-auto object-cover rounded-lg  "
-                  />
-                ))}
-              </Carousel>
-            ) : (
-              <img
-                src={product.imageUrls[0]}
-                alt={product?.name}
-                className="  object-cover rounded-lg mx-auto md:h-[50vh] h-auto w-[70%]  "
+              <CustomCarousel 
+                images={product.imageUrls}
+                height="60vh"
+                width="60%"
+                marginHorizontal="auto"
+                autoPlay={true}
+                autoPlayInterval={3000}
+                showThumbnails={true}
+                showDots={true}
+                showFullscreen={true}
+                arrowStyle="solid"
+                transition="fade"
               />
+            ) : (
+              <div className="relative w-full">
+                <img
+                  src={product.imageUrls[0]}
+                  alt={product?.name}
+                  className="object-cover rounded-lg mx-auto md:h-[50vh] h-auto w-[70%]"
+                />
+                {product.imageUrls.length === 1 && (
+                  <button 
+                    onClick={() => document.documentElement.requestFullscreen().catch(console.log)}
+                    className="absolute bottom-4 right-4 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md"
+                  >
+                    <FaExpand />
+                  </button>
+                )}
+              </div>
             )}
           </div>
+
 
           <div className="md:col-span-2 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -487,7 +573,7 @@ const ProductDetail = () => {
 
       <div className="mt-12 bg-white rounded-xl shadow-sm text-sm overflow-hidden">
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-center text-blue-700 mb-8">
+          <h2 className="text-2xl font-bold text-center border-b border-gray-300 borde- pb-2 text-blue-700 mb-8">
             Premium Features
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -509,7 +595,7 @@ const ProductDetail = () => {
       <div className=" bg-white rounded-xl shadow-sm overflow-hidden ">
         <div className="p-6  grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className=" w-full">
-            <h3 className="text-xl md:text-2xl font-bold text-blue-700 mb-4 ">
+            <h3 className="text-xl md:text-2xl font-bold text-blue-700 border-b border-gray-300 pb-2 mb-4 ">
               Specifications
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3  ">
@@ -533,7 +619,7 @@ const ProductDetail = () => {
 
           {product?.longDescription && (
             <div>
-              <h3 className="text-xl md:text-2xl  font-bold text-blue-700 mb-4">
+              <h3 className="text-xl md:text-2xl  font-bold text-blue-700 border-b border-gray-300 pb-2 mb-4">
                 Product Description
               </h3>
               <div className="prose prose-sm max-w-none text-gray-600">

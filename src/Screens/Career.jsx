@@ -88,7 +88,7 @@ function Career() {
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-1">
         {data?.map((job) => (
-          <div key={job.id} className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300">
+          <div key={job.jobPostId} className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300">
             <div className="p-6 sm:p-8">
               <div className="flex flex-col sm:flex-row">
                 <div className="flex-shrink-0 mb-4 sm:mb-0 sm:mr-6">
