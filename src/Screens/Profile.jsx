@@ -5,10 +5,20 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { Card } from 'primereact/card';
+import useAuthStore from '../Context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
-  const email = localStorage.getItem('signupEmail') || 'mohd.yaseen@example.com';
+  const email = localStorage.getItem('userEmail') || 'mohd.yaseen@example.com';
   const userName = "Mohd Yaseen";
+
+
+
+  const { logout } = useAuthStore();
+  const navigate = useNavigate();
+
+
+
 
   // Fake data
   const [orders, setOrders] = useState([
@@ -51,6 +61,8 @@ function Profile() {
     setNewAddress({ name: '', street: '', city: '', state: '', zip: '', isDefault: false });
   };
 
+
+
   const handleAddPayment = () => {
     const last4 = newPayment.number.slice(-4);
     setPaymentMethods([...paymentMethods, { ...newPayment, last4, id: paymentMethods.length + 1 }]);
@@ -78,6 +90,12 @@ function Profile() {
       ...pm,
       isDefault: pm.id === id
     })));
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+    
   };
 
   // Custom dialog header templates
@@ -108,7 +126,7 @@ function Profile() {
           <h1 className="text-2xl font-bold text-white mt-4">{userName}</h1>
           <p className="text-blue-100">{email}</p>
           
-          <button className="mt-4 flex items-center gap-2 text-white hover:text-blue-100 transition-colors">
+          <button onClick={handleLogout} className="mt-4 flex items-center gap-2 text-white hover:text-blue-100 transition-colors">
             <RiLogoutCircleLine className="text-lg" />
             <span>Sign Out</span>
           </button>

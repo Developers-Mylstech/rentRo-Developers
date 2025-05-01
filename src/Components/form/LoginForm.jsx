@@ -178,7 +178,7 @@ function Login() {
       const storedEmail = localStorage.getItem('userEmail');
       const payload = { email: storedEmail, otp };
       await verifyOTP(payload);
-      localStorage.removeItem('userEmail');
+      // localStorage.removeItem('userEmail');
       navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || "Invalid OTP. Please try again.");

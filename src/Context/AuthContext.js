@@ -121,6 +121,7 @@ const useAuthStore = create((set) => ({
       
         localStorage.removeItem('access');
         localStorage.removeItem('refreshNew');
+        localStorage.removeItem('userEmail');
         set({ 
           user: null,
           token: null,
