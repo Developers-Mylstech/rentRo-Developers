@@ -5,7 +5,7 @@ import { RxCross2 } from "react-icons/rx";
 const RequestQuotationBox = ({ setOpenDailog }) => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [preview, setPreview] = useState('');
-    const [uploading, setUploading] = useState(false)
+    const [uploading, setUploading] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         mobile: '',
@@ -49,42 +49,92 @@ const RequestQuotationBox = ({ setOpenDailog }) => {
         try {
             let imageUrl = '';
             if (selectedImage) {
-                setUploading(true)
+                setUploading(true);
                 const imageFormData = new FormData();
                 imageFormData.append('file', selectedImage);
+                
+                // Get token from localStorage
+                const accessToken = localStorage.getItem('access');
+                
+                // Set authorization header
+                if (accessToken) {
+                    axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+                }
 
-                const uploadResponse = await axiosInstance.post('/product-images/upload', imageFormData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
+                try {
+                    const uploadResponse = await axiosInstance.post('/images/upload', imageFormData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    });
+                    
+                    if (uploadResponse?.data?.fileUrl) {
+                        imageUrl = uploadResponse.data.fileUrl;
                     }
-                });
-                imageUrl = uploadResponse?.data?.fileUrl;
+                } catch (uploadError) {
+                    console.error('Error uploading image:', uploadError);
+                    // Continue with form submission even if image upload fails
+                }
+                
+                setUploading(false);
             }
-            setUploading(false)
-
 
             const payload = {
                 name: formData.name,
                 mobile: formData.mobile,
                 companyName: formData.companyName || null,
                 location: formData.location,
-                productImages: [imageUrl] || []
+                productImages: imageUrl ? [imageUrl] : []
             };
 
-            await axiosInstance.post('/request-quotations', payload);
+            // Get token again to ensure it's the latest
+            const accessToken = localStorage.getItem('access');
+            
+            // Set authorization header
+            if (accessToken) {
+                axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+            }
 
-            setFormData({
-                name: '',
-                mobile: '',
-                companyName: '',
-                location: '',
-                productImages: []
-            });
-            removeImage();
-            setOpenDailog(false);
-            alert('Quotation request submitted successfully!');
+            // Add error handling for the main request
+            try {
+                const response = await axiosInstance.post('/request-quotations', payload);
+                console.log('Quotation submitted successfully:', response.data);
+                
+                // Reset form
+                setFormData({
+                    name: '',
+                    mobile: '',
+                    companyName: '',
+                    location: '',
+                    productImages: []
+                });
+                removeImage();
+                setOpenDailog(false);
+                alert('Quotation request submitted successfully!');
+            } catch (requestError) {
+                console.error('API Error:', requestError);
+                
+                // Check for specific error types
+                if (requestError.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    console.error('Response data:', requestError.response.data);
+                    console.error('Response status:', requestError.response.status);
+                    
+                    const errorMessage = requestError.response.data?.message || 
+                                        'Failed to submit quotation request. Please try again.';
+                    alert(errorMessage);
+                } else if (requestError.request) {
+                    // The request was made but no response was received
+                    console.error('Request made but no response received');
+                    alert('Network error. Please check your connection and try again.');
+                } else {
+                    // Something happened in setting up the request
+                    alert('Failed to submit quotation request. Please try again.');
+                }
+            }
         } catch (error) {
-            console.error('Error submitting quotation request:', error);
+            console.error('Error in form submission process:', error);
             alert('Failed to submit quotation request. Please try again.');
         } finally {
             setIsSubmitting(false);
