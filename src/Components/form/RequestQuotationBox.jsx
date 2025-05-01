@@ -107,9 +107,16 @@ const RequestQuotationBox = ({ setOpenDailog }) => {
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     <div className="space-y-2">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {/* Upload Area */}
-                            <label className="flex flex-col items-center justify-center w-full p-6 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-colors duration-200">
-                                <FaCloudUploadAlt className="w-8 h-8 text-gray-400 mb-2" />
+
+                            <label
+                                className={`
+      flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-lg cursor-pointer
+      ${preview ? 'md:col-span-1' : 'md:col-span-2'}
+      border-gray-300 hover:border-blue-500 hover:bg-blue-50
+      transition-all duration-300 ease-in-out
+      ${preview ? 'h-[150px]' : 'h-[150px]'}
+    `}
+                            >                                <FaCloudUploadAlt className="w-8 h-8 text-gray-400 mb-2" />
                                 <span className="text-sm text-gray-600 text-center">
                                     {selectedImage ? selectedImage.name : 'Select image or drag and drop'}
                                 </span>
@@ -122,7 +129,6 @@ const RequestQuotationBox = ({ setOpenDailog }) => {
                                     className="hidden"
                                 />
                             </label>
-
 
                             {preview && (
                                 <div className="relative group h-full max-h-[150px]">
@@ -157,8 +163,11 @@ const RequestQuotationBox = ({ setOpenDailog }) => {
                             type="text"
                             name="name"
                             value={formData.name}
+
                             onChange={handleInputChange}
-                            className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="mt-1 block w-full p-2 border-0 border-b border-gray-300 
+                                         focus:border-b focus:border-blue-500 focus:ring-0
+                                         transition-colors duration-200"
                             placeholder="Enter your name"
                             required
                         />
@@ -171,7 +180,7 @@ const RequestQuotationBox = ({ setOpenDailog }) => {
                             name="mobile"
                             value={formData.mobile}
                             onChange={handleInputChange}
-                            className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="mt-1 block w-full border-b border-gray-300 shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Enter your mobile number"
                             required
                         />
@@ -184,7 +193,7 @@ const RequestQuotationBox = ({ setOpenDailog }) => {
                             name="companyName"
                             value={formData.companyName}
                             onChange={handleInputChange}
-                            className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="mt-1 block w-full border-b border-gray-300 shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Enter company name"
                         />
                     </div>
@@ -196,7 +205,7 @@ const RequestQuotationBox = ({ setOpenDailog }) => {
                             name="location"
                             value={formData.location}
                             onChange={handleInputChange}
-                            className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="mt-1 block w-full border-b border-gray-300  shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Enter location"
                         />
                     </div>
