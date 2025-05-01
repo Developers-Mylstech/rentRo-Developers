@@ -10,7 +10,7 @@ import WaterCooler from '../assets/Rent/WaterCooler.png';
 import WaterDispenser from '../assets/Rent/WaterDispenser.png';
 import Industrial from '../assets/Rent/Industrial.png';
 import OceanScene from "../Components/widget/OceanScene";
-import notFount from '../assets/notfound.png'
+
 const products = [
   {
     image: Domestic,
@@ -178,7 +178,7 @@ const Shop = () => {
             ))
           ) : (
             <div className="flex justify-center items-center h-[30vh] w-[95vw]">
-                      <img src={notFount} alt="Not Found" className="md:h-52 w-auto h-28"/>
+                      {/* <img src={notFount} alt="Not Found" className="md:h-52 w-auto h-28"/> */}
                     </div>
           )}
         </div>

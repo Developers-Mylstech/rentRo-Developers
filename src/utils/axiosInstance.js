@@ -12,9 +12,12 @@ import axios from 'axios';
 import useAuthStore from "../Context/AuthContext"
 
 // Use Vite environment variable
+
+
+
+
+// Use Vite environment variable
 const baseURL = import.meta.env.VITE_API_BASE_URL;
-
-
 
 const axiosInstance = axios.create({
     baseURL,

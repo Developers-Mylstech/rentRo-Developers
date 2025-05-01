@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Sale from "../Screens/Sale.jsx";
-import Slider from "react-slick";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
@@ -10,9 +10,9 @@ import OurClientsReview from "../Screens/OurClientsReview.jsx";
 
 // images import
 
-import industrial1 from "../assets/Industrialservice/industrial1.png";
-import industrial2 from "../assets/Industrialservice/industrial2.png";
-import industrial3 from "../assets/Industrialservice/industrial3.png";
+// import industrial1 from "../assets/Industrialservice/industrial1.png";
+// import industrial2 from "../assets/Industrialservice/industrial2.png";
+// import industrial3 from "../assets/Industrialservice/industrial3.png";
 
 function IndustrialService() {
   useEffect(() => {
@@ -105,12 +105,12 @@ function IndustrialService() {
           <div className="grid grid-cols-2 gap-7">
             {" "}
             {/* Increased gap here */}
-            <img
+            {/* <img
               src={industrial1} // Directly use the imported variable
               className="w-auto h-full object-cover rounded-lg border-2 shadow-lg transition-transform transform hover:scale-105"
               alt="IMG1"
-            />
-            <img
+            /> */}
+            {/* <img
               src={industrial2} // Directly use the imported variable
               className="w-full object-cover rounded-lg border-2 border-gray-300 shadow-lg transition-transform transform hover:scale-105"
               alt="IMG2"
@@ -119,7 +119,7 @@ function IndustrialService() {
               src={industrial3} // Directly use the imported variable
               className="col-span-2 w-full object-cover rounded-lg border-2 border-gray-300 shadow-lg transition-transform transform hover:scale-105"
               alt="IMG3"
-            />
+            /> */}
           </div>
         </div>
 

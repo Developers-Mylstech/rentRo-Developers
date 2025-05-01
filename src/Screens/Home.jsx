@@ -21,7 +21,7 @@ import useProductStore from "../Context/ProductContext.js";
 
 
 const Home = () => {
-  const navigate = useNavigate();
+
 
   const ourBrandSection = useRef(null);
 
@@ -145,9 +145,7 @@ const Home = () => {
         <OurBrand />
       </section>
 
-      {/* Bottom Navigation Tabs - Mobile Only */}
-      {/* <BottomNav /> */}
-      {/* <ScrollToTopButton /> */}
+      
     </>
   );
 };

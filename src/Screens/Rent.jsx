@@ -10,6 +10,7 @@ import WaterCooler from "../assets/Rent/WaterCooler.png";
 import WaterDispenser from "../assets/Rent/WaterDispenser.png";
 import Industrial from "../assets/Rent/Industrial.png";
 import useProductStore from "../Context/ProductContext";
+import Skeleton from "react-loading-skeleton";
 
 
 
@@ -191,96 +192,43 @@ const Rent = () => {
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortBy, setSortBy] = useState("latest");
-  const { fetchProducts, products } = useProductStore()
+  const { fetchProducts, products, loading } = useProductStore()
   useEffect(() => {
     fetchProducts()
 
   }, [])
-
-
-  // const filteredProducts = products.filter((product) => {
-  //   return (
-  //     (selectedBrand === "" || product.brand === selectedBrand) &&
-  //     (selectedCategory === "" || product.category === selectedCategory)
-  //   );
-  // });
-
-  // Sort products based on selected option
-  // const sortedProducts = [...filteredProducts].sort((a, b) => {
-  //   switch (sortBy) {
-  //     case "popularity":
-  //       return b.rating - a.rating;
-  //     case "rating":
-  //       return b.rating - a.rating;
-  //     case "low-to-high":
-  //       return a.price - b.price;
-  //     case "high-to-low":
-  //       return b.price - a.price;
-  //     default:
-  //       return 0; // Default order (latest)
-  //   }
-  // });
 
   return (
     <>
       <OceanScene />
 
       <div className="font-sans bg-gray-50 min-h-screen p-6">
-        {/* Filter and Sort Options */}
-        {/* <div className="container mx-auto flex flex-col md:flex-row sm:justify-between items-center bg-white p-4 rounded-lg shadow-md mb-6 mt-18 w-full space-y-2 sm:space-y-0 sm:space-x-4">
-          <select
-            className="w-full sm:flex-1 p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
-            value={selectedBrand}
-            onChange={(e) => setSelectedBrand(e.target.value)}
-          >
-            <option value="">All Brands</option>
-            <option value="Rent RO">Rent RO</option>
-            <option value="Kent RO">Kent RO</option>
-            <option value="Aqua Pro">Aqua Pro</option>
-            <option value="Waterlogic">Waterlogic</option>
-            <option value="Culligan">Culligan</option>
-            <option value="Super General">Super General</option>
-            <option value="Aquaguard">Aquaguard</option>
-            <option value="Blue Water">Blue Water</option>
-          </select>
 
-          <select
-            className="w-full sm:flex-1 p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            <option value="">All Categories</option>
-            <option value="Domestic">Domestic</option>
-            <option value="Commercial">Commercial</option>
-            <option value="Industrial">Industrial</option>
-            <option value="Water Cooler">Water Cooler</option>
-            <option value="Dispenser">Dispenser</option>
-            <option value="Chillers">Chillers</option>
-            <option value="Appliances">Appliances</option>
-            <option value="Accessories">Accessories</option>
-            <option value="Water Tanker">Water Tanker</option>
-          </select>
+        {!loading ? (
+          <ProductList products={products} />
+        ) : (
+          <ProductSkeleton count={6} />
+        )}
 
-          <select
-            className="w-full sm:flex-1 p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-          >
-            <option value="latest">Sort by Latest</option>
-            <option value="popularity">Sort by Popularity</option>
-            <option value="rating">Sort by Average Rating</option>
-            <option value="low-to-high">Sort by Price: Low to High</option>
-            <option value="high-to-low">Sort by Price: High to Low</option>
-          </select>
-        </div> */}
 
-        <ProductList products={products} />
       </div>
-
-      {/* <BottomNav /> */}
-      {/* <ScrollToTopButton /> */}
     </>
   );
 };
 
 export default Rent;
+
+const ProductSkeleton = ({ count = 6 }) => {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {Array.from({ length: count }).map((_, i) => (
+        <div key={i} className="bg-white rounded-xl shadow-md p-4">
+          <Skeleton height={180} className="rounded" />
+          <Skeleton height={20} width={`80%`} className="mt-4" />
+          <Skeleton height={20} width={`60%`} />
+          <Skeleton height={30} width={`50%`} className="mt-2" />
+        </div>
+      ))}
+    </div>
+  );
+};

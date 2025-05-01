@@ -22,7 +22,6 @@ import Rent from "./Screens/Rent.jsx";
 import Sale from "./Screens/Sale.jsx";
 import Signup from "./Screens/Signup.jsx";
 import Layout from "./Components/Layout.jsx";
-import Faq from "./screens/Faq.jsx";
 import ContactUs from "./Screens/ContactUs.jsx";
 import RoServices from './Screens/RoServices.jsx'
 import IndustrialService from './Screens/IndustrialService.jsx'
@@ -56,7 +55,6 @@ const routes = createBrowserRouter(
         <Route path="/product/:name" element={<ProductDetail/>} />
         <Route path="/waterfilterSubscription" element={<WaterFilterSubscriptionForm/>} />
         <Route path="/rent" element={<Rent/>} />
-        <Route path="/faq" element={<Faq/>} />
         <Route path="/contact" element={<ContactUs/>} />
         <Route path="/roservices" element={<RoServices/>} />
         <Route path="/industrialservice" element={<IndustrialService/>} />
@@ -64,8 +62,9 @@ const routes = createBrowserRouter(
         <Route path="/domesticservice" element={<DomesticService/>} />
         <Route path="/aboutus" element={<AboutUs/>} />
         <Route path="/career" element={<Career/>} />
-        <Route path="/career/:name" element={<CareerDetail/>} />
+        {/* <Route path="/career/:name" element={<CareerDetail/>} /> */}
         <Route path="/service/:name" element={<ServiceDetails/>} />
+        <Route path="/career/:id" element={<CareerDetail/>} />
       
         <Route path="/shop" element={<Shop/>} />
         <Route path="*" element={<Home />} />
