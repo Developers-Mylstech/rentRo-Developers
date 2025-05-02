@@ -244,7 +244,9 @@ function SignUp() {
       await sendOTP(formData);
       setOtpSent(true);
       // Save email to localStorage
-      localStorage.setItem('signupEmail', formData.email);
+      localStorage.setItem('userEmail', formData.email);
+      localStorage.setItem('user', formData.name);
+      loa
     } catch (error) {
       console.error("Failed to send OTP:", error);
       setErrors({ server: "Failed to send OTP. Please try again." });
@@ -254,7 +256,7 @@ function SignUp() {
   };
 
   const getSavedEmail = () => {
-    return localStorage.getItem('signupEmail') || '';
+    return localStorage.getItem('userEmail') || '';
   };
 
   const handleOtpSubmit = async (e) => {
@@ -279,7 +281,7 @@ function SignUp() {
       if (verified) {
         alert("Account created successfully! Redirecting to login...");
         // Clear saved email after successful verification
-        localStorage.removeItem('signupEmail');
+        // localStorage.removeItem('userEmail');
         navigate("/");
       } else {
         setErrors({ otp: "Invalid OTP. Please try again." });

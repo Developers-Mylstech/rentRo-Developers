@@ -103,9 +103,11 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../Context/AuthContext";
 
 const BottomNav = () => {
   const navigate = useNavigate();
+  const { token } = useAuthStore();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -245,7 +247,7 @@ const BottomNav = () => {
 
           <li
             className="flex flex-col items-center cursor-pointer hover:text-blue-500"
-            onClick={() => navigate("/login")}
+            onClick={() => token != null ? navigate("/profile") : navigate("/login")}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

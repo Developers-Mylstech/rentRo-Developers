@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-
 import { 
   FaChevronLeft, 
   FaChevronRight, 
   FaCheck, 
   FaCheckCircle,
   FaExpand,
-  FaCompress
+  FaCompress,
+  FaPlus,
+  FaMinus
 } from "react-icons/fa";
+import useCartStore from "../Context/CartContext";
+import useAuthStore from "../Context/AuthContext";
 
 const CustomCarousel = ({ 
   images, 
-  height = "60vh", // Default height, can be overridden
+  height = "60vh",
   autoPlay = false,
   autoPlayInterval = 5000,
   showThumbnails = true,
@@ -22,6 +25,8 @@ const CustomCarousel = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+
 
   // Auto-play functionality with pause on hover
   useEffect(() => {
@@ -178,11 +183,32 @@ const CustomCarousel = ({
 const ProductDetail = () => {
   const { name } = useParams();
   const location = useLocation();
+  const { token } = useAuthStore();
   const product = location.state?.product;
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("rent");
+  
+  // Determine which tab should be active initially based on availability
+  const getInitialActiveTab = () => {
+    if (product?.productFor?.rent?.discountPrice) return "rent";
+    if (product?.productFor?.sell?.discountPrice) return "sell";
+    if (product?.productFor?.service?.amcBasic?.price || 
+        product?.productFor?.service?.amcGold?.price || 
+        product?.productFor?.service?.mmc?.price || 
+        product?.productFor?.service?.ots?.price) return "service";
+    return "rent"; // Default fallback
+  };
+  
+  const [activeTab, setActiveTab] = useState(getInitialActiveTab);
   const [amcType, setAmcType] = useState("amcBasic");
   const [allReviews, setAllReviews] = useState(product?.reviews || []);
+  
+  // New state variables for rent period and quantity
+  const [rentPeriod, setRentPeriod] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+  const [rentQuantity, setRentQuantity] = useState(1);
+  
+  // Get addToCart function from cart store
+  const { addToCart } = useCartStore();
 
   if (!product) {
     return (
@@ -202,6 +228,37 @@ const ProductDetail = () => {
     );
   }
 
+  // Handle adding to cart
+  const handleAddToCart = () => {
+
+    let item = {};
+   
+    if(activeTab=="rent"){
+       item = {
+        productId: product.productId,
+        productType: "RENT",
+        rentPeriod: rentPeriod,
+        quantity: quantity
+ 
+      };
+    }else{
+      item = {
+        productId: product.productId,
+        productType: "SELL",
+        quantity: quantity
+      };
+    }
+    
+    addToCart(item)
+      .then(() => {
+        // Show success notification or feedback
+        alert(`Added ${product.name} to cart`);
+      })
+      .catch(error => {
+        console.error("Failed to add to cart:", error);
+        // Show error notification
+      });
+  };
  
   return (
     <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -245,7 +302,7 @@ const ProductDetail = () => {
           <div className="md:col-span-2 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+                <h1 className="text-xl md:text-3xl font-bold text-gray-900">
                   {product?.name}
                 </h1>
                 <p className="text-gray-500 mt-1">
@@ -271,8 +328,8 @@ const ProductDetail = () => {
               <nav className="">
                 {["rent", "sell", "service"].map((tab) => {
                   const isDisabled = (
-                    (tab === "rent" && !product?.productFor?.rent?.discountPrice) ||
                     (tab === "sell" && !product?.productFor?.sell?.discountPrice) ||
+                    (tab === "rent" && !(product?.productFor?.rent?.discountPrice) ) ||
                     (tab === "service" && !(
                       product?.productFor?.service?.amcBasic?.price ||
                       product?.productFor?.service?.amcGold?.price ||
@@ -285,6 +342,7 @@ const ProductDetail = () => {
                     <button
                       key={tab}
                       onClick={() => !isDisabled && setActiveTab(tab)}
+                      // onClick={() =>setActiveTab(tab)}
                       disabled={isDisabled}
                       className={`whitespace-nowrap py-4 w-1/3 px-1 border-b font-medium text-sm ${
                         activeTab === tab
@@ -295,7 +353,7 @@ const ProductDetail = () => {
                       }`}
                     >
                       {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                      {isDisabled && " (Not Available)"}
+                      {isDisabled && " (N/A)"}
                     </button>
                   );
                 })}
@@ -324,39 +382,103 @@ const ProductDetail = () => {
 
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                      Quantity
+                    </h3>
+                    <div className="flex items-center space-x-4">
+                      <div className="flex items-center border rounded-md">
+                        <button 
+                          onClick={() => quantity > 1 && setQuantity(quantity - 1)}
+                          className="px-3 py-2 text-gray-600 hover:bg-gray-100"
+                          disabled={quantity <= 1}
+                        >
+                          <FaMinus size={14} />
+                        </button>
+                        <span className="px-4 py-2 text-gray-800 font-medium">{quantity}</span>
+                        <button 
+                          onClick={() => setQuantity(quantity + 1)}
+                          className="px-3 py-2 text-gray-600 hover:bg-gray-100"
+                        >
+                          <FaPlus size={14} />
+                        </button>
+                      </div>
+                      {/* <span className="text-sm text-gray-500">
+                        {product?.productFor?.rent?.stock > 0 
+                          ? `${product?.productFor?.rent?.stock} units available` 
+                          : "Out of stock"}
+                      </span> */}
+                    </div>
+                  </div>
+
+
+                  {/* Rental Period Selection */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                      Rental Period
+                    </h3>
+                    <div className="flex space-x-2 mb-4">
+                      {[1, 3, 6, 12].map((months) => (
+                        <button
+                          key={months}
+                          onClick={() => setRentPeriod(months)}
+                          className={`px-4 py-2 rounded-lg border transition-all ${
+                            rentPeriod === months
+                              ? "bg-blue-50 border-blue-500 text-blue-700 font-medium"
+                              : "border-gray-300 text-gray-600 hover:border-blue-300"
+                          }`}
+                        >
+                          {months} {months === 1 ? "Month" : "Months"}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
                       Pricing
                     </h3>
-                    <div className="grid grid-cols-3 gap-4 bg-blue-50 rounded-lg p-4">
+                    <div className="grid grid-cols-3  md:gap-4 gap-2 bg-blue-50 rounded-lg md:p-4 p-2">
                       <div className="text-center">
-                        <p className="text-sm text-gray-500 "> Actual Price </p>
-                        <p className={`text-gray-500 line-through`}>
+                        <p className="md:text-sm text-xs text-gray-500">Actual Price</p>
+                        <p className="text-gray-500 line-through">
                           {product?.productFor.rent.monthlyPrice} AED
                         </p>
                       </div>
                       <div className="text-center">
-                        <p className="text-sm text-gray-500">
-                          {" "}
-                          Discount Price{" "}
-                        </p>
-                        <p className={`text-blue-600 font-bold`}>
+                        <p className="md:text-sm text-xs text-gray-500">Discount Price</p>
+                        <p className="text-blue-600 font-bold">
                           {product?.productFor.rent.discountPrice} AED
                         </p>
+                        <p className="md:text-xs text-[9px] text-gray-500 text-left">per month × {rentPeriod} months</p>
                       </div>
                       <div className="text-center">
-                        <p className="text-sm text-gray-500"> + VAT </p>
-                        <p className={`text-blue-600 font-bold`}>
+                        <p className="text-sm text-gray-500">+ VAT {product?.productFor.rent.vat} %</p>
+                        <p className="text-blue-600 font-bold">
                           {product?.productFor.rent.vat} %
                         </p>
                       </div>
                     </div>
+                    <div className="mt-2 text-right">
+                      <p className="text-lg font-bold text-blue-700">
+                        Total: AED {(product?.productFor.rent.discountPrice * rentPeriod).toFixed(2)}
+                      </p>
+                    </div>
                   </div>
 
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full ">
                   <button
-                    onClick={() => navigate("/login")}
+                    onClick={() => token != null ? navigate("/waterfilterSubscription") : navigate("/login")}
                     className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
                   >
                     Rent Now
                   </button>
+                  <button
+                    // onClick={handleAddToCart}
+                    onClick={() => token != null ? handleAddToCart() : navigate("/login")}
+                    className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
+                  >
+                    Add to Cart
+                  </button>
+                  </div>
                 </div>
               )}
 
@@ -378,41 +500,83 @@ const ProductDetail = () => {
                     </div>
                   </div>
 
+                  {/* Quantity Selection */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                      Quantity
+                    </h3>
+                    <div className="flex items-center space-x-4">
+                      <div className="flex items-center border rounded-md">
+                        <button 
+                          onClick={() => quantity > 1 && setQuantity(quantity - 1)}
+                          className="px-3 py-2 text-gray-600 hover:bg-gray-100"
+                          disabled={quantity <= 1}
+                        >
+                          <FaMinus size={14} />
+                        </button>
+                        <span className="px-4 py-2 text-gray-800 font-medium">{quantity}</span>
+                        <button 
+                          onClick={() => setQuantity(quantity + 1)}
+                          className="px-3 py-2 text-gray-600 hover:bg-gray-100"
+                        >
+                          <FaPlus size={14} />
+                        </button>
+                      </div>
+                      <span className="text-sm text-gray-500">
+                        {product?.productFor?.sell?.stock > 0 
+                          ? `${product?.productFor?.sell?.stock} units available` 
+                          : "Out of stock"}
+                      </span>
+                    </div>
+                  </div>
+
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">
                       Pricing
                     </h3>
                     <div className="grid grid-cols-3 gap-4 bg-blue-50 rounded-lg p-4">
                       <div className="text-center">
-                        <p className="text-sm text-gray-500"> Actual Price </p>
-                        <p className={`text-gray-500 line-through`}>
+                        <p className="text-sm text-gray-500">Actual Price</p>
+                        <p className="text-gray-500 line-through">
                           {product?.productFor.sell.actualPrice} AED
                         </p>
                       </div>
                       <div className="text-center">
-                        <p className="text-sm text-gray-500">
-                          {" "}
-                          Discount Price{" "}
-                        </p>
-                        <p className={`text-blue-600 font-bold`}>
+                        <p className="text-sm text-gray-500">Discount Price</p>
+                        <p className="text-blue-600 font-bold">
                           {product?.productFor.sell.discountPrice} AED
                         </p>
+                        <p className="text-xs text-gray-500">per unit × {quantity} units</p>
                       </div>
                       <div className="text-center">
-                        <p className="text-sm text-gray-500"> + VAT </p>
-                        <p className={`text-blue-600 font-bold`}>
+                        <p className="text-sm text-gray-500">+ VAT</p>
+                        <p className="text-blue-600 font-bold">
                           {product?.productFor.sell.vat} %
                         </p>
                       </div>
                     </div>
+                    <div className="mt-2 text-right">
+                      <p className="text-lg font-bold text-blue-700">
+                        Total: AED {(product?.productFor.sell.discountPrice * quantity).toFixed(2)}
+                      </p>
+                    </div>
                   </div>
 
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                   <button
-                    onClick={() => navigate("/login")}
+                    onClick={() => token != null ? navigate("/waterfilterSubscription") : navigate("/login")}
                     className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
                   >
                     Buy Now
                   </button>
+                  <button
+                    // onClick={handleAddToCart}
+                    onClick={() => token != null ? handleAddToCart() : navigate("/login")}
+                    className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
+                  >
+                    Add to Cart
+                  </button>
+                  </div>
                 </div>
               )}
 
