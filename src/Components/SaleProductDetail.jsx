@@ -440,26 +440,26 @@ const ProductDetail = () => {
                       <div className="text-center">
                         <p className="md:text-sm text-xs text-gray-500">Actual Price</p>
                         <p className="text-gray-500 line-through">
-                          {product?.productFor.rent.monthlyPrice} AED
+                          {product?.productFor?.rent?.monthlyPrice} AED
                         </p>
                       </div>
                       <div className="text-center">
                         <p className="md:text-sm text-xs text-gray-500">Discount Price</p>
                         <p className="text-blue-600 font-bold">
-                          {product?.productFor.rent.discountPrice} AED
+                          {product?.productFor?.rent?.discountPrice} AED
                         </p>
                         <p className="md:text-xs text-[9px] text-gray-500 text-left">per month × {rentPeriod} months</p>
                       </div>
                       <div className="text-center">
                         <p className="text-sm text-gray-500">+ VAT {product?.productFor.rent.vat} %</p>
                         <p className="text-blue-600 font-bold">
-                          {product?.productFor.rent.vat} %
+                          {product?.productFor?.rent?.vat} %
                         </p>
                       </div>
                     </div>
                     <div className="mt-2 text-right">
                       <p className="text-lg font-bold text-blue-700">
-                        Total: AED {(product?.productFor.rent.discountPrice * rentPeriod).toFixed(2)}
+                        Total: AED {(product?.productFor?.rent?.discountPrice * rentPeriod).toFixed(2)}
                       </p>
                     </div>
                   </div>
@@ -538,26 +538,26 @@ const ProductDetail = () => {
                       <div className="text-center">
                         <p className="text-sm text-gray-500">Actual Price</p>
                         <p className="text-gray-500 line-through">
-                          {product?.productFor.sell.actualPrice} AED
+                          {product?.productFor?.sell?.actualPrice} AED
                         </p>
                       </div>
                       <div className="text-center">
                         <p className="text-sm text-gray-500">Discount Price</p>
                         <p className="text-blue-600 font-bold">
-                          {product?.productFor.sell.discountPrice} AED
+                          {product?.productFor?.sell?.discountPrice} AED
                         </p>
                         <p className="text-xs text-gray-500">per unit × {quantity} units</p>
                       </div>
                       <div className="text-center">
                         <p className="text-sm text-gray-500">+ VAT</p>
                         <p className="text-blue-600 font-bold">
-                          {product?.productFor.sell.vat} %
+                          {product?.productFor?.sell?.vat} %
                         </p>
                       </div>
                     </div>
                     <div className="mt-2 text-right">
                       <p className="text-lg font-bold text-blue-700">
-                        Total: AED {(product?.productFor.sell.discountPrice * quantity).toFixed(2)}
+                        Total: AED {(product?.productFor?.sell?.discountPrice * quantity).toFixed(2)}
                       </p>
                     </div>
                   </div>

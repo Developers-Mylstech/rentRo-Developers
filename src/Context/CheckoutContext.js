@@ -12,7 +12,7 @@ const useCheckoutStore = create((set) => ({
     try {
       const response = await axiosInstance.post('/checkouts', orderdata);
       set((state) => ({
-        orders: [...state.orders, response.data],
+        // orders: [...state.orders, response.data],
         loading: false
       }));
       return response.data;
@@ -22,6 +22,19 @@ const useCheckoutStore = create((set) => ({
         loading: false 
       });
       throw error;
+    }
+  },
+
+  fetchOrders: async () => {
+    set({ loading: true, error: null });
+    try {
+      const response = await axiosInstance.get('/checkouts');
+      set({ orders: response?.data, loading: false });
+    } catch (error) {
+      set({ 
+        error: error.response?.data?.message || 'Failed to fetch products',
+        loading: false 
+      });
     }
   },
 

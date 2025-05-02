@@ -129,17 +129,17 @@ const Home = () => {
         <Services />
       </section>
 
-      <section className="bg-blue-50 w-full  p-10">
-        <h1 className="
-        text-center text-2xl md:text-4xl  font-bold my-4 md:my-10 text-blue-800">New Products</h1>
-        <ProductList products={products}  />
-      </section>
 
       <section className=" className=md:mt-16">
         <Clients />
       </section>
       <section  className="md:mt-16">
         <ProductsSection />
+      </section>
+      <section className="bg-blue-50 w-full  p-10">
+        <h1 className="
+        text-center text-2xl md:text-4xl  font-bold my-4 md:my-10 text-blue-800">All Products</h1>
+        <ProductList products={products}  />
       </section>
       <section className="md:mt-16" ref={ourBrandSection}>
         <OurBrand />
