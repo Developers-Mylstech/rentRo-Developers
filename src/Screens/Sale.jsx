@@ -16,9 +16,9 @@ import Skeleton from "react-loading-skeleton";
 
 
 const Sale = () => {
-  const { fetchProducts, products,loading } = useProductStore()
+  const { fetchSellProducts, saleProducts,loading } = useProductStore()
   useEffect(() => {
-    fetchProducts()
+    fetchSellProducts()
 
   }, [])
   // const [selectedBrand, setSelectedBrand] = useState("");
@@ -37,7 +37,7 @@ const Sale = () => {
       <div className="font-sans bg-gray-50 min-h-screen py-10">
        
         {!loading ? (
-          <ProductList products={products} />
+          <ProductList products={saleProducts} />
         ) : (
           <ProductSkeleton count={6} />
         )}

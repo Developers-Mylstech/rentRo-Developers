@@ -4,6 +4,8 @@ import axios from 'axios';
 
 const useProductStore = create((set) => ({
   products: [],
+  rentProducts: [],
+  saleProducts: [],
   loading: false,
   error: null,
   currentProduct: null,
@@ -36,6 +38,41 @@ const useProductStore = create((set) => ({
       });
 
       set({ products: response?.data, loading: false });
+    } catch (error) {
+      set({ 
+        error: error.response?.data?.message || 'Failed to fetch products',
+        loading: false 
+      });
+    }
+  },
+
+  fetchRentProducts: async () => {
+    set({ loading: true, error: null });
+    try {
+      const response = await axiosInstance.get('/products/by-type/RENT' , {
+        headers: {
+          'skip_zrok_interstitial': 'true'
+        },
+      });
+
+      set({ rentProducts: response?.data, loading: false });
+    } catch (error) {
+      set({ 
+        error: error.response?.data?.message || 'Failed to fetch products',
+        loading: false 
+      });
+    }
+  },
+  fetchSellProducts: async () => {
+    set({ loading: true, error: null });
+    try {
+      const response = await axiosInstance.get('/products/by-type/SELL' , {
+        headers: {
+          'skip_zrok_interstitial': 'true'
+        },
+      });
+
+      set({ saleProducts: response?.data, loading: false });
     } catch (error) {
       set({ 
         error: error.response?.data?.message || 'Failed to fetch products',

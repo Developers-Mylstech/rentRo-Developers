@@ -384,7 +384,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
             </div>
             
             <Link 
-              to="/checkout"
+              to="/waterfilterSubscription"
               onClick={onClose}
               className="block w-full py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white text-center rounded-lg font-medium hover:from-blue-700 hover:to-blue-600 transition-colors shadow-sm"
             >

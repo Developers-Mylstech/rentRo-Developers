@@ -192,9 +192,9 @@ const Rent = () => {
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortBy, setSortBy] = useState("latest");
-  const { fetchProducts, products, loading } = useProductStore()
+  const { fetchRentProducts, rentProducts, loading } = useProductStore()
   useEffect(() => {
-    fetchProducts()
+    fetchRentProducts()
 
   }, [])
 
@@ -205,7 +205,7 @@ const Rent = () => {
       <div className="font-sans bg-gray-50 min-h-screen p-6">
 
         {!loading ? (
-          <ProductList products={products} />
+          <ProductList products={rentProducts} />
         ) : (
           <ProductSkeleton count={6} />
         )}
