@@ -321,15 +321,7 @@ const ProductsSection = () => {
                   )}
                 </div>
 
-                {/* Key Features */}
-                <ul className="text-sm text-gray-600 space-y-1 mb-4">
-                  {product.keyFeatures?.slice(0, 3).map((feature, i) => (
-                    <li key={i} className="flex items-start">
-                      <FaCheck className="text-green-500 mt-1 mr-2 flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+            
 
                 {/* Add to Cart Button */}
                 <button

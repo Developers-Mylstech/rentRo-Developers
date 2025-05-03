@@ -186,6 +186,40 @@ const ProductDetail = () => {
   const { token } = useAuthStore();
   const product = location.state?.product;
   const navigate = useNavigate();
+
+
+  const [localCartItems, setLocalCartItems] = useState([]);
+  const [localTotalAmount, setLocalTotalAmount] = useState(0);
+
+
+
+
+
+  const addToCartLocally = () => {
+    const localSaved ={
+      productId:product.productId,
+      productType:activeTab.toUpperCase(),
+      quantity:quantity,
+
+     
+    };
+
+    setLocalCartItems(localSaved);
+
+    console.log(localSaved,"localy Saved");
+    
+
+    const updatedCartItems = [...localCartItems,localSaved];
+    setLocalCartItems(updatedCartItems);
+    localStorage.setItem('cartItemsOffline', JSON.stringify(updatedCartItems));
+  }
+
+  useEffect(() => {
+    const storedCartItems = localStorage.getItem('cartItemsOffline');
+    if (storedCartItems) {
+      setLocalCartItems(JSON.parse(storedCartItems));
+    }
+  }, []);
   
   // Determine which tab should be active initially based on availability
   const getInitialActiveTab = () => {
@@ -205,7 +239,7 @@ const ProductDetail = () => {
   // New state variables for rent period and quantity
   const [rentPeriod, setRentPeriod] = useState(1);
   const [quantity, setQuantity] = useState(1);
-  const [rentQuantity, setRentQuantity] = useState(1);
+  // const [rentQuantity, setRentQuantity] = useState(1);
   
   // Get addToCart function from cart store
   const { addToCart } = useCartStore();
@@ -259,6 +293,15 @@ const ProductDetail = () => {
         // Show error notification
       });
   };
+
+  useEffect(() => {
+    if (activeTab === "rent") {
+      setLocalTotalAmount(product?.productFor?.rent?.discountPrice * rentPeriod);
+    }
+    else {
+      setLocalTotalAmount(product?.productFor?.sell?.discountPrice * quantity);
+    }
+  }, [activeTab]);
  
   return (
     <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -460,6 +503,7 @@ const ProductDetail = () => {
                     <div className="mt-2 text-right">
                       <p className="text-lg font-bold text-blue-700">
                         Total: AED {(product?.productFor?.rent?.discountPrice * rentPeriod).toFixed(2)}
+                       
                       </p>
                     </div>
                   </div>
@@ -473,7 +517,7 @@ const ProductDetail = () => {
                   </button>
                   <button
                     // onClick={handleAddToCart}
-                    onClick={() => token != null ? handleAddToCart() : navigate("/login")}
+                    onClick={() => token != null ? handleAddToCart() : addToCartLocally()}
                     className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
                   >
                     Add to Cart
@@ -571,7 +615,7 @@ const ProductDetail = () => {
                   </button>
                   <button
                     // onClick={handleAddToCart}
-                    onClick={() => token != null ? handleAddToCart() : navigate("/login")}
+                    onClick={() => token != null ? handleAddToCart() : addToCartLocally()}
                     className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
                   >
                     Add to Cart

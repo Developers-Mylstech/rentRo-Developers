@@ -82,7 +82,7 @@ const useProductStore = create((set) => ({
   },
 
   getProductById: async (id) => {
-    set({ loading: true, error: null, currentProduct: null });
+    set({ loading: true, error: null });
     try {
       const response = await axiosInstance.get(`/products/${id}`);
       set({ currentProduct: response.data, loading: false });
@@ -95,6 +95,8 @@ const useProductStore = create((set) => ({
       throw error;
     }
   },
+
+
 
   // Update Product
   updateProduct: async (id, updatedData) => {
