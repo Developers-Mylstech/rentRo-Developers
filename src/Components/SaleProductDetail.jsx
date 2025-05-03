@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import useCartStore from "../Context/CartContext";
 import useAuthStore from "../Context/AuthContext";
+import AddToCartNotification from "./widget/AddToCartNotification";
 
 const CustomCarousel = ({ 
   images, 
@@ -190,6 +191,7 @@ const ProductDetail = () => {
 
   const [localCartItems, setLocalCartItems] = useState([]);
   const [localTotalAmount, setLocalTotalAmount] = useState(0);
+  const [notificationProduct, setNotificationProduct] = useState(null);
 
 
 
@@ -212,6 +214,7 @@ const ProductDetail = () => {
     const updatedCartItems = [...localCartItems,localSaved];
     setLocalCartItems(updatedCartItems);
     localStorage.setItem('cartItemsOffline', JSON.stringify(updatedCartItems));
+    setNotificationProduct(product);
   }
 
   useEffect(() => {
@@ -271,7 +274,7 @@ const ProductDetail = () => {
        item = {
         productId: product.productId,
         productType: "RENT",
-        rentPeriod: rentPeriod,
+        // rentPeriod: rentPeriod,
         quantity: quantity
  
       };
@@ -283,15 +286,10 @@ const ProductDetail = () => {
       };
     }
     
-    addToCart(item)
-      .then(() => {
-        // Show success notification or feedback
-        alert(`Added ${product.name} to cart`);
-      })
-      .catch(error => {
-        console.error("Failed to add to cart:", error);
-        // Show error notification
-      });
+    const res = addToCart(item)
+    console.log(res,"res");
+    setNotificationProduct(product);
+     
   };
 
   useEffect(() => {
@@ -454,7 +452,7 @@ const ProductDetail = () => {
 
 
                   {/* Rental Period Selection */}
-                  <div>
+                  {/* <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">
                       Rental Period
                     </h3>
@@ -473,7 +471,7 @@ const ProductDetail = () => {
                         </button>
                       ))}
                     </div>
-                  </div>
+                  </div> */}
 
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">
@@ -840,6 +838,10 @@ const ProductDetail = () => {
 
          
         </div>
+        <AddToCartNotification
+        product={notificationProduct}
+        onClose={() => setNotificationProduct(null)}
+      />
       </div>
     </div>
   );
