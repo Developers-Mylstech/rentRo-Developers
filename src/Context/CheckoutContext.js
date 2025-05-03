@@ -25,6 +25,8 @@ const useCheckoutStore = create((set) => ({
     }
   },
 
+
+
   fetchOrders: async () => {
     set({ loading: true, error: null });
     try {

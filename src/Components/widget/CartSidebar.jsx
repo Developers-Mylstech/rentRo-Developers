@@ -11,7 +11,8 @@ const CartSidebar = ({ isOpen, onClose }) => {
     totalAmount, 
     removeFromCart,
     updateCartItemQuantity,
-    fetchCartItems
+    fetchCartItems,
+    addMutipleProducts
   } = useCartStore();
 
   const { token } = useAuthStore();
@@ -20,8 +21,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
   const [localCartItems, setLocalCartItems] = useState([]);
   const [localTotalAmount, setLocalTotalAmount] = useState(0);
 
-
- 
+  // Load local cart items when component mounts or when isOpen changes
   useEffect(() => {
     if (!token && isOpen) {
       const storedItems = localStorage.getItem('cartItemsOffline');
@@ -30,29 +30,44 @@ const CartSidebar = ({ isOpen, onClose }) => {
           const parsedItems = JSON.parse(storedItems);
           setLocalCartItems(parsedItems);
           
-
-          const total = parsedItems.reduce((sum, item) => sum + (item.productType=="sell"* item.quantity), 0);
-          setLocalTotalAmount(total);
-          
-
-          if (parsedItems.length > 0 && products.length === 0) {
-            fetchSellProducts();
-          }
+          // Fetch product details if needed
+          // if (parsedItems.length > 0 && products.length === 0) {
+          //   fetchSellProducts();
+          // }
         } catch (error) {
           console.error("Error parsing local cart items:", error);
           setLocalCartItems([]);
-          setLocalTotalAmount(0);
         }
       } else {
         setLocalCartItems([]);
-        setLocalTotalAmount(0);
       }
     }
-  }, [isOpen, token]);
+  }, [isOpen, token, products.length, fetchSellProducts]);
+
+  // Calculate local total amount whenever products or localCartItems change
+  useEffect(() => {
+    if (!token && localCartItems.length > 0) {
+      let total = 0;
+      
+      localCartItems.forEach(item => {
+        const productDetails = getProductDetails(item.productId);
+        const price = item.productType === "SELL" 
+          ? productDetails?.productFor?.sell?.discountPrice || 0
+          : productDetails?.productFor?.rent?.discountPrice || 0;
+        
+        total += price * (item.quantity || 1);
+      });
+      
+      setLocalTotalAmount(total);
+    }
+  }, [token, localCartItems, products]);
+
+
 
   // Fetch cart items from API when logged in
   useEffect(() => {
     if (isOpen && token) {
+      addMutipleProducts(localCartItems);
       fetchCartItems();
     }
   }, [isOpen, token, fetchCartItems]);
@@ -75,10 +90,6 @@ const CartSidebar = ({ isOpen, onClose }) => {
     
     setLocalCartItems(updatedItems);
     localStorage.setItem('cartItemsOffline', JSON.stringify(updatedItems));
-    
-    // Update total amount
-    const total = updatedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    setLocalTotalAmount(total);
   };
 
   // Handle remove from cart for authenticated users
@@ -94,16 +105,22 @@ const CartSidebar = ({ isOpen, onClose }) => {
     const updatedItems = localCartItems.filter((_, index) => index !== itemIndex);
     setLocalCartItems(updatedItems);
     localStorage.setItem('cartItemsOffline', JSON.stringify(updatedItems));
-    
-    // Update total amount
-    const total = updatedItems.reduce((sum, item) => sum + (item.discountPrice * item.quantity), 0);
-    setLocalTotalAmount(total);
   };
 
   // Find product details from products array
   const getProductDetails = (productId) => {
     return products.find(product => product.productId === productId) || {};
   };
+
+  // useEffect(
+  //   () => {
+  //     if (token) {
+  //       addMutipleProducts(localCartItems);
+  //       fetchCartItems();
+  //     }
+  //   },
+  //   [token, fetchCartItems]
+  // )
 
   return (
     <>
@@ -241,18 +258,26 @@ const CartSidebar = ({ isOpen, onClose }) => {
               <div className="space-y-4">
                 {localCartItems.map((item, index) => {
                   const productDetails = getProductDetails(item.productId);
+                  // Calculate the item price based on product type
+                  const itemPrice = item.productType === "SELL" 
+                    ? (productDetails?.productFor?.sell?.discountPrice || 0)
+                    : (productDetails?.productFor?.rent?.discountPrice || 0);
+                  
+                  // Calculate the total price for this item
+                  const totalItemPrice = itemPrice * (item.quantity || 1);
+                  
                   return (
                     <div key={index} className="flex border border-gray-100 rounded-lg p-3 relative hover:shadow-sm transition-shadow">
                       <div className="w-20 h-20 rounded-md overflow-hidden flex-shrink-0 bg-gray-50">
                         <img 
-                          src={productDetails.imageUrls?.[0]} 
-                          alt={productDetails.name || 'Product'} 
+                          src={productDetails?.imageUrls?.[0] || 'https://via.placeholder.com/100'} 
+                          alt={productDetails?.name || 'Product'} 
                           className="w-full h-full object-cover"
                         />
                       </div>
                       
                       <div className="ml-3 flex-grow">
-                        <h3 className="font-medium text-gray-800">{productDetails.name}</h3>
+                        <h3 className="font-medium text-gray-800">{productDetails?.name || 'Product'}</h3>
                         <p className="text-xs text-gray-500 mb-1">
                           {item.productType === "RENT" ? 
                             `Rent (${item.rentPeriod || 1} months)` : 
@@ -261,15 +286,14 @@ const CartSidebar = ({ isOpen, onClose }) => {
                         
                         <div className="flex justify-between items-center mt-2">
                           <div className="text-blue-600 font-semibold">
-                           {item.productType === "SELL"? (
-                              <span className="">
-                                AED {productDetails?.productFor?.sell?.discountPrice.toFixed(2)*item.quantity}
+                            AED {totalItemPrice.toFixed(2)}
+                            {item.productType === "SELL" && 
+                             productDetails?.productFor?.sell?.actualPrice > 
+                             productDetails?.productFor?.sell?.discountPrice && (
+                              <span className="ml-2 text-xs text-gray-400 line-through">
+                                AED {(productDetails?.productFor?.sell?.actualPrice * (item.quantity || 1)).toFixed(2)}
                               </span>
-                            ):
-                            <span className="">
-                                AED {productDetails?.productFor?.rent?.discountPrice.toFixed(2)*item.quantity}
-                              </span>
-                            }
+                            )}
                           </div>
                           
                           <div className="flex items-center border rounded-md">
@@ -307,7 +331,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
         </div>
         
         {/* Cart Footer - Order Summary */}
-        {token && cartItems?.items?.length > 0 && (
+        {(token ? cartItems?.items?.length > 0 : localCartItems.length > 0) && (
           <div className="border-t border-gray-100 p-4 bg-gray-50">
             <div className="flex justify-between mb-3">
               <span className="text-gray-600">Subtotal</span>
@@ -319,7 +343,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
               <div className="flex justify-between font-medium text-lg">
                 <span>Total</span>
                 <span className="text-blue-600">
-                  AED {token ? totalAmount : localTotalAmount}
+                  AED {token ? totalAmount.toFixed(2) : localTotalAmount.toFixed(2)}
                 </span>
               </div>
             </div>
@@ -355,4 +379,5 @@ const CartSidebar = ({ isOpen, onClose }) => {
 };
 
 export default CartSidebar;
+
 
