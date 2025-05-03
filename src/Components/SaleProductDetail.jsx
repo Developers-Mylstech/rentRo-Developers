@@ -510,7 +510,7 @@ const ProductDetail = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full ">
                   <button
-                    onClick={() => token != null ? navigate("/waterfilterSubscription") : navigate("/login")}
+                    onClick={() => token != null ? navigate("/checkout") : navigate("/login")}
                     className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
                   >
                     Rent Now
@@ -608,7 +608,7 @@ const ProductDetail = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                   <button
-                    onClick={() => token != null ? navigate("/waterfilterSubscription") : navigate("/login")}
+                    onClick={() => token != null ? navigate("/checkout") : navigate("/login")}
                     className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
                   >
                     Buy Now
