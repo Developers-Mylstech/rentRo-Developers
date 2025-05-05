@@ -488,6 +488,8 @@ import { Card } from 'primereact/card';
 import useAuthStore from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import useCheckoutStore from '../Context/CheckoutContext';
+import useOrderStore from '../Context/OrderContext';
+import OrderList from '../Components/listing/OrderList';
 
 function Profile() {
   const email = localStorage.getItem('userEmail') || 'mohd.yaseen@example.com';
@@ -495,106 +497,15 @@ function Profile() {
   // const userName = "Mohd Yaseen";
   const { logout } = useAuthStore();
   const navigate = useNavigate();
-  const { fetchOrders,orders: apiOrders } = useCheckoutStore();
+  // const { fetchOrders,orders: apiOrders } = useCheckoutStore();
+  const {fetchOrders, orders } = useOrderStore();
 
   // State for orders from API
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  // Fetch orders on component mount
   useEffect(() => {
-    const loadOrders = async () => {
-      try {
-        await fetchOrders();
-        setLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch orders:", error);
-        setLoading(false);
-      }
-    };
-    loadOrders();
+    fetchOrders();
   }, [fetchOrders]);
-
-  // Transform API orders to match our UI structure
-  useEffect(() => {
-    if (apiOrders && apiOrders.length > 0) {
-      const transformedOrders = apiOrders.map(order => ({
-        id: order.checkoutId,
-        date: new Date(order.deliveryDate).toLocaleDateString(),
-        total: order.cart.totalPrice,
-        status: 'Processing', // You might want to get this from API if available
-        items: order.cart.items.length,
-        orderDetails: order // Keep the full order details
-      }));
-      setOrders(transformedOrders);
-    }
-  }, [apiOrders]);
-
-  // Rest of your existing state for addresses and payment methods
-  const [addresses, setAddresses] = useState([
-    { id: 1, name: 'Home', street: '123 Main St', city: 'New York', state: 'NY', zip: '10001', isDefault: true },
-    { id: 2, name: 'Work', street: '456 Business Ave', city: 'New York', state: 'NY', zip: '10002', isDefault: false }
-  ]);
-
-  const [paymentMethods, setPaymentMethods] = useState([
-    { id: 1, type: 'Visa', last4: '4242', expiry: '12/25', isDefault: true },
-    { id: 2, type: 'Mastercard', last4: '5555', expiry: '06/24', isDefault: false }
-  ]);
-
-  // Dialog states
-  const [showAddressDialog, setShowAddressDialog] = useState(false);
-  const [showPaymentDialog, setShowPaymentDialog] = useState(false);
-  const [newAddress, setNewAddress] = useState({ name: '', street: '', city: '', state: '', zip: '', isDefault: false });
-  const [newPayment, setNewPayment] = useState({ type: '', number: '', expiry: '', cvv: '', isDefault: false });
-
-  // States for dropdowns
-  const states = [
-    { label: 'New York', value: 'NY' },
-    { label: 'California', value: 'CA' },
-    { label: 'Texas', value: 'TX' }
-  ];
-
-  const cardTypes = [
-    { label: 'Visa', value: 'Visa' },
-    { label: 'Mastercard', value: 'Mastercard' },
-    { label: 'American Express', value: 'Amex' }
-  ];
-
-  const handleAddAddress = () => {
-    setAddresses([...addresses, { ...newAddress, id: addresses.length + 1 }]);
-    setShowAddressDialog(false);
-    setNewAddress({ name: '', street: '', city: '', state: '', zip: '', isDefault: false });
-  };
-
-  const handleAddPayment = () => {
-    const last4 = newPayment.number.slice(-4);
-    setPaymentMethods([...paymentMethods, { ...newPayment, last4, id: paymentMethods.length + 1 }]);
-    setShowPaymentDialog(false);
-    setNewPayment({ type: '', number: '', expiry: '', cvv: '', isDefault: false });
-  };
-
-  const handleDeleteAddress = (id) => {
-    setAddresses(addresses.filter(addr => addr.id !== id));
-  };
-
-  const handleDeletePayment = (id) => {
-    setPaymentMethods(paymentMethods.filter(pm => pm.id !== id));
-  };
-
-  const handleSetDefaultAddress = (id) => {
-    setAddresses(addresses.map(addr => ({
-      ...addr,
-      isDefault: addr.id === id
-    })));
-  };
-
-  const handleSetDefaultPayment = (id) => {
-    setPaymentMethods(paymentMethods.map(pm => ({
-      ...pm,
-      isDefault: pm.id === id
-    })));
-  };
-
+  
   const handleLogout = () => {
     logout();
     navigate('/login');
@@ -619,6 +530,8 @@ function Profile() {
     </div>
   );
 
+ 
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-10">
       {/* Profile Header */}
@@ -642,7 +555,7 @@ function Profile() {
       {/* Profile Sections */}
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
         {/* Orders Section */}
-        <Card className="shadow-sm hover:shadow-md transition-all">
+        {/* <Card className="shadow-sm hover:shadow-md transition-all">
           <div className="flex items-center p-4 border-b border-gray-100 dark:border-gray-700">
             <div className="bg-orange-100 dark:bg-orange-900/30 p-3 rounded-lg">
               <FaBoxOpen className="text-orange-500 dark:text-orange-400 text-xl" />
@@ -658,13 +571,13 @@ function Profile() {
               <div className="space-y-4">
                 {orders.map(order => (
                   <div 
-                    key={order.id} 
+                    key={order.orderItemId} 
                     className="p-4 border border-gray-100 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
                     onClick={() => handleViewOrderDetails(order)}
                   >
                     <div className="flex justify-between items-center">
                       <div>
-                        <p className="font-medium">Order #{order.id}</p>
+                        <p className="font-medium">Order #{order.orderItemId}</p>
                         <p className="text-sm text-gray-500 dark:text-gray-400">{order.date}</p>
                       </div>
                       <div className="text-right">
@@ -711,7 +624,9 @@ function Profile() {
               </div>
             )}
           </div>
-        </Card>
+        </Card> */}
+
+        <OrderList orders={orders} />
 
         {/* Rest of your existing address and payment sections */}
         {/* ... (keep the existing address and payment method sections unchanged) ... */}

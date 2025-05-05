@@ -35,6 +35,7 @@ import Career from "./Screens/Career.jsx";
 import CareerDetail from "./Screens/CareerDetail.jsx";
 import ServiceDetails from "./screens/ServiceDetails.jsx";
 import Profile from "./Screens/Profile.jsx";
+import OrderDetail from "./Screens/OrderDetail.jsx";
 
 
 
@@ -65,6 +66,7 @@ const routes = createBrowserRouter(
         {/* <Route path="/career/:name" element={<CareerDetail/>} /> */}
         <Route path="/service/:name" element={<ServiceDetails/>} />
         <Route path="/career/:id" element={<CareerDetail/>} />
+        <Route path="/order/:id" element={<OrderDetail/>} />
       
         <Route path="/shop" element={<Shop/>} />
         <Route path="*" element={<Home />} />
