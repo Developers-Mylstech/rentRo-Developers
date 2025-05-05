@@ -127,7 +127,7 @@
 //         ))}
 //       </Swiper>
 
-     
+
 
 //       {/* New Products Section */}
 //       <div className="flex justify-center py-8 items-center mt-20">
@@ -231,14 +231,13 @@ const ProductsSection = () => {
     </div>
   );
 
+  console.log(rentProducts,'rentProducts')
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Products On Rent Section */}
-      <SectionHeader 
-        title="Products On Monthly Rent" 
-        subtitle="Just for You" 
+      <SectionHeader
+        title="Products On Monthly Rent"
+        subtitle="Just for You"
       />
-
       <Swiper
         modules={[Autoplay, Navigation]}
         spaceBetween={30}
@@ -253,21 +252,27 @@ const ProductsSection = () => {
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         className="pb-12"
       >
-        {rentProducts.map((product) => (
-          <SwiperSlide key={product.productId}>
-            <div 
+        {rentProducts?.map((product) => (
+          <SwiperSlide key={product?.productId}>
+            <div
               onClick={() => handleProductClick(product)}
               className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
-              {/* Product Image */}
+      
               <div className="relative h-64 overflow-hidden">
-                <img
-                  src={product.imageUrls[0]}
-                  alt={product.name}
-                  className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
-                />
+                {
+                  product && (
+                    <img
+                      src={product?.imageUrls[0] }
+                      alt={product?.name}
+                      className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                    />
+                  )
+                }
+
+
                 {/* Wishlist Button */}
-                <button 
+                <button
                   className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-all"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -279,7 +284,7 @@ const ProductsSection = () => {
                 {/* Discount Badge */}
                 {product.productFor?.rent?.discountPrice && (
                   <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-                    {product.productFor.rent.discountValue}% OFF
+                    {product?.productFor?.rent?.discountValue}% OFF
                   </div>
                 )}
               </div>
@@ -288,19 +293,18 @@ const ProductsSection = () => {
               <div className="p-5">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-lg font-semibold text-gray-800 line-clamp-1">
-                    {product.name}
+                    {product?.name}
                   </h3>
                   {product.brand && (
                     <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                      {product.brand.name}
+                      {product?.brand?.name}
                     </span>
                   )}
                 </div>
 
-                {/* Rating */}
                 <div className="flex items-center mb-3">
                   {renderStars(5)}
-                  <span className="text-xs text-gray-500 ml-1">(0 reviews)</span>
+                  <span className="text-xs text-gray-500 ml-1">(20 reviews)</span>
                 </div>
 
                 {/* Price */}
@@ -308,7 +312,7 @@ const ProductsSection = () => {
                   {product.productFor?.rent?.discountPrice ? (
                     <>
                       <span className="text-xl font-bold text-gray-900">
-                        AED {product.productFor.rent.discountPrice}/mo
+                        AED {product?.productFor?.rent?.discountPrice}/mo
                       </span>
                       <span className="ml-2 text-sm text-gray-500 line-through">
                         AED {product.productFor.rent.monthlyPrice}
@@ -321,7 +325,7 @@ const ProductsSection = () => {
                   )}
                 </div>
 
-            
+
 
                 {/* Add to Cart Button */}
                 <button
@@ -341,9 +345,9 @@ const ProductsSection = () => {
       </Swiper>
 
       {/* New Products Section */}
-      <SectionHeader 
-        title="New Products" 
-        subtitle="Latest Arrivals" 
+      <SectionHeader
+        title="New Products"
+        subtitle="Latest Arrivals"
       />
 
       <Swiper
@@ -361,16 +365,16 @@ const ProductsSection = () => {
         className="pb-12"
       >
         {rentProducts.map((product) => (
-          <SwiperSlide key={product.productId}>
-            <div 
+          <SwiperSlide key={product?.productId}>
+            <div
               onClick={() => handleProductClick(product)}
               className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
               {/* Product Image */}
               <div className="relative h-64 overflow-hidden">
                 <img
-                  src={product.imageUrls[0]}
-                  alt={product.name}
+                  src={product?.imageUrls[0]}
+                  alt={product?.name}
                   className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
                 />
                 {/* New Badge */}
@@ -384,7 +388,7 @@ const ProductsSection = () => {
                 <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-1">
                   {product.name}
                 </h3>
-                
+
                 {/* Rating */}
                 <div className="flex items-center mb-3">
                   {renderStars(5)}
@@ -396,10 +400,10 @@ const ProductsSection = () => {
                   {product.productFor?.sell?.discountPrice ? (
                     <>
                       <span className="text-xl font-bold text-gray-900">
-                        AED {product.productFor.sell.discountPrice}
+                        AED {product?.productFor?.sell?.discountPrice}
                       </span>
                       <span className="ml-2 text-sm text-gray-500 line-through">
-                        AED {product.productFor.sell.actualPrice}
+                        AED {product?.productFor?.sell?.actualPrice}
                       </span>
                     </>
                   ) : (

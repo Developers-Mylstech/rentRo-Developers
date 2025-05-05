@@ -364,28 +364,6 @@ export default function CheckoutForm() {
 
   const { addAddress, addressId } = useAddressStore()
 
-  const emirates = [
-    { name: 'Abu Dhabi', code: 'AUH' },
-    { name: 'Dubai', code: 'DXB' },
-    { name: 'Sharjah', code: 'SHJ' },
-    { name: 'Ajman', code: 'AJM' },
-    { name: 'Umm Al Quwain', code: 'UAQ' },
-    { name: 'Ras Al Khaimah', code: 'RAK' },
-    { name: 'Fujairah', code: 'FUJ' }
-  ];
-
-  const addressTypes = [
-    { name: 'HOME' },
-    { name: 'OFFICE' },
-    { name: 'OTHER' }
-  ];
-
-
-  const countries = [
-    { name: 'United States', code: 'US' },
-    { name: 'United Kingdom', code: 'UK' },
-    { name: 'Canada', code: 'CA' }
-  ];
 
   const paymentOptions = [
     { name: 'Credit Card', code: 'CREDIT_CARD' },
@@ -424,7 +402,7 @@ export default function CheckoutForm() {
         mobile: watch("mobile"),
         email: watch("email"),
         addressId: addressId,
-        deliveryDate: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
+        // deliveryDate: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
         paymentOption: paymentOption,
         status: "PENDING"
       };

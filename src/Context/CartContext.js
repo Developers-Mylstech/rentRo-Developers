@@ -419,6 +419,32 @@ const useCartStore = create((set, get) => ({
     }
   },
 
+  addMutipleProducts: async (items) => {
+    set({ loading: true, error: null });
+  
+    const accessToken = localStorage.getItem('access');
+    axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+  
+    try {
+      const response = await axiosInstance.post('/carts/items/batch', items);
+  
+      set((state) => ({
+        // cartItems: [...state.cartItems, ...response.data], // Assuming response.data is an array
+        loading: false
+      }));
+  
+      return response.data;
+    } catch (error) {
+      set({ 
+        error: error.response?.data?.message || 'Failed to add item(s) to cart',
+        loading: false 
+      });
+      throw error;
+    }
+  },
+  
+
+       
   // Clear cart
   clearCart: async () => {
     set({ loading: true, error: null });

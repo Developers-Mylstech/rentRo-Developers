@@ -114,19 +114,19 @@ const ProductList = ({ products }) => {
             >
               {/* Product Badges */}
               <div className="absolute top-3 left-3 z-10 flex gap-2">
-                {product.isNew && (
+                {product?.isNew && (
                   <span className="px-2 py-1 bg-green-500 text-white text-xs font-bold rounded-full">
                     New
                   </span>
                 )}
-                {product.isBestSeller && (
+                {product?.isBestSeller && (
                   <span className="px-2 py-1 bg-orange-500 text-white text-xs font-bold rounded-full">
                     Bestseller
                   </span>
                 )}
-                {product.discountPercentage > 0 && (
+                {product?.discountPercentage > 0 && (
                   <span className="px-2 py-1 bg-red-500 text-white text-xs font-bold rounded-full">
-                    {product.discountPercentage}% OFF
+                    {product?.discountPercentage}% OFF
                   </span>
                 )}
               </div>
@@ -160,13 +160,13 @@ const ProductList = ({ products }) => {
                   </h3>
                   {product?.tagNKeywords?.length > 0 && (
                     <span className="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">
-                      #{product.tagNKeywords[0]}
+                      #{product?.tagNKeywords[0]}
                     </span>
                   )}
                 </div>
 
                 {/* Rating */}
-                {product.reviews?.length > 0 && (
+                {product?.reviews?.length > 0 && (
                   <div className="flex items-center mb-2">
                     <div className="flex mr-1">
                       {renderStars(calculateRating(product.reviews))}
@@ -187,17 +187,17 @@ const ProductList = ({ products }) => {
                     {product.productFor?.sell?.discountPrice ? (
                       <>
                         <span className="text-lg font-bold text-gray-900">
-                          AED {product.productFor.sell.discountPrice}
+                          AED {product?.productFor?.sell?.discountPrice}
                         </span>
-                        {product.productFor.sell.discountPrice < product.productFor.sell.actualPrice && (
+                        {product?.productFor?.sell?.discountPrice < product?.productFor?.sell?.actualPrice && (
                           <span className="ml-2 text-sm text-gray-500 line-through">
-                            AED {product.productFor.sell.actualPrice}
+                            AED {product?.productFor?.sell?.actualPrice}
                           </span>
                         )}
                       </>
                     ) : product.productFor?.rent?.discountPrice ? (
                       <span className="text-lg font-bold text-gray-900">
-                        AED {product.productFor.rent.discountPrice}/mo
+                        AED {product?.productFor?.rent?.discountPrice}/mo
                       </span>
                     ) : (
                       <span className="text-lg font-bold text-gray-900">

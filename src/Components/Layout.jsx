@@ -10,6 +10,8 @@ import BottomNav from "./widget/BottomNav";
 
 function Layout() {
   const [loading, setLoading] = useState(true);
+ 
+  
 
   useEffect(() => {
     // ✅ Show loader for 5 seconds

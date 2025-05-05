@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { Controller } from "react-hook-form";
@@ -27,14 +27,69 @@ const countries = [
     { name: "Canada", code: "CA" },
 ];
 
+const AddAddress = ({ control, errors, register, setValue }) => {
+    const { fetchAddresses, addresses } = useAddressStore();
+    const [selectedAddressId, setSelectedAddressId] = useState(null);
 
-const AddAddress = ({ control, errors, register }) => {
-    const {fetchAddresses, addresses} = useAddressStore();
     useEffect(() => { 
-        fetchAddresses()
-    }, [])
+        fetchAddresses();
+    }, []);
+
+    const handleAddressSelect = (address) => {
+        setSelectedAddressId(address.addressId);
+        setValue("streetAddress", address.streetAddress);
+        setValue("buildingName", address.buildingName);
+        setValue("flatNo", address.flatNo);
+        setValue("area", address.area);
+        setValue("emirate", address.emirate);
+        setValue("country", address.country);
+        setValue("landmark", address.landmark);
+        setValue("addressType", address.addressType);
+        setValue("default", address.default);
+    };
+
     return (
         <div className="space-y-4 p-4">
+            {/* Address Selection Section */}
+            {addresses && addresses.length > 0 && (
+                <div className="mb-6">
+                    <h3 className="text-lg font-medium text-gray-700 mb-3">Select from saved addresses</h3>
+                    <div className="space-y-2">
+                        {addresses.map((address) => (
+                            <div 
+                                key={address.addressId} 
+                                className="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer"
+                                onClick={() => handleAddressSelect(address)}
+                            >
+                                <input
+                                    type="radio"
+                                    name="savedAddress"
+                                    checked={selectedAddressId === address.addressId}
+                                    onChange={() => {}}
+                                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                                />
+                                <div className="ml-3">
+                                    <p className="text-sm font-medium text-gray-700">
+                                        {address.formattedAddress}
+                                    </p>
+                                    <p className="text-xs text-gray-500">
+                                        {address.addressType} {address.default && "(Default)"}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {/* Or add new address */}
+            {addresses && addresses.length > 0 && (
+                <div className="mb-6">
+                    <h3 className="text-lg font-medium text-gray-700 mb-3">Or add new address</h3>
+                </div>
+            )}
+
+            {/* Address Form */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
