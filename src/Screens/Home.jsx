@@ -138,7 +138,8 @@ const Home = () => {
       </section>
       <section className="bg-blue-50 w-full  p-10">
         <h1 className="
-        text-center text-2xl md:text-4xl  font-bold my-4 md:my-10 text-blue-800">All Products</h1>
+        text-center text-2xl md:text-3xl  font-bold ">All Products</h1>
+         <div className="w-20 h-1 bg-blue-500 mx-auto mt-2"></div>
         <ProductList products={products}  />
       </section>
       <section className="md:mt-16" ref={ourBrandSection}>

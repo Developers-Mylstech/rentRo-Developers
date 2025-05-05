@@ -292,14 +292,14 @@ const ProductList = ({ products }) => {
               </div>
 
               {/* Product Info */}
-              <div className="p-4">
+              <div className="p-4 relative">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-md font-medium text-gray-800 line-clamp-1">
                     {product?.name}
                   </h3>
-                  {product?.tagNKeywords?.length > 0 && (
-                    <span className="text-xs px-2 py-1 bg-blue-50 text-blue-600 rounded-full">
-                      #{product?.category?.name}
+                  {product?.brand && (
+                    <span className="text-xs absolute top-2 right-2 px-2 py-1 bg-blue-50 text-blue-600 rounded-full">
+                      {product?.brand?.name}
                     </span>
                   )}
                 </div>

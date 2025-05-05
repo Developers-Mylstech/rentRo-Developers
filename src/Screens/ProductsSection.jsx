@@ -286,13 +286,13 @@ const ProductsSection = () => {
               </div>
 
               {/* Product Info */}
-              <div className="p-5">
-                <div className="flex justify-between items-start mb-2">
+              <div className="p-1">
+                <div className="flex justify-between items-start mb-2 relative">
                   <h3 className="text-lg font-semibold text-gray-800 line-clamp-1">
                     {product?.name}
                   </h3>
                   {product.brand && (
-                    <span className="text-[10px] bg-blue-100 text-blue-800 px-1 py-1 rounded">
+                    <span className="text-[10px] text-xs absolute -top-5 right-2 bg-blue-100 text-blue-800 px-2 py-1 rounded">
                       {product?.brand?.name}
                     </span>
                   )}
