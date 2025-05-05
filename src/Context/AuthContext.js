@@ -46,12 +46,17 @@ const useAuthStore = create((set) => ({
   getRefreshToken: async () => {
     set({ loading: true, error: null });
     try {
-      const refreshToken = localStorage.getItem('refresh');
-      const response = await axiosInstance.post('/auth/refresh-token', {
-        refreshToken: refreshToken
-      });
+      const refreshToken = localStorage.getItem('refreshNew');
+      console.log(refreshToken, "first name")
+      const response = await axiosInstance.post('/auth/refresh-token',
+        { refreshToken: refreshToken }, {
+        headers: {
+            'skip_zrok_interstitial': 'true',
+        },
+               })
+      // console.log(refreshToken, "refresh token")
       
-      const { token } = response.data;
+      const  token  = response.data.accessToken;
       localStorage.setItem('token', token);
       
       set({ 
