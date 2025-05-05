@@ -43,38 +43,77 @@ const useAuthStore = create((set) => ({
   },
 
   // Get Refresh Token
-  getRefreshToken: async () => {
-    set({ loading: true, error: null });
-    try {
-      const refreshToken = localStorage.getItem('refreshNew');
-      console.log(refreshToken, "first name")
-      const response = await axiosInstance.post('/auth/refresh-token',
-        { refreshToken: refreshToken }, {
+//   getRefreshToken: async () => {
+//     set({ loading: true, error: null });
+//     try {
+//       const refreshToken = localStorage.getItem('refreshNew');
+//       console.log(refreshToken, "first name")
+//       const response = await axiosInstance.post('/auth/refresh-token',
+//         { refreshToken: refreshToken }, {
+//         headers: {
+//             'skip_zrok_interstitial': 'true',
+//         },
+//                })
+//       // console.log(refreshToken, "refresh token")
+      
+//       const  token  = response.data.accessToken;
+//       localStorage.setItem('token', token);
+      
+//       set({ 
+//         token,
+//         loading: false 
+//       });
+      
+//       return response.data;
+//     } catch (error) {
+//       set({ 
+//         error: error.response?.data?.message || 'Failed to refresh token',
+//         loading: false 
+//       });
+//       localStorage.removeItem('token');
+//       localStorage.removeItem('refresh');
+//       throw error;
+//     }
+//   },
+
+getRefreshToken: async () => {
+  set({ loading: true, error: null });
+  try {
+    const refreshToken = localStorage.getItem('refreshNew');
+    console.log(refreshToken, "first name");
+
+    const response = await axiosInstance.post('/auth/refresh-token', 
+      { refreshToken },
+      {
         headers: {
-            'skip_zrok_interstitial': 'true',
-        },
-               })
-      // console.log(refreshToken, "refresh token")
-      
-      const  token  = response.data.accessToken;
-      localStorage.setItem('token', token);
-      
-      set({ 
-        token,
-        loading: false 
-      });
-      
-      return response.data;
-    } catch (error) {
-      set({ 
-        error: error.response?.data?.message || 'Failed to refresh token',
-        loading: false 
-      });
-      localStorage.removeItem('token');
-      localStorage.removeItem('refresh');
-      throw error;
-    }
-  },
+          'skip_zrok_interstitial': 'true',
+        }
+      }
+    );
+
+    const accessToken = response.data.accessToken;
+
+    localStorage.setItem('access', accessToken); // ✅ match what axiosInstance expects
+
+    set({
+      token: accessToken,
+      loading: false
+    });
+
+    return response.data; // return full data to use in interceptor
+  } catch (error) {
+    set({
+      error: error.response?.data?.message || 'Failed to refresh token',
+      loading: false
+    });
+
+    localStorage.removeItem('access');
+    localStorage.removeItem('refreshNew');
+
+    throw error;
+  }
+},
+
 
   // Verify OTP and Login
   verifyOTP: async (data) => {

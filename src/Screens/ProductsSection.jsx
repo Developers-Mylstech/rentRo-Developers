@@ -254,7 +254,7 @@ const ProductsSection = () => {
         className="pb-12"
       >
         {rentProducts.map((product) => (
-          <SwiperSlide key={product.productId}>
+          <SwiperSlide key={product?.productId}>
             <div 
               onClick={() => handleProductClick(product)}
               className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
@@ -262,8 +262,8 @@ const ProductsSection = () => {
               {/* Product Image */}
               <div className="relative h-64 overflow-hidden">
                 <img
-                  src={product.imageUrls[0]}
-                  alt={product.name}
+                  src={product?.imageUrls[0]}
+                  alt={product?.name}
                   className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
                 />
                 {/* Wishlist Button */}
@@ -279,7 +279,7 @@ const ProductsSection = () => {
                 {/* Discount Badge */}
                 {product.productFor?.rent?.discountPrice && (
                   <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-                    {product.productFor.rent.discountValue}% OFF
+                    {product?.productFor?.rent?.discountValue}% OFF
                   </div>
                 )}
               </div>
@@ -288,11 +288,11 @@ const ProductsSection = () => {
               <div className="p-5">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-lg font-semibold text-gray-800 line-clamp-1">
-                    {product.name}
+                    {product?.name}
                   </h3>
                   {product.brand && (
                     <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                      {product.brand.name}
+                      {product?.brand?.name}
                     </span>
                   )}
                 </div>
@@ -300,7 +300,7 @@ const ProductsSection = () => {
                 {/* Rating */}
                 <div className="flex items-center mb-3">
                   {renderStars(5)}
-                  <span className="text-xs text-gray-500 ml-1">(0 reviews)</span>
+                  <span className="text-xs text-gray-500 ml-1">(20 reviews)</span>
                 </div>
 
                 {/* Price */}
@@ -308,7 +308,7 @@ const ProductsSection = () => {
                   {product.productFor?.rent?.discountPrice ? (
                     <>
                       <span className="text-xl font-bold text-gray-900">
-                        AED {product.productFor.rent.discountPrice}/mo
+                        AED {product?.productFor?.rent?.discountPrice}/mo
                       </span>
                       <span className="ml-2 text-sm text-gray-500 line-through">
                         AED {product.productFor.rent.monthlyPrice}
@@ -361,7 +361,7 @@ const ProductsSection = () => {
         className="pb-12"
       >
         {rentProducts.map((product) => (
-          <SwiperSlide key={product.productId}>
+          <SwiperSlide key={product?.productId}>
             <div 
               onClick={() => handleProductClick(product)}
               className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
@@ -369,8 +369,8 @@ const ProductsSection = () => {
               {/* Product Image */}
               <div className="relative h-64 overflow-hidden">
                 <img
-                  src={product.imageUrls[0]}
-                  alt={product.name}
+                  src={product?.imageUrls[0]}
+                  alt={product?.name}
                   className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
                 />
                 {/* New Badge */}
@@ -396,10 +396,10 @@ const ProductsSection = () => {
                   {product.productFor?.sell?.discountPrice ? (
                     <>
                       <span className="text-xl font-bold text-gray-900">
-                        AED {product.productFor.sell.discountPrice}
+                        AED {product?.productFor?.sell?.discountPrice}
                       </span>
                       <span className="ml-2 text-sm text-gray-500 line-through">
-                        AED {product.productFor.sell.actualPrice}
+                        AED {product?.productFor?.sell?.actualPrice}
                       </span>
                     </>
                   ) : (

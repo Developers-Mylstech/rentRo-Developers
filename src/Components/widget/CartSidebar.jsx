@@ -461,6 +461,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
     if (isOpen && token) {
       if(localCartItems.length > 0){
         addMutipleProducts(localCartItems);
+        localStorage.removeItem('cartItemsOffline');
       }
       fetchCartItems();
     }
