@@ -323,7 +323,7 @@
 
 
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Stepper } from 'primereact/stepper';
 import { StepperPanel } from 'primereact/stepperpanel';
 import { Button } from 'primereact/button';
@@ -341,20 +341,13 @@ export default function CheckoutForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [apiError, setApiError] = useState(null);
   const [paymentOption, setPaymentOption] = useState("CREDIT_CARD");
+  const [isMobile, setIsMobile] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState(null);
 
-  const { register, handleSubmit, formState: { errors }, control, setValue, watch } = useForm({
+  const { register, handleSubmit, formState: { errors }, control, setValue, watch, reset } = useForm({
     defaultValues: {
-      streetAddress: "",
-      buildingName: "",
-      flatNo: "",
-      area: "",
-      emirate: "",
-      country: "",
-      landmark: "",
-      addressType: "HOME",
-      default: true,
-      name: "",
-      lastname: "",
+      firstName: "",
+      lastName: "",
       mobile: "",
       email: ""
     }
@@ -362,38 +355,27 @@ export default function CheckoutForm() {
   const { cartItems } = useCartStore();
   const { createOrder } = useCheckoutStore()
 
-  const { addAddress, addressId } = useAddressStore()
 
 
   const paymentOptions = [
     { name: 'Credit Card', code: 'CREDIT_CARD' },
-    { name: 'Cash on Delivery', code: 'CASH_ON_DELIVERY' },
-    { name: 'PayPal', code: 'PAYPAL' },
-    { name: 'Bank Transfer', code: 'BANK_TRANSFER' }
+    { name: 'Debit Card', code: 'DEBIT_CARD' },
+    { name: 'Net Banking', code: 'NET_BANKING' },
+
   ];
 
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
 
-  const onSubmitAddress = async (data) => {
-    console.log(data, 'data')
-    setIsSubmitting(true);
-    setApiError(null);
-    try {
-      const addressId = await addAddress(data)
-      if (addressId) {
-        stepperRef.current.nextCallback();
-      }
-    } catch (error) {
-      console.error('Error saving address:', error);
-      setApiError(error.response?.data?.message || 'Failed to save address');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const onSubmitOrder = async () => {
     setIsSubmitting(true);
     setApiError(null);
+
 
     try {
       const orderPayload = {
@@ -401,10 +383,11 @@ export default function CheckoutForm() {
         name: watch("name"),
         mobile: watch("mobile"),
         email: watch("email"),
-        addressId: addressId,
-        // deliveryDate: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
+        addressId: selectedAddress,
+        firstName: watch("firstName"),
+        lastName: watch("lastName"),
         paymentOption: paymentOption,
-        status: "PENDING"
+
       };
 
       console.log("Submitting order:", orderPayload);
@@ -412,8 +395,6 @@ export default function CheckoutForm() {
 
       const response = await createOrder(orderPayload);
       console.log('Order created:', response.data);
-
-      // Proceed to success step
       stepperRef.current.nextCallback();
     } catch (error) {
       console.error('Error creating order:', error);
@@ -429,7 +410,7 @@ export default function CheckoutForm() {
         <h1 className="text-3xl font-bold text-center text-blue-600 mb-8  ">Checkout</h1>
 
         <div className="bg-white rounded-lg">
-          <Stepper ref={stepperRef} linear>
+          <Stepper ref={stepperRef} linear className="stepper-wrapper" orientation={isMobile ? 'vertical' : 'horizontal'} >
             <StepperPanel header="Personal Details">
               <form onSubmit={(e) => {
                 e.preventDefault();
@@ -442,26 +423,26 @@ export default function CheckoutForm() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
                     <InputText
                       className={classNames('w-full p-3 border rounded-lg', {
-                        'border-gray-300': !errors.name,
-                        'border-red-500': errors.name
+                        'border-gray-300': !errors.firstName,
+                        'border-red-500': errors.firstName
                       })}
-                      {...register("name", { required: 'First name is required' })}
+                      {...register("firstName", { required: 'First name is required' })}
                     />
-                    {errors.name && (
-                      <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+                    {errors.firstName && (
+                      <p className="mt-1 text-sm text-red-600">{errors.firstName.message}</p>
                     )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
                     <InputText
                       className={classNames('w-full p-3 border rounded-lg', {
-                        'border-gray-300': !errors.lastname,
-                        'border-red-500': errors.lastname
+                        'border-gray-300': !errors.lastName,
+                        'border-red-500': errors.lastName
                       })}
-                      {...register("lastname", { required: 'Last name is required' })}
+                      {...register("lastName", { required: 'Last name is required' })}
                     />
-                    {errors.lastname && (
-                      <p className="mt-1 text-sm text-red-600">{errors.lastname.message}</p>
+                    {errors.lastName && (
+                      <p className="mt-1 text-sm text-red-600">{errors.lastName.message}</p>
                     )}
                   </div>
 
@@ -510,7 +491,7 @@ export default function CheckoutForm() {
                     label="Continue to Address"
                     icon="pi pi-arrow-right"
                     iconPos="right"
-                    type="submit"
+     
                     className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition duration-200"
                   />
                 </div>
@@ -518,8 +499,8 @@ export default function CheckoutForm() {
             </StepperPanel>
 
             <StepperPanel header="Shipping Address">
-              <form onSubmit={handleSubmit(onSubmitAddress)}>
-                <AddAddress control={control} errors={errors} register={register} />
+              <form>
+                <AddAddress setSelectedAddress={setSelectedAddress} selectedAddress={selectedAddress} />
 
                 {apiError && (
                   <div className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
@@ -529,10 +510,12 @@ export default function CheckoutForm() {
 
                 <div className="flex pt-4 justify-end">
                   <Button
+                          type="button"  // Add this to prevent form submission
+
                     label={isSubmitting ? 'Saving...' : 'Continue to Payment'}
                     icon="pi pi-arrow-right"
                     iconPos="right"
-                    type="submit"
+                    onClick={() => stepperRef.current.nextCallback()}
                     disabled={isSubmitting}
                     className={classNames(
                       'text-blue-500 text-sm py-3 px-6 rounded-lg transition duration-200',
