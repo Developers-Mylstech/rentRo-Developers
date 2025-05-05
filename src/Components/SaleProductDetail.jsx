@@ -114,7 +114,7 @@ const CustomCarousel = ({
           <>
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md z-10 transition-all duration-200 hover:scale-110"
+              className="absolute  left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md z-10 transition-all duration-200 hover:scale-110"
               aria-label="Previous slide"
             >
               <FaChevronLeft className="w-5 h-5" />
@@ -144,7 +144,7 @@ const CustomCarousel = ({
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`flex-shrink-0 w-16 h-16 rounded-md overflow-hidden border-2 transition-all duration-200 ${
+              className={`flex-shrink-0 w-16 h-16 rounded-md overflow-hidden border-2  transition-all duration-200 ${
                 index === currentIndex 
                   ? 'border-blue-500 scale-105' 
                   : 'border-transparent hover:border-gray-300'
@@ -325,7 +325,7 @@ const ProductDetail = () => {
                 <img
                   src={product.imageUrls[0]}
                   alt={product?.name}
-                  className="object-cover rounded-lg mx-auto md:h-[50vh] h-auto w-[70%]"
+                  className="object-cover rounded-lg mx-auto md:h-[50vh] h-auto w-full"
                 />
                 {product.imageUrls.length === 1 && (
                   <button 
@@ -492,7 +492,7 @@ const ProductDetail = () => {
                         <p className="md:text-xs text-[9px] text-gray-500 text-left">per month × {rentPeriod} months</p>
                       </div>
                       <div className="text-center">
-                        <p className="text-sm text-gray-500">+ VAT {product?.productFor.rent.vat} %</p>
+                        <p className="text-sm text-gray-500">+ VAT {product?.productFor?.rent?.vat} %</p>
                         <p className="text-blue-600 font-bold">
                           {product?.productFor?.rent?.vat} %
                         </p>
