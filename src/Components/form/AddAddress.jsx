@@ -26,14 +26,13 @@ const countries = [
     { name: "United Kingdom", code: "UK" },
     { name: "Canada", code: "CA" },
 ];
-const { fetchAddresses ,addresses } = useAddressStore()
-
-useEffect(() => {
-    fetchAddresses()
-}, [])
 
 
 const AddAddress = ({ control, errors, register }) => {
+    const {fetchAddresses, addresses} = useAddressStore();
+    useEffect(() => { 
+        fetchAddresses()
+    }, [])
     return (
         <div className="space-y-4 p-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
