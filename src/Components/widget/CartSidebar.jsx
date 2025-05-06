@@ -689,7 +689,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
             <div className="space-y-2">
               {token ? (
                 <Link 
-                  to="/waterfilterSubscription"
+                  to="/checkout"
                   onClick={onClose}
                   className="block w-full py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white text-center rounded-lg font-bold hover:from-blue-700 hover:to-blue-600 transition-all shadow-md hover:shadow-lg active:scale-[0.98]"
                 >

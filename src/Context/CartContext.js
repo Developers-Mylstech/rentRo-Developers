@@ -239,7 +239,7 @@ const useCartStore = create((set, get) => ({
   totalItems: 0,
   totalAmount: 0,
 
-  // Add item to cart
+
   addToCart: async (item) => {
     set({ loading: true, error: null });
     const accessToken = localStorage.getItem('access');

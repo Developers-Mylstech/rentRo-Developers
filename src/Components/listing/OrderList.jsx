@@ -71,9 +71,9 @@ const OrderList = ({ orders }) => {
         ))}
       </div>
 
-      {filteredOrders.length > 0 ? (
+      {filteredOrders?.length > 0 ? (
         <div className="space-y-4">
-          {filteredOrders.map((order) => (
+          {filteredOrders?.map((order) => (
             <motion.div
               key={order.orderId}
               initial={{ opacity: 0, y: 10 }}
@@ -101,7 +101,7 @@ const OrderList = ({ orders }) => {
 
                 <div className="flex items-center mb-4">
                   <div className="flex -space-x-2">
-                    {order.items.slice(0, 3).map((item, index) => (
+                    {order?.items?.slice(0, 3).map((item, index) => (
                       <img
                         key={index}
                         src={item?.productImage}
@@ -109,7 +109,7 @@ const OrderList = ({ orders }) => {
                         className="w-10 h-10 rounded-full border-2 border-white object-cover"
                       />
                     ))}
-                    {order.items.length > 3 && (
+                    {order?.items?.length > 3 && (
                       <div className="w-10 h-10 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-600">
                         +{order?.items?.length - 3}
                       </div>

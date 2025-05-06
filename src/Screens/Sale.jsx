@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import OceanScene from "../Components/widget/OceanScene";
 import ProductList from "../Components/listing/ProductListing";
-import WaterFilterSubscriptionForm from "../Components/form/WaterFilterSubscriptionForm";
 
 // Images import
 import Domestic from "../assets/Rent/Domestic.png";
@@ -12,6 +11,7 @@ import WaterDispenser from "../assets/Rent/WaterDispenser.png";
 import Industrial from "../assets/Rent/Industrial.png";
 import useProductStore from "../Context/ProductContext";
 import Skeleton from "react-loading-skeleton";
+import CheckoutForm from "../Components/form/CheckoutForm";
 
 
 
@@ -43,7 +43,7 @@ const Sale = () => {
         )}
       </div>
 
-      <WaterFilterSubscriptionForm />
+      <CheckoutForm />
 
     </>
   );

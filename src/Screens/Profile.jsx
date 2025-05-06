@@ -54,7 +54,7 @@ function Profile() {
  
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-10">
+    <div className="min-h-screen bg-gray-50  pb-10">
       {/* Profile Header */}
       <div className="w-full bg-gradient-to-r from-blue-500 to-blue-600 py-8 px-4 shadow-md">
         <div className=" mx-auto flex flex-col items-center">

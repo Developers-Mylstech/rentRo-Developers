@@ -30,11 +30,15 @@ import DomesticService from './Screens/DomesticService.jsx'
 import AboutUs from "./Screens/AboutUs.jsx";
 import Shop from './Screens/Shop.jsx'
 import ProductDetail from "./Components/SaleProductDetail.jsx";
-import WaterFilterSubscriptionForm from "./Components/form/WaterFilterSubscriptionForm.jsx";
 import Career from "./Screens/Career.jsx";
 import CareerDetail from "./Screens/CareerDetail.jsx";
 import ServiceDetails from "./screens/ServiceDetails.jsx";
 import Profile from "./Screens/Profile.jsx";
+import CheckoutForm from "./Components/form/CheckoutForm.jsx";
+// Other theme options:
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
 import OrderDetail from "./Screens/OrderDetail.jsx";
 
 
@@ -54,7 +58,7 @@ const routes = createBrowserRouter(
         {/* <Route path="/clients" element={<Clients/>} /> */}
         <Route path="/sale" element={<Sale/>} />
         <Route path="/product/:name" element={<ProductDetail/>} />
-        <Route path="/waterfilterSubscription" element={<WaterFilterSubscriptionForm/>} />
+        <Route path="/checkout" element={<CheckoutForm/>} />
         <Route path="/rent" element={<Rent/>} />
         <Route path="/contact" element={<ContactUs/>} />
         <Route path="/roservices" element={<RoServices/>} />

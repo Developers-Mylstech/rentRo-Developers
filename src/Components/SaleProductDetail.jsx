@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { 
-  FaChevronLeft, 
-  FaChevronRight, 
-  FaCheck, 
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaCheck,
   FaCheckCircle,
   FaExpand,
   FaCompress,
@@ -13,9 +13,10 @@ import {
 import useCartStore from "../Context/CartContext";
 import useAuthStore from "../Context/AuthContext";
 import AddToCartNotification from "./widget/AddToCartNotification";
+import Profile from "../Screens/Profile";
 
-const CustomCarousel = ({ 
-  images, 
+const CustomCarousel = ({
+  images,
   height = "60vh",
   autoPlay = false,
   autoPlayInterval = 5000,
@@ -41,13 +42,13 @@ const CustomCarousel = ({
   }, [currentIndex, autoPlay, autoPlayInterval, images.length, isHovered, isFullscreen]);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
@@ -81,13 +82,13 @@ const CustomCarousel = ({
   }, []);
 
   return (
-    <div 
+    <div
       className={`relative w-full ${isFullscreen ? 'fixed inset-0 z-50 bg-black' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Main Image Container */}
-      <div 
+      <div
         className={`relative overflow-hidden ${isFullscreen ? 'h-screen w-screen' : ''}`}
         style={{ height: isFullscreen ? '100%' : height }}
       >
@@ -96,9 +97,8 @@ const CustomCarousel = ({
           {images.map((image, index) => (
             <div
               key={index}
-              className={`absolute inset-0 transition-opacity duration-500 flex items-center justify-center ${
-                index === currentIndex ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`absolute inset-0 transition-opacity duration-500 flex items-center justify-center ${index === currentIndex ? 'opacity-100' : 'opacity-0'
+                }`}
             >
               <img
                 src={image}
@@ -108,7 +108,7 @@ const CustomCarousel = ({
             </div>
           ))}
         </div>
-        
+
         {/* Navigation Arrows */}
         {images.length > 1 && (
           <>
@@ -129,14 +129,14 @@ const CustomCarousel = ({
           </>
         )}
 
-   
-       
+
+
         {/* Slide Counter */}
         <div className="absolute bottom-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm z-10">
           {currentIndex + 1} / {images.length}
         </div>
       </div>
-      
+
       {/* Thumbnail Navigation */}
       {showThumbnails && images.length > 1 && !isFullscreen && (
         <div className="flex mt-4 space-x-2 overflow-x-auto py-2 px-1">
@@ -144,11 +144,10 @@ const CustomCarousel = ({
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`flex-shrink-0 w-16 h-16 rounded-md overflow-hidden border-2  transition-all duration-200 ${
-                index === currentIndex 
-                  ? 'border-blue-500 scale-105' 
+              className={`flex-shrink-0 w-16 h-16 rounded-md overflow-hidden border-2  transition-all duration-200 ${index === currentIndex
+                  ? 'border-blue-500 scale-105'
                   : 'border-transparent hover:border-gray-300'
-              }`}
+                }`}
             >
               <img
                 src={image}
@@ -167,11 +166,10 @@ const CustomCarousel = ({
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                index === currentIndex 
-                  ? 'bg-blue-600 scale-125' 
+              className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentIndex
+                  ? 'bg-blue-600 scale-125'
                   : 'bg-gray-300 hover:bg-gray-400'
-              }`}
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
@@ -198,20 +196,19 @@ const ProductDetail = () => {
 
 
   const addToCartLocally = () => {
-    const localSaved ={
-      productId:product.productId,
-      productType:activeTab.toUpperCase(),
-      quantity:quantity,
+    const localSaved = {
+      productId: product.productId,
+      productType: activeTab.toUpperCase(),
+      quantity: quantity,
 
-     
+
     };
 
     setLocalCartItems(localSaved);
 
-    console.log(localSaved,"localy Saved");
-    
 
-    const updatedCartItems = [...localCartItems,localSaved];
+
+    const updatedCartItems = [...localCartItems, localSaved];
     setLocalCartItems(updatedCartItems);
     localStorage.setItem('cartItemsOffline', JSON.stringify(updatedCartItems));
     setNotificationProduct(product);
@@ -223,29 +220,42 @@ const ProductDetail = () => {
       setLocalCartItems(JSON.parse(storedCartItems));
     }
   }, []);
-  
+
   // Determine which tab should be active initially based on availability
   const getInitialActiveTab = () => {
     if (product?.productFor?.rent?.discountPrice) return "rent";
     if (product?.productFor?.sell?.discountPrice) return "sell";
-    if (product?.productFor?.service?.amcBasic?.price || 
-        product?.productFor?.service?.amcGold?.price || 
-        product?.productFor?.service?.mmc?.price || 
-        product?.productFor?.service?.ots?.price) return "service";
+    if (product?.productFor?.service?.amcBasic?.price ||
+      product?.productFor?.service?.amcGold?.price ||
+      product?.productFor?.service?.mmc?.price ||
+      product?.productFor?.service?.ots?.price) return "service";
     return "rent"; // Default fallback
   };
-  
+
   const [activeTab, setActiveTab] = useState(getInitialActiveTab);
   const [amcType, setAmcType] = useState("amcBasic");
   const [allReviews, setAllReviews] = useState(product?.reviews || []);
-  
-  // New state variables for rent period and quantity
+
+
   const [rentPeriod, setRentPeriod] = useState(1);
   const [quantity, setQuantity] = useState(1);
   // const [rentQuantity, setRentQuantity] = useState(1);
-  
-  // Get addToCart function from cart store
+
+
   const { addToCart } = useCartStore();
+
+
+  const buyNow = (type) => {
+
+    const item = {
+      productId: product?.productId,
+      productType: type,
+      quantity: quantity
+    };
+
+    navigate("/checkout", { state: { item } });
+
+  }
 
   if (!product) {
     return (
@@ -269,27 +279,27 @@ const ProductDetail = () => {
   const handleAddToCart = () => {
 
     let item = {};
-   
-    if(activeTab=="rent"){
-       item = {
+
+    if (activeTab == "rent") {
+      item = {
         productId: product.productId,
         productType: "RENT",
         // rentPeriod: rentPeriod,
         quantity: quantity
- 
+
       };
-    }else{
+    } else {
       item = {
         productId: product.productId,
         productType: "SELL",
         quantity: quantity
       };
     }
-    
+
     const res = addToCart(item)
-    console.log(res,"res");
+    console.log(res, "res");
     setNotificationProduct(product);
-     
+
   };
 
   useEffect(() => {
@@ -300,14 +310,14 @@ const ProductDetail = () => {
       setLocalTotalAmount(product?.productFor?.sell?.discountPrice * quantity);
     }
   }, [activeTab]);
- 
+
   return (
     <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="bg-white rounded-xl shadow-sm overflow-hidden mt-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6">
-        <div className="md:col-span-1 flex items-center justify-center rounded-lg p-4">
+          <div className="md:col-span-1 flex items-center justify-center rounded-lg p-4">
             {product.imageUrls.length > 1 ? (
-              <CustomCarousel 
+              <CustomCarousel
                 images={product.imageUrls}
                 height="60vh"
                 width="60%"
@@ -321,14 +331,14 @@ const ProductDetail = () => {
                 transition="fade"
               />
             ) : (
-              <div className="relative w-full">
+              <div className="relative w-full bg-red-300">
                 <img
                   src={product.imageUrls[0]}
                   alt={product?.name}
                   className="object-cover rounded-lg mx-auto md:h-[50vh] h-auto w-full"
                 />
                 {product.imageUrls.length === 1 && (
-                  <button 
+                  <button
                     onClick={() => document.documentElement.requestFullscreen().catch(console.log)}
                     className="absolute bottom-4 right-4 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md"
                   >
@@ -357,7 +367,7 @@ const ProductDetail = () => {
                     #{tag}
                   </span>
                 ))}
-              </p></div>
+                </p></div>
               </div>
               <div className="flex items-center">
                 {/* {renderStars(product.rating)} */}
@@ -370,7 +380,7 @@ const ProductDetail = () => {
                 {["rent", "sell", "service"].map((tab) => {
                   const isDisabled = (
                     (tab === "sell" && !product?.productFor?.sell?.discountPrice) ||
-                    (tab === "rent" && !(product?.productFor?.rent?.discountPrice) ) ||
+                    (tab === "rent" && !(product?.productFor?.rent?.discountPrice)) ||
                     (tab === "service" && !(
                       product?.productFor?.service?.amcBasic?.price ||
                       product?.productFor?.service?.amcGold?.price ||
@@ -385,13 +395,12 @@ const ProductDetail = () => {
                       onClick={() => !isDisabled && setActiveTab(tab)}
                       // onClick={() =>setActiveTab(tab)}
                       disabled={isDisabled}
-                      className={`whitespace-nowrap py-4 w-1/3 px-1 border-b font-medium text-sm ${
-                        activeTab === tab
+                      className={`whitespace-nowrap py-4 w-1/3 px-1 border-b font-medium text-sm ${activeTab === tab
                           ? "border-blue-500 text-blue-600"
                           : isDisabled
-                          ? "border-b text-gray-300 cursor-not-allowed"
-                          : "border-b text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                      }`}
+                            ? "border-b text-gray-300 cursor-not-allowed"
+                            : "border-b text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                        }`}
                     >
                       {tab.charAt(0).toUpperCase() + tab.slice(1)}
                       {isDisabled && " (N/A)"}
@@ -427,7 +436,7 @@ const ProductDetail = () => {
                     </h3>
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center border rounded-md">
-                        <button 
+                        <button
                           onClick={() => quantity > 1 && setQuantity(quantity - 1)}
                           className="px-3 py-2 text-gray-600 hover:bg-gray-100"
                           disabled={quantity <= 1}
@@ -435,7 +444,7 @@ const ProductDetail = () => {
                           <FaMinus size={14} />
                         </button>
                         <span className="px-4 py-2 text-gray-800 font-medium">{quantity}</span>
-                        <button 
+                        <button
                           onClick={() => setQuantity(quantity + 1)}
                           className="px-3 py-2 text-gray-600 hover:bg-gray-100"
                         >
@@ -501,25 +510,25 @@ const ProductDetail = () => {
                     <div className="mt-2 text-right">
                       <p className="text-lg font-bold text-blue-700">
                         Total: AED {(product?.productFor?.rent?.discountPrice * rentPeriod).toFixed(2)}
-                       
+
                       </p>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full ">
-                  <button
-                    onClick={() => token != null ? navigate("/waterfilterSubscription") : navigate("/login")}
-                    className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
-                  >
-                    Rent Now
-                  </button>
-                  <button
-                    // onClick={handleAddToCart}
-                    onClick={() => token != null ? handleAddToCart() : addToCartLocally()}
-                    className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
-                  >
-                    Add to Cart
-                  </button>
+                    <button
+                      onClick={() => token != null ? buyNow('RENT') : navigate("/login")}
+                      className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
+                    >
+                      Rent Now
+                    </button>
+                    <button
+                      // onClick={handleAddToCart}
+                      onClick={() => token != null ? handleAddToCart() : addToCartLocally()}
+                      className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
+                    >
+                      Add to Cart
+                    </button>
                   </div>
                 </div>
               )}
@@ -542,14 +551,14 @@ const ProductDetail = () => {
                     </div>
                   </div>
 
-                  {/* Quantity Selection */}
+
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">
                       Quantity
                     </h3>
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center border rounded-md">
-                        <button 
+                        <button
                           onClick={() => quantity > 1 && setQuantity(quantity - 1)}
                           className="px-3 py-2 text-gray-600 hover:bg-gray-100"
                           disabled={quantity <= 1}
@@ -557,7 +566,7 @@ const ProductDetail = () => {
                           <FaMinus size={14} />
                         </button>
                         <span className="px-4 py-2 text-gray-800 font-medium">{quantity}</span>
-                        <button 
+                        <button
                           onClick={() => setQuantity(quantity + 1)}
                           className="px-3 py-2 text-gray-600 hover:bg-gray-100"
                         >
@@ -565,8 +574,8 @@ const ProductDetail = () => {
                         </button>
                       </div>
                       <span className="text-sm text-gray-500">
-                        {product?.productFor?.sell?.stock > 0 
-                          ? `${product?.productFor?.sell?.stock} units available` 
+                        {product?.productFor?.sell?.stock > 0
+                          ? `${product?.productFor?.sell?.stock} units available`
                           : "Out of stock"}
                       </span>
                     </div>
@@ -605,19 +614,19 @@ const ProductDetail = () => {
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-                  <button
-                    onClick={() => token != null ? navigate("/waterfilterSubscription") : navigate("/login")}
-                    className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
-                  >
-                    Buy Now
-                  </button>
-                  <button
-                    // onClick={handleAddToCart}
-                    onClick={() => token != null ? handleAddToCart() : addToCartLocally()}
-                    className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
-                  >
-                    Add to Cart
-                  </button>
+                    <button
+                      onClick={() => token != null ? buyNow("SELL") : navigate("/login")}
+                      className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
+                    >
+                      Buy Now
+                    </button>
+                    <button
+                      // onClick={handleAddToCart}
+                      onClick={() => token != null ? handleAddToCart() : addToCartLocally()}
+                      className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-lg shadow-sm hover:from-blue-700 hover:to-cyan-600 transition"
+                    >
+                      Add to Cart
+                    </button>
                   </div>
                 </div>
               )}
@@ -635,22 +644,20 @@ const ProductDetail = () => {
                         <button
                           type="button"
                           onClick={() => setAmcType("amcBasic")}
-                          className={`flex-1 py-2 text-sm font-medium rounded-md transition ${
-                            amcType === "amcBasic"
+                          className={`flex-1 py-2 text-sm font-medium rounded-md transition ${amcType === "amcBasic"
                               ? "bg-white shadow text-blue-600"
                               : "text-gray-600 hover:text-gray-800"
-                          }`}
+                            }`}
                         >
                           Basic
                         </button>
                         <button
                           type="button"
                           onClick={() => setAmcType("amcGold")}
-                          className={`flex-1 py-2 text-sm font-medium rounded-md transition ${
-                            amcType === "amcGold"
+                          className={`flex-1 py-2 text-sm font-medium rounded-md transition ${amcType === "amcGold"
                               ? "bg-white shadow text-blue-600"
                               : "text-gray-600 hover:text-gray-800"
-                          }`}
+                            }`}
                         >
                           Gold
                         </button>
@@ -800,7 +807,7 @@ const ProductDetail = () => {
 
       <div className=" bg-white rounded-xl shadow-sm overflow-hidden ">
         <div className="p-6  grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className=" w-full">
+          <div className=" w-full">
             <h3 className="text-xl md:text-2xl font-bold text-blue-700 border-b border-gray-300 pb-2 mb-4 ">
               Specifications
             </h3>
@@ -812,9 +819,8 @@ const ProductDetail = () => {
                 >
                   <span className="text-gray-500">{spec.name}:</span>
                   <span
-                    className={`font-medium text-gray-500  ${
-                      spec.value ? " rounded-md" : ""
-                    } `}
+                    className={`font-medium text-gray-500  ${spec.value ? " rounded-md" : ""
+                      } `}
                   >
                     {spec.value}
                   </span>
@@ -836,12 +842,15 @@ const ProductDetail = () => {
             </div>
           )}
 
-         
+
         </div>
+        <div className="h-screen w-screen bg-black">
+
         <AddToCartNotification
-        product={notificationProduct}
-        onClose={() => setNotificationProduct(null)}
-      />
+          product={notificationProduct}
+          onClose={() => setNotificationProduct(null)}
+          />
+          </div>
       </div>
     </div>
   );

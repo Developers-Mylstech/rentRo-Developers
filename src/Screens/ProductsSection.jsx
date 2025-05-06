@@ -127,7 +127,7 @@
 //         ))}
 //       </Swiper>
 
-     
+
 
 //       {/* New Products Section */}
 //       <div className="flex justify-center py-8 items-center mt-20">
@@ -232,14 +232,13 @@ const ProductsSection = () => {
     </div>
   );
 
+  console.log(rentProducts,'rentProducts')
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Products On Rent Section */}
-      <SectionHeader 
-        title="Products On Monthly Rent" 
-        subtitle="Just for You" 
+      <SectionHeader
+        title="Products On Monthly Rent"
+        subtitle="Just for You"
       />
-
       <Swiper
         modules={[Autoplay, Navigation]}
         spaceBetween={30}
@@ -254,21 +253,27 @@ const ProductsSection = () => {
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         className="pb-12"
       >
-        {rentProducts.map((product) => (
+        {rentProducts?.map((product) => (
           <SwiperSlide key={product?.productId}>
-            <div 
+            <div
               onClick={() => handleProductClick(product)}
               className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
-              {/* Product Image */}
+      
               <div className="relative h-64 overflow-hidden">
-                <img
-                  src={product?.imageUrls[0]}
-                  alt={product?.name}
-                  className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
-                />
+                {
+                  product && (
+                    <img
+                      src={product?.imageUrls[0] }
+                      alt={product?.name}
+                      className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                    />
+                  )
+                }
+
+
                 {/* Wishlist Button */}
-                <button 
+                <button
                   className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-all"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -298,7 +303,6 @@ const ProductsSection = () => {
                   )}
                 </div>
 
-                {/* Rating */}
                 <div className="flex items-center mb-3">
                   {renderStars(5)}
                   <span className="text-xs text-gray-500 ml-1">(20 reviews)</span>
@@ -322,7 +326,7 @@ const ProductsSection = () => {
                   )}
                 </div>
 
-            
+
 
                 {/* Add to Cart Button */}
                 <button
@@ -339,9 +343,9 @@ const ProductsSection = () => {
       </Swiper>
 
       {/* New Products Section */}
-      <SectionHeader 
-        title="New Products" 
-        subtitle="Latest Arrivals" 
+      <SectionHeader
+        title="New Products"
+        subtitle="Latest Arrivals"
       />
 
       <Swiper
@@ -360,7 +364,7 @@ const ProductsSection = () => {
       >
         {rentProducts.map((product) => (
           <SwiperSlide key={product?.productId}>
-            <div 
+            <div
               onClick={() => handleProductClick(product)}
               className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
@@ -382,7 +386,7 @@ const ProductsSection = () => {
                 <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-1">
                   {product.name}
                 </h3>
-                
+
                 {/* Rating */}
                 <div className="flex items-center mb-3">
                   {renderStars(5)}
