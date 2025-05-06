@@ -13,6 +13,9 @@ import {
   FaStore,
   FaUserCheck,
   FaShippingFast,
+  FaMoneyCheckAlt,
+  FaTruckLoading 
+
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -22,6 +25,8 @@ const OrderDetail = () => {
   const order = state?.order;
 
   // Timeline data
+
+  
   const timelineSteps = [
     {
       id: "ORDER_PLACED",
@@ -33,51 +38,105 @@ const OrderDetail = () => {
       date: order?.createdAt,
     },
     {
-      id: "ORDER_CONFIRMED",
-      title: "Order Confirmed",
-      icon: <FaUserCheck className="text-sm" />,
-      description: "Seller has processed your order",
-      active: ["PROCESSING", "SHIPPED", "DELIVERED", "CANCELLED"].includes(
-        order?.status
-      ),
-      completed: ["PROCESSING", "SHIPPED", "DELIVERED", "CANCELLED"].includes(
-        order?.status
-      ),
-      date: order?.createdAt, // Typically same as order placed for e-commerce
+      id: "PAYMENT_CONFIRMED",
+      title: "Payment Confirmed",
+      icon: <FaMoneyCheckAlt className="text-sm" />,
+      description: "Payment has been successfully received",
+      active: [
+        "PAYMENT_CONFIRMED",
+        "PROCESSING",
+        "READY_FOR_DELIVERY",
+        "OUT_FOR_DELIVERY",
+        "DELIVERED",
+        "COMPLETED",
+      ].includes(order?.status),
+      completed: [
+        "PROCESSING",
+        "READY_FOR_DELIVERY",
+        "OUT_FOR_DELIVERY",
+        "DELIVERED",
+        "COMPLETED",
+      ].includes(order?.status),
+      date: order?.paymentConfirmedAt || order?.updatedAt,
     },
     {
       id: "PROCESSING",
       title: "Processing",
-      icon: <FaBox className="text-sm" />,
+      icon: <FaUserCheck className="text-sm" />,
       description: "Seller is preparing your order",
-      active: ["PROCESSING", "SHIPPED", "DELIVERED", "CANCELLED"].includes(
-        order?.status
-      ),
-      completed: ["SHIPPED", "DELIVERED", "CANCELLED"].includes(order?.status),
-      date: order?.updatedAt,
+      active: [
+        "PROCESSING",
+        "READY_FOR_DELIVERY",
+        "OUT_FOR_DELIVERY",
+        "DELIVERED",
+        "COMPLETED",
+      ].includes(order?.status),
+      completed: [
+        "READY_FOR_DELIVERY",
+        "OUT_FOR_DELIVERY",
+        "DELIVERED",
+        "COMPLETED",
+      ].includes(order?.status),
+      date: order?.processingAt || order?.updatedAt,
     },
     {
-      id: "SHIPPED",
-      title: "Shipped",
+      id: "READY_FOR_DELIVERY",
+      title: "Ready for Delivery",
+      icon: <FaTruckLoading className="text-sm" />,
+      description: "Your order is ready to be dispatched",
+      active: [
+        "READY_FOR_DELIVERY",
+        "OUT_FOR_DELIVERY",
+        "DELIVERED",
+        "COMPLETED",
+      ].includes(order?.status),
+      completed: [
+        "OUT_FOR_DELIVERY",
+        "DELIVERED",
+        "COMPLETED",
+      ].includes(order?.status),
+      date: order?.readyAt || order?.updatedAt,
+    },
+    {
+      id: "OUT_FOR_DELIVERY",
+      title: "Out for Delivery",
       icon: <FaShippingFast className="text-sm" />,
-      description: "Seller has shipped your order",
-      active: ["SHIPPED", "DELIVERED"].includes(order?.status),
-      completed: order?.status === "DELIVERED",
-      date:
-        order?.status === "SHIPPED" || order?.status === "DELIVERED"
-          ? order?.updatedAt
-          : null,
+      description: "Your order is on the way",
+      active: ["OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED"].includes(
+        order?.status
+      ),
+      completed: ["DELIVERED", "COMPLETED"].includes(order?.status),
+      date: order?.outForDeliveryAt || order?.updatedAt,
     },
     {
       id: "DELIVERED",
       title: "Delivered",
       icon: <FaCheckCircle className="text-sm" />,
       description: "Your order has been delivered",
-      active: order?.status === "DELIVERED",
-      completed: order?.status === "DELIVERED",
-      date: order?.status === "DELIVERED" ? order?.updatedAt : null,
+      active: ["DELIVERED", "COMPLETED"].includes(order?.status),
+      completed: ["DELIVERED", "COMPLETED"].includes(order?.status),
+      date: order?.deliveredAt || order?.updatedAt,
+    },
+    {
+      id: "COMPLETED",
+      title: "Completed",
+      icon: <FaCheckCircle className="text-sm" />,
+      description: "Your order is completed",
+      active: order?.status === "COMPLETED",
+      completed: order?.status === "COMPLETED",
+      date: order?.completedAt || order?.updatedAt,
+    },
+    {
+      id: "CANCELLED",
+      title: "Cancelled",
+      icon: <FaTimesCircle className="text-sm text-red-500" />,
+      description: "This order has been cancelled",
+      active: order?.status === "CANCELLED" || order?.status === "PAYMENT_FAILED",
+      completed: order?.status === "CANCELLED" || order?.status === "PAYMENT_FAILED",
+      date: order?.cancelledAt || order?.updatedAt,
     },
   ];
+  
 
   if (!order) {
     return (
@@ -100,22 +159,31 @@ const OrderDetail = () => {
     );
   }
 
-  const getStatusColor = (status) => {
+  function getStatusColor(status) {
     switch (status) {
-      case "PENDING":
-        return "bg-yellow-100 text-yellow-800";
-      case "PROCESSING":
-        return "bg-blue-100 text-blue-800";
-      case "SHIPPED":
-        return "bg-purple-100 text-purple-800";
-      case "DELIVERED":
-        return "bg-green-100 text-green-800";
-      case "CANCELLED":
-        return "bg-red-100 text-red-800";
+      case 'PENDING':
+        return 'bg-amber-100 border-amber-200 text-amber-800';
+      case 'PAYMENT_CONFIRMED':
+        return 'bg-teal-100 border-teal-200 text-teal-800';
+      case 'PROCESSING':
+        return 'bg-blue-100 border-blue-200 text-blue-800';
+      case 'READY_FOR_DELIVERY':
+        return 'bg-indigo-100 border-indigo-200 text-indigo-800';
+      case 'OUT_FOR_DELIVERY':
+        return 'bg-purple-100 border-purple-200 text-purple-800';
+      case 'DELIVERED':
+        return 'bg-green-100 border-green-200 text-green-800';
+      case 'CANCELLED':
+        return 'bg-red-100 border-red-200 text-red-800';
+      case 'PAYMENT_FAILED':
+        return 'bg-red-100 border-red-200 text-red-800';
+      case 'COMPLETED':
+        return 'bg-emerald-100 border-emerald-200 text-emerald-800';
       default:
-        return "bg-gray-100 text-gray-800";
+        return '';
     }
-  };
+  }
+  
 
   const getStatusIcon = (status) => {
     switch (status) {
@@ -149,11 +217,11 @@ const OrderDetail = () => {
           <div className="flex flex-col md:flex-row md:justify-between md:items-start">
             <div>
               <h1 className="md:text-2xl text-xl font-bold text-gray-800 mb-1">
-                Order #{order.orderNumber}
+                Order #{order?.orderNumber}
               </h1>
               <p className="text-gray-500">
                 Placed on{" "}
-                {new Date(order.createdAt).toLocaleDateString("en-US", {
+                {new Date(order?.createdAt).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
@@ -168,8 +236,8 @@ const OrderDetail = () => {
                   order.status
                 )}`}
               >
-                {getStatusIcon(order.status)}
-                {order.status.charAt(0) + order.status.slice(1).toLowerCase()}
+                {getStatusIcon(order?.status)}
+                {order?.status.charAt(0) + order?.status.slice(1).toLowerCase()}
               </span>
             </div>
           </div>
@@ -191,7 +259,7 @@ const OrderDetail = () => {
                 animate={{
                   height: `${
                     (timelineSteps.filter((step) => step.completed).length /
-                      timelineSteps.length) *
+                      timelineSteps?.length) *
                     100
                   }%`,
                 }}
@@ -201,12 +269,11 @@ const OrderDetail = () => {
 
             {/* Timeline steps */}
             <div className="space-y-8">
-              {timelineSteps.map((step, index) => (
+              {/* {timelineSteps.map((step, index) => (
                 <div key={step.id} className="relative pl-10">
-                  {/* Timeline dot */}
                   <div
                     className={`absolute left-0 top-0 flex items-center justify-center w-8 h-8 rounded-full ${
-                      step.completed
+                      step?.completed
                         ? "bg-blue-600 text-white shadow-lg"
                         : step.active
                         ? "bg-blue-100 text-blue-600 border-2 border-blue-500"
@@ -216,7 +283,7 @@ const OrderDetail = () => {
                     {step.icon}
                   </div>
 
-                  {/* Timeline content */}
+
                   <motion.div
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -244,7 +311,54 @@ const OrderDetail = () => {
                     )}
                   </motion.div>
                 </div>
-              ))}
+              ))} */}
+
+{(order?.status === "CANCELLED" || order?.status === "PAYMENT_FAILED"
+  ? timelineSteps.filter((step) => step.id === "CANCELLED")
+  : timelineSteps.filter((step) => step.id !== "CANCELLED")
+).map((step, index) => (
+  <div key={step.id} className="relative pl-10">
+    {/* Timeline dot */}
+    <div
+      className={`absolute left-0 top-0 flex items-center justify-center w-8 h-8 rounded-full ${
+        step?.completed
+          ? "bg-blue-600 text-white shadow-lg"
+          : step.active
+          ? "bg-blue-100 text-blue-600 border-2 border-blue-500"
+          : "bg-gray-100 text-gray-400 border-2 border-gray-300"
+      }`}
+    >
+      {step.icon}
+    </div>
+
+    {/* Timeline content */}
+    <motion.div
+      initial={{ opacity: 0, x: -10 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: index * 0.1 }}
+    >
+      <h3
+        className={`text-base font-medium ${
+          step.completed ? "text-gray-800" : "text-gray-600"
+        }`}
+      >
+        {step.title}
+      </h3>
+      <p className="text-sm text-gray-500 mb-1">{step.description}</p>
+      {step.date && (
+        <p className="text-xs text-gray-400">
+          {new Date(step.date).toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </p>
+      )}
+    </motion.div>
+  </div>
+))}
+
             </div>
           </div>
         </div>
@@ -282,19 +396,19 @@ const OrderDetail = () => {
             {order.items.map((item, index) => (
               <div key={index} className="flex items-start">
                 <img
-                  src={item.productImage}
-                  alt={item.productName}
+                  src={item?.productImage}
+                  alt={item?.productName}
                   className="w-16 h-16 rounded-md object-cover border border-gray-200"
                 />
                 <div className="ml-4 flex-1">
-                  <h3 className="text-base font-medium text-gray-800">{item.productName}</h3>
+                  <h3 className="text-base font-medium text-gray-800">{item?.productName}</h3>
                   <p className="text-sm text-gray-500">
-                    {item.productType === "RENT" ? `Rent for ${item.rentPeriod} months` : "Purchase"}
+                    {item?.productType === "RENT" ? `Rent for ${item?.rentPeriod} months` : "Purchase"}
                   </p>
                   <div className="flex justify-between items-center mt-1">
-                    <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
+                    <p className="text-sm text-gray-600">Qty: {item?.quantity}</p>
                     <p className="text-base font-medium text-gray-800">
-                      AED {item.totalPrice.toFixed(2)}
+                      AED {item?.totalPrice.toFixed(2)}
                     </p>
                   </div>
                 </div>
@@ -309,7 +423,7 @@ const OrderDetail = () => {
           <div className="space-y-2">
             <div className="flex justify-between">
               <span className="text-gray-600">Subtotal</span>
-              <span className="text-gray-800">AED {order.totalAmount.toFixed(2)}</span>
+              <span className="text-gray-800">AED {order?.totalAmount.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Shipping</span>
@@ -317,7 +431,7 @@ const OrderDetail = () => {
             </div>
             <div className="flex justify-between font-medium text-lg mt-2 pt-2 border-t border-gray-100">
               <span>Total</span>
-              <span className="text-gray-800">AED {order.totalAmount.toFixed(2)}</span>
+              <span className="text-gray-800">AED {order?.totalAmount.toFixed(2)}</span>
             </div>
           </div>
         </div>
@@ -337,21 +451,21 @@ const OrderDetail = () => {
                   Delivery Address
                 </h3>
                 <p className="text-gray-600">
-                  {order.deliveryAddress.buildingName &&
-                    `${order.deliveryAddress.buildingName}, `}
-                  {order.deliveryAddress.flatNo &&
-                    `Flat ${order.deliveryAddress.flatNo}, `}
-                  {order.deliveryAddress.streetAddress &&
-                    `${order.deliveryAddress.streetAddress}, `}
-                  {order.deliveryAddress.area &&
-                    `${order.deliveryAddress.area}, `}
-                  {order.deliveryAddress.emirate &&
-                    `${order.deliveryAddress.emirate}, `}
-                  {order.deliveryAddress.country}
+                  {order?.deliveryAddress?.buildingName &&
+                    `${order?.deliveryAddress?.buildingName}, `}
+                  {order?.deliveryAddress?.flatNo &&
+                    `Flat ${order?.deliveryAddress?.flatNo}, `}
+                  {order?.deliveryAddress?.streetAddress &&
+                    `${order?.deliveryAddress?.streetAddress}, `}
+                  {order?.deliveryAddress?.area &&
+                    `${order?.deliveryAddress?.area}, `}
+                  {order?.deliveryAddress?.emirate &&
+                    `${order?.deliveryAddress?.emirate}, `}
+                  {order?.deliveryAddress?.country}
                 </p>
-                {order.deliveryAddress.landmark && (
+                {order?.deliveryAddress?.landmark && (
                   <p className="text-sm text-gray-500 mt-1">
-                    Landmark: {order.deliveryAddress.landmark}
+                    Landmark: {order?.deliveryAddress?.landmark}
                   </p>
                 )}
               </div>
@@ -373,7 +487,7 @@ const OrderDetail = () => {
                 ) : (
                   <FaMoneyBillWave className="mr-2" />
                 )}
-                {order.paymentMethod}
+                {order?.paymentMethod}
               </span>
             </div>
             <div className="flex justify-between">
@@ -398,7 +512,7 @@ const OrderDetail = () => {
               <div className="flex justify-between">
                 <span className="text-gray-600">Paid On</span>
                 <span className="text-gray-800">
-                  {new Date(order.paidAt).toLocaleDateString("en-US", {
+                  {new Date(order?.paidAt).toLocaleDateString("en-US", {
                     month: "short",
                     day: "numeric",
                     year: "numeric",

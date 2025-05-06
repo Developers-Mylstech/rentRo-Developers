@@ -87,14 +87,14 @@ const OrderList = ({ orders }) => {
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="md:text-lg text-base font-semibold text-gray-800">
-                      Order #{order.orderNumber}
+                      Order #{order?.orderNumber}
                     </h3>
                     <p className="text-sm text-gray-500">
-                      Placed on {new Date(order.createdAt).toLocaleDateString()}
+                      Placed on {new Date(order?.createdAt).toLocaleDateString()}
                     </p>
                   </div>
                   <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}>
-                    {getStatusIcon(order.status)}
+                    {getStatusIcon(order?.status)}
                     {order.status.charAt(0) + order.status.slice(1).toLowerCase()}
                   </span>
                 </div>
@@ -104,24 +104,24 @@ const OrderList = ({ orders }) => {
                     {order.items.slice(0, 3).map((item, index) => (
                       <img
                         key={index}
-                        src={item.productImage}
-                        alt={item.productName}
+                        src={item?.productImage}
+                        alt={item?.productName}
                         className="w-10 h-10 rounded-full border-2 border-white object-cover"
                       />
                     ))}
                     {order.items.length > 3 && (
                       <div className="w-10 h-10 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-600">
-                        +{order.items.length - 3}
+                        +{order?.items?.length - 3}
                       </div>
                     )}
                   </div>
                   <div className="ml-4">
                     <p className="text-sm font-medium text-gray-600">
-                      {order.items.length} {order.items.length === 1 ? "item" : "items"}
+                      {order?.items?.length} {order?.items?.length === 1 ? "item" : "items"}
                     </p>
                     <p className="text-xs text-gray-500">
-                      {order.items[0].productName}
-                      {order.items.length > 1 && ` + ${order.items.length - 1} more`}
+                      {order?.items[0]?.productName}
+                      {order?.items?.length > 1 && ` + ${order?.items?.length - 1} more`}
                     </p>
                   </div>
                 </div>
@@ -130,11 +130,11 @@ const OrderList = ({ orders }) => {
                   <div>
                     <p className="text-xs text-gray-500">Total amount</p>
                     <p className="text-lg font-bold text-gray-800">
-                      AED {order.totalAmount.toFixed(2)}
+                      AED {order?.totalAmount.toFixed(2)}
                     </p>
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
-                    {order.isPaid ? (
+                    {order?.isPaid ? (
                       <span className="flex items-center text-green-600">
                         <FaCheckCircle className="mr-1" /> Paid
                       </span>
@@ -150,7 +150,7 @@ const OrderList = ({ orders }) => {
                       ) : (
                         <FaMoneyBillWave className="mr-1" />
                       )}
-                      {order.paymentMethod}
+                      {order?.paymentMethod}
                     </span>
                   </div>
                 </div>
