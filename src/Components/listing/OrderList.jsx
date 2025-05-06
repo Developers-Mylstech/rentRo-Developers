@@ -18,20 +18,29 @@ const OrderList = ({ orders }) => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case "PENDING":
-        return "bg-yellow-100 text-yellow-800";
-      case "PROCESSING":
-        return "bg-blue-100 text-blue-800";
-      case "SHIPPED":
-        return "bg-purple-100 text-purple-800";
-      case "DELIVERED":
-        return "bg-green-100 text-green-800";
-      case "CANCELLED":
-        return "bg-red-100 text-red-800";
+      case 'PENDING':
+        return 'bg-amber-50 border-amber-200 text-amber-800';
+      case 'PAYMENT_CONFIRMED':
+        return 'bg-blue-50 border-blue-200 text-blue-800';
+      case 'PROCESSING':
+        return 'bg-yellow-50 border-yellow-200 text-yellow-800';
+      case 'READY_FOR_DELIVERY':
+        return 'bg-indigo-50 border-indigo-200 text-indigo-800';
+      case 'OUT_FOR_DELIVERY':
+        return 'bg-purple-50 border-purple-200 text-purple-800';
+      case 'DELIVERED':
+        return 'bg-emerald-50 border-emerald-200 text-emerald-800';
+      case 'COMPLETED':
+        return 'bg-green-50 border-green-200 text-green-800';
+      case 'CANCELLED':
+        return 'bg-rose-50 border-rose-200 text-rose-800';
+      case 'PAYMENT_FAILED':
+        return 'bg-red-50 border-red-200 text-red-800';
       default:
-        return "bg-gray-100 text-gray-800";
+        return 'bg-gray-50 border-gray-200 text-gray-800';
     }
   };
+  
 
   const getStatusIcon = (status) => {
     switch (status) {
@@ -51,7 +60,7 @@ const OrderList = ({ orders }) => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className=" mx-auto md:px-4 p-1 py-8">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">Your Orders</h1>
       
       {/* Filter Tabs */}
@@ -81,10 +90,10 @@ const OrderList = ({ orders }) => {
               transition={{ duration: 0.3 }}
               whileHover={{ scale: 1.01 }}
               onClick={() => handleOrderClick(order)}
-              className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer"
+              className="bg-white rounded-xl  relative shadow-sm border border-gray-200 overflow-hidden cursor-pointer"
             >
               <div className="p-2 md:p-5">
-                <div className="flex justify-between items-start mb-4">
+                <div className="flex md:flex-row flex-col gap-1 justify-between items-start mb-4">
                   <div>
                     <h3 className="md:text-lg text-base font-semibold text-gray-800">
                       Order #{order?.orderNumber}
@@ -93,7 +102,7 @@ const OrderList = ({ orders }) => {
                       Placed on {new Date(order?.createdAt).toLocaleDateString()}
                     </p>
                   </div>
-                  <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}>
+                  <span className={`inline-flex items-center  px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}>
                     {getStatusIcon(order?.status)}
                     {order.status.charAt(0) + order.status.slice(1).toLowerCase()}
                   </span>
@@ -106,7 +115,7 @@ const OrderList = ({ orders }) => {
                         key={index}
                         src={item?.productImage}
                         alt={item?.productName}
-                        className="w-10 h-10 rounded-full border-2 border-white object-cover"
+                        className="w-16 h-16 rounded-full border-2 border-white object-cover"
                       />
                     ))}
                     {order?.items?.length > 3 && (
@@ -126,7 +135,7 @@ const OrderList = ({ orders }) => {
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                <div className="flex md:flex-row flex-col justify-between  md:items-center items-start pt-4 border-t border-gray-100">
                   <div>
                     <p className="text-xs text-gray-500">Total amount</p>
                     <p className="text-lg font-bold text-gray-800">
@@ -159,7 +168,7 @@ const OrderList = ({ orders }) => {
           ))}
         </div>
       ) : (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 text-center">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 md:p-8 p-2 text-center">
           <div className="mx-auto max-w-md">
             <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <FaBox className="text-gray-400 text-2xl" />
