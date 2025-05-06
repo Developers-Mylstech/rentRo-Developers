@@ -39,6 +39,9 @@ import CheckoutForm from "./Components/form/CheckoutForm.jsx";
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+import OrderDetail from "./Screens/OrderDetail.jsx";
+
+
 
 
 const routes = createBrowserRouter(
@@ -67,6 +70,7 @@ const routes = createBrowserRouter(
         {/* <Route path="/career/:name" element={<CareerDetail/>} /> */}
         <Route path="/service/:name" element={<ServiceDetails/>} />
         <Route path="/career/:id" element={<CareerDetail/>} />
+        <Route path="/order/:id" element={<OrderDetail/>} />
       
         <Route path="/shop" element={<Shop/>} />
         <Route path="*" element={<Home />} />

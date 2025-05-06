@@ -323,7 +323,7 @@
 
 
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import { Stepper } from 'primereact/stepper';
 import { StepperPanel } from 'primereact/stepperpanel';
 import { Button } from 'primereact/button';
@@ -335,7 +335,11 @@ import { useAddressStore } from "../../Context/AddressContext";
 import useCartStore from "../../Context/CartContext";
 import useCheckoutStore from "../../Context/CheckoutContext";
 import AddAddress from "./AddAddress";
-
+import { FaBox } from "react-icons/fa";
+import Lottie from "lottie-react";
+import { motion } from "framer-motion";
+import orderConfirmedAnimation from '../../assets/orderConfirm.json'
+import { useLocation, useNavigate } from "react-router-dom";
 export default function CheckoutForm() {
   const stepperRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -343,7 +347,13 @@ export default function CheckoutForm() {
   const [paymentOption, setPaymentOption] = useState("CREDIT_CARD");
   const [isMobile, setIsMobile] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [orderId, setOrderId] = useState(null)
+  console.log(location, 'location');
+  const { item } = location.state || {};
 
+  console.log(item, 'product and quantity');
   const { register, handleSubmit, formState: { errors }, control, setValue, watch, reset } = useForm({
     defaultValues: {
       firstName: "",
@@ -377,25 +387,48 @@ export default function CheckoutForm() {
     setApiError(null);
 
 
+
+
     try {
-      const orderPayload = {
-        cartId: cartItems?.cartId,
-        name: watch("name"),
-        mobile: watch("mobile"),
-        email: watch("email"),
-        addressId: selectedAddress,
-        firstName: watch("firstName"),
-        lastName: watch("lastName"),
-        paymentOption: paymentOption,
+      let orderPayload
+      if (item) {
+        orderPayload = {
+          productType: item?.productType,
+          quantity: item?.quantity,
+          mobile: watch("mobile"),
+          email: watch("email"),
+          addressId: selectedAddress,
+          firstName: watch("firstName"),
+          lastName: watch("lastName"),
+          paymentOption: paymentOption,
 
-      };
+        };
+      } else {
+        orderPayload = {
+          cartId: cartItems?.cartId,
+          mobile: watch("mobile"),
+          email: watch("email"),
+          addressId: selectedAddress,
+          firstName: watch("firstName"),
+          lastName: watch("lastName"),
+          paymentOption: paymentOption,
 
-      console.log("Submitting order:", orderPayload);
-
+        };
+      }
 
       const response = await createOrder(orderPayload);
-      console.log('Order created:', response.data);
-      stepperRef.current.nextCallback();
+
+      if (response?.orderId) {
+        setOrderId(response?.orderId)
+        reset();
+        stepperRef.current.nextCallback();
+        setTimeout(() => {
+          navigate('/');
+        }, 10000);
+      } else {
+        alert('Failed to place order');
+      }
+
     } catch (error) {
       console.error('Error creating order:', error);
       setApiError(error.response?.data?.message || 'Failed to place order');
@@ -491,7 +524,7 @@ export default function CheckoutForm() {
                     label="Continue to Address"
                     icon="pi pi-arrow-right"
                     iconPos="right"
-     
+
                     className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition duration-200"
                   />
                 </div>
@@ -510,12 +543,12 @@ export default function CheckoutForm() {
 
                 <div className="flex pt-4 justify-end">
                   <Button
-                          type="button"  // Add this to prevent form submission
+                    type="button"
 
                     label={isSubmitting ? 'Saving...' : 'Continue to Payment'}
                     icon="pi pi-arrow-right"
                     iconPos="right"
-                    onClick={() => stepperRef.current.nextCallback()}
+                    onClick={() => selectedAddress ? stepperRef.current.nextCallback() : null}
                     disabled={isSubmitting}
                     className={classNames(
                       'text-blue-500 text-sm py-3 px-6 rounded-lg transition duration-200',
@@ -530,8 +563,8 @@ export default function CheckoutForm() {
             </StepperPanel>
 
             <StepperPanel header="Payment Method">
-              <div className="p-4 space-y-6">
-                <h2 className="text-xl font-semibold text-gray-800">Select Payment Method</h2>
+              <div className=" space-y-6">
+                {/* <h2 className="text-xl font-semibold text-gray-800">Select Payment Method</h2> */}
                 <div className="space-y-3">
                   {paymentOptions?.map((option) => (
                     <div
@@ -577,79 +610,76 @@ export default function CheckoutForm() {
                 />
               </div>
             </StepperPanel>
+            <StepperPanel header="Order Confirmation"   >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className=" space-y-6 text-center"
+              >
 
-            {/* Review Step */}
-            {/* <StepperPanel header="Review Order">
-              <div className="p-4 space-y-6">
-                <h2 className="text-xl font-semibold text-gray-800">Review Your Order</h2>
-
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-semibold text-lg mb-3">Personal Details</h3>
-                  <p className="text-gray-700"><span className="font-medium">Name:</span> {watch("name")}</p>
-                  <p className="text-gray-700"><span className="font-medium">Mobile:</span> {watch("mobile")}</p>
-                  <p className="text-gray-700"><span className="font-medium">Email:</span> {watch("email")}</p>
-                </div>
-
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-semibold text-lg mb-3">Shipping Address</h3>
-                  <p className="text-gray-700">{watch("streetAddress")}, {watch("buildingName")}</p>
-                  <p className="text-gray-700">Flat/Villa No: {watch("flatNo")}</p>
-                  <p className="text-gray-700">{watch("area")}, {watch("emirate")}</p>
-                  <p className="text-gray-700">{watch("country")}</p>
-                  {watch("landmark") && <p className="text-gray-700">Landmark: {watch("landmark")}</p>}
-                </div>
-
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-semibold text-lg mb-3">Payment Method</h3>
-                  <p className="text-gray-700">
-                    {paymentOptions.find(o => o.code === paymentOption)?.name}
-                  </p>
-                </div>
-
-                <div className="border-t border-gray-200 pt-4">
-                  <div className="flex justify-between text-lg font-semibold">
-                    <span>Total:</span>
-                    <span>$129.99</span>
+                <motion.div
+                  whileHover={{ scale: 1.01 }}
+                  className="bg-green-50 text-green-700 rounded-lg pb-5 flex  flex-col justify-center items-center"
+                >
+                  {/* Lottie Animation */}
+                  <div className="w-40 h-40 mx-auto">
+                    <Lottie
+                      animationData={orderConfirmedAnimation}
+                      loop={false}
+                      autoplay={true}
+                    />
                   </div>
-                </div>
-              </div>
-              <div className="flex pt-4 justify-between">
-                <Button
-                  label="Back"
-                  severity="secondary"
-                  icon="pi pi-arrow-left"
-                  onClick={() => stepperRef.current.prevCallback()}
-                  className="text-gray-800 font-medium py-3 px-6 rounded-lg transition duration-200"
-                />
-                <Button
-                  label="Place Order"
-                  onClick={onSubmitOrder}
-                  disabled={isSubmitting}
-                  className={classNames(
-                    'text-white font-medium py-3 px-6 rounded-lg shadow-md transition duration-200', {
-                    'bg-green-600 hover:bg-green-700': !isSubmitting,
-                    'bg-green-400 cursor-not-allowed': isSubmitting
-                  })}
-                />
-              </div>
-            </StepperPanel> */}
-            <StepperPanel header="Order Confirmation">
-              <div className="p-4 space-y-6 text-center">
-                <div className="bg-green-50 text-green-700 p-6 rounded-lg">
-                  <i className="pi pi-check-circle text-5xl mb-4"></i>
-                  <h2 className="text-2xl font-semibold mb-2">Order Placed Successfully!</h2>
-                  <p className="text-gray-700">Thank you for your purchase. Your order has been received.</p>
-                  <p className="text-gray-700 mt-4">Order ID: #123456</p>
-                </div>
-                <Button
-                  label="Back to Home"
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition duration-200"
-                />
-              </div>
+
+                  <motion.h2
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="md:text-2xl text-base font-semibold mb-2"
+                  >
+                    Order Placed Successfully!
+                  </motion.h2>
+
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                    className="text-gray-700 text-sm w-11/12"
+                  >
+                    Thank you for your purchase. Your order has been received.
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="text-gray-700 mt-4 font-medium"
+                  >
+                    Order ID: #{orderId}
+                  </motion.p>
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex flex-col justify-center items-center"
+                >
+                  <button className="flex w-full gap-4 items-center justify-center text-blue-500 font-medium py-3 px-6 rounded-lg  transition duration-200">
+                    <FaBox />
+                    Track Order
+                  </button>
+                  <p className="text-gray-500 text-xs w-11/12">After 10 seconds you will be redirected to home page</p>
+                </motion.div>
+              </motion.div>
             </StepperPanel>
           </Stepper>
         </div>
       </div>
+      <style>{`
+        .p-stepper {
+          max-width: 100%;
+        }
+      `}</style>
     </div>
   );
 }

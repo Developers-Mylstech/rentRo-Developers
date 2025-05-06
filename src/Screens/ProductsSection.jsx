@@ -217,6 +217,7 @@ const ProductsSection = () => {
     fetchRentProducts();
   }, [fetchRentProducts]);
 
+
   const handleProductClick = (product) => {
     navigate(`/product/${product.name}`, { state: { product } });
   };
@@ -290,13 +291,13 @@ const ProductsSection = () => {
               </div>
 
               {/* Product Info */}
-              <div className="p-5">
-                <div className="flex justify-between items-start mb-2">
+              <div className="p-1">
+                <div className="flex justify-between items-start mb-2 relative">
                   <h3 className="text-lg font-semibold text-gray-800 line-clamp-1">
                     {product?.name}
                   </h3>
                   {product.brand && (
-                    <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    <span className="text-[10px] text-xs absolute -top-5 right-2 bg-blue-100 text-blue-800 px-2 py-1 rounded">
                       {product?.brand?.name}
                     </span>
                   )}
@@ -330,10 +331,7 @@ const ProductsSection = () => {
                 {/* Add to Cart Button */}
                 <button
                   className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center gap-2 transition-colors"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    // Add to cart logic
-                  }}
+                  onClick={() => handleProductClick(product)}
                 >
                   <FaShoppingCart />
                   <span>Rent Now</span>
@@ -411,19 +409,18 @@ const ProductsSection = () => {
                       AED {product.productFor?.sell?.actualPrice}
                     </span>
                   )}
-                </div>
 
-                {/* Add to Cart Button */}
-                <button
+              <button
                   className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center gap-2 transition-colors"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    // Add to cart logic
-                  }}
+                  onClick={() => handleProductClick(product)}
                 >
                   <FaShoppingCart />
                   <span>Add to Cart</span>
                 </button>
+                </div>
+
+                {/* Add to Cart Button */}
+              
               </div>
             </div>
           </SwiperSlide>

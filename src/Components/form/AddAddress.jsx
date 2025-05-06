@@ -99,7 +99,7 @@ export default function AddAddress({ setSelectedAddress, selectedAddress }) {
         <>
             <div className="space-y-4">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-                    <h4 className="text-xl font-semibold">Select Address</h4>
+                    {/* <h4 className="text-xl font-semibold">Select Address</h4> */}
                     <Button
                         label="Add New Address"
                         icon="pi pi-plus"
@@ -140,7 +140,7 @@ export default function AddAddress({ setSelectedAddress, selectedAddress }) {
                         </label>
                     ))
                 ) : (
-   
+
                     <div className="space-y-4">
                         {[...Array(3)].map((_, i) => (
                             <div key={i} className="flex items-start gap-4 p-4 border rounded-md">
@@ -164,7 +164,7 @@ export default function AddAddress({ setSelectedAddress, selectedAddress }) {
 
                 style={{ width: '50vw' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }}
             >
-                <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleSubmit(onSubmit)}>
+                <form className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-5" onSubmit={handleSubmit(onSubmit)}>
                     {/* Street Address */}
                     <div className="col-span-1">
                         <InputText
@@ -255,6 +255,17 @@ export default function AddAddress({ setSelectedAddress, selectedAddress }) {
                             )}
                         />
                         {errors.addressType && <small className="p-error text-red-600">{errors.addressType.message}</small>}
+                    </div>
+                    <div className="col-span-full flex items-center">
+                        <input
+                            type="checkbox"
+                            id="default"
+                            {...register("default")}
+                            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                        />
+                        <label htmlFor="default" className="ml-2 block text-sm text-gray-700">
+                            Set as default shipping address
+                        </label>
                     </div>
                 </form>
             </Dialog>

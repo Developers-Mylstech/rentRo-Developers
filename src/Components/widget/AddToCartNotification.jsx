@@ -12,20 +12,20 @@ const AddToCartNotification = ({ product, onClose }) => {
       const timer = setTimeout(() => {
         setIsVisible(false);
         setTimeout(onClose, 500); // Wait for animation to complete
-      }, 3000);
+      }, 1200);
       return () => clearTimeout(timer);
     }
   }, [product, onClose]);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence >
       {isVisible && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ type: "spring", damping: 25 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none bg-black bg-opacity-15"
         >
           <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-100 w-full max-w-md pointer-events-auto">
             <div className="p-6 text-center">
