@@ -81,7 +81,7 @@ const OceanScene = () => {
       return "Our Rental Service";
     } else if (location.pathname.includes("services")) {
       return "Our Services";
-    } else if (location.pathname.includes("sale")) {
+    } else if (location.pathname.includes("sell")) {
       return "Our Selling Product";
     } else if (location.pathname.includes("faq")) {
       return "FAQs";

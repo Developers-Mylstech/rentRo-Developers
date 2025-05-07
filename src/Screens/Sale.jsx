@@ -42,8 +42,8 @@ const Sale = () => {
           <ProductSkeleton count={6} />
         )}
       </div>
-
-      <CheckoutForm />
+{/* 
+      <CheckoutForm /> */}
 
     </>
   );

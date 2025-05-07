@@ -47,7 +47,7 @@ const Header = () => {
   return (
     <header
       className={`fixed left-0 right-0 z-50 w-full rounded-b-xl transition-all duration-500 ${
-        scrolling ? "bg-gradient-to-t from-blue-500 to-[#0e86bdcf] bg-opacity-80 shadow-md" : "bg-black bg-opacity-40"
+        scrolling ? "bg-gradient-to-t from-blue-400 to-[#34b2eccf] bg-opacity-80 shadow-md" : "bg-black bg-opacity-40"
       } px-6 py-3`}
     >
       <div className="flex justify-between items-center">
@@ -65,42 +65,10 @@ const Header = () => {
           <nav className="flex justify-center items-center gap-4 lg:gap-5">
             <ul className="flex space-x-4 lg:space-x-6">
               {/* Products Dropdown */}
-              <li 
-                className="relative flex items-center justify-center cursor-pointer transition-all duration-300"
-                onClick={() => setShowProductDropdown(!showProductDropdown)}
-              >
-                <div className="flex items-center gap-1">
-                  <span className={`lg:text-sm md:text-[11px] font-semibold transition-all duration-300 bg-clip-text text-transparent ${
-                    scrolling ? "bg-white" : "bg-white"
-                  } hover:animate-[bg-scroll_2s_linear_infinite]`}>
-                    PRODUCTS
-                  </span>
-                  <FaChevronDown className="text-white text-xs" />
-                </div>
-                
-                {showProductDropdown && (
-                  <div className="absolute top-8 left-0 mt-2 w-48 bg-white/90 backdrop-blur-sm border border-white/20 rounded-lg shadow-xl py-1 z-50 overflow-hidden">
-                    <Link
-                      to="/rent"
-                      className="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-blue-50/80 hover:text-blue-600 transition-all duration-200 flex items-center"
-                    >
-                      <span className="flex-grow">Rent</span>
-                      <span className="text-xs text-blue-400">→</span>
-                    </Link>
-                    <div className="border-t border-white/20 mx-2"></div>
-                    <Link
-                      to="/sale"
-                      className="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-blue-50/80 hover:text-blue-600 transition-all duration-200 flex items-center"
-                    >
-                      <span className="flex-grow">Sale</span>
-                      <span className="text-xs text-blue-400">→</span>
-                    </Link>
-                  </div>
-                )}
-              </li>
+            
 
               {/* Other menu items */}
-              {["services", "career"].map((item) => (
+              {["rent", "sell", "services", "career"].map((item) => (
                 <li key={item} className="relative flex items-center justify-center cursor-pointer transition-all duration-300">
                   <Link
                     to={`/${item}`}
@@ -117,22 +85,22 @@ const Header = () => {
             {/* Contact buttons */}
             <button
               onClick={() => window.open('tel:971506709963')}
-              className={`lg:text-sm md:text-[11px] text-gray-300 flex items-center gap-2 font-semibold transition-all duration-300 bg-clip-text ${
-                scrolling ? "bg-white" : "bg-white"
+              className={` md:text-base  flex items-center gap-2 font-semibold transition-all duration-300 bg-clip-text ${
+                scrolling ? " text-blue-800" : "text-white"
               } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
-              <FaMobileAlt color="white" />
+              <FaMobileAlt />
               971 50 670 9963
             </button>
             <a
               href={`https://wa.me/971506709963?text=Hello`}
               target="_blank"
               rel="noopener noreferrer"
-              className={`lg:text-sm md:text-[11px] text-gray-300 flex items-center gap-2 font-semibold transition-all duration-300 bg-clip-text ${
-                scrolling ? "bg-white" : "bg-white"
+              className={`md:text-base  flex items-center gap-2 font-semibold transition-all duration-300 bg-clip-text ${
+                 scrolling ? " text-blue-800" : "text-white"
               } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
-              <FaWhatsapp color="white" />
+              <FaWhatsapp  />
               971 50 670 9963
             </a>
           </nav>
@@ -251,50 +219,14 @@ const Header = () => {
           <FiX />
         </button>
 
-        {isAuthenticated && (
-          <div className="flex items-center gap-3 mb-8 px-6 py-3 bg-blue-800 rounded-full">
-            <div className="relative">
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-blue-800 animate-pulse"></div>
-              <div className="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center">
-                <FiUser className="text-xl" />
-              </div>
-            </div>
-            <div>
-              <div className="font-medium">{user?.name || 'User'}</div>
-              <div className="text-xs text-blue-200">{user?.email}</div>
-            </div>
-          </div>
-        )}
 
         <nav className="w-full px-6">
           <ul className="text-lg font-semibold flex flex-col">
             {/* Mobile Products Dropdown */}
-            <li className="border-b border-blue-800">
-              <div className="py-4 text-blue-100">PRODUCTS</div>
-              <ul className="pl-4">
-                <li>
-                  <Link
-                    to="/rent"
-                    className="block py-3 text-blue-200 hover:text-white transition"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Rent
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/sale"
-                    className="block py-3 text-blue-200 hover:text-white transition"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Sale
-                  </Link>
-                </li>
-              </ul>
-            </li>
+          
 
             {/* Other mobile menu items */}
-            {["services", "career"].map((item) => (
+            {["rent", "sell", "services", "career"].map((item) => (
               <li key={item}>
                 <Link
                   to={`/${item}`}
@@ -306,7 +238,7 @@ const Header = () => {
               </li>
             ))}
             
-            {isAuthenticated ? (
+            {token!=null ? (
               <>
                 <Link
                   to="/profile"

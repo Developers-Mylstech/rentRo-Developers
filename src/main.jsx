@@ -56,7 +56,7 @@ const routes = createBrowserRouter(
         <Route path="/profile" element={<Profile/>} />
         
         {/* <Route path="/clients" element={<Clients/>} /> */}
-        <Route path="/sale" element={<Sale/>} />
+        <Route path="/sell" element={<Sale/>} />
         <Route path="/product/:name" element={<ProductDetail/>} />
         <Route path="/checkout" element={<CheckoutForm/>} />
         <Route path="/rent" element={<Rent/>} />

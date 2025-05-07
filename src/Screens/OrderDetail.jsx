@@ -40,41 +40,17 @@ const OrderDetail = () => {
       title: "Payment Confirmed",
       icon: <FaMoneyCheckAlt className="text-sm" />,
       description: "Payment has been successfully received",
-      active: [
-        "PAYMENT_CONFIRMED",
-        "PROCESSING",
-        "READY_FOR_DELIVERY",
-        "OUT_FOR_DELIVERY",
-        "DELIVERED",
-        "COMPLETED",
-      ].includes(order?.status),
-      completed: [
-        "PROCESSING",
-        "READY_FOR_DELIVERY",
-        "OUT_FOR_DELIVERY",
-        "DELIVERED",
-        "COMPLETED",
-      ].includes(order?.status),
-      date: order?.paymentConfirmedAt || order?.updatedAt,
+      active: order?.isPaid || ["PAYMENT_CONFIRMED", "PROCESSING", "READY_FOR_DELIVERY", "OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED"].includes(order?.status),
+      completed: order?.isPaid || ["PROCESSING", "READY_FOR_DELIVERY", "OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED"].includes(order?.status),
+      date: order?.paymentConfirmedAt || order?.paidAt || order?.updatedAt,
     },
     {
       id: "PROCESSING",
       title: "Processing",
       icon: <FaUserCheck className="text-sm" />,
       description: "Seller is preparing your order",
-      active: [
-        "PROCESSING",
-        "READY_FOR_DELIVERY",
-        "OUT_FOR_DELIVERY",
-        "DELIVERED",
-        "COMPLETED",
-      ].includes(order?.status),
-      completed: [
-        "READY_FOR_DELIVERY",
-        "OUT_FOR_DELIVERY",
-        "DELIVERED",
-        "COMPLETED",
-      ].includes(order?.status),
+      active: ["PROCESSING", "READY_FOR_DELIVERY", "OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED","PAYMENT_CONFIRMED"].includes(order?.status),
+      completed: ["READY_FOR_DELIVERY", "OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED"].includes(order?.status),
       date: order?.processingAt || order?.updatedAt,
     },
     {
@@ -82,15 +58,8 @@ const OrderDetail = () => {
       title: "Ready for Delivery",
       icon: <FaTruckLoading className="text-sm" />,
       description: "Your order is ready to be dispatched",
-      active: [
-        "READY_FOR_DELIVERY",
-        "OUT_FOR_DELIVERY",
-        "DELIVERED",
-        "COMPLETED",
-      ].includes(order?.status),
-      completed: ["OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED"].includes(
-        order?.status
-      ),
+      active: ["READY_FOR_DELIVERY", "OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED","PROCESSING"].includes(order?.status),
+      completed: ["OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED","PROCESSING"].includes(order?.status),
       date: order?.readyAt || order?.updatedAt,
     },
     {
@@ -98,9 +67,7 @@ const OrderDetail = () => {
       title: "Out for Delivery",
       icon: <FaShippingFast className="text-sm" />,
       description: "Your order is on the way",
-      active: ["OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED"].includes(
-        order?.status
-      ),
+      active: ["OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED"].includes(order?.status),
       completed: ["DELIVERED", "COMPLETED"].includes(order?.status),
       date: order?.outForDeliveryAt || order?.updatedAt,
     },
@@ -127,10 +94,8 @@ const OrderDetail = () => {
       title: "Cancelled",
       icon: <FaTimesCircle className="text-sm text-red-500" />,
       description: "This order has been cancelled",
-      active:
-        order?.status === "CANCELLED" || order?.status === "PAYMENT_FAILED",
-      completed:
-        order?.status === "CANCELLED" || order?.status === "PAYMENT_FAILED",
+      active: ["CANCELLED", "PAYMENT_FAILED"].includes(order?.status),
+      completed: ["CANCELLED", "PAYMENT_FAILED"].includes(order?.status),
       date: order?.cancelledAt || order?.updatedAt,
     },
   ];
@@ -256,7 +221,7 @@ const OrderDetail = () => {
                     height: `${
                       (timelineSteps.filter((step) => step.completed).length /
                         timelineSteps?.length) *
-                      100
+                      116
                     }%`,
                   }}
                   transition={{ duration: 0.8 }}
@@ -320,7 +285,7 @@ const OrderDetail = () => {
           {/* Delivery Estimate */}
           <div className="bg-white  rounded-lg shadow-sm overflow-hidden">
             {/* Estimated Delivery */}
-            {order.status !== "DELIVERED" && order.status !== "CANCELLED" && (
+            {order.status !== "DELIVERED" || order.status !== "CANCELLED" || order.status !== "COMPLETED" && (
               <div className=" bg-yellow-50 p-6 border-b border-yellow-200">
                 <div className="flex items-start space-x-4">
                   <FaCalendarAlt className="text-yellow-600 text-xl mt-1" />
