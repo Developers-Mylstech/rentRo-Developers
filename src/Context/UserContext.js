@@ -2,7 +2,7 @@
 import axiosInstance from '../utils/axiosInstance';
 
 const useUserStore = create((set) => ({
-  userDetails: [],
+  userDetails: {},
   loading: false,
   error: null,
 

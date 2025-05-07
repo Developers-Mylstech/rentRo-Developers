@@ -41,7 +41,7 @@ export const useAddressStore = create((set) => ({
   // UPDATE
   updateAddress: async (id, updatedData) => {
     try {
-      const response = await axios.put(`/api/addresses/${id}`, updatedData);
+      const response = await axiosInstance.put(`/addresses/${id}`, updatedData);
       set((state) => ({
         addresses: state.addresses.map((addr) =>
           addr.id === id ? response.data : addr
@@ -55,7 +55,7 @@ export const useAddressStore = create((set) => ({
   // DELETE
   deleteAddress: async (id) => {
     try {
-      await axios.delete(`/api/addresses/${id}`);
+      await axiosInstance.delete(`/addresses/${id}`);
       set((state) => ({
         addresses: state.addresses.filter((addr) => addr.id !== id),
         addressId: state.addressId === id ? null : state.addressId, // clear ID if deleted
@@ -68,3 +68,5 @@ export const useAddressStore = create((set) => ({
   // SET SELECTED ADDRESS ID
   setAddressId: (id) => set({ addressId: id }),
 }));
+
+export default useAddressStore;

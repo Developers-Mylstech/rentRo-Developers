@@ -844,13 +844,13 @@ const ProductDetail = () => {
 
 
         </div>
-        <div className="h-screen w-screen bg-black">
+       
 
         <AddToCartNotification
           product={notificationProduct}
           onClose={() => setNotificationProduct(null)}
           />
-          </div>
+
       </div>
     </div>
   );
