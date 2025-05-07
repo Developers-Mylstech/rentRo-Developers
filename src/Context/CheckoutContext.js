@@ -25,6 +25,24 @@ const useCheckoutStore = create((set) => ({
     }
   },
 
+  BuyNowOrder: async (orderdata, id) => {
+    set({ loading: true, error: null });
+    try {
+      const response = await axiosInstance.post(`/products/${id}/buy-now`, orderdata);
+      set((state) => ({
+        // orders: [...state.orders, response.data],
+        loading: false
+      }));
+      return response.data;
+    } catch (error) {
+      set({ 
+        error: error.response?.data?.message || 'Failed to create product',
+        loading: false 
+      });
+      throw error;
+    }
+  },
+
 
 
   fetchOrders: async () => {
