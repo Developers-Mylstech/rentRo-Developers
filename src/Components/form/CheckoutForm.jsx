@@ -35,6 +35,7 @@ export default function CheckoutForm({
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [clientSecret, setClientSecret] = useState(null);
   const [paymentFail, setPaymentFail] = useState(false);
+  const [totalAmount, setTotalAmount] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -80,7 +81,7 @@ export default function CheckoutForm({
     }
 
     return () => window.removeEventListener('resize', checkMobile);
-  }, [cartItems, item ,isMobile]);
+  }, [cartItems, item, isMobile]);
 
 
   const handleContinueToPayment = async () => {
@@ -112,8 +113,10 @@ export default function CheckoutForm({
 
       response = await BuyNowOrder(orderPayload, item.productId);
 
+      setTotalAmount(response?.cart?.totalPrice);
     } else {
       response = await createOrder(orderPayload);
+      setTotalAmount(response?.cart?.totalPrice);
     }
 
     if (!response) {
@@ -330,7 +333,7 @@ export default function CheckoutForm({
             <StepperPanel header="Payment Method">
               <div className="space-y-8">
                 <div className="space-y-6">
-                  <h3 className="text-xl font-semibold text-gray-800">Select Payment Method</h3>
+                  <h3 className="text-xl font-semibold text-gray-800 hidden md:block">Select Payment Method</h3>
 
                   <div className="grid gap-4">
                     {paymentOptions?.map((option) => (
@@ -366,6 +369,10 @@ export default function CheckoutForm({
                               transition={{ duration: 0.3 }}
                               className="mt-6 bg-gradient-to-br from-white to-gray-50 rounded-xl border border-gray-100 shadow-sm overflow-hidden"
                             >
+                              <p className="text-xs  text-gray-500 p-3">
+                                Your total amount is <span className="text-blue-600 font-semibold">AED {totalAmount ? totalAmount : 0}</span>, please fill in card details to place your order.
+                              </p>
+
                               <div className="p-6 space-y-6">
                                 <div className="space-y-2">
                                   <label className=" text-sm font-medium text-gray-700 flex items-center">
@@ -457,36 +464,39 @@ export default function CheckoutForm({
                   </div>
                 </div>
 
-                <div className="flex justify-between border-t border-gray-100 pt-6">
-                  <Button
-                    label="Back to Shipping"
-                    icon="pi pi-arrow-left"
-                    iconPos="left"
-                    onClick={() => stepperRef.current.prevCallback()}
-                    className="text-gray-700 font-medium py-3 px-6 rounded-xl border border-gray-300 hover:bg-gray-50 transition-all hover:shadow-sm"
-                    outlined
-                  />
-                  <Button
-                    label={isSubmitting ? (
-                      <span className="flex items-center">
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Processing...
-                      </span>
-                    ) : 'Pay Securely'}
-                    icon="pi pi-lock"
-                    iconPos="right"
-                    onClick={onSubmitOrder}
-                    disabled={isSubmitting}
-                    className={classNames(
-                      'font-medium py-3 px-8 rounded-xl transition-all hover:shadow-md', {
-                      'bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:from-blue-700 hover:to-blue-600': !isSubmitting,
-                      'bg-gray-200 text-gray-500 cursor-not-allowed': isSubmitting
-                    })}
-                  />
-                </div>
+                <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center border-t border-gray-100 pt-6 gap-4">
+  <Button
+    label="Back to Shipping"
+    icon="pi pi-arrow-left"
+    iconPos="left"
+    onClick={() => stepperRef.current.prevCallback()}
+    className="w-full sm:w-auto text-gray-700 font-medium py-3 text-sm px-6 rounded-xl border border-gray-300 hover:bg-gray-50 transition-all hover:shadow-sm"
+    outlined
+  />
+  <Button
+    label={
+      isSubmitting ? (
+        <span className="flex items-center justify-center">
+          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Processing...
+        </span>
+      ) : 'Pay Securely'
+    }
+    icon="pi pi-lock"
+    iconPos="right"
+    onClick={onSubmitOrder}
+    disabled={isSubmitting}
+    className={classNames(
+      'w-full sm:w-auto font-medium py-3 px-8 rounded-xl transition-all hover:shadow-md text-sm flex items-center justify-center', {
+        'bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:from-blue-700 hover:to-blue-600': !isSubmitting,
+        'bg-gray-200 text-gray-500 cursor-not-allowed': isSubmitting
+      })}
+  />
+</div>
+
               </div>
             </StepperPanel>
 

@@ -91,6 +91,12 @@
 
 
 // pages/Profile.jsx
+
+
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import { 
   FaUser, 
@@ -109,6 +115,7 @@ import useOrderStore from '../Context/OrderContext';
 import OrderList from '../Components/listing/OrderList';
 import PersonalDetails from '../Components/PersonalDetails';
 import AddressList from '../Components/AddressList';
+import JobApplications from '../Components/JobApplications';
 
 function Profile() {
   const email = localStorage.getItem('userEmail') || 'mohd.yaseen@example.com';
@@ -123,7 +130,7 @@ function Profile() {
   // Initialize with orders tab if no hash or invalid hash
   useEffect(() => {
     const hash = location.hash.substring(1);
-    if (['personal', 'addresses', 'orders'].includes(hash)) {
+    if (['personal', 'addresses', 'orders','jobapplication'].includes(hash)) {
       setActiveTab(hash);
     } else {
       navigate('#orders', { replace: true });
@@ -146,6 +153,8 @@ function Profile() {
         return <PersonalDetails user={{ name: userName, email }} />;
       case 'addresses':
         return <AddressList />;
+      case 'jobapplication':
+        return <JobApplications />;
       case 'orders':
       default:
         return <OrderList orders={orders} />;
@@ -174,6 +183,14 @@ function Profile() {
 
         {/* Navigation Links */}
         <nav className="p-4  space-y-2">
+          <button
+            onClick={() => setActiveTab('jobapplication')}
+            className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${activeTab === 'personal' ? 'bg-blue-50 text-blue-600' : 'hover:bg-gray-100'}`}
+          >
+            <FaUser className="text-lg" />
+            <span>Job Application</span>
+          </button>
+
           <button
             onClick={() => setActiveTab('personal')}
             className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${activeTab === 'personal' ? 'bg-blue-50 text-blue-600' : 'hover:bg-gray-100'}`}
@@ -208,9 +225,9 @@ function Profile() {
         </nav>
       </div>
 
-      {/* Main Content Area */}
+
       <div className="flex-1 p-2 ">
-        {/* Content Header */}
+
         <div className="mb-6 flex justify-between items-center">
           {/* <h2 className="text-2xl font-bold text-gray-800 capitalize">
             {activeTab === 'personal' && 'Personal Details'}
@@ -221,7 +238,7 @@ function Profile() {
           
         </div>
 
-        {/* Active Tab Content */}
+     
         <div className="bg-white rounded-xl shadow-sm p-6">
           {renderActiveTab()}
         </div>
