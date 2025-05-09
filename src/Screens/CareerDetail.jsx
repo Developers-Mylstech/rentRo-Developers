@@ -3,12 +3,14 @@ import { useLocation, useParams } from 'react-router-dom';
 import { FaMapMarkerAlt, FaBriefcase, FaMoneyBillWave, FaCalendarAlt, FaUpload, FaCheckCircle } from 'react-icons/fa';
 import useJobStore from '../Context/JobContext';
 import { ImSpinner } from "react-icons/im";
+import { Dialog } from 'primereact/dialog';
 export default function CareerDetail() {
   const { state } = useLocation();
   const { id } = useParams(); // Get the id from URL params
   const { loading, getJobById, jobById, updatePdf, pdfPath, ApplicantJobPost } = useJobStore();
   const [uploading, setUploading] = useState(false);
   const [postLoading, setPostLoading] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -62,20 +64,28 @@ export default function CareerDetail() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
     setPostLoading(true)
-    const res = await ApplicantJobPost(formData)
+    try {
+      const res = await ApplicantJobPost(formData)
 
-    if (res) {
-      setPostLoading(false)
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        city: '',
-        jobPostId: +id,
-        resume: pdfPath || null
-      })
+      if (res) {
+        setShowDialog(true)
+        setPostLoading(false)
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          city: '',
+          jobPostId: +id,
+          resume: pdfPath || null
+        })
+      }
+
+      setTimeout(() => {
+        setShowDialog(false)
+      }, 5000)
+    } catch {
+      alert('Failed to submit application. Please try again.')
     }
 
   };
@@ -83,7 +93,7 @@ export default function CareerDetail() {
   return (
     <>
       {!loading ? (<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div className="bg-white rounded-xl  overflow-hidden">
 
           <div className="relative h-64 w-full">
             <img
@@ -111,9 +121,8 @@ export default function CareerDetail() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 p-6">
-            {/* Job Details */}
-            <div className="md:col-span-2 space-y-8">
+          <div className="grid md:grid-cols-3 gap-8  my-5">
+            <div className="  md:col-span-2 space-y-8">
               <div>
                 <h2 className="text-2xl font-bold mb-4">Job Description</h2>
                 <p className="text-gray-700 leading-relaxed">{jobById?.jobDescription}</p>
@@ -204,9 +213,11 @@ export default function CareerDetail() {
 
                     <div>
                       <label htmlFor="resume" className="block text-sm font-medium text-gray-700 mb-1">Upload Resume (PDF)*</label>
-                      <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                      {formData.resume ? (<p className="mt-2 bg-blue-50 border p-4 text-center rounded-lg justify-center text-sm text-gray-600 flex items-center">
+                        <FaUpload className="mr-2" /> Resume
+                      </p>) : (<div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div className="space-y-1 text-center">
-                          <div className="flex text-sm text-gray-600">
+                          <div className="flex justify-center text-sm text-gray-600">
                             <label
                               htmlFor="resume"
                               className="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none"
@@ -222,19 +233,11 @@ export default function CareerDetail() {
                                 className="sr-only"
                               />
                             </label>
-                            <p className="pl-1">or drag and drop</p>
+
                           </div>
                           <p className="text-xs text-gray-500">PDF, DOC, DOCX up to 5MB</p>
                         </div>
-                      </div>
-                      {uploading ? (
-                        <p className="mt-2 text-sm text-blue-600 italic">Uploading...</p>
-                      ) : formData.resume ? (
-                        <p className="mt-2 text-sm text-gray-600 flex items-center">
-                          <FaUpload className="mr-2" /> Resume
-
-                        </p>
-                      ) : null}
+                      </div>)}
 
                     </div>
 
@@ -244,16 +247,21 @@ export default function CareerDetail() {
                     >
                       Submit Application
                     </button>)}
-                    
+
                   </div>
                 </form>
               </div>
             </div>
           </div>
+          <Dialog header="Application Status" className='bg-green-100' visible={showDialog} onHide={() => setShowDialog(false)}>
+            <div className='bg-green-50 p-5 rounded-lg'>
+              <p className='text-green-700 font-bold'>Application submitted successfully!</p>
+            </div>
+          </Dialog>
         </div>
       </div>) : (<>
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          {/* Header Image Skeleton */}
+
           <div className="relative h-64 w-full bg-gray-200 animate-pulse">
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
             <div className="absolute bottom-0 left-0 p-6 w-full">
@@ -270,7 +278,7 @@ export default function CareerDetail() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 p-6">
-            {/* Job Details Skeleton */}
+
             <div className="md:col-span-2 space-y-8">
               <div>
                 <div className="h-7 w-1/4 bg-gray-200 rounded mb-4"></div>

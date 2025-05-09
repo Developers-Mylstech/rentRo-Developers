@@ -40,6 +40,10 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import OrderDetail from "./Screens/OrderDetail.jsx";
+import PaymentConfirmation from "./Screens/StripePayment.jsx";
+import PaymentSuccess from "./Components/widget/PaymentSuccess.jsx";
+import StripePayment from "./Screens/StripePayment.jsx";
+import CheckoutPage from "./Screens/CheckoutPage.jsx";
 
 
 
@@ -58,7 +62,10 @@ const routes = createBrowserRouter(
         {/* <Route path="/clients" element={<Clients/>} /> */}
         <Route path="/sell" element={<Sale/>} />
         <Route path="/product/:name" element={<ProductDetail/>} />
-        <Route path="/checkout" element={<CheckoutForm/>} />
+        <Route path="/checkout" element={<CheckoutPage/>} />
+        <Route path="/payment-confirmation" element={< StripePayment />} />
+        <Route path="/payment-success" element={<PaymentSuccess />} />
+
         <Route path="/rent" element={<Rent/>} />
         <Route path="/contact" element={<ContactUs/>} />
         <Route path="/roservices" element={<RoServices/>} />

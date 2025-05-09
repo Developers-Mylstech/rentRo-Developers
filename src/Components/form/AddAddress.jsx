@@ -6,6 +6,8 @@ import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
 import { useForm, Controller } from 'react-hook-form';
 import { Skeleton } from 'primereact/skeleton';
+import { useLocation } from 'react-router-dom';
+import useCartStore from '../../Context/CartContext';
 
 const emirates = [
     { name: "Abu Dhabi", code: "AUH" },
@@ -36,6 +38,7 @@ export default function AddAddress({ setSelectedAddress, selectedAddress }) {
     const [openDialog, setOpenDialog] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [loading, setLoading] = useState(false);
+   
     const {
         register,
         handleSubmit,

@@ -242,16 +242,17 @@ const ProductList = ({ products }) => {
     <div className="container mx-auto px-4 py-8">
       {products?.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products.map((product, index) => (
+          {products?.map((product, index) => (
             <motion.div
               key={index}
+              onClick={() => handleProductClick(product)}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
               whileHover={{ scale: 1.02 }}
               className="bg-white rounded-xl shadow-sm overflow-hidden cursor-pointer group relative border border-gray-100 hover:shadow-md transition-shadow duration-300"
             >
-              {/* Product Badges */}
+
               <div className="absolute top-3 left-3 z-10 flex gap-2">
                 {product?.isNew && (
                   <span className="px-2 py-1 bg-green-500 text-white text-xs font-medium rounded-md shadow-sm">
