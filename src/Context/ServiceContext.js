@@ -7,6 +7,7 @@ const useServiceStore = create((set) => ({
   loading: false,
   error: null,
   currentService: null,
+  products : [],
 
  
 
@@ -16,6 +17,19 @@ const useServiceStore = create((set) => ({
       const response = await axiosInstance.get('/our-services' )
 
       set({ services: response?.data, loading: false });
+    } catch (error) {
+      set({ 
+        error: error.response?.data?.message || 'Failed to fetch products',
+        loading: false 
+      });
+    }
+  },
+
+  fetchProductsByService: async (id) => {
+    set({ loading: true, error: null });
+    try {
+      const response = await axiosInstance.get(`/our-services/${id}/products` )
+      set({ products: response?.data?.relatedProducts, loading: false });
     } catch (error) {
       set({ 
         error: error.response?.data?.message || 'Failed to fetch products',

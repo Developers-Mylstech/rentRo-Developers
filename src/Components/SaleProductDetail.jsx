@@ -312,11 +312,11 @@ const ProductDetail = () => {
     <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="bg-white rounded-xl shadow-sm overflow-hidden mt-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6">
-          <div className="md:col-span-1 flex items-center justify-center rounded-lg p-4">
+          <div className="md:col-span-1 flex items-center justify-center rounded-lg p-4 h-full ">
             {product.imageUrls.length > 1 ? (
               <CustomCarousel
                 images={product.imageUrls}
-                height="60vh"
+                height="100%"
                 width="60%"
                 marginHorizontal="auto"
                 autoPlay={true}
@@ -328,20 +328,13 @@ const ProductDetail = () => {
                 transition="fade"
               />
             ) : (
-              <div className="relative w-full bg-red-300">
+              <div className="relative w-full">
                 <img
                   src={product.imageUrls[0]}
                   alt={product?.name}
-                  className="object-cover rounded-lg mx-auto md:h-[50vh] h-auto w-full"
+                  className="object-cover rounded-lg mx-auto md:h-full h-auto w-full"
                 />
-                {product.imageUrls.length === 1 && (
-                  <button
-                    onClick={() => document.documentElement.requestFullscreen().catch(console.log)}
-                    className="absolute bottom-4 right-4 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md"
-                  >
-                    <FaExpand />
-                  </button>
-                )}
+
               </div>
             )}
           </div>
@@ -495,7 +488,7 @@ const ProductDetail = () => {
                         <p className="text-blue-600 font-bold">
                           {product?.productFor?.rent?.discountPrice} AED
                         </p>
-                        <p className="md:text-xs text-[9px] text-gray-500 text-left">per month × {rentPeriod} months</p>
+                        <p className="md:text-xs text-[9px] text-gray-500 md:text-center text-left">per month × {rentPeriod} months</p>
                       </div>
                       <div className="text-center">
                         <p className="text-sm text-gray-500">+ VAT {product?.productFor?.rent?.vat} %</p>

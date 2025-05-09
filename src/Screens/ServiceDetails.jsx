@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import useServiceStore from '../Context/ServiceContext';
 
@@ -6,13 +6,20 @@ const ServiceDetails = () => {
   const { id } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { loading, error } = useServiceStore();
+  const { loading, error,fetchProductsByService,products } = useServiceStore();
   const service = state?.service;
 
   const stripHtmlTags = (html) => {
     const tmp = document.createElement("DIV");
     tmp.innerHTML = html;
     return tmp.textContent || tmp.innerText || "";
+  };
+  useEffect(() => {
+    fetchProductsByService(service.ourServiceId);
+  }, [id, fetchProductsByService]);
+
+  const navigateToProduct = (product) => {
+    navigate(`/product/${product.productId}`, { state: { product } });
   };
 
   const ServiceDetailsSkeleton = () => (
@@ -107,27 +114,28 @@ const ServiceDetails = () => {
     );
   }
 
+
   return (
     <div className="bg-blue-50">
       {/* Hero Banner with Blue Overlay */}
-      <div style={{backgroundImage: `url(https://img.freepik.com/free-photo/water-background_23-2147795240.jpg?t=st=1745670394~exp=1745673994~hmac=718dbfd7782934235e4b871cdf6127cd30d5bfa8ce91996f7ac41b093bfd45aa&w=1380)`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} className="relative h-96 w-full flex flex-row-reverse items-center justify-around overflow-hidden bg-blue-200 object-fill">
+      <div style={{backgroundImage: `url(https://img.freepik.com/free-photo/water-background_23-2147795240.jpg?t=st=1745670394~exp=1745673994~hmac=718dbfd7782934235e4b871cdf6127cd30d5bfa8ce91996f7ac41b093bfd45aa&w=1380)`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} className="relative md:h-[40vh]  h-[30vh] w-full flex flex-col md:flex-row-reverse items-center justify-around overflow-hidden bg-blue-200 object-fill">
         {service.imageUrl.length > 0 ? (
           <img
             src={service.imageUrl[0]} 
             alt={service.title}
-            className="w-auto h-60 "
+            className="w-auto md:h-60 h-32 mt-8  "
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center">
-            <h1 className="text-4xl font-bold text-white">{service.title}</h1>
+          <div className="w-full h-full bg-gradient-to-r from-blue-600 to-blue-800 flex  items-center justify-center">
+            <h1 className=" text-lg md:text-4xl  font-bold text-white">{service?.title}</h1>
           </div>
         )}
         {/* <div className="absolute inset-0 bg-blue-900 bg-opacity-60 flex items-center justify-center"> */}
           <div className="text-center px-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-4">
+            <h1 className="text-xl md:text-4xl  font-bold text-blue-900 mb-2">
               {service.title}
             </h1>
-            <p className="text-xl text-blue-800 max-w-2xl mx-auto">
+            <p className="md:text-xl md:block hidden text-sm  text-blue-800 max-w-2xl mx-auto">
             {stripHtmlTags(service.shortDescription)}
             </p>
           </div>
@@ -172,6 +180,65 @@ const ServiceDetails = () => {
               dangerouslySetInnerHTML={{ __html: service.detailedDescription }}
             />
           </div>
+        </div>
+
+        <div>
+        {products?.length > 0 && (
+  <div className="mb-16 px-4 sm:px-0">
+    <h2 className="text-3xl font-bold text-blue-900 mb-8 text-center">
+      Related Products
+    </h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {products.map((product) => (
+        <div 
+          key={product.productId}
+          onClick={() => navigateToProduct(product)}
+          className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer group border border-gray-100 overflow-hidden"
+        >
+          {/* Image with hover effect */}
+          <div className="relative aspect-square overflow-hidden">
+            <img 
+              src={product.images?.[0]?.imageUrl || 'https://via.placeholder.com/300'} 
+              alt={product.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = 'https://via.placeholder.com/300';
+              }}
+            />
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+              <span className="text-white font-medium text-sm bg-blue-600 px-3 py-1 rounded-full">
+                View Details
+              </span>
+            </div>
+          </div>
+
+          {/* Product info */}
+          <div className="p-5">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+              {product.title}
+            </h3>
+            <p className="text-gray-600 text-sm mb-3 line-clamp-3">
+              {stripHtmlTags(product.description)}
+            </p>
+            
+            <div className="flex justify-between items-center">
+              <span className="text-blue-700 font-bold">
+                ${product.price?.toFixed(2) || 'N/A'}
+              </span>
+              {product.category && (
+                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                  {product.category?.name}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
         </div>
 
         {/* Features */}
