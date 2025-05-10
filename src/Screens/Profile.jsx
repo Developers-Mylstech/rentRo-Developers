@@ -118,6 +118,7 @@ import PersonalDetails from '../Components/PersonalDetails';
 import AddressList from '../Components/AddressList';
 import JobApplications from '../Components/JobApplications';
 import WishlistScreen from './WishlistScreen';
+import useUserStore from '../Context/UserContext';
 
 function Profile() {
   const email = localStorage.getItem('userEmail') || 'mohd.yaseen@example.com';
@@ -127,6 +128,7 @@ function Profile() {
   const location = useLocation();
   const { fetchOrders, orders } = useOrderStore();
   const [activeTab, setActiveTab] = useState('orders');
+  const {userDetails } = useUserStore();
  
 
   // Initialize with orders tab if no hash or invalid hash
@@ -180,8 +182,8 @@ function Profile() {
                 <FaUser className="text-4xl text-white" />
               </div>
             </div>
-            <h1 className="text-xl font-bold text-white mt-4">{userName}</h1>
-            <p className="text-blue-100 text-sm">{email}</p>
+            <h1 className="text-xl font-bold text-white mt-4">{userDetails.name}</h1>
+            <p className="text-blue-100 text-sm">{userDetails.email}</p>
           </div>
         </div>
 

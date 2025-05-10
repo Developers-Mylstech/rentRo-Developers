@@ -199,7 +199,7 @@ const Header = () => {
               className="text-[11px] md:text-xs flex items-center bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] text-white md:px-6 md:py-3 px-2 py-2 md:rounded-full rounded-md gap-1 border border-white hover:shadow-lg transition-all relative"
             >
               <FaShoppingCart className="text-base" />
-              <span>AED {totalAmount}</span>
+              <span>AED {totalAmount.toFixed(2)}</span>
               <span className="!absolute !right-0 !top-0 !w-4 !h-4 !bg-white !rounded-full !flex !items-center !justify-center !text-xs !font-bold !text-gray-600 !transform !translate-x-1/2 !-translate-y-1/2 !z-10">
                 {totalItems}
               </span>

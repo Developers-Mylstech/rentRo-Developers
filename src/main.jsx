@@ -45,6 +45,7 @@ import PaymentSuccess from "./Components/widget/PaymentSuccess.jsx";
 import StripePayment from "./Screens/StripePayment.jsx";
 import CheckoutPage from "./Screens/CheckoutPage.jsx";
 
+const token = localStorage.getItem('access');
 
 
 
@@ -57,14 +58,28 @@ const routes = createBrowserRouter(
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home/>} />
         <Route path="/services" element={<Services/>} />
-        <Route path="/profile" element={<Profile/>} />
         
         {/* <Route path="/clients" element={<Clients/>} /> */}
         <Route path="/sell" element={<Sale/>} />
         <Route path="/product/:name" element={<ProductDetail/>} />
-        <Route path="/checkout" element={<CheckoutPage/>} />
+        {/* <Route path="/checkout" element={<CheckoutPage/>} />
         <Route path="/payment-confirmation" element={< StripePayment />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/order/:id" element={<OrderDetail/>} /> */}
+
+        {
+          token !=null && (
+            <>
+            <Route path="/profile" element={<Profile/>} />
+              <Route path="/checkout" element={<CheckoutPage/>} />
+              <Route path="/payment-confirmation" element={< StripePayment />} />
+              <Route path="/payment-success" element={<PaymentSuccess />} />
+              <Route path="/order/:id" element={<OrderDetail/>} />
+            </>
+
+)
+
+        }
 
         <Route path="/rent" element={<Rent/>} />
         <Route path="/contact" element={<ContactUs/>} />
@@ -77,7 +92,6 @@ const routes = createBrowserRouter(
         {/* <Route path="/career/:name" element={<CareerDetail/>} /> */}
         <Route path="/service/:name" element={<ServiceDetails/>} />
         <Route path="/career/:id" element={<CareerDetail/>} />
-        <Route path="/order/:id" element={<OrderDetail/>} />
       
         <Route path="/shop" element={<Shop/>} />
         <Route path="*" element={<Home />} />
