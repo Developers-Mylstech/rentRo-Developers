@@ -1,190 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { VscAccount } from "react-icons/vsc";
-
-// Images import 
-import Domestic from '../assets/Rent/Domestic.png';
-import Commercial from '../assets/Rent/Commercial .png';
-import Threeinone from '../assets/Rent/Threeinone.png';
-import WaterCooler from '../assets/Rent/WaterCooler.png';
-import WaterDispenser from '../assets/Rent/WaterDispenser.png';
-import Industrial from '../assets/Rent/Industrial.png';
 import OceanScene from "../Components/widget/OceanScene";
-
-const products = [
-  {
-    image: Domestic,
-    name: "Domestic",
-    category: "Domestic",
-    brand: "Rent RO",
-    price: 50,
-    rating: 4,
-  },
-  {
-    image: Commercial,
-    name: "Commercial",
-    category: "Commercial",
-    brand: "Kent RO",
-    price: 100,
-    rating: 5,
-  },
-  {
-    image: Industrial,
-    name: "Industrial",
-    category: "Industrial",
-    brand: "Aqua Pro",
-    price: 50,
-    rating: 3,
-  },
-  {
-    image: WaterCooler,
-    name: "Water Cooler",
-    category: "Water Cooler",
-    brand: "Waterlogic",
-    price: 50,
-    rating: 4,
-  },
-  {
-    image: WaterDispenser,
-    name: "Water Filter",
-    category: "Accessories",
-    brand: "Culligan",
-    price: 50,
-    rating: 5,
-  },
-  {
-    image: Threeinone,
-    name: "3 in 1 System",
-    category: "Appliances",
-    brand: "Super General",
-    price: 10,
-    rating: 4,
-  },
-];
+import ProductList from "../Components/listing/ProductListing";
+import useProductStore from "../Context/ProductContext";
 
 const Shop = () => {
-  const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [sortBy, setSortBy] = useState("latest");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const { products, fetchProducts } = useProductStore();
 
-  // Filter products based on selected category & brand
-  const filteredProducts = products.filter((product) => {
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        setLoading(true);
+        await fetchProducts();
+        setLoading(false);
+      } catch (err) {
+        setError("Failed to load products. Please try again later.");
+        setLoading(false);
+        console.error("Error fetching products:", err);
+      }
+    };
+
+    loadProducts();
+  }, [fetchProducts]);
+
+  if (loading) {
     return (
-      (selectedBrand === "" || product.brand === selectedBrand) &&
-      (selectedCategory === "" || product.category === selectedCategory)
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
     );
-  });
+  }
 
-  // Sort products based on selected option
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    switch (sortBy) {
-      case "popularity":
-        return b.rating - a.rating;
-      case "rating":
-        return b.rating - a.rating;
-      case "low-to-high":
-        return a.price - b.price;
-      case "high-to-low":
-        return b.price - a.price;
-      default:
-        return 0; // Default order (latest)
-    }
-  });
+  if (error) {
+    return (
+      <div className="flex flex-col justify-center items-center min-h-screen p-4">
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          {error}
+        </div>
+        <button
+          onClick={() => window.location.reload()}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <>
+    <div className="font-sans bg-gray-50 min-h-screen">
       <OceanScene />
-
-      <div className="font-sans bg-gray-50 min-h-screen p-4">
-        {/* Filter and Sort Options */}
-            {/* Filter and Sort Options */}
- <div class="container mx-auto flex flex-col md:flex-row sm:justify-between items-center bg-white p-4 rounded-lg shadow-md mb-6 mt-18 w-full space-y-2 sm:space-y-0 sm:space-x-4">
-    <select
-        class="w-full sm:flex-1 p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
-        value={selectedBrand}
-        onChange={(e) => setSelectedBrand(e.target.value)}
-    >
-        <option value="">All Brands</option>
-        <option value="Rent RO">Rent RO</option>
-        <option value="Kent RO">Kent RO</option>
-        <option value="Aqua Pro">Aqua Pro</option>
-        <option value="Waterlogic">Waterlogic</option>
-        <option value="Culligan">Culligan</option>
-        <option value="Super General">Super General</option>
-        <option value="Aquaguard">Aquaguard</option>
-        <option value="Blue Water">Blue Water</option>
-    </select>
-
-    <select
-        class="w-full sm:flex-1 p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
-        value={selectedCategory}
-        onChange={(e) => setSelectedCategory(e.target.value)}
-    >
-        <option value="">All Categories</option>
-        <option value="Domestic">Domestic</option>
-        <option value="Commercial">Commercial</option>
-        <option value="Industrial">Industrial</option>
-        <option value="Water Cooler">Water Cooler</option>
-        <option value="Dispenser">Dispenser</option>
-        <option value="Chillers">Chillers</option>
-        <option value="Appliances">Appliances</option>
-        <option value="Accessories">Accessories</option>
-        <option value="Water Tanker">Water Tanker</option>
-    </select>
-
-    <select
-        class="w-full sm:flex-1 p-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform transform hover:scale-105 hover:bg-blue-100"
-        value={sortBy}
-        onChange={(e) => setSortBy(e.target.value)}
-    >
-        <option value="latest">Sort by Latest</option>
-        <option value="popularity">Sort by Popularity</option>
-        <option value="rating">Sort by Average Rating</option>
-        <option value="low-to-high">Sort by Price: Low to High</option>
-        <option value="high-to-low">Sort by Price: High to Low</option>
-    </select>
-</div>
-
-        {/* Product Grid */}
-        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {sortedProducts.length > 0 ? (
-            sortedProducts.map((product, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-lg m-4 shadow-lg overflow-hidden transform transition-transform duration-200 hover:scale-105"
-              >
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-[70%] h-[70%] mx-auto  object-cover"
-                />
-                <div className="p-3">
-                  <h3 className="text-lg font-medium text-gray-900">{product.name}</h3>
-                  <p className="text-gray-700">AED {product.price.toFixed(2)}</p>
-                  <div className="flex mt-2">
-                    {[...Array(product.rating)].map((_, i) => (
-                      <svg
-                        key={i}
-                        className="w-5 h-5 text-yellow-400 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M10 15l-5.878 3.09 1.176-6.545L.205 9.553l6.57-1.012L10 2l2.225 6.541 6.57 1.012-4.703 3.09 1.176 6.545z" />
-                      </svg>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="flex justify-center items-center h-[30vh] w-[95vw]">
-                      {/* <img src={notFount} alt="Not Found" className="md:h-52 w-auto h-28"/> */}
-                    </div>
-          )}
+      
+      <main className="container mx-auto px-4 py-8">
+        <div className="text-center mb-10">
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">Our Products</h1>
+          <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
         </div>
-      </div>
 
-    </>
+        <section className="bg-blue-50 rounded-lg shadow-md p-6 md:p-8 lg:p-10">
+          {products && products.length > 0 ? (
+            <ProductList products={products} />
+          ) : (
+            <div className="text-center py-10">
+              <p className="text-gray-600">No products available at the moment.</p>
+            </div>
+          )}
+        </section>
+      </main>
+    </div>
   );
 };
 

@@ -226,7 +226,7 @@ const BottomNav = () => {
 
           <li
             className="flex flex-col items-center cursor-pointer hover:text-blue-500"
-            onClick={toggleSidebar}
+            onClick={()=>navigate("/services") }
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

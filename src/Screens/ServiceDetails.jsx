@@ -224,12 +224,28 @@ const ServiceDetails = () => {
             </p>
             
             <div className="flex justify-between items-center">
-              <span className="text-blue-700 font-bold">
-                ${product.price?.toFixed(2) || 'N/A'}
-              </span>
+              <div>
+                    {product.productFor?.sell?.discountPrice ? (
+                      <>
+                        <span className="text-sm font-bold text-gray-900">
+                          AED {product?.productFor?.sell?.discountPrice}
+                        </span>
+                        {product?.productFor?.sell?.discountPrice <
+                          product?.productFor?.sell?.actualPrice && (
+                          <span className="ml-2 text-sm text-gray-500 line-through">
+                            AED {product?.productFor?.sell?.actualPrice}
+                          </span>
+                        )}
+                      </>
+                    ) : product.productFor?.rent?.discountPrice ? (
+                      <span className="text-sm font-bold text-gray-900">
+                        AED {product?.productFor?.rent?.discountPrice} <span className='text-[10px]'>/month</span>
+                      </span>
+                    ) :null}
+                  </div>
               {product.category && (
                 <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                  {product.category?.name}
+                  {product.brand?.name}
                 </span>
               )}
             </div>

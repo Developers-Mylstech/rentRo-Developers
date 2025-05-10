@@ -105,6 +105,7 @@ import {
   FaHome,
   FaHistory
 } from 'react-icons/fa';
+import { FaBagShopping } from "react-icons/fa6";
 import { RiLogoutCircleLine } from 'react-icons/ri';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
@@ -116,6 +117,7 @@ import OrderList from '../Components/listing/OrderList';
 import PersonalDetails from '../Components/PersonalDetails';
 import AddressList from '../Components/AddressList';
 import JobApplications from '../Components/JobApplications';
+import WishlistScreen from './WishlistScreen';
 
 function Profile() {
   const email = localStorage.getItem('userEmail') || 'mohd.yaseen@example.com';
@@ -151,6 +153,8 @@ function Profile() {
     switch (activeTab) {
       case 'personal':
         return <PersonalDetails user={{ name: userName, email }} />;
+      case 'wishlist':
+        return <WishlistScreen />;
       case 'addresses':
         return <AddressList />;
       case 'jobapplication':
@@ -183,13 +187,13 @@ function Profile() {
 
         {/* Navigation Links */}
         <nav className="p-4  space-y-2">
-          <button
+          {/* <button
             onClick={() => setActiveTab('jobapplication')}
             className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${activeTab === 'personal' ? 'bg-blue-50 text-blue-600' : 'hover:bg-gray-100'}`}
           >
             <FaUser className="text-lg" />
             <span>Job Application</span>
-          </button>
+          </button> */}
 
           <button
             onClick={() => setActiveTab('personal')}
@@ -205,6 +209,13 @@ function Profile() {
           >
             <FaMapMarkerAlt className="text-lg" />
             <span>Addresses</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('wishlist')}
+            className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${activeTab === 'addresses' ? 'bg-blue-50 text-blue-600' : 'hover:bg-gray-100'}`}
+          >
+            <FaBagShopping className="text-lg" />
+            <span>Wishlist</span>
           </button>
 
           <button

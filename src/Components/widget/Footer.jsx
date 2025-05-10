@@ -26,7 +26,7 @@ const Footer = () => {
       : "mb-0"
   } from-[#0a448b] to-[#0e86bdcf] text-gray-300 py-12 px-6 md:px-8 border-t`}
 >
-  <div className="max-w-screen-xl w-full mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8 z-10 justify-between">
+  <div className="max-w-screen-xl w-full mx-auto grid grid-cols-1 md:grid-cols-10 gap-8 md:gap-8 z-10 justify-between">
     {/* Company Info */}
     <div className="md:col-span-4 md:pl-[8%]">
       <img
@@ -63,7 +63,7 @@ const Footer = () => {
         </div>
 
     {/* Our Services */}
-    <div className="col-span-2 ">
+    {/* <div className="col-span-2 ">
       <h3
         className="font-semibold text-lg mb-3 flex items-center justify-between cursor-pointer md:cursor-auto"
         onClick={() => setIsServicesOpen(!isServicesOpen)}
@@ -101,7 +101,7 @@ const Footer = () => {
           </Link>
         </li>
       </ul>
-    </div>
+    </div> */}
 
     {/* Get Help */}
     <div className="col-span-2 ">
@@ -126,11 +126,11 @@ const Footer = () => {
             FAQ
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/contact" className="hover:underline">
             Contact Us
           </Link>
-        </li>
+        </li> */}
       </ul>
     </div>
 
