@@ -355,9 +355,7 @@ function SignUp() {
             {/* OTP Field (shown only after OTP is sent) */}
             {otpSent && (
               <div>
-                <p className="text-white text-opacity-80 mb-2 text-center">
-                  OTP sent to {formData.phone}
-                </p>
+               
                 <input
                   className={`w-full p-3 bg-white bg-opacity-5 border ${errors.otp ? 'border-red-400' : 'border-white border-opacity-20'} rounded-lg text-white placeholder-white placeholder-opacity-50 focus:outline-none focus:ring-2 focus:ring-blue-400`}
                   placeholder="Enter 6-digit OTP"

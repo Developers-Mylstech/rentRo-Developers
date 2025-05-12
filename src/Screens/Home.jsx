@@ -217,9 +217,9 @@ const Home = () => {
 
   return (
     <>
-      <section className="relative overflow-hidden mh-[100vh] h-max-[100vh]">
+      <section className="relative overflow-hidden h-[70vh]">
         <div className="z-10">
-          <video
+          {/* <video
             className="w-full md:h-[100vh] hidden md:block object-fill md:object-cover"
             autoPlay
             loop
@@ -227,14 +227,14 @@ const Home = () => {
           >
             <source src={HeroVideo2} type="video/mp4" />
             Your browser does not support the video tag.
-          </video>
+          </video> */}
           <img
-            className="md:hidden block h-[40vh] w-full"
+            className=" h-[70vh] w-full"
             src={banners?.imageUrl? banners?.imageUrl : mobileBanner}
             alt=""
           />
-          <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-          <BannerCarousel />
+          {/* <div className="absolute inset-0 bg-black bg-opacity-20"></div> */}
+          {/* <BannerCarousel /> */}
           <div className="block absolute md:top-[30%] top-[25%] right-4 animate-bounce">
             <h2
               style={{ stroke: "1px solid black" }}
@@ -276,9 +276,9 @@ const Home = () => {
               <Marquee>
                 {brands.map((brand) => (
                   <img
-                    key={brand.brandId}
-                    src={brand.imageUrl}
-                    alt={`${brand.name} Logo`}
+                    key={brand?.brandId}
+                    src={brand?.images[0]}
+                    alt={`${brand?.name} Logo`}
                     className="h-10 md:h-16 md:mx-14 lg:mx-20 xl:mx-24 mx-6 w-auto object-contain"
                     onError={(e) => {
                       e.target.onerror = null;
