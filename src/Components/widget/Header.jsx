@@ -5,7 +5,8 @@ import { Link, useLocation } from "react-router-dom";
 import rentroLogo from "../../assets/renroLogo.png";
 import useAuthStore from "../../Context/AuthContext";
 import useCartStore from "../../Context/CartContext";
-import CartSidebar from "./CartSidebar";
+import CartSidebar from "./CartSidebar"
+import useUserStore from "../../Context/UserContext"
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
@@ -14,6 +15,7 @@ const Header = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showProductDropdown, setShowProductDropdown] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { userDetails, fetchUser } = useUserStore();
 
   const location = useLocation();
   const { user, isAuthenticated, logout, token } = useAuthStore();
@@ -33,7 +35,8 @@ const Header = () => {
   useEffect(() => {
     // Fetch cart items when component mounts
     fetchCartItems().catch(error => console.error("Failed to fetch cart items:", error));
-  }, [fetchCartItems]);
+    fetchUser()
+  }, [fetchCartItems, fetchUser]);
 
   const handleLogout = () => {
     logout();
@@ -155,7 +158,7 @@ const Header = () => {
                         className="flex items-center gap-2 text-white hover:text-gray-300 bg-blue-600 px-3 py-2 rounded-full"
                       >
                         <FiUser className="text-xl" />
-                        <span className="text-sm">Hi👋🏻 <span className="hidden md:inline">{userName|| 'User'}</span></span>
+                        <span className="text-sm">Hi👋🏻 <span className="hidden md:inline">{userDetails?.name?.split(" ")[0]|| 'User'}</span></span>
                       </button>
                     </div>
                   )}

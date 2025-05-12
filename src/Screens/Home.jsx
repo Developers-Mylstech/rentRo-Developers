@@ -156,6 +156,9 @@
 // export default Home;
 
 
+
+
+
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axiosInstance"; // Adjust import path
@@ -169,6 +172,7 @@ import BannerCarousel from "../Components/widget/BannerCarousel.jsx";
 import mobileBanner from "../assets/mobileBanner.jpg";
 import ProductList from "../Components/listing/ProductListing.jsx";
 import useProductStore from "../Context/ProductContext.js";
+import ProductsForRQ from "../Components/listing/ProductsForRQ.jsx";
 
 const Home = () => {
   const ourBrandSection = useRef(null);
@@ -215,9 +219,11 @@ const Home = () => {
     }
   };
 
+
+
   return (
     <>
-      <section className="relative overflow-hidden h-[70vh]">
+      <section className="relative overflow-hidden md:h-[70vh] h-[50vh]">
         <div className="z-10">
           {/* <video
             className="w-full md:h-[100vh] hidden md:block object-fill md:object-cover"
@@ -229,7 +235,7 @@ const Home = () => {
             Your browser does not support the video tag.
           </video> */}
           <img
-            className=" h-[70vh] w-full"
+            className=" md:h-[70vh] h-[50vh] w-full"
             src={banners?.imageUrl? banners?.imageUrl : mobileBanner}
             alt=""
           />
@@ -309,16 +315,23 @@ const Home = () => {
       </section>
 
       <section className="bg-blue-50 w-full p-10">
-        <h1 className="text-center text-2xl md:text-3xl font-bold">
+        <h1 className="text-center md:text-3xl text-xl font-bold">
           All Products
         </h1>
-        <div className="w-20 h-1 bg-blue-500 mx-auto mt-2"></div>
+        <div className="w-24 h-1.5  bg-gradient-to-r rounded-full from-blue-500 to-cyan-400 mx-auto mt-2"></div>
         <ProductList products={products} />
+      </section>
+
+      <section className="md:mt-16">
+        <ProductsForRQ products={products} />
       </section>
 
       <section className="md:mt-16" ref={ourBrandSection}>
         <OurBrand />
       </section>
+
+      
+
     </>
   );
 };

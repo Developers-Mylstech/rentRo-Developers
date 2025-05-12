@@ -14,6 +14,7 @@ import useCartStore from "../Context/CartContext";
 import useAuthStore from "../Context/AuthContext";
 import AddToCartNotification from "./widget/AddToCartNotification";
 import Profile from "../Screens/Profile";
+import REPorduct from "./form/RQProduct";
 
 const CustomCarousel = ({
   images,
@@ -94,6 +95,8 @@ const CustomCarousel = ({
       >
         {/* Slides */}
         <div className="relative w-full h-full">
+
+          <img src={images[currentIndex]} alt={`Slide ${currentIndex + 1}`} className="object-contain w-full h-full  " />
           {images.map((image, index) => (
             <div
               key={index}
@@ -110,7 +113,7 @@ const CustomCarousel = ({
         </div>
 
         {/* Navigation Arrows */}
-        {images.length > 1 && (
+        {images?.length > 1 && (
           <>
             <button
               onClick={prevSlide}
@@ -133,12 +136,12 @@ const CustomCarousel = ({
 
         {/* Slide Counter */}
         <div className="absolute bottom-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm z-10">
-          {currentIndex + 1} / {images.length}
+          {currentIndex + 1} / {images?.length}
         </div>
       </div>
 
       {/* Thumbnail Navigation */}
-      {showThumbnails && images.length > 1 && !isFullscreen && (
+      {showThumbnails && images?.length > 1 && !isFullscreen && (
         <div className="flex mt-4 space-x-2 overflow-x-auto py-2 px-1">
           {images.map((image, index) => (
             <button
@@ -160,7 +163,7 @@ const CustomCarousel = ({
       )}
 
       {/* Dot Indicators */}
-      {showDots && images.length > 1 && !isFullscreen && (
+      {showDots && images?.length > 1 && !isFullscreen && (
         <div className="flex justify-center mt-4 space-x-2">
           {images.map((_, index) => (
             <button
@@ -190,6 +193,7 @@ const ProductDetail = () => {
   const [localCartItems, setLocalCartItems] = useState([]);
   const [localTotalAmount, setLocalTotalAmount] = useState(0);
   const [notificationProduct, setNotificationProduct] = useState(null);
+
 
 
 
@@ -313,9 +317,9 @@ const ProductDetail = () => {
       <div className="bg-white rounded-xl shadow-sm overflow-hidden mt-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-6">
           <div className="md:col-span-1 flex items-center justify-center rounded-lg p-4 h-full ">
-            {product.imageUrls.length > 1 ? (
+            {product?.images?.length > 1 ? (
               <CustomCarousel
-                images={product.imageUrls}
+                images={product?.images?.map((image) => image.imageUrl)}
                 height="100%"
                 width="60%"
                 marginHorizontal="auto"
@@ -330,7 +334,7 @@ const ProductDetail = () => {
             ) : (
               <div className="relative w-full">
                 <img
-                  src={product.imageUrls[0]}
+                  src={product?.images[0]?.imageUrl}
                   alt={product?.name}
                   className="object-cover rounded-lg mx-auto md:h-full h-auto w-full"
                 />
@@ -360,12 +364,14 @@ const ProductDetail = () => {
                 </p></div>
               </div>
               <div className="flex items-center">
-                {/* {renderStars(product.rating)} */}
+          
               </div>
             </div>
 
             {/* Tabs Navigation */}
-            <div className="border-b border-gray-200">
+          {
+            product?.productFor?.isAvailableForRequestQuotation == false &&(
+                <div className="border-b border-gray-200">
               <nav className="">
                 {["rent", "sell", "service"].map((tab) => {
                   const isDisabled = (
@@ -399,7 +405,9 @@ const ProductDetail = () => {
                 })}
               </nav>
             </div>
-
+            )
+          }
+             {product?.productFor?.isAvailableForRequestQuotation == false &&(
             <div className="pt-4">
               {activeTab === "rent" && (
                 <div className="space-y-6">
@@ -770,7 +778,13 @@ const ProductDetail = () => {
                   </div>
                 </div>
               )}
-            </div>
+            </div>)}
+            
+       {product?.productFor?.isAvailableForRequestQuotation == true &&(
+
+              <REPorduct product={product} />
+      
+          )}
           </div>
         </div>
       </div>
@@ -835,7 +849,10 @@ const ProductDetail = () => {
 
 
         </div>
+          
+          
 
+         
 
         <AddToCartNotification
           product={notificationProduct}

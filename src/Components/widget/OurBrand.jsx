@@ -77,9 +77,10 @@ function OurBrand() {
   if (loading) {
     return (
       <div className="my-12">
-        <h2 className="text-center text-2xl font-bold my-8 mb-10 text-blue-800">
+        <h2 className="text-center text-3xl font-bold my-8 mb-10 ">
           Our Brands
         </h2>
+        <div className="w-24 h-1.5  bg-gradient-to-r rounded-full from-blue-500 to-cyan-400 mx-auto mt-2 my-8 mb-10"></div>
         <div className="flex justify-center py-8">
           <p>Loading brands...</p>
         </div>
@@ -90,9 +91,11 @@ function OurBrand() {
   if (error) {
     return (
       <div className="my-12">
-        <h2 className="text-center text-2xl font-bold my-8 mb-10 text-blue-800">
+        <h2 className="text-center md:text-3xl text-xl font-bold  ">
           Our Brands
+
         </h2>
+        <div className="w-24 h-1.5  bg-gradient-to-r rounded-full from-blue-500 to-cyan-400 mx-auto mt-2 my-8 mb-10"></div>
         <div className="flex justify-center py-8 text-red-500">
           <p>{error}</p>
         </div>
@@ -103,9 +106,11 @@ function OurBrand() {
   if (brands.length === 0) {
     return (
       <div className="my-12">
-        <h2 className="text-center text-2xl font-bold my-8 mb-10 text-blue-800">
+        <h2 className="text-center text-3xl font-bold ">
           Our Brands
         </h2>
+        <div className="w-24 h-1.5  bg-gradient-to-r rounded-full from-blue-500 to-cyan-400 mx-auto mt-2  my-8 mb-10"></div>
+
         <div className="flex justify-center py-8">
           <p>No brands available</p>
         </div>
@@ -115,9 +120,10 @@ function OurBrand() {
 
   return (
     <div className="my-12">
-      <h2 className="text-center text-2xl font-bold my-8 mb-10 text-blue-800">
+      <h2 className="text-center text-3xl font-bold  ">
         Our Brands
       </h2>
+       <div className="w-24 h-1.5  bg-gradient-to-r rounded-full from-blue-500 to-cyan-400 mx-auto mt-2 mb-5 md:mb-10"></div>
       <div className="w-full overflow-hidden whitespace-nowrap pb-4">
         <Marquee 
           speed={50} 

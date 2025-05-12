@@ -384,7 +384,7 @@ const ProductList = ({ products }) => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 max-w-7xl">
       {/* Toast Container */}
       <div className="fixed bottom-6 right-6 z-50 space-y-3">
         <AnimatePresence>
@@ -457,7 +457,7 @@ const ProductList = ({ products }) => {
               {/* Product Image */}
               <div className="relative h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
                 <img
-                  src={product?.imageUrls[0]}
+                  src={product?.images[0]?.imageUrl}
                   alt={product?.name}
                   className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
                 />
@@ -496,18 +496,18 @@ const ProductList = ({ products }) => {
                     {product.productFor?.sell?.discountPrice ? (
                       <>
                         <span className="text-lg font-bold text-gray-900">
-                          AED {product?.productFor?.sell?.discountPrice}
+                          AED {product?.productFor?.sell?.discountPrice.toFixed(2)}
                         </span>
                         {product?.productFor?.sell?.discountPrice <
                           product?.productFor?.sell?.actualPrice && (
                           <span className="ml-2 text-sm text-gray-500 line-through">
-                            AED {product?.productFor?.sell?.actualPrice}
+                            AED {product?.productFor?.sell?.actualPrice.toFixed(2)}
                           </span>
                         )}
                       </>
                     ) : product.productFor?.rent?.discountPrice ? (
                       <span className="text-lg font-bold text-gray-900">
-                        AED {product?.productFor?.rent?.discountPrice}/mo
+                        AED {product?.productFor?.rent?.discountPrice.toFixed(2)}/mo
                       </span>
                     ) : (
                       <span className="text-lg font-bold text-gray-900">

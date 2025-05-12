@@ -400,13 +400,13 @@ const ProductsSection = () => {
       <span className="inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-1 rounded-full mb-2">
         {subtitle}
       </span>
-      <h2 className="text-3xl font-bold text-gray-800">{title}</h2>
-      <div className="w-20 h-1 bg-blue-500 mx-auto mt-2"></div>
+      <h2 className="md:text-3xl text-xl font-bold text-gray-800">{title}</h2>
+      <div className="w-24 h-1.5  bg-gradient-to-r rounded-full from-blue-500 to-cyan-400 mx-auto mt-2"></div>
     </div>
   );
 
   return (
-    <div className="py-12 px-4 sm:px-6 lg:px-8  mx-auto relative">
+    <div className="py-12 px-4 sm:px-6 lg:px-8  relative max-w-7xl mx-auto">
       {/* Toast Container */}
       <div className="fixed bottom-6 right-6 z-50 space-y-3">
         <AnimatePresence>
@@ -446,9 +446,9 @@ const ProductsSection = () => {
               className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer group transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
               <div className="relative h-64 overflow-hidden">
-                {product?.imageUrls?.[0] && (
+                {product?.images[0]?.imageUrl && (
                   <img
-                    src={product.imageUrls[0]}
+                    src={product?.images[0]?.imageUrl}
                     alt={product?.name}
                     className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
                   />
@@ -503,13 +503,13 @@ const ProductsSection = () => {
 
                 {/* Price */}
                 <div className="mb-4">
-                  {product.productFor?.rent?.discountPrice ? (
+                  {product?.productFor?.rent?.discountPrice ? (
                     <>
                       <span className="text-xl font-bold text-gray-900">
-                        AED {product?.productFor?.rent?.discountPrice}/mo
+                        AED {product?.productFor?.rent?.discountPrice.toFixed(2)}/mo
                       </span>
                       <span className="ml-2 text-sm text-gray-500 line-through">
-                        AED {product.productFor.rent.monthlyPrice}
+                        AED {product?.productFor.rent.monthlyPrice}
                       </span>
                     </>
                   ) : (
@@ -565,7 +565,7 @@ const ProductsSection = () => {
               {/* Product Image */}
               <div className="relative h-64 overflow-hidden">
                 <img
-                  src={product?.imageUrls[0]}
+                  src={product?.images[0]?.imageUrl}
                   alt={product?.name}
                   className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
                 />
@@ -613,10 +613,10 @@ const ProductsSection = () => {
                   {product.productFor?.sell?.discountPrice ? (
                     <>
                       <span className="text-xl font-bold text-gray-900">
-                        AED {product?.productFor?.sell?.discountPrice}
+                        AED {product?.productFor?.sell?.discountPrice.toFixed(2)}
                       </span>
                       <span className="ml-2 text-sm text-gray-500 line-through">
-                        AED {product?.productFor?.sell?.actualPrice}
+                        AED {product?.productFor?.sell?.actualPrice.toFixed(2)}
                       </span>
                     </>
                   ) : (

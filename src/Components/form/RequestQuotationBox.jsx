@@ -377,6 +377,7 @@ import { RxCross2 } from "react-icons/rx";
 import { Dialog } from "primereact/dialog";
 import { ProgressSpinner } from "primereact/progressspinner";
 
+
 const RequestQuotationBox = () => {
   // State management
   const [selectedImage, setSelectedImage] = useState(null);
@@ -388,6 +389,7 @@ const RequestQuotationBox = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogLoading, setDialogLoading] = useState(false);
   const fileInputRef = useRef(null);
+ 
 
   // Form handling
   const {
@@ -618,6 +620,7 @@ const RequestQuotationBox = () => {
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Image Upload Section */}
+     
           <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Product Image {!selectedImage && '(optional)'}
@@ -670,6 +673,7 @@ const RequestQuotationBox = () => {
               </div>
             )}
           </div>
+
 
           {/* Personal Information Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

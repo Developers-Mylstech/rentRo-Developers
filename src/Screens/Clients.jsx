@@ -159,9 +159,10 @@ const Clients = () => {
     return (
       <section className="bg-gray-100 py-12">
         <div className="container mx-auto w-full">
-          <h2 className="text-3xl font-bold text-center text-blue-800 mb-8">
+          <h2 className="md:text-3xl text-xl font-bold text-center ">
             Our Clients
           </h2>
+          <div className="w-24 h-1.5  bg-gradient-to-r rounded-full from-blue-500 to-cyan-400 mx-auto mt-2 mb-8"></div>
           <div className="flex justify-center text-red-500">
             <p>Error: {error}</p>
           </div>
@@ -174,9 +175,10 @@ const Clients = () => {
     return (
       <section className="bg-gray-100 py-12">
         <div className="container mx-auto w-full">
-          <h2 className="text-3xl font-bold text-center text-blue-800 mb-8">
+          <h2 className="md:text-3xl text-xl font-bold text-center  ">
             Our Clients
           </h2>
+          <div className="w-24 h-1.5  bg-gradient-to-r rounded-full from-blue-500 to-cyan-400 mx-auto mt-2 mb-8"></div>
           <div className="flex justify-center">
             <p>No clients found</p>
           </div>
@@ -188,9 +190,10 @@ const Clients = () => {
   return (
     <section className="bg-gray-100 py-12">
       <div className="container mx-auto w-full">
-        <h2 className="text-3xl font-bold text-center text-blue-800 mb-8">
+        <h2 className="md:text-3xl text-xl  font-bold text-center ">
           Our Clients
         </h2>
+        <div className="w-24 h-1.5  bg-gradient-to-r rounded-full from-blue-500 to-cyan-400 mx-auto mt-2 mb-8"></div>
 
         <Marquee behavior="alternate" direction="left">
           {clients.map((client) => (

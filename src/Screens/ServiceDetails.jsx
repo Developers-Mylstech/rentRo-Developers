@@ -118,24 +118,26 @@ const ServiceDetails = () => {
   return (
     <div className="bg-blue-50">
       {/* Hero Banner with Blue Overlay */}
-      <div style={{backgroundImage: `url(https://img.freepik.com/free-photo/water-background_23-2147795240.jpg?t=st=1745670394~exp=1745673994~hmac=718dbfd7782934235e4b871cdf6127cd30d5bfa8ce91996f7ac41b093bfd45aa&w=1380)`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} className="relative md:h-[40vh]  h-[30vh] w-full flex flex-col md:flex-row-reverse items-center justify-around overflow-hidden bg-blue-200 object-fill">
+      <div style={{backgroundImage: `url(https://img.freepik.com/free-photo/water-background_23-2147795240.jpg?t=st=1745670394~exp=1745673994~hmac=718dbfd7782934235e4b871cdf6127cd30d5bfa8ce91996f7ac41b093bfd45aa&w=1380)`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }} className="relative md:h-[45vh]  h-[35vh] w-full flex flex-col md:flex-row-reverse items-center md:justify-around justify-center gap-2 overflow-hidden bg-blue-200 object-fill">
         {service.imageUrl.length > 0 ? (
           <img
-            src={service.imageUrl[0]} 
+            src={service.imageUrl} 
             alt={service.title}
             className="w-auto md:h-60 h-32 mt-8  "
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-r from-blue-600 to-blue-800 flex  items-center justify-center">
             <h1 className=" text-lg md:text-4xl  font-bold text-white">{service?.title}</h1>
+          
           </div>
         )}
         {/* <div className="absolute inset-0 bg-blue-900 bg-opacity-60 flex items-center justify-center"> */}
           <div className="text-center px-4">
             <h1 className="text-xl md:text-4xl  font-bold text-blue-900 mb-2">
               {service.title}
+        
             </h1>
-            <p className="md:text-xl md:block hidden text-sm  text-blue-800 max-w-2xl mx-auto">
+            <p className="md:text-xl md:block  text-sm  text-blue-800 max-w-2xl mx-auto">
             {stripHtmlTags(service.shortDescription)}
             </p>
           </div>
@@ -144,30 +146,7 @@ const ServiceDetails = () => {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Product Images Grid */}
-        {service.imageUrl.length > 1 && (
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-blue-900 mb-8 text-center">
-              Our Service in Action
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {service.imageUrl.slice(1).map((url, index) => (
-                <div key={index} className="group relative overflow-hidden rounded-xl shadow-lg border border-blue-100">
-                  <img
-                    src={url}
-                    alt={`${service.title} - Example ${index + 1}`}
-                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-white font-medium">
-                      {service.title} - Example {index + 1}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+    
 
         {/* Detailed Description */}
         <div className="mb-16 bg-white rounded-2xl p-8 shadow-sm border border-blue-100">
