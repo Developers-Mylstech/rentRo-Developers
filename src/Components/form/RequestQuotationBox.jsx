@@ -494,15 +494,15 @@ const RequestQuotationBox = () => {
         name: data.name,
         mobile: data.mobile,
         companyName: data.companyName,
-        // location: {
-        //   street: data.location.street,
-        //   area: data.location.area,
-        //   building: data.location.building,
-        //   villaNo: data.location.villaNo,
-        //   country: data.location.country,
-        //   gmapLink: data.location.gmapLink
-        // },
-        location: data.location.street,
+        location: {
+          street: data.location.street,
+          area: data.location.area,
+          building: data.location.building,
+          villaNo: data.location.villaNo,
+          country: data.location.country,
+          gmapLink: data.location.gmapLink
+        },
+        // location: data.location.street,
         productImages: imageUrl ? [imageUrl] : [],
       };
   

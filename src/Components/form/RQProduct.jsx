@@ -170,9 +170,9 @@ const RQProduct = ({ product }) => {
   const SuccessScreen = () => (
     <div className="text-center p-6 bg-green-50 rounded-lg border border-green-200">
       <FaCheck className="text-green-500 text-5xl mx-auto mb-4" />
-      <h3 className="text-xl font-bold text-gray-800 mb-2">{statusMessage}</h3>
+      <h3 className="md:text-xl text-lg font-bold text-gray-800 mb-2">{statusMessage}</h3>
       
-      <p className="text-gray-600 mb-4">
+      <p className="text-gray-600 mb-4 md:text-base tex-sm">
         Our team will get back to you within 24 hours.
       </p>
       
@@ -182,7 +182,7 @@ const RQProduct = ({ product }) => {
           className="flex items-center justify-center gap-2 bg-blue-50 p-3 rounded-lg cursor-pointer hover:bg-blue-100 transition"
           onClick={copyToClipboard}
         >
-          <span className="font-bold text-blue-600 text-lg">{requestId}</span>
+          <span className="font-bold text-blue-600 md:text-lg text-sm">{requestId}</span>
           <FaClipboard className="text-blue-400" />
         </div>
         <p className="text-xs text-gray-500 mt-2">Click to copy</p>
@@ -191,7 +191,7 @@ const RQProduct = ({ product }) => {
       <div className="flex justify-center gap-4 mt-6">
         <a 
           href="tel:+971506709963" 
-          className="flex items-center gap-2 bg-blue-100 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-200 transition"
+          className="flex items-center gap-2 bg-blue-100 text-blue-600 md:px-4 px-2 md:text-base text-xs py-2 rounded-lg hover:bg-blue-200 transition"
         >
           <FaPhone /> Call Us
         </a>
@@ -199,7 +199,7 @@ const RQProduct = ({ product }) => {
           href="https://wa.me/971506709963" 
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-green-100 text-green-600 px-4 py-2 rounded-lg hover:bg-green-200 transition"
+          className="flex items-center gap-2 bg-green-100 text-green-600 md:px-4 px-2 md:text-base text-xs py-2 rounded-lg hover:bg-green-200 transition"
         >
           <FaWhatsapp /> WhatsApp
         </a>
