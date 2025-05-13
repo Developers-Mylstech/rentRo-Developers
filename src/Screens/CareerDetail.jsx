@@ -97,7 +97,7 @@ export default function CareerDetail() {
 
           <div className="relative h-64 w-full">
             <img
-              src={jobById?.image}
+              src={jobById?.imageDetails?.imageUrl}
               alt={jobById?.jobTitle}
               className="w-full h-full object-cover"
             />
