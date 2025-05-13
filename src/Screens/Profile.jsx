@@ -214,7 +214,7 @@ function Profile() {
           </button>
           <button
             onClick={() => setActiveTab('wishlist')}
-            className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${activeTab === 'addresses' ? 'bg-blue-50 text-blue-600' : 'hover:bg-gray-100'}`}
+            className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${activeTab === 'wishlist' ? 'bg-blue-50 text-blue-600' : 'hover:bg-gray-100'}`}
           >
             <FaBagShopping className="text-lg" />
             <span>Wishlist</span>

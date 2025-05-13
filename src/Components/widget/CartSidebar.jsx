@@ -206,7 +206,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   >
                     <div className="w-20 h-20 rounded-md overflow-hidden flex-shrink-0 bg-gray-100">
                       <img 
-                        src={token ? item?.productImages[0] : productDetails?.imageUrls?.[0] || 'https://via.placeholder.com/100'} 
+                        src={token ? item?.productImages[0] : productDetails?.images?.[0]?.imageUrl || 'https://via.placeholder.com/100'} 
                         alt={token ? item?.productName : productDetails?.name || 'Product'} 
                         className="w-full h-full object-cover"
                         loading="lazy"
