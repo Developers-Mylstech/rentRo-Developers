@@ -443,7 +443,7 @@ const ServiceDetails = () => {
                 <div className=" md:block w-[70%] md:w-[25%]  md:mt-10">
                   <div className="py-4 rounded-xl ">
                     <img 
-                      src={service.imageUrl} 
+                      src={service.image?.imageUrl} 
                       alt={service.title}
                       className="w-full h-auto rounded-lg "
                     />

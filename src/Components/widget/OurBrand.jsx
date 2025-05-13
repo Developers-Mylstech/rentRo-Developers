@@ -103,7 +103,7 @@ function OurBrand() {
     );
   }
 
-  if (brands.length === 0) {
+  if (brands?.length === 0) {
     return (
       <div className="my-12">
         <h2 className="text-center text-3xl font-bold ">
@@ -135,14 +135,11 @@ function OurBrand() {
         >
           {brands.map((brand) => (
             <img
-              key={brand.brandId}
-              src={brand.images[0]}
-              alt={brand.name}
+              key={brand?.brandId}
+              src={brand?.image}
+              alt={brand?.name}
               className="h-10 md:h-16 md:mx-14 lg:mx-20 xl:mx-24 mx-6 w-auto object-contain cursor-pointer"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = "https://via.placeholder.com/150?text=Brand+Logo";
-              }}
+             
             />
           ))}
         </Marquee>
