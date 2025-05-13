@@ -217,12 +217,12 @@ const Services = () => {
               <div className="flex max-w-5xl mx-auto flex-col items-center mt-16 mb-8 gap-4 bg-gradient-to-r from-blue-50 to-violet-50 p-4 rounded-xl ">
                 <div className="md:p-2 p-2 relative flex flex-col justify-start items-center gap-4 md:w-[80%] w-full mx-auto ">
                   {/* Top-left border */}
-                  <div className="absolute top-0 left-0 h-[80%] w-[95%] border-t-2 border-l-2 border-blue-600"></div>
+                  <div className="absolute top-4 left-4 h-[70%] w-[90%] border-t-2 border-l-2 border-blue-600"></div>
 
                   {/* Bottom-right border */}
-                  <div className="absolute bottom-0 right-0 h-[80%] w-[95%]  border-b-2 border-r-2 border-blue-600"></div>
+                  <div className="absolute bottom-4 right-4 h-[70%] w-[90%]  border-b-2 border-r-2 border-blue-600"></div>
 
-                  <div className="flex flex-col items-center gap-4 border border-blue-600 md:py-8 p-4  w-full ">
+                  <div className="flex flex-col items-center gap-4 border border-blue-600 md:py-12 p-6  w-full ">
                     <p className="text-gray-500 font-medium md:text-lg text-xs">
                       Didn't find what you're looking for?
                     </p>

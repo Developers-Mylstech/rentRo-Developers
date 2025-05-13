@@ -78,7 +78,7 @@ function OurBrand() {
     return (
       <div className="my-12">
         <h2 className="text-center text-3xl font-bold my-8 mb-10 ">
-          Our Brands
+          Brands We Serve
         </h2>
         <div className="w-24 h-1.5  bg-gradient-to-r rounded-full from-blue-500 to-cyan-400 mx-auto mt-2 my-8 mb-10"></div>
         <div className="flex justify-center py-8">
@@ -92,7 +92,7 @@ function OurBrand() {
     return (
       <div className="my-12">
         <h2 className="text-center md:text-3xl text-xl font-bold  ">
-          Our Brands
+         Brands We Serve
 
         </h2>
         <div className="w-24 h-1.5  bg-gradient-to-r rounded-full from-blue-500 to-cyan-400 mx-auto mt-2 my-8 mb-10"></div>
@@ -107,7 +107,7 @@ function OurBrand() {
     return (
       <div className="my-12">
         <h2 className="text-center text-3xl font-bold ">
-          Our Brands
+           Brands We Serve
         </h2>
         <div className="w-24 h-1.5  bg-gradient-to-r rounded-full from-blue-500 to-cyan-400 mx-auto mt-2  my-8 mb-10"></div>
 
@@ -120,8 +120,8 @@ function OurBrand() {
 
   return (
     <div className="my-12">
-      <h2 className="text-center text-3xl font-bold  ">
-        Our Brands
+      <h2 className="text-center md:text-3xl text-xl font-bold  ">
+         Brands We Serve
       </h2>
        <div className="w-24 h-1.5  bg-gradient-to-r rounded-full from-blue-500 to-cyan-400 mx-auto mt-2 mb-5 md:mb-10"></div>
       <div className="w-full overflow-hidden whitespace-nowrap pb-4">
@@ -136,7 +136,7 @@ function OurBrand() {
           {brands.map((brand) => (
             <img
               key={brand.brandId}
-              src={brand.imageUrl}
+              src={brand.images[0]}
               alt={brand.name}
               className="h-10 md:h-16 md:mx-14 lg:mx-20 xl:mx-24 mx-6 w-auto object-contain cursor-pointer"
               onError={(e) => {
