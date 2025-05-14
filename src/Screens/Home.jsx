@@ -316,7 +316,7 @@ const Home = () => {
   return (
     <div className="overflow-x-hidden">
       {/* Banner Carousel Section */}
-      <section className="relative md:h-[70vh] h-[40vh] w-full overflow-hidden">
+      <section className="relative md:h-[70vh] h-[30vh] w-full overflow-hidden">
       {banners.length > 0 ? (
           <div className="relative w-full h-full bg-blue-300">
             <AnimatePresence custom={direction} initial={false}>
@@ -336,7 +336,7 @@ const Home = () => {
                 />
                 
                 {/* Banner Content Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent flex items-center">
+                {/* <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent flex items-center">
                   <div className=" mx-auto md:px-6 text-blue-800  md:ml-20 ml-2 w-full flex flex-col justify-center md:justify-start items-center md:items-start ">
                     <motion.h2 
                       variants={textVariants}
@@ -366,7 +366,7 @@ const Home = () => {
                       Shop Now
                     </motion.button>
                   </div>
-                </div>
+                </div> */}
               </motion.div>
             </AnimatePresence>
 
@@ -407,7 +407,7 @@ const Home = () => {
             <div className="text-white text-center p-6">
               <h2 className="text-4xl font-bold mb-4">Welcome to Our Store</h2>
               <p className="text-xl mb-6">Discover amazing products and deals</p>
-              <button className="px-6 py-2 bg-white text-blue-600 rounded-full font-bold shadow-lg hover:scale-105 transition-transform">
+              <button onClick={() => scrollToClient(ourProductsSection)} className="px-6 py-2 bg-white text-blue-600 rounded-full font-bold shadow-lg hover:scale-105 transition-transform">
                 Explore Now
               </button>
             </div>

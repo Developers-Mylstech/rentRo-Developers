@@ -22,7 +22,11 @@ const Header = () => {
   const { user, isAuthenticated, logout, token } = useAuthStore();
   const { totalItems, totalAmount, fetchCartItems } = useCartStore();
 
-  const userName = localStorage.getItem('user') || 'User';
+
+  const storedItems = localStorage.getItem('cartItemsOffline')
+  const parsedItems = JSON.parse(storedItems);
+  const totalItemsOffline = parsedItems?.length || 0;
+  const totalAmountOffline = parsedItems?.reduce((total, item) => total + item.price, 0) || 0;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,17 +39,20 @@ const Header = () => {
 
   useEffect(() => {
     fetchCartItems().catch(error => console.error("Failed to fetch cart items:", error));
-    fetchUser()
-  }, [fetchCartItems, fetchUser]);
+   
+  }, [fetchCartItems]);
+  useEffect(() => {
+    fetchUser();
+  }, [ fetchUser]);
 
   useEffect(() => {
     if (searchVisible) {
       setShowCartButton(false);
     } else {
-      // Delay showing the cart button to match search bar hide animation
+
       const timer = setTimeout(() => {
         setShowCartButton(true);
-      }, 300); // Match this with your search bar hide duration
+      }, 300);
       return () => clearTimeout(timer);
     }
   }, [searchVisible]);
@@ -168,9 +175,9 @@ const Header = () => {
                   
                   {showUserMenu && (
                     <div className="absolute top-2 right-0 mt-10 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
-                      <div className="px-4 py-2 text-xs text-gray-500 border-b">
+                      {/* <div className="px-4 py-2 text-xs text-gray-500 border-b">
                         Signed in as <span className="font-semibold">{userDetails?.email}</span>
-                      </div>
+                      </div> */}
                       <Link
                         to="/profile"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50"
@@ -204,9 +211,9 @@ const Header = () => {
                 className="text-[10px] md:text-xs flex items-center bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] text-white md:px-2 px-2 py-2 md:rounded-full rounded-md gap-1 border border-white hover:shadow-lg transform transition-all duration-300 opacity-0 animate-fadeIn"
               >
                 <FaShoppingCart className="text-base" />
-                <span>AED {totalAmount.toFixed(2)}</span>
+                {token!=null && <span>AED {totalAmount.toFixed(2)}</span>}
                 <span className="!absolute !right-0 !top-0 !w-4 !h-4 !bg-white !rounded-full !flex !items-center !justify-center !text-xs !font-bold !text-gray-600 !transform !translate-x-1/2 !-translate-y-1/2">
-                  {totalItems}
+                  { token? totalItems: totalItemsOffline}
                 </span>
               </button>
             )}
