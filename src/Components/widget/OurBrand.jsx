@@ -138,7 +138,7 @@ function OurBrand() {
               key={brand?.brandId}
               src={brand?.image?.imageUrl}
               alt={brand?.name}
-              className="h-10 md:h-16 md:mx-14 lg:mx-20 xl:mx-24 mx-6 w-auto object-contain cursor-pointer"
+              className="h-8 md:h-12 md:mx-14 lg:mx-20 xl:mx-24 mx-6 w-auto object-contain cursor-pointer"
              
             />
           ))}

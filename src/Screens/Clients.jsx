@@ -202,7 +202,7 @@ const Clients = () => {
               className="group relative rounded-2xl bg-transparent mx-6 md:mx-12 overflow-hidden cursor-pointer transition-all"
             >
               <img
-                className="w-auto h-12 md:h-24 object-contain rounded-2xl transition-transform duration-700 group-hover:scale-110"
+                className="w-auto h-8 md:h-12 object-contain rounded-2xl transition-transform duration-700 group-hover:scale-110"
                 src={client?.image?.imageUrl}
                 alt={client?.name}
                 

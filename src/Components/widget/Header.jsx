@@ -134,7 +134,7 @@ const Header = () => {
           <div className="flex items-center md:gap-4 gap-1">
             <div className="relative flex items-center">
               <div className={`flex items-center relative bg-transparent border rounded-full transition-all duration-300 overflow-hidden ${
-                searchVisible ? "w-36 md:w-64 py-1 pl-4 pr-8 opacity-100" : "w-0 px-0 opacity-0"
+                searchVisible ? "w-full md:w-96 py-1 pl-4 pr-8 opacity-100" : "w-0 px-0 opacity-0"
               }`}>
                 <input
                   type="text"

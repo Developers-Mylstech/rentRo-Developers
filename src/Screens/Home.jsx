@@ -332,7 +332,7 @@ const Home = () => {
                 <img
                   src={banners[currentBannerIndex]?.imageUrl || mobileBanner}
                   alt={`Banner ${currentBannerIndex + 1}`}
-                  className="w-full h-full object-cover object-center "
+                  className="w-full h-[100%] md:object-cover object-center  "
                 />
                 
                 {/* Banner Content Overlay */}

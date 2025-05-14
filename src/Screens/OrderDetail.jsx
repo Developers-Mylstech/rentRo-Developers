@@ -59,7 +59,7 @@ const OrderDetail = () => {
       icon: <FaTruckLoading className="text-sm" />,
       description: "Your order is ready to be dispatched",
       active: ["READY_FOR_DELIVERY", "OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED","PROCESSING"].includes(order?.status),
-      completed: ["OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED","PROCESSING"].includes(order?.status),
+      completed: ["OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED","PROCESSING","READY_FOR_DELIVERY"].includes(order?.status),
       date: order?.readyAt || order?.updatedAt,
     },
     {
@@ -68,7 +68,7 @@ const OrderDetail = () => {
       icon: <FaShippingFast className="text-sm" />,
       description: "Your order is on the way",
       active: ["OUT_FOR_DELIVERY", "DELIVERED", "COMPLETED"].includes(order?.status),
-      completed: ["DELIVERED", "COMPLETED"].includes(order?.status),
+      completed: ["DELIVERED", "COMPLETED","OUT_FOR_DELIVERY"].includes(order?.status),
       date: order?.outForDeliveryAt || order?.updatedAt,
     },
     {
@@ -212,7 +212,7 @@ const OrderDetail = () => {
             </h2>
             <div className="relative">
               {/* Timeline line */}
-              <div className="absolute left-4 top-0 h-full w-0.5 bg-gray-200">
+              <div className="absolute left-4 top-0 h-[95%] w-0.5 bg-gray-200">
                 {/* Progress indicator */}
                 <motion.div
                   className="absolute top-0 left-0 w-0.5 bg-blue-600"
