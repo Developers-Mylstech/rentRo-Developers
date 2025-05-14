@@ -317,11 +317,7 @@ const Home = () => {
     <div className="overflow-x-hidden">
       {/* Banner Carousel Section */}
       <section className="relative md:h-[70vh] h-[40vh] w-full overflow-hidden">
-        {loadingBanners ? (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-r from-blue-100 to-blue-200">
-            <div className="text-2xl font-bold text-blue-500">Loading banners...</div>
-          </div>
-        ) : banners.length > 0 ? (
+      {banners.length > 0 ? (
           <div className="relative w-full h-full bg-blue-300">
             <AnimatePresence custom={direction} initial={false}>
               <motion.div

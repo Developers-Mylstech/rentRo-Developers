@@ -15,6 +15,7 @@ const Header = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showProductDropdown, setShowProductDropdown] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [showCartButton, setShowCartButton] = useState(true);
   const { userDetails, fetchUser } = useUserStore();
 
   const location = useLocation();
@@ -33,10 +34,21 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch cart items when component mounts
     fetchCartItems().catch(error => console.error("Failed to fetch cart items:", error));
     fetchUser()
   }, [fetchCartItems, fetchUser]);
+
+  useEffect(() => {
+    if (searchVisible) {
+      setShowCartButton(false);
+    } else {
+      // Delay showing the cart button to match search bar hide animation
+      const timer = setTimeout(() => {
+        setShowCartButton(true);
+      }, 300); // Match this with your search bar hide duration
+      return () => clearTimeout(timer);
+    }
+  }, [searchVisible]);
 
   const handleLogout = () => {
     logout();
@@ -67,10 +79,6 @@ const Header = () => {
 
           <nav className="flex justify-center items-center gap-4 lg:gap-4">
             <ul className="flex space-x-4 lg:space-x-6">
-              {/* Products Dropdown */}
-            
-
-              {/* Other menu items */}
               {["rent", "sell", "services", "career"].map((item) => (
                 <li key={item} className="relative flex items-center justify-center cursor-pointer transition-all duration-300">
                   <Link
@@ -85,31 +93,29 @@ const Header = () => {
               ))}
             </ul>
 
-            {/* Contact buttons */}
             <button
               onClick={() => window.open('tel:971506709963')}
-              className={` md:text-base flex items-center gap-1 font-semibold transition-all duration-300 bg-clip-text ${
+              className={`md:text-base flex items-center gap-1 font-semibold transition-all duration-300 bg-clip-text ${
                 scrolling ? " text-blue-800" : "text-white"
               } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaMobileAlt />
-            <span className="hidden lg:inline">971 50 670 9963</span>
+              <span className="hidden lg:inline">971 50 670 9963</span>
             </button>
             <a
               href={`https://wa.me/971506709963?text=Hello`}
               target="_blank"
               rel="noopener noreferrer"
-              className={`lg:text-base  flex items-center gap-1 font-semibold transition-all duration-300 bg-clip-text ${
-                 scrolling ? " text-blue-800" : "text-white"
+              className={`lg:text-base flex items-center gap-1 font-semibold transition-all duration-300 bg-clip-text ${
+                scrolling ? " text-blue-800" : "text-white"
               } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
-              <FaWhatsapp  />
-             <span className="hidden lg:inline">971 50 670 9963</span>
+              <FaWhatsapp />
+              <span className="hidden lg:inline">971 50 670 9963</span>
             </a>
           </nav>
         </div>
 
-        {/* Icons & Search */}
         <div className="flex items-center justify-between w-full md:w-fit gap-4">
           <button
             className="md:hidden p-2 rounded-md text-white hover:bg-gray-700 transition-all"
@@ -118,11 +124,10 @@ const Header = () => {
             <FaBars size={24} />
           </button>
 
-          {/* Search Bar */}
           <div className="flex items-center md:gap-4 gap-1">
             <div className="relative flex items-center">
-              <div className={`flex items-center relative bg-transparent border rounded-full transition-all duration-500 overflow-hidden ${
-                searchVisible ? "w-36 md:w-64 py-1 pl-4 pr-8 opacity-100 scale-100" : "w-0 px-0 opacity-0 scale-95"
+              <div className={`flex items-center relative bg-transparent border rounded-full transition-all duration-300 overflow-hidden ${
+                searchVisible ? "w-36 md:w-64 py-1 pl-4 pr-8 opacity-100" : "w-0 px-0 opacity-0"
               }`}>
                 <input
                   type="text"
@@ -130,7 +135,7 @@ const Header = () => {
                   className="flex-grow w-full pr-8 py-1 bg-transparent placeholder:text-white text-white outline-none transition-all ease-in-out duration-100"
                 />
                 <FiX
-                  className="text-white text-xl cursor-pointer absolute top-1/2 right-2 transform -translate-y-1/2 transition-transform duration-200 hover:rotate-90"
+                  className="text-white text-xl cursor-pointer absolute top-1/2 right-2 transform -translate-y-1/2 transition-transform duration-200"
                   onClick={() => setSearchVisible(false)}
                 />
               </div>
@@ -145,13 +150,11 @@ const Header = () => {
               )}
             </div>
 
-            {/* User Menu */}
             <div className="relative block">
               {token!=null ? (
                 <div className="relative flex items-center gap-2">
-                  {/* User status indicator */}
-                  {!searchVisible && (
-                    <div className="hidden md:block relative transition duration-[3000ms] ease-in">
+                  {showCartButton && (
+                    <div className="hidden md:block relative transition-opacity duration-300">
                       <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
                       <button
                         onClick={() => setShowUserMenu(!showUserMenu)}
@@ -186,32 +189,27 @@ const Header = () => {
                   )}
                 </div>
               ) : (
-                 <Link 
+                <Link 
                   to="/login" 
-                  className=" hidden md:flex items-center gap-1 text-white hover:text-blue-200 transition-colors"
+                  className="hidden md:flex items-center gap-1 text-white hover:text-blue-200 transition-colors"
                 >
-                  <FiUser className="text-xl " />
-                  {/* <span className="text-xs hidden lg:inline">Sign In</span> */}
+                  <FiUser className="text-xl" />
                 </Link>
               )}
             </div>
 
-            {/* Cart Button */}
-            {
-              !searchVisible &&(
-                   <button 
-              onClick={toggleCart}
-              className="text-[10px] md:text-xs flex items-center bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] text-white md:px-2  px-2 py-2 md:rounded-full rounded-md gap-1 border border-white hover:shadow-lg transform transition-all ease-in-out duration-300 relative  "
-            >
-              <FaShoppingCart className="text-base" />
-              <span>AED {totalAmount.toFixed(2)}</span>
-              <span className="!absolute !right-0 !top-0 !w-4 !h-4 !bg-white !rounded-full !flex !items-center !justify-center !text-xs !font-bold !text-gray-600 !transform !translate-x-1/2 !-translate-y-1/2 ">
-                {totalItems}
-              </span>
-            </button>
-              )
-            }
-           
+            {showCartButton && (
+              <button 
+                onClick={toggleCart}
+                className="text-[10px] md:text-xs flex items-center bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] text-white md:px-2 px-2 py-2 md:rounded-full rounded-md gap-1 border border-white hover:shadow-lg transform transition-all duration-300 opacity-0 animate-fadeIn"
+              >
+                <FaShoppingCart className="text-base" />
+                <span>AED {totalAmount.toFixed(2)}</span>
+                <span className="!absolute !right-0 !top-0 !w-4 !h-4 !bg-white !rounded-full !flex !items-center !justify-center !text-xs !font-bold !text-gray-600 !transform !translate-x-1/2 !-translate-y-1/2">
+                  {totalItems}
+                </span>
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -227,13 +225,8 @@ const Header = () => {
           <FiX />
         </button>
 
-
         <nav className="w-full px-6">
           <ul className="text-lg font-semibold flex flex-col">
-            {/* Mobile Products Dropdown */}
-          
-
-            {/* Other mobile menu items */}
             {["rent", "sell", "services", "career"].map((item) => (
               <li key={item}>
                 <Link
@@ -297,14 +290,9 @@ const Header = () => {
         </nav>
       </div>
 
-      {/* Cart */}
       <CartSidebar isOpen={isCartOpen} onClose={toggleCart} />
     </header>
   );
 };
 
 export default Header;
-
-
-
-
