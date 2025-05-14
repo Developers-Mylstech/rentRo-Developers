@@ -54,18 +54,18 @@ const Header = () => {
       } px-6 py-3`}
     >
       <div className="flex justify-between items-center">
-        <div className="hidden md:flex justify-center items-center lg:gap-20 gap-5">
+        <div className="hidden md:flex justify-center items-center lg:gap-10 gap-2">
           <div className="text-2xl font-bold text-red-600">
             <Link to="/">
               <img
                 src={rentroLogo}
                 alt="Logo"
-                className="h-8 lg:h-12 w-auto object-contain"
+                className="h-8 lg:h-10 w-auto object-contain"
               />
             </Link>
           </div>
 
-          <nav className="flex justify-center items-center gap-4 lg:gap-5">
+          <nav className="flex justify-center items-center gap-4 lg:gap-4">
             <ul className="flex space-x-4 lg:space-x-6">
               {/* Products Dropdown */}
             
@@ -75,7 +75,7 @@ const Header = () => {
                 <li key={item} className="relative flex items-center justify-center cursor-pointer transition-all duration-300">
                   <Link
                     to={`/${item}`}
-                    className={`lg:text-sm md:text-[11px] font-semibold transition-all duration-300 bg-clip-text text-transparent ${
+                    className={`lg:text-xs md:text-[11px] font-semibold transition-all duration-300 bg-clip-text text-transparent ${
                       scrolling ? "bg-white" : "bg-white"
                     } hover:animate-[bg-scroll_2s_linear_infinite]`}
                   >
@@ -88,23 +88,23 @@ const Header = () => {
             {/* Contact buttons */}
             <button
               onClick={() => window.open('tel:971506709963')}
-              className={` md:text-base flex items-center gap-2 font-semibold transition-all duration-300 bg-clip-text ${
+              className={` md:text-base flex items-center gap-1 font-semibold transition-all duration-300 bg-clip-text ${
                 scrolling ? " text-blue-800" : "text-white"
               } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaMobileAlt />
-              971 50 670 9963
+            <span className="hidden lg:inline">971 50 670 9963</span>
             </button>
             <a
               href={`https://wa.me/971506709963?text=Hello`}
               target="_blank"
               rel="noopener noreferrer"
-              className={`md:text-base  flex items-center gap-2 font-semibold transition-all duration-300 bg-clip-text ${
+              className={`lg:text-base  flex items-center gap-1 font-semibold transition-all duration-300 bg-clip-text ${
                  scrolling ? " text-blue-800" : "text-white"
               } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaWhatsapp  />
-              971 50 670 9963
+             <span className="hidden lg:inline">971 50 670 9963</span>
             </a>
           </nav>
         </div>
@@ -127,7 +127,7 @@ const Header = () => {
                 <input
                   type="text"
                   placeholder="Search"
-                  className="flex-grow w-full pr-8 py-1 bg-transparent placeholder:text-white text-white outline-none transition-all duration-200"
+                  className="flex-grow w-full pr-8 py-1 bg-transparent placeholder:text-white text-white outline-none transition-all ease-in-out duration-100"
                 />
                 <FiX
                   className="text-white text-xl cursor-pointer absolute top-1/2 right-2 transform -translate-y-1/2 transition-transform duration-200 hover:rotate-90"
@@ -166,7 +166,7 @@ const Header = () => {
                   {showUserMenu && (
                     <div className="absolute top-2 right-0 mt-10 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
                       <div className="px-4 py-2 text-xs text-gray-500 border-b">
-                        Signed in as <span className="font-semibold">{user?.email}</span>
+                        Signed in as <span className="font-semibold">{userDetails?.email}</span>
                       </div>
                       <Link
                         to="/profile"
@@ -186,12 +186,12 @@ const Header = () => {
                   )}
                 </div>
               ) : (
-                <Link 
+                 <Link 
                   to="/login" 
-                  className="flex items-center gap-1 text-white hover:text-blue-200 transition-colors"
+                  className=" hidden md:flex items-center gap-1 text-white hover:text-blue-200 transition-colors"
                 >
-                  <FiUser className="text-xl" />
-                  <span className="text-sm hidden md:inline">Sign In</span>
+                  <FiUser className="text-xl " />
+                  {/* <span className="text-xs hidden lg:inline">Sign In</span> */}
                 </Link>
               )}
             </div>
@@ -201,7 +201,7 @@ const Header = () => {
               !searchVisible &&(
                    <button 
               onClick={toggleCart}
-              className="text-[11px] md:text-xs flex items-center bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] text-white md:px-6 md:py-3 px-2 py-2 md:rounded-full rounded-md gap-1 border border-white hover:shadow-lg transition-all relative"
+              className="text-[10px] md:text-xs flex items-center bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] text-white md:px-2  px-2 py-2 md:rounded-full rounded-md gap-1 border border-white hover:shadow-lg transform transition-all ease-in-out duration-300 relative  "
             >
               <FaShoppingCart className="text-base" />
               <span>AED {totalAmount.toFixed(2)}</span>

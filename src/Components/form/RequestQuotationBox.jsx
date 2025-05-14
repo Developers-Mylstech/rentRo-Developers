@@ -371,7 +371,8 @@ import {
   FaMapMarkerAlt,
   FaInfoCircle,
   FaPhone,
-  FaWhatsapp
+  FaWhatsapp,
+  FaClipboard
 } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { Dialog } from "primereact/dialog";
@@ -511,9 +512,10 @@ const RequestQuotationBox = () => {
   
       // Submit quotation request
       const response = await axiosInstance.post("/request-quotations", payload);
+
       
       // Handle success
-      setQuoteRequestId(response.data.id || `QR-${Date.now().toString().slice(-8)}`);
+      setQuoteRequestId(response?.data?.requestQuotationCode );
       setSubmitStatus('success');
       setStatusMessage("Thank you for your query!");
       
@@ -531,6 +533,12 @@ const RequestQuotationBox = () => {
     } finally {
       setDialogLoading(false);
     }
+  };
+
+    const copyToClipboard = () => {
+    navigator.clipboard.writeText(quoteRequestId);
+    setStatusMessage("Request ID copied to clipboard!");
+    setTimeout(() => setStatusMessage("Thank you for your query!"), 2000);
   };
 
   // Dialog components
@@ -557,6 +565,19 @@ const RequestQuotationBox = () => {
           <p className="text-gray-600 mb-4">
             Our team will get back to you within 24 hours.
           </p>
+          <div className="bg-white p-4 rounded-lg border border-gray-200 mb-4">
+            <p className="text-sm text-gray-600 mb-1">Your Request ID:</p>
+            <div 
+              className="flex items-center justify-center gap-2 bg-blue-50 p-3 rounded-lg cursor-pointer hover:bg-blue-100 transition"
+              onClick={copyToClipboard}
+            >
+              <span className="font-bold text-blue-600 md:text-lg text-sm">{quoteRequestId}</span>
+              <FaClipboard className="text-blue-400" />
+            </div>
+            <p className="text-xs text-gray-500 mt-2">Click to copy</p>
+          </div>
+
+
           <div className="flex justify-center gap-4 mt-6">
             <a 
               href="tel:+971506709963" 
