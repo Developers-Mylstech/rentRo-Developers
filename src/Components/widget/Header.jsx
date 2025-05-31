@@ -68,8 +68,8 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed left-0 right-0 z-50 w-full rounded-b-xl transition-all duration-500 ${
-        scrolling ? "bg-gradient-to-t from-blue-400 to-[#34b2eccf] bg-opacity-80 shadow-md" : "bg-black bg-opacity-40"
+      className={`fixed left-0 right-0 z-50 w-full rounded-b-xl shadow-md transition-all duration-500 ${
+        scrolling ? "bg-gradient-to-t from-blue-400 to-[#34b2eccf] bg-opacity-80 shadow-md" : "bg-white "
       } px-6 py-3`}
     >
       <div className="flex justify-between items-center">
@@ -90,8 +90,8 @@ const Header = () => {
                 <li key={item} className="relative flex items-center justify-center cursor-pointer transition-all duration-300">
                   <Link
                     to={`/${item}`}
-                    className={`lg:text-xs md:text-[11px] font-semibold transition-all duration-300 bg-clip-text text-transparent ${
-                      scrolling ? "bg-white" : "bg-white"
+                    className={`lg:text-sm md:text-[11px] font-semibold transition-all duration-300 bg-clip-text  ${
+                      scrolling ? "text-blue-800" : "text-blue-800"
                     } hover:animate-[bg-scroll_2s_linear_infinite]`}
                   >
                     {item.toUpperCase()}
@@ -102,8 +102,8 @@ const Header = () => {
 
             <button
               onClick={() => window.open('tel:971506709963')}
-              className={`md:text-base flex items-center gap-1 font-semibold transition-all duration-300 bg-clip-text ${
-                scrolling ? " text-blue-800" : "text-white"
+              className={`md:text-base flex items-center gap-1 font-semibold transition-all duration-300 bg-clip-text  ${
+                scrolling ? " text-blue-800" : "text-blue-800"
               } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaMobileAlt />
@@ -114,7 +114,7 @@ const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
               className={`lg:text-base flex items-center gap-1 font-semibold transition-all duration-300 bg-clip-text ${
-                scrolling ? " text-blue-800" : "text-white"
+                scrolling ? " text-blue-800" : "text-blue-800"
               } hover:animate-[bg-scroll_2s_linear_infinite]`}
             >
               <FaWhatsapp />
@@ -125,7 +125,7 @@ const Header = () => {
 
         <div className="flex items-center justify-between w-full md:w-fit gap-4">
           <button
-            className="md:hidden p-2 rounded-md text-white hover:bg-gray-700 transition-all"
+            className="md:hidden p-2 rounded-md text-blue-800 hover:bg-gray-700 transition-all"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             <FaBars size={24} />
@@ -133,26 +133,26 @@ const Header = () => {
 
           <div className="flex items-center md:gap-4 gap-1">
             <div className="relative flex items-center">
-              <div className={`flex items-center relative bg-transparent border rounded-full transition-all duration-300 overflow-hidden ${
-                searchVisible ? "w-full md:w-96 py-1 pl-4 pr-8 opacity-100" : "w-0 px-0 opacity-0"
-              }`}>
+              <div className={`flex items-center relative  border ${scrolling? " border-white bg-transparent": " border-blue-200 bg-blue-50 "}   rounded-full transition-all duration-300 overflow-hidden ${
+                searchVisible ? "w-full md:w-96   py-1 pl-4 pr-8 opacity-100" : "w-0 px-0 opacity-0 "
+              }` }>
                 <input
                   type="text"
                   placeholder="Search"
-                  className="flex-grow w-full pr-8 py-1 bg-transparent placeholder:text-white text-white outline-none transition-all ease-in-out duration-100"
+                  className={`flex-grow w-full pr-8 py-1 bg-transparent ${scrolling?"placeholder:text-white":"placeholder:text-blue-200"}  text-blue-800 outline-none transition-all ease-in-out duration-100`}
                 />
                 <FiX
-                  className="text-white text-xl cursor-pointer absolute top-1/2 right-2 transform -translate-y-1/2 transition-transform duration-200"
+                  className={`text-gray-300 text-xl ${scrolling?"text-white":"text-blue-200"} cursor-pointer absolute top-1/2 right-2 transform -translate-y-1/2 transition-transform duration-200`}
                   onClick={() => setSearchVisible(false)}
                 />
               </div>
 
               {!searchVisible && (
                 <button
-                  className="bg-black bg-opacity-20 text-white p-2 rounded-full hover:bg-gray-300 transition-all duration-200"
+                  className={`${scrolling?"bg-black bg-opacity-20 text-white":"bg-blue-100 text-blue-800"} p-2 rounded-full  transition-all duration-200`}
                   onClick={() => setSearchVisible(true)}
                 >
-                  <FiSearch className="text-xl text-white hover:text-gray-700" />
+                  <FiSearch className="text-xl  " />
                 </button>
               )}
             </div>
@@ -198,7 +198,7 @@ const Header = () => {
               ) : (
                 <Link 
                   to="/login" 
-                  className="hidden md:flex items-center gap-1 text-white hover:text-blue-200 transition-colors"
+                  className={`hidden md:flex ${scrolling?"text-white":"text-blue-800"} items-center gap-1  transition-colors`}
                 >
                   <FiUser className="text-xl" />
                 </Link>
@@ -212,7 +212,7 @@ const Header = () => {
               >
                 <FaShoppingCart className="text-base" />
                 {token!=null && <span>AED {totalAmount.toFixed(2)}</span>}
-                <span className="!absolute !right-0 !top-0 !w-4 !h-4 !bg-white !rounded-full !flex !items-center !justify-center !text-xs !font-bold !text-gray-600 !transform !translate-x-1/2 !-translate-y-1/2">
+                <span className="!absolute !right-0 !top-0 !w-4 !h-4 !bg-white !rounded-full !flex !items-center !justify-center !text-xs !font-bold !text-gray-600 !transform !translate-x-1/2 !-translate-y-1/2 border border-blue-500">
                   { token? totalItems: totalItemsOffline}
                 </span>
               </button>

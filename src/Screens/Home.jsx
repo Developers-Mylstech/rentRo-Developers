@@ -316,7 +316,7 @@ const Home = () => {
   return (
     <div className="overflow-x-hidden">
       {/* Banner Carousel Section */}
-      <section className="relative md:h-[70vh] h-[30vh] w-full overflow-hidden">
+      <section className="relative md:h-[70vh] h-[22vh] w-full overflow-hidden">
       {banners.length > 0 ? (
           <div className="relative w-full h-full bg-blue-300">
             <AnimatePresence custom={direction} initial={false}>
@@ -330,9 +330,9 @@ const Home = () => {
                 className="absolute w-full h-full"
               >
                 <img
-                  src={banners[currentBannerIndex]?.imageUrl || mobileBanner}
+                  src={banners[currentBannerIndex]?.imageUrl || "http://192.168.1.14:8080/uploads/1d5a0fd4-7abb-4eb3-89f1-5936248d020f_WhatsApp%20Image%202025-05-14%20at%203.29.37%20PM.webp"}
                   alt={`Banner ${currentBannerIndex + 1}`}
-                  className="w-full h-[100%] md:object-cover object-center  "
+                  className="w-full h-[100%]   "
                 />
                 
                 {/* Banner Content Overlay */}
@@ -403,9 +403,9 @@ const Home = () => {
             </div>
           </div>
         ) : (
-          <div className="w-full h-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+          <div style={{backgroundImage: "uri()" }} className="w-full h-full bg-blue-400 flex items-center justify-center">
             <div className="text-white text-center p-6">
-              <h2 className="text-4xl font-bold mb-4">Welcome to Our Store</h2>
+              <h2 className="text-4xl font-bold mb-4">Welcome to Rent Ro</h2>
               <p className="text-xl mb-6">Discover amazing products and deals</p>
               <button onClick={() => scrollToClient(ourProductsSection)} className="px-6 py-2 bg-white text-blue-600 rounded-full font-bold shadow-lg hover:scale-105 transition-transform">
                 Explore Now

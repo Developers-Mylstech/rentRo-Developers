@@ -457,7 +457,7 @@ const ProductList = ({ products }) => {
               {/* Product Image */}
               <div className="relative h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
                 <img
-                  src={product?.images[0]?.imageUrl}
+                  src={ "http://192.168.1.14:8080/uploads/7cfcee14-a667-42ef-bc9a-b4f8600db4c9_Screenshot_2025-05-19_170732-removebg-preview.webp"}
                   alt={product?.name}
                   className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
                 />
@@ -484,7 +484,7 @@ const ProductList = ({ products }) => {
                       {renderStars(calculateRating(product.reviews))}
                     </div>
                     <span className="text-xs text-gray-500">
-                      ({product.reviews.length})
+                      ({product?.reviews?.length})
                     </span>
                   </div>
                 )}

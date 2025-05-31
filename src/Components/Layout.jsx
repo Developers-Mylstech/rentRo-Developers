@@ -33,6 +33,7 @@ function Layout() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
+        className="md:pt-[4.2%] pt-[15%]"
       >
         <Outlet />
       </motion.div>
