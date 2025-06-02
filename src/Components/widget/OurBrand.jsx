@@ -1,63 +1,15 @@
 
 
-// import React from "react";
-// import Marquee from "react-fast-marquee";
-// import Aquaguard from "../../assets/OurBrand/Aquaguard.png";
-// import Aquapro from "../../assets/OurBrand/Aquapro.png";
-// import Bluewater from "../../assets/OurBrand/Bluewater.png";
-// import Culligan from "../../assets/OurBrand/Culligan.png";
-// import Kent from "../../assets/OurBrand/Kent.png";
-// import WaterLogic from "../../assets/OurBrand/WaterLogic.png";
-
-// function OurBrand() {
-//   const brands = [
-//     { id: 1, name: "Blue Water", image: Bluewater },
-//     { id: 2, name: "Aqua Pro", image: Aquapro },
-//     { id: 3, name: "Culligan", image: Culligan },
-//     { id: 4, name: "Kent Water", image: Kent },
-//     { id: 5, name: "Water Logic", image: WaterLogic },
-//     { id: 6, name: "Aquaguard", image: Aquaguard },
-//   ];
-
-//   return (
-//     <div className="my-12">
-//       <h2 className="text-center text-2xl font-bold my-8 mb-10 text-blue-800">
-//         Our Brands
-//       </h2>
-//       <div className="w-full overflow-hidden whitespace-nowrap pb-4">
-//         <Marquee 
-//           speed={50} 
-//           gradient={false} 
-//           pauseOnHover={true} 
-//           play={true} 
-//           direction="left"
-//           className="cursor-grab active:cursor-grabbing"
-//         >
-//           {brands.map((brand) => (
-//             <img
-//               key={brand.id}
-//               src={brand.image}
-//               alt={brand.name}
-//               className="h-10 md:h-16 md:mx-14 lg:mx-20 xl:mx-24 mx-6 w-auto object-contain cursor-pointer"
-//             />
-//           ))}
-//         </Marquee>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default OurBrand;
-
-
 import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import axiosInstance from "../../utils/axiosInstance"; // Adjust import path
+import { useNavigate } from "react-router-dom";
 
 function OurBrand() {
   const [brands, setBrands] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBrands = async () => {
@@ -73,6 +25,32 @@ function OurBrand() {
 
     fetchBrands();
   }, []);
+
+ 
+
+const handleBrandClick = async (brand) => {
+  // Validate brand object exists
+  if (!brand) {
+    alert("Brand object is required");
+    return;
+  }
+
+  // Validate required brand properties
+  if (!brand.brandId ) {
+    console.error("Brand is missing required properties", brand);
+    return;
+  }
+
+  try {
+    console.log(brand,' has been clicked');
+    // Encode the brand name for URL safet    
+    navigate(`/brands/${brand?.brandId}`);
+    
+  } catch (error) {
+    console.error("Error handling brand navigation:", error);
+   alert("Failed to navigate to brand page");
+  }
+};
 
   if (loading) {
     return (
@@ -135,6 +113,7 @@ function OurBrand() {
         >
           {brands.map((brand) => (
             <img
+              onClick={() => handleBrandClick(brand)}
               key={brand?.brandId}
               src={brand?.image?.imageUrl}
               alt={brand?.name}

@@ -44,6 +44,7 @@ import PaymentConfirmation from "./Screens/StripePayment.jsx";
 import PaymentSuccess from "./Components/widget/PaymentSuccess.jsx";
 import StripePayment from "./Screens/StripePayment.jsx";
 import CheckoutPage from "./Screens/CheckoutPage.jsx";
+import ProductByBrand from "./Screens/ProductByBrand.jsx";
 
 const token = localStorage.getItem('access');
 
@@ -91,6 +92,7 @@ const routes = createBrowserRouter(
         <Route path="/career" element={<Career/>} />
         {/* <Route path="/career/:name" element={<CareerDetail/>} /> */}
         <Route path="/service/:name" element={<ServiceDetails/>} />
+<Route path="/brands/:brandId" element={<ProductByBrand />} />
         <Route path="/career/:id" element={<CareerDetail/>} />
       
         <Route path="/shop" element={<Shop/>} />

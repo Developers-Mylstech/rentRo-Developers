@@ -137,7 +137,7 @@ const Home = () => {
   return (
     <div className="overflow-x-hidden">
       {/* Banner Carousel Section */}
-      <section className="relative md:h-[70vh] h-[22vh] w-full overflow-hidden">
+      <section className="relative md:h-[60vh] h-[22vh] w-full overflow-hidden">
       {banners.length > 0 ? (
           <div className="relative w-full h-full bg-blue-300">
             <AnimatePresence custom={direction} initial={false}>
@@ -240,7 +240,7 @@ const Home = () => {
       </section>
 
       {/* Rest of the sections */}
-         <section className="md:mt-16" ref={ourBrandSection}>
+         <section className="md:mt-12" ref={ourBrandSection}>
         <OurBrand />
       </section>
 
@@ -250,7 +250,7 @@ const Home = () => {
 
      
 
-      <section className="md:mt-16">
+      <section className="md:mt-12">
         <ProductsSection />
       </section>
 
@@ -262,11 +262,11 @@ const Home = () => {
         <ProductList products={products} />
       </section>
 
-      <section className="md:mt-16">
+      <section className="md:mt-12">
         <ProductsForRQ products={products} />
       </section>
 
-      <section className="md:mt-16">
+      <section className="md:mt-12">
         <Clients />
       </section>
     </div>
