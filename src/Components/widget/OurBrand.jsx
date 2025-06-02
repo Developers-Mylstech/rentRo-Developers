@@ -44,7 +44,9 @@ const handleBrandClick = async (brand) => {
   try {
     console.log(brand,' has been clicked');
     // Encode the brand name for URL safet    
-    navigate(`/brands/${brand?.brandId}`);
+navigate(`/brands/${brand?.brandId}`, { state: { brand: brand } });
+
+
     
   } catch (error) {
     console.error("Error handling brand navigation:", error);

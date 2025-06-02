@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../utils/axiosInstance';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function ProductBybrands() {
   const { brandId } = useParams();
+   const location = useLocation();
+   const { brand } = location.state || {};
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -41,6 +43,9 @@ function ProductBybrands() {
     }
   }, [brandId]);
 
+    console.log("brandId from URL:", brandId);
+  console.log("brand object from state:", brand);
+
     const handleProductClick = (product) => {
     navigate(`/product/${product.name}`, { state: { product } });
   };
@@ -58,17 +63,17 @@ function ProductBybrands() {
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto mb-12 text-center">
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 shadow-sm">
-          {brandInfo && brandInfo.image && (
+          {brand && brand?.image && (
             <img 
-              src={brandInfo.image.imageUrl} 
-              alt={brandInfo.name} 
-              className="h-20 mx-auto mb-4 object-contain"
+              src={brand?.image?.imageUrl} 
+              alt={brand?.name} 
+              className="md:h-20 h-12 mx-auto mb-4 object-contain"
             />
           )}
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">
-            {brandInfo?.name || `Brand #${brandId}`} Products
+          <h1 className="md:text-4xl text-2xl font-bold text-blue-600 mb-2">
+            {brand?.name } Products
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="md:text-lg text-sm text-gray-600">
             Premium quality products for your needs
           </p>
         </div>
@@ -140,19 +145,19 @@ function ProductBybrands() {
                 </div>
                 <div className="p-4">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-1">
-                    {product.name}
+                    {product?.name}
                   </h3>
                   <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-                    {product.description}
+                    {product?.description}
                   </p>
                   <div className="flex justify-between items-center">
                     <div>
                       <span className="text-blue-600 font-medium text-lg">
-                        {product.productFor?.sell?.discountPrice && product.productFor?.rent?.discountPrice ?getProductPrice(product)+"AED":"Request Quotation"} 
+                        {product?.productFor?.sell?.discountPrice && product.productFor?.rent?.discountPrice ?getProductPrice(product)+"AED":"Request Quotation"} 
                       </span>
-                      {product.productFor?.sell?.discountPrice && (
+                      {product?.productFor?.sell?.discountPrice && (
                         <span className="text-gray-400 text-sm line-through ml-2">
-                          {product.productFor.sell.actualPrice}AED
+                          {product?.productFor?.sell?.actualPrice}AED
                         </span>
                       )}
                     </div>
