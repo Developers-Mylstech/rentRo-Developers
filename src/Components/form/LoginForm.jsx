@@ -191,7 +191,7 @@ function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center  p-4">
       <div className="w-full max-w-md">
-        <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl overflow-hidden shadow-xl border border-white border-opacity-20">
+        <div className="bg-white bg-opacity-10  backdrop-blur-lg rounded-2xl overflow-hidden shadow-xl border border-white border-opacity-20">
           {/* Header */}
           <div className="bg-gradient-to-r from-blue-600 to-blue-400 p-6 text-center">
             <h2 className="text-3xl font-light text-white">Welcome Back</h2>

@@ -266,15 +266,15 @@ const WishlistToast = ({ message, type, onClose }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.9 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: -20, scale: 0.9 }}
+      animate={{ opacity: 1, y: 20, scale: 1 }}
       exit={{ opacity: 0, x: 50 }}
       transition={{ type: "spring", damping: 25, stiffness: 300 }}
-      className={`relative flex items-center gap-3 px-6 py-4 rounded-xl shadow-lg ${
+      className={`fixed top-0 right-4 transform -translate-x-1/2 mt-5 z-50 flex items-center gap-3 px-6 py-4 rounded-t-xl shadow-lg ${
         type === "added" 
           ? "bg-gradient-to-r from-pink-50 to-white border-pink-100" 
           : "bg-gradient-to-r from-gray-50 to-white border-gray-200"
-      } border max-w-md`}
+      } border `}
     >
       <div className={`p-2 rounded-full ${
         type === "added" ? "bg-pink-100" : "bg-gray-100"
@@ -293,7 +293,7 @@ const WishlistToast = ({ message, type, onClose }) => {
             : "Item removed from collection"}
         </p>
       </div>
-      <div className={`absolute bottom-0 left-0 h-1 w-full ${
+      <div className={`absolute  bottom-0 left-0 h-1 w-full ${
         type === "added" 
           ? "bg-gradient-to-r from-pink-400 to-pink-300" 
           : "bg-gradient-to-r from-gray-400 to-gray-300"
@@ -457,7 +457,7 @@ const ProductList = ({ products }) => {
               {/* Product Image */}
               <div className="relative h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
                 <img
-                  src={ "http://192.168.1.14:8080/uploads/7cfcee14-a667-42ef-bc9a-b4f8600db4c9_Screenshot_2025-05-19_170732-removebg-preview.webp"}
+                  src={product?.images[0]?.imageUrl}
                   alt={product?.name}
                   className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
                 />

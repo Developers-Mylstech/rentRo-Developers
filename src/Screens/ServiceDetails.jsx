@@ -412,9 +412,9 @@ const ServiceDetails = () => {
     <div className="bg-gradient-to-br from-blue-50 to-white">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-blue-600/80 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/60 to-blue-600/60 z-10"></div>
         <div 
-          className="h-[50vh] md:h-[70vh] w-full bg-cover bg-center"
+          className="h-[40vh] md:h-[60vh] w-full bg-cover bg-center"
           style={{ 
             backgroundImage:
               `url(https://images.unsplash.com/photo-1614850523011-8f49ffc73908?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)` 
@@ -426,7 +426,7 @@ const ServiceDetails = () => {
         
         <div className="absolute inset-0 z-20 flex items-center">
           <div className="container mx-auto px-6">
-            <div className="w-full flex flex-col-reverse md:flex-row  justify-end items-center md:justify-around">
+            <div className="w-full flex flex-col-reverse md:flex-row  justify-between items-center md:justify-around">
               <div className="md:w-2/3 text-white">
                 <h1 className="text-2xl md:text-5xl font-bold md:mb-6 mb-2 leading-tight">
                   {service.title}
@@ -434,9 +434,9 @@ const ServiceDetails = () => {
                 <p className="text-lg md:text-2xl md:block hidden md:mb-8 mb-2 text-blue-100">
                   {stripHtmlTags(service.shortDescription)}
                 </p>
-                <button className="px-8 py-3 md:block hidden bg-white text-blue-700 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-lg">
+                {/* <button className="px-8 py-3 md:block hidden bg-white text-blue-700 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-lg">
                   Get Started
-                </button>
+                </button> */}
               </div>
               
        
@@ -445,7 +445,7 @@ const ServiceDetails = () => {
                     <img 
                       src={service.image?.imageUrl} 
                       alt={service.title}
-                      className="w-full h-auto rounded-lg "
+                      className="w-full h-auto rounded-lg my-auto "
                     />
                   </div>
                 </div>

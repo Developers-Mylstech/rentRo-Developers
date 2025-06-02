@@ -103,14 +103,15 @@ const WishlistScreen = () => {
           {wishlist?.map((item) => (
             <div
               key={item.id}
+           
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-100"
             >
-              <div className="relative">
+              <div  className="relative">
                 <img
                   src={item?.images?.[0]?.imageUrl || 'https://via.placeholder.com/300'}
                   alt={item?.name}
                   className="w-full h-48 object-cover cursor-pointer"
-                  onClick={() => handleProductClick(item)}
+                  
                 
                 />
                 <button
@@ -124,11 +125,13 @@ const WishlistScreen = () => {
               <div className="p-4">
                 <h3
                   className="font-medium text-gray-900 mb-1 cursor-pointer hover:text-blue-600 line-clamp-2"
-                  onClick={() => navigate(`/product/${item?.id}`)}
+              
                 >
                   {item?.name}
                 </h3>
-                <div className="flex items-center mb-3">
+                {
+                  item?.isActive == true ? (
+                      <div className="flex items-center mb-3">
                   {item.productFor?.sell?.discountPrice ? (
                     <>
                       <span className="text-lg font-bold text-gray-900">
@@ -150,13 +153,18 @@ const WishlistScreen = () => {
                   )}
 
                 </div>
+                  ):
+                  ""
+
+                }
+                
 
                 <button
-                  onClick={() => handleProductClick(item)}
+                   onClick={ item.isActive==true ?() => handleProductClick(item) : null}
                   className="w-full flex items-center justify-center py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors"
                 >
-                  <FaShoppingCart className="mr-2" />
-                  Move to Cart
+                  
+                  {item.isActive==false ? "Not Available" : "Move to Cart"   }
                 </button>
               </div>
             </div>
