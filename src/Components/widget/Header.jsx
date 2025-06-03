@@ -7,6 +7,8 @@ import useAuthStore from "../../Context/AuthContext";
 import useCartStore from "../../Context/CartContext";
 import CartSidebar from "./CartSidebar"
 import useUserStore from "../../Context/UserContext"
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
@@ -16,9 +18,12 @@ const Header = () => {
   const [showProductDropdown, setShowProductDropdown] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [showCartButton, setShowCartButton] = useState(true);
+  const [inputValue, setInputValue] = useState('');
   const { userDetails, fetchUser } = useUserStore();
+  const [products , setProducts] = useState([]);
 
   const location = useLocation();
+  const navigate = useNavigate();
   const { user, isAuthenticated, logout, token } = useAuthStore();
   const { totalItems, totalAmount, fetchCartItems } = useCartStore();
 
@@ -65,6 +70,27 @@ const Header = () => {
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
+
+
+
+  const handleInputSearch = async (input) => {
+  // Validate brand object exists
+  
+
+  try {
+    console.log(input,' has been searched');
+    // Encode the brand name for URL safet  
+  
+     navigate(`/search/${input}`,{state:{products}}, );
+     setInputValue('');
+
+
+    
+  } catch (error) {
+    console.error("Error handling brand navigation:", error);
+   alert("Failed to navigate to brand page");
+  }
+};
 
   return (
     <header
@@ -139,8 +165,12 @@ const Header = () => {
                 <input
                   type="text"
                   placeholder="Search"
+                  onChange={ (e) => setInputValue(e.target.value) }
+              
                   className={`flex-grow w-full pr-8 py-1 bg-transparent ${scrolling?"placeholder:text-white":"placeholder:text-blue-200"}  text-blue-800 outline-none transition-all ease-in-out duration-100`}
                 />
+
+                <FiSearch onClick={()=>handleInputSearch(inputValue)} className={`text-gray-300 text-xl ${scrolling?"text-white":"text-blue-200"} cursor-pointer `} />
                 <FiX
                   className={`text-gray-300 text-xl ${scrolling?"text-white":"text-blue-200"} cursor-pointer absolute top-1/2 right-2 transform -translate-y-1/2 transition-transform duration-200`}
                   onClick={() => setSearchVisible(false)}
