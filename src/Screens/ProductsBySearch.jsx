@@ -147,7 +147,7 @@ function ProductBySearch() {
                     </div>
                     <button 
                       onClick={() => handleProductClick(product)}
-                      className="text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md transition-colors duration-200"
+                      className="text-sm  bg-gradient-to-r from-blue-500 to-blue-800 text-white px-3 py-1 rounded-md transition-colors duration-200"
                     >
                       View Details
                     </button>

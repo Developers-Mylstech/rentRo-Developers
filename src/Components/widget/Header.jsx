@@ -165,6 +165,7 @@ const Header = () => {
                 <input
                   type="text"
                   placeholder="Search"
+                  value={inputValue}
                   onChange={ (e) => setInputValue(e.target.value) }
               
                   className={`flex-grow w-full pr-8 py-1 bg-transparent ${scrolling?"placeholder:text-white":"placeholder:text-blue-200"}  text-blue-800 outline-none transition-all ease-in-out duration-100`}
